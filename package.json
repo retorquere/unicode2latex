@@ -2,13 +2,14 @@
   "name": "unicode2latex",
   "version": "1.0.0",
   "description": "Mapping to convert unicode characters to LaTeX commands",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "baseline": "ts-node fetch baseline",
     "start": "ts-node fetch",
     "prestart": "npm test",
-    "_poststart": "git diff -w dist",
-    "test": "tslint -t stylish --project ."
+    "poststart": "git diff -w dist",
+    "test": "tslint -t stylish --project .",
+    "postversion": "npm publish"
   },
   "author": "Emiliano Heyns",
   "license": "ISC",
