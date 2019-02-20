@@ -96,21 +96,19 @@ class CharMap {
         .replace(/([a-z]) $/i, '$1{}')
         .replace(/^_\{([-()+=0-9])\}$/, '_$1{}')
         .replace(/^\^\{([0-9])\}$/, '^$1{}')
-        .replace(/^\\([`'^~])\{(.)\}$/, '\\$1$2{}')
+        .replace(/^\\([="`'^~])\{(.)\}$/, '\\$1$2')
+        .replace(/^\\([="`'^~])(.)\{\}$/, '\\$1$2')
         .replace(/^\{\^(.)\}$/, '^$1{}')
-        .replace(/^\\"([aAEeIOoUuYy])\{\}$/, '\\"$1')
-        .replace(/^\\"\{([aAEeIOoUuYy])\}$/, '\\"$1')
         .replace(/^\\([=~'`^])\{\\([ij])\}$/, '\\$1$2{}')
         .replace(/^\\c\{([CcGgKkLlNnRrSsTt])\}$/, '{\\c $1}')
         .replace(/^\\u\{([AaEeGgIiOoUu])\}$/, '{\\u $1}')
         .replace(/^\\v\{([CcDdEeLlNnRrSsTtZz])\}$/, '{\\v $1}')
         .replace(/^\\H\{([OoUu])\}$/, '{\\H $1}')
-        .replace(/^\\=\{([AaEeIiOoUu])\}$/, '\\=$1{}')
         .replace(/^\\u\{\\i\}$/, '{\\u \\i}')
 
       if (mapping.tex.includes('\\') && mapping.tex.match(/[a-z0-9]$/i)) mapping.tex += '{}'
 
-    } else if (mapping.tex.match(/^\\["][aAEeIOoUuYy]\{\}$/)) {
+    } else if (mapping.tex.match(/^\\[="`'^~][a-zA-Z]\{\}$/)) {
       throw new Error(`${this.source} defines baseline ${mapping.tex}`)
 
     }
