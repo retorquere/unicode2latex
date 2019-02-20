@@ -26,9 +26,7 @@
     "tslint": "^5.12.1",
     "typescript": "^3.3.3",
     "xmldom": "^0.1.27",
-    "xpath": "0.0.27"
-  },
-  "dependencies": {
+    "xpath": "0.0.27",
     "punycode": "^2.1.1"
   }
 }
