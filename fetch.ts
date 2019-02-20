@@ -56,7 +56,7 @@ function escapedJSON(obj) {
 class CharMap {
   private source: string
   private charmap: { [key: string]: { tex: string, mode: 'text' | 'math', source: string, target: 'unicode' | 'ascii' } }
-  private always_replace = '<>\\#$%&^_{}~'
+  private always_replace = '\u00A0<>\\#$%&^_{}~'
 
   constructor() {
     this.source = ''
@@ -84,8 +84,8 @@ class CharMap {
     }
   }
 
-  private printableASCII(cp) {
-    return cp > 32 && cp < 127
+  private printableASCII(cp, includeSpace = false) {
+    return cp > (includeSpace ? 31 : 32) && cp < 127
   }
 
   private add(codepoints, mapping) {
@@ -128,7 +128,6 @@ class CharMap {
         break
 
       case 2:
-        // go home W3C, you're drunk
         if (codepoints.length === 2 && unicode[0] === '\\' && this.printableASCII(codepoints[1])) {
           console.log(`${this.source}.${disp}: ignoring "escaped" character for ${mapping.tex}`)
           return
@@ -141,11 +140,12 @@ class CharMap {
     }
 
     let target
-    if (codepoints.length === 1 && codepoints[0] >= 32 && codepoints[0] < 127) { // plain-text usually does not need escaping
-      if (!this.always_replace.includes(unicode)) return
+    if (this.always_replace.includes(unicode)) {
       target = 'unicode'
-    } else {
+    } else if (codepoints.find(cp => !this.printableASCII(cp, true))) {
       target = 'ascii'
+    } else {
+      return
     }
 
     if (!mapping.mode) {
@@ -169,6 +169,8 @@ class CharMap {
       return
     }
 
+    // if (!mapping.tex.trim()) throw new Error(`${this.source}.${disp} generates space`)
+    if (mapping.tex === '\\\\space{}') throw new Error(`${this.source}.${disp} generates space`)
     this.charmap[unicode] = {tex: mapping.tex, mode: mapping.mode, target, source: this.source }
   }
 
@@ -207,17 +209,25 @@ class CharMap {
   private baseline() {
     this.source = 'baseline'
 
-    // const bbt = require('./unicode_translator_mapping.js')
-
-    for (const mode of ['math', 'text']) {
-      for (const target of ['unicode', 'ascii']) {
-        // for (const [chr, tex] of Object.entries(bbt[target][mode])) {
-
-        const baseline = require(`./dist/${target}/${mode}.json`)
-        for (const [chr, tex] of Object.entries(baseline)) {
+    /*
+    const bbt = require('./unicode_translator_mapping.js')
+    for (const target of ['unicode', 'ascii']) {
+      for (const mode of ['text', 'math']) {
+        for (const [chr, tex] of Object.entries(bbt[target][mode]) as any[]) {
           const codepoints = chr.split('').map(c => c.charCodeAt(0))
           this.add(codepoints, { mode, tex, baseline: true })
         }
+      }
+    }
+    return
+    */
+
+    for (const target of ['unicode', 'ascii']) {
+      const baseline = require(`./dist/${target}.json`)
+
+      for (const [chr, tex] of Object.entries(baseline) as any[]) {
+        const codepoints = chr.split('').map(c => c.charCodeAt(0))
+        this.add(codepoints, { mode: tex.math ? 'math' : 'text', tex: tex.tex, baseline: true })
       }
     }
   }
@@ -232,7 +242,9 @@ class CharMap {
     const TeXSpecialChars = require(mod.path).TeXSpecialChars
 
     for (const mapping of TeXSpecialChars) {
-      if (!mapping.unicode) continue
+      if (!mapping.unicode.trim()) continue
+      // escaped regex
+      if (mapping.unicode.match(/^\\[{}~^$]$/)) mapping.unicode = mapping.unicode[1]
 
       for (const tex of mapping.tex.source.split('|')) {
         const codepoints = mapping.unicode.split('').map(c => c.charCodeAt(0))
