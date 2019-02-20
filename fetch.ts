@@ -84,12 +84,36 @@ class CharMap {
     }
   }
 
-  private printableASCII(cp, includeSpace = false) {
-    return cp > (includeSpace ? 31 : 32) && cp < 127
+  private printableASCII(ch) {
+    return (ch > ' ') && (ch < '~')
   }
 
-  private add(codepoints, mapping) {
-    if (!mapping.tex) throw new Error(`${this.source}: ${codepoints} has no TeX`)
+  private add(unicode, mapping) {
+    if (typeof unicode !== 'string') throw new Error(`${unicode} is not a string`)
+
+    const disp = Array.from(unicode).map(cp => this.printableASCII(cp) ? cp : `\\u${cp.codePointAt(0).toString(16).padStart(4, '0')}`).join('')
+
+    if (!mapping.tex) throw new Error(`${this.source}: ${disp} has no TeX`)
+
+    const l = punycode.ucs2.decode(unicode).length
+    switch (l) {
+      case 0:
+        throw new Error(`${this.source}: empty unicode match`)
+
+      case 1:
+        break
+
+      case 2:
+        if (unicode[0] === '\\' && this.printableASCII(unicode[1])) {
+          console.log(`${this.source}.${disp}: ignoring "escaped" character for ${mapping.tex}`)
+          return
+        }
+        break
+
+      default:
+        console.log(`${this.source}.${disp}: ignoring ${l}-char mapping for ${mapping.tex}`)
+        return
+    }
 
     if (!mapping.baseline) {
       mapping.tex = mapping.tex
@@ -113,41 +137,12 @@ class CharMap {
 
     }
 
-    if (!Array.isArray(codepoints)) throw new Error(`${this.source}: ${codepoints} is a ${typeof codepoints}`)
-    if (codepoints.find(cp => typeof cp !== 'number' || isNaN(cp))) throw new Error(`${this.source}: ${codepoints} contains non-numbers`)
-
-    if (!codepoints.length) throw new Error(`${this.source}: empty codepoints`)
-
-    const unicode = codepoints.map(cp => String.fromCharCode(cp)).join('').normalize('NFC')
-
-    const disp = codepoints.map(cp => this.printableASCII(cp) ? String.fromCharCode(cp) : '\\u' + cp.toString(16).padStart(4, '0')).join('')
-
-    const l = punycode.ucs2.decode(unicode).length
-    switch (l) {
-      case 0:
-        return
-
-      case 1:
-        break
-
-      case 2:
-        if (codepoints.length === 2 && unicode[0] === '\\' && this.printableASCII(codepoints[1])) {
-          console.log(`${this.source}.${disp}: ignoring "escaped" character for ${mapping.tex}`)
-          return
-        }
-        break
-
-      default:
-        console.log(`${this.source}.${disp}: ignoring ${l}-char mapping for ${mapping.tex}`)
-        return
-    }
-
     let target
     if (this.always_replace.includes(unicode)) {
       target = 'unicode'
-    } else if (codepoints.find(cp => !this.printableASCII(cp, true))) {
+    } else if (Array.from(unicode).find(cp => cp !== ' ' && !this.printableASCII(cp))) {
       target = 'ascii'
-    } else {
+    } else { // only printable ASCII, no special TeX chars
       return
     }
 
@@ -172,7 +167,7 @@ class CharMap {
       return
     }
 
-    // if (!mapping.tex.trim()) throw new Error(`${this.source}.${disp} generates space`)
+    if (unicode === ' ') throw new Error(`${this.source}.${disp} => ${mapping.tex} matches space`)
     if (mapping.tex === '\\\\space{}') throw new Error(`${this.source}.${disp} generates space`)
     this.charmap[unicode] = {tex: mapping.tex, mode: mapping.mode, target, source: this.source }
   }
@@ -185,14 +180,14 @@ class CharMap {
       chars += 1
       const parent = chr.parentNode as HTMLElement
       // https://stackoverflow.com/questions/14528397/strange-behavior-for-map-parseint
-      const codepoints = parent.getAttribute('dec').split('-').map(n => parseInt(n)) // tslint:disable-line:no-unnecessary-callback-wrapper
+      const unicode = String.fromCodePoint.apply(null, parent.getAttribute('dec').split('-').map(n => parseInt(n))) // tslint:disable-line:no-unnecessary-callback-wrapper
 
       let mode = parent.getAttribute('mode')
       if (mode === 'mixed') mode = xpath.select('mathlatex', parent).length ? 'text' : 'math'
       if (mode === 'unknown') mode = 'text'
 
       const tex = chr.textContent
-      this.add(codepoints, { mode, tex })
+      this.add(unicode, { mode, tex })
     }
   }
 
@@ -203,9 +198,9 @@ class CharMap {
 
       const fields = line.split('^')
       if (fields.length !== 8) throw new Error(`${this.source}: ${lineno + 1} has ${fields.length} fields`)
-      const codepoints = [ parseInt(fields[0], 16) ]
+      const unicode = String.fromCodePoint(parseInt(fields[0], 16))
       const tex = fields[2] || fields[3]
-      if (tex.trim()) this.add(codepoints, {mode: 'math', tex})
+      if (tex.trim()) this.add(unicode, {mode: 'math', tex})
     })
   }
 
@@ -216,9 +211,8 @@ class CharMap {
     const bbt = require('./unicode_translator_mapping.js')
     for (const target of ['unicode', 'ascii']) {
       for (const mode of ['text', 'math']) {
-        for (const [chr, tex] of Object.entries(bbt[target][mode]) as any[]) {
-          const codepoints = chr.split('').map(c => c.charCodeAt(0))
-          this.add(codepoints, { mode, tex, baseline: true })
+        for (const [unicode, tex] of Object.entries(bbt[target][mode]) as any[]) {
+          this.add(unicode, { mode, tex, baseline: true })
         }
       }
     }
@@ -228,9 +222,8 @@ class CharMap {
     for (const target of ['unicode', 'ascii']) {
       const baseline = require(`./dist/${target}.json`)
 
-      for (const [chr, tex] of Object.entries(baseline) as any[]) {
-        const codepoints = chr.split('').map(c => c.charCodeAt(0))
-        this.add(codepoints, { mode: tex.math ? 'math' : 'text', tex: tex.tex, baseline: true })
+      for (const [unicode, tex] of Object.entries(baseline) as any[]) {
+        this.add(unicode, { mode: tex.math ? 'math' : 'text', tex: tex.tex, baseline: true })
       }
     }
   }
@@ -250,8 +243,7 @@ class CharMap {
       if (mapping.unicode.match(/^\\[{}~^$]$/)) mapping.unicode = mapping.unicode[1]
 
       for (const tex of mapping.tex.source.split('|')) {
-        const codepoints = mapping.unicode.split('').map(c => c.charCodeAt(0))
-        this.add(codepoints, { tex })
+        this.add(mapping.unicode, { tex })
       }
     }
   }
@@ -285,9 +277,8 @@ class CharMap {
     const mod = await tmp.file({postfix: '.js'})
     fs.writeFileSync(mod.path, 'module.exports = ' + vim, 'utf-8')
     const mapping: { [key: string]: string } = require(mod.path)
-    for (const [tex, chr] of Object.entries(mapping)) {
-      const codepoints = chr.split('').map(c => c.charCodeAt(0))
-      this.add(codepoints, { tex })
+    for (const [tex, unicode] of Object.entries(mapping)) {
+      this.add(unicode, { tex })
     }
   }
 }
