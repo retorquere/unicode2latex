@@ -1,14 +1,15 @@
 {
-  "_" : { "tex" : "\\_", "math": false },
-  "{" : { "tex" : "\\{", "math": false },
-  "}" : { "tex" : "\\}", "math": false },
-  "&" : { "tex" : "\\&", "math": false },
-  "#" : { "tex" : "\\#", "math": false },
-  "%" : { "tex" : "\\%", "math": false },
-  "^" : { "tex" : "\\^", "math": false },
-  "<" : { "tex" : "<", "math": true },
-  ">" : { "tex" : ">", "math": true },
-  "~" : { "tex" : "\\textasciitilde{}", "math": false },
-  "$" : { "tex" : "\\$", "math": false },
-  "\\": { "tex" : "\\backslash{}", "math": true }
+  "_"     : { "tex" : "\\_", "math": false },
+  "{"     : { "tex" : "\\{", "math": false },
+  "}"     : { "tex" : "\\}", "math": false },
+  "&"     : { "tex" : "\\&", "math": false },
+  "#"     : { "tex" : "\\#", "math": false },
+  "%"     : { "tex" : "\\%", "math": false },
+  "^"     : { "tex" : "\\^", "math": false },
+  "<"     : { "tex" : "<", "math": true },
+  ">"     : { "tex" : ">", "math": true },
+  "~"     : { "tex" : "\\textasciitilde{}", "math": false },
+  "$"     : { "tex" : "\\$", "math": false },
+  "\\"    : { "tex" : "\\backslash{}", "math": true },
+  "\u00A0": { "tex" : "~", "math": false }
 }
