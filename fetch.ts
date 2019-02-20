@@ -23,12 +23,8 @@ function maybeIndent(lines) {
 }
 
 function keySort(a, b) {
-  if (a.v === b.v) {
-    if (a.k.length !== b.k.length) return a.k.length - b.k.length
-    return a.k.localeCompare(b.k)
-  }
-
-  return a.v.localeCompare(b.v)
+  if (a.k.length !== b.k.length) return a.k.length - b.k.length
+  return a.k.localeCompare(b.k)
 }
 
 function escapedJSON(obj) {
@@ -76,17 +72,15 @@ class CharMap {
     await this.milde()
     await this.vim()
 
+    fs.ensureDirSync('dist')
     for (const target of ['unicode', 'ascii']) {
-      fs.ensureDirSync(`dist/${target}`)
-      for (const mode of ['text', 'math']) {
-        const mapping = {}
-        for (const [unicode, tex] of Object.entries(this.charmap)) {
-          if (tex.mode === mode && (tex.target === target || target === 'ascii')) {
-            mapping[unicode] = tex.tex
-          }
+      const mapping = {}
+      for (const [unicode, tex] of Object.entries(this.charmap)) {
+        if (tex.target === target || target === 'ascii') {
+          mapping[unicode] = { tex: tex.tex, math: tex.mode === 'math' }
         }
-        fs.writeFileSync(`dist/${target}/${mode}.json`, escapedJSON(mapping))
       }
+      fs.writeFileSync(`dist/${target}.json`, escapedJSON(mapping))
     }
   }
 

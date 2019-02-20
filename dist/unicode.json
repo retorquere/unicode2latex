@@ -1,0 +1,14 @@
+{
+  "_" : { "tex" : "\\_", "math": false },
+  "{" : { "tex" : "\\{", "math": false },
+  "}" : { "tex" : "\\}", "math": false },
+  "&" : { "tex" : "\\&", "math": false },
+  "#" : { "tex" : "\\#", "math": false },
+  "%" : { "tex" : "\\%", "math": false },
+  "^" : { "tex" : "\\^", "math": false },
+  "<" : { "tex" : "<", "math": true },
+  ">" : { "tex" : ">", "math": true },
+  "~" : { "tex" : "\\textasciitilde{}", "math": false },
+  "$" : { "tex" : "\\$", "math": false },
+  "\\": { "tex" : "\\backslash{}", "math": true }
+}
