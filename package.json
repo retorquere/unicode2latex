@@ -1,0 +1,29 @@
+{
+  "name": "unicode2latex",
+  "version": "1.0.0",
+  "description": "Mapping to convert unicode characters to LaTeX commands",
+  "main": "index.js",
+  "scripts": {
+    "baseline": "ts-node fetch baseline",
+    "start": "ts-node fetch",
+    "prestart": "npm test",
+    "test": "tslint -t stylish --project ."
+  },
+  "author": "Emiliano Heyns",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^11.9.4",
+    "biblatex-csl-converter": "^1.6.7",
+    "fs-extra": "^7.0.1",
+    "indent": "0.0.2",
+    "jsesc": "^2.5.2",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
+    "tmp-promise": "^1.0.5",
+    "ts-node": "^8.0.2",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.3",
+    "xmldom": "^0.1.27",
+    "xpath": "0.0.27"
+  }
+}
