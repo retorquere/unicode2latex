@@ -26,6 +26,9 @@ function keySort(a, b) {
   if (a.k.length !== b.k.length) return a.k.length - b.k.length
   return a.k.localeCompare(b.k)
 }
+function kmsSort(a, b) {
+  return b.k.localeCompare(a.k)
+}
 
 function escapedJSON(obj) {
   if (Array.isArray(obj)) return `[${maybeIndent(obj.map(escapedJSON))}]`
@@ -35,15 +38,16 @@ function escapedJSON(obj) {
 
   if (typeof obj === 'object') {
     let padding = 0
+    const kms = !Object.keys(obj).find(k => !(['key', 'math', 'space'].includes(k)))
     const body = Object.entries(obj)
       .map(member => {
         const k = escapedJSON('' + member[0])
         const v = escapedJSON(member[1])
 
-        if (k.length > padding) padding = k.length
+        if (!kms && k.length > padding) padding = k.length
         return {k, v}
       })
-      .sort(keySort)
+      .sort(kms ? kmsSort : keySort)
       .map(member => `${member.k.padEnd(padding, ' ')}: ${member.v}`)
 
     return `{${maybeIndent(body)}}`
@@ -77,7 +81,13 @@ class CharMap {
       const mapping = {}
       for (const [unicode, tex] of Object.entries(this.charmap)) {
         if (tex.target === target || target === 'ascii') {
-          mapping[unicode] = { tex: tex.tex, math: tex.mode === 'math' }
+          mapping[unicode] = {
+            tex: tex.tex,
+            math: tex.mode === 'math',
+            space: '\u00A0\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u200B\u202F\u205F\u3000\uFEFF'.includes(unicode),
+          }
+          if (!mapping[unicode].math) delete mapping[unicode].math
+          if (!mapping[unicode].space) delete mapping[unicode].space
         }
       }
       fs.writeFileSync(`dist/${target}.json`, escapedJSON(mapping))
