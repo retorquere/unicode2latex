@@ -7,8 +7,7 @@ import * as fs from 'fs-extra'
 import jsesc = require('jsesc')
 import * as tmp from 'tmp-promise'
 import indent = require('indent')
-
-const bbt = require('./unicode_translator_mapping.js')
+import * as punycode from 'punycode'
 
 function main(asyncMain) {
   asyncMain().catch(err => {
@@ -24,8 +23,11 @@ function maybeIndent(lines) {
 }
 
 function keySort(a, b) {
-  // if (a.k.length !== b.k.length) return a.k.length - b.k.length
-  // return a.k.localeCompare(b.k)
+  if (a.v === b.v) {
+    if (a.k.length !== b.k.length) return a.k.length - b.k.length
+    return a.k.localeCompare(b.k)
+  }
+
   return a.v.localeCompare(b.v)
 }
 
@@ -51,7 +53,7 @@ function escapedJSON(obj) {
     return `{${maybeIndent(body)}}`
   }
 
-  if (typeof obj === 'string') return JSON.stringify(obj).split('').map(c => (c >= ' ' && c <= '~') ? c : '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0')).join('')
+  if (typeof obj === 'string') return JSON.stringify(obj).split('').map(c => (c >= ' ' && c <= '~') ? c : '\\u' + c.charCodeAt(0).toString(16).toUpperCase().padStart(4, '0')).join('')
   return JSON.stringify(obj)
 }
 
@@ -59,23 +61,20 @@ class CharMap {
   private source: string
   private charmap: { [key: string]: { tex: string, mode: 'text' | 'math', source: string, target: 'unicode' | 'ascii' } }
   private always_replace = '<>\\#$%&^_{}~'
-  private baseline: boolean
 
   constructor() {
     this.source = ''
     this.charmap = {}
-    this.baseline = process.argv[2] === 'baseline'
   }
 
   public async load() {
-    this.bbt()
-    if (!this.baseline) {
-      this.bcc()
-      await this.w3('https://www.w3.org/2003/entities/2007xml/unicode.xml', 'w3.entities', '/unicode')
-      await this.w3('http://www.w3.org/Math/characters/unicode.xml', 'w3.math', '')
-      await this.milde()
-      await this.vim()
-    }
+    this.baseline()
+
+    await this.bcc()
+    await this.w3('https://www.w3.org/2003/entities/2007xml/unicode.xml', 'w3.entities', '/unicode')
+    await this.w3('http://www.w3.org/Math/characters/unicode.xml', 'w3.math', '')
+    await this.milde()
+    await this.vim()
 
     for (const target of ['unicode', 'ascii']) {
       fs.ensureDirSync(`dist/${target}`)
@@ -91,10 +90,14 @@ class CharMap {
     }
   }
 
+  private printableASCII(cp) {
+    return cp > 32 && cp < 127
+  }
+
   private add(codepoints, mapping) {
     if (!mapping.tex) throw new Error(`${this.source}: ${codepoints} has no TeX`)
 
-    if (!this.baseline) {
+    if (!mapping.baseline) {
       mapping.tex = mapping.tex
         .replace(/([a-z]) $/i, '$1{}')
         .replace(/^_\{([-()+=0-9])\}$/, '_$1{}')
@@ -119,9 +122,29 @@ class CharMap {
     if (!codepoints.length) throw new Error(`${this.source}: empty codepoints`)
 
     const unicode = codepoints.map(cp => String.fromCharCode(cp)).join('').normalize('NFC')
-    const disp = codepoints.length === 1 && codepoints[0] > 32 && codepoints[0] < 127
-      ? String.fromCharCode(codepoints[0])
-      : codepoints.map(cp => '\\u' + cp.toString(16).padStart(4, '0')).join('')
+
+    const disp = codepoints.map(cp => this.printableASCII(cp) ? String.fromCharCode(cp) : '\\u' + cp.toString(16).padStart(4, '0')).join('')
+
+    const l = punycode.ucs2.decode(unicode).length
+    switch (l) {
+      case 0:
+        return
+
+      case 1:
+        break
+
+      case 2:
+        // go home W3C, you're drunk
+        if (codepoints.length === 2 && unicode[0] === '\\' && this.printableASCII(codepoints[1])) {
+          console.log(`${this.source}.${disp}: ignoring "escaped" character for ${mapping.tex}`)
+          return
+        }
+        break
+
+      default:
+        console.log(`${this.source}.${disp}: ignoring ${l}-char mapping for ${mapping.tex}`)
+        return
+    }
 
     let target
     if (codepoints.length === 1 && codepoints[0] >= 32 && codepoints[0] < 127) { // plain-text usually does not need escaping
@@ -137,6 +160,13 @@ class CharMap {
     }
     if (!['text', 'math'].includes(mapping.mode)) throw new Error(`${this.source}.${disp} => ${mapping.tex}: unexpected mode ${mapping.mode}`)
 
+    if (mapping.tex.startsWith('\\math') && mapping.mode === 'text') {
+      console.log(`${this.source}.${disp} misidentifies ${mapping.tex} as text`)
+      mapping.mode = 'math'
+    }
+
+    if (mapping.mode === 'text' && unicode === mapping.tex) return
+
     const existing = this.charmap[unicode]
     if (existing) {
       if (existing.mode !== mapping.mode || existing.tex !== mapping.tex) {
@@ -145,7 +175,7 @@ class CharMap {
       return
     }
 
-    this.charmap[unicode] = {...mapping, target, source: this.source }
+    this.charmap[unicode] = {tex: mapping.tex, mode: mapping.mode, target, source: this.source }
   }
 
   private async w3(url, source, root) {
@@ -155,7 +185,8 @@ class CharMap {
     for (const chr of xpath.select(`${root}/charlist/character/latex`, w3) as HTMLElement[]) {
       chars += 1
       const parent = chr.parentNode as HTMLElement
-      const codepoints = parent.getAttribute('dec').split('-').map(parseInt)
+      // https://stackoverflow.com/questions/14528397/strange-behavior-for-map-parseint
+      const codepoints = parent.getAttribute('dec').split('-').map(n => parseInt(n)) // tslint:disable-line:no-unnecessary-callback-wrapper
 
       let mode = parent.getAttribute('mode')
       if (mode === 'mixed') mode = xpath.select('mathlatex', parent).length ? 'text' : 'math'
@@ -179,19 +210,25 @@ class CharMap {
     })
   }
 
-  private bbt() {
-    this.source = 'bbt'
+  private baseline() {
+    this.source = 'baseline'
+
+    // const bbt = require('./unicode_translator_mapping.js')
+
     for (const mode of ['math', 'text']) {
       for (const target of ['unicode', 'ascii']) {
-        for (const [chr, tex] of Object.entries(bbt[target][mode])) {
+        // for (const [chr, tex] of Object.entries(bbt[target][mode])) {
+
+        const baseline = require(`./dist/${target}/${mode}.json`)
+        for (const [chr, tex] of Object.entries(baseline)) {
           const codepoints = chr.split('').map(c => c.charCodeAt(0))
-          this.add(codepoints, { mode, tex })
+          this.add(codepoints, { mode, tex, baseline: true })
         }
       }
     }
   }
 
-  private bcc() {
+  private async bcc() {
     this.source = 'biblatex-csl-converter'
 
     let bcc = fs.readFileSync('node_modules/biblatex-csl-converter/src/import/const.js', 'utf-8')

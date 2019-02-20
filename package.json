@@ -7,6 +7,7 @@
     "baseline": "ts-node fetch baseline",
     "start": "ts-node fetch",
     "prestart": "npm test",
+    "_poststart": "git diff -w dist",
     "test": "tslint -t stylish --project ."
   },
   "author": "Emiliano Heyns",
@@ -25,5 +26,8 @@
     "typescript": "^3.3.3",
     "xmldom": "^0.1.27",
     "xpath": "0.0.27"
+  },
+  "dependencies": {
+    "punycode": "^2.1.1"
   }
 }
