@@ -24,7 +24,7 @@
   "\u00AA"      : { "tex": "\\textordfeminine{}" },
   "\u00AB"      : { "tex": "\\guillemotleft{}" },
   "\u00AC"      : { "tex" : "\\lnot{}", "math": true },
-  "\u00AD"      : { "tex" : "\\-", "math": true },
+  "\u00AD"      : { "tex": "\\-" },
   "\u00AE"      : { "tex": "\\textregistered{}" },
   "\u00AF"      : { "tex": "\\textasciimacron{}" },
   "\u00B0"      : { "tex" : "^\\circ{}", "math": true },
