@@ -10,7 +10,7 @@
   ">"           : { "tex" : ">", "math": true },
   "~"           : { "tex": "\\textasciitilde{}" },
   "$"           : { "tex": "\\$" },
-  "\\"          : { "tex" : "\\backslash{}", "math": true },
+  "\\"          : { "tex": "\\textbackslash{}" },
   "\u00A0"      : { "tex"  : "~", "space": true },
   "\u00A1"      : { "tex": "\\textexclamdown{}" },
   "\u00A2"      : { "tex": "\\textcent{}" },

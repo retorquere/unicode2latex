@@ -229,12 +229,9 @@ class CharMap {
     return
     */
 
-    for (const target of ['unicode', 'ascii']) {
-      const baseline = require(`./dist/${target}.json`)
-
-      for (const [unicode, tex] of Object.entries(baseline) as any[]) {
-        this.add(unicode, { mode: tex.math ? 'math' : 'text', tex: tex.tex, baseline: true })
-      }
+    const baseline = require('./dist/ascii.json')
+    for (const [unicode, tex] of Object.entries(baseline) as any[]) {
+      this.add(unicode, { mode: tex.math ? 'math' : 'text', tex: tex.tex, baseline: true })
     }
   }
 
