@@ -59,7 +59,17 @@ function escapedJSON(obj) {
 
 class CharMap {
   private source: string
-  private charmap: { [key: string]: { tex: string, mode: 'text' | 'math', source: string, target: 'unicode' | 'ascii' } }
+  private charmap: {
+    [key: string]: {
+      text?: string,
+      math?: string,
+      source: {
+        text?: string,
+        math?: string,
+      },
+      target: 'unicode' | 'ascii'
+    }
+  }
   private always_replace = '\u00A0\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u200B\u202F\u205F\u3000\uFEFF<>\\#$%&^_{}~'
 
   constructor() {
@@ -82,12 +92,20 @@ class CharMap {
       for (const [unicode, tex] of Object.entries(this.charmap)) {
         if (tex.target === target || target === 'ascii') {
           mapping[unicode] = {
-            tex: tex.tex,
-            math: tex.mode === 'math',
+            text: tex.text,
+            math: tex.math,
             space: '\u00A0\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u200B\u202F\u205F\u3000\uFEFF'.includes(unicode),
           }
+          if (!mapping[unicode].text) delete mapping[unicode].text
           if (!mapping[unicode].math) delete mapping[unicode].math
           if (!mapping[unicode].space) delete mapping[unicode].space
+
+          if (mapping[unicode].text && mapping[unicode].text.includes('\\fontencoding') && mapping[unicode].math && !mapping[unicode].math.includes('\\fontencoding')) {
+            delete mapping[unicode].text
+          }
+
+          if (!mapping[unicode].text && !mapping[unicode].math) throw new Error('No TeX')
+          if (mapping[unicode].text && mapping[unicode].math) console.log('dual-mapping', mapping[unicode])
         }
       }
       fs.writeFileSync(`dist/${target}.json`, escapedJSON(mapping))
@@ -140,7 +158,7 @@ class CharMap {
         .replace(/^\\H\{([OoUu])\}$/, '{\\H $1}')
         .replace(/^\\u\{\\i\}$/, '{\\u \\i}')
 
-      if (mapping.tex.includes('\\') && mapping.tex.match(/[a-z0-9]$/i)) mapping.tex += '{}'
+      if (mapping.tex.includes('\\') && mapping.tex.match(/[a-z0-9]$/i) && !mapping.tex.match(/^\\[="`'^~].$/)) mapping.tex += '{}'
 
     } else if (mapping.tex.match(/^\\[="`'^~][a-zA-Z]\{\}$/)) {
       throw new Error(`${this.source} defines baseline ${mapping.tex}`)
@@ -171,15 +189,18 @@ class CharMap {
 
     const existing = this.charmap[unicode]
     if (existing) {
-      if (existing.mode !== mapping.mode || existing.tex !== mapping.tex) {
-        console.log(`${this.source}.${disp} wants to redefine (${existing.source}/${existing.mode}) "${existing.tex}" to (${this.source}/${mapping.mode}) "${mapping.tex}"`)
+      if ((existing[mapping.mode] || mapping.tex) !== mapping.tex) {
+        console.log(`${this.source}.${disp} wants to redefine (${existing.source[mapping.mode]}/${mapping.mode}) "${existing[mapping.mode]}" to (${this.source}/${mapping.mode}) "${mapping.tex}"`)
+        return
       }
-      return
     }
 
     if (unicode === ' ') throw new Error(`${this.source}.${disp} => ${mapping.tex} matches space`)
     if (mapping.tex === '\\\\space{}') throw new Error(`${this.source}.${disp} generates space`)
-    this.charmap[unicode] = {tex: mapping.tex, mode: mapping.mode, target, source: this.source }
+
+    this.charmap[unicode] = existing || { target, source: {} }
+    this.charmap[unicode].source[mapping.mode] = this.source
+    this.charmap[unicode][mapping.mode] = mapping.tex
   }
 
   private async w3(url, source, root) {
@@ -231,7 +252,8 @@ class CharMap {
 
     const baseline = require('./dist/ascii.json')
     for (const [unicode, tex] of Object.entries(baseline) as any[]) {
-      this.add(unicode, { mode: tex.math ? 'math' : 'text', tex: tex.tex, baseline: true })
+      if (tex.math) this.add(unicode, { mode: 'math', tex: tex.math, baseline: true })
+      if (tex.text) this.add(unicode, { mode: 'text', tex: tex.text, baseline: true })
     }
   }
 
