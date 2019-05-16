@@ -1,6 +1,6 @@
 {
   "name": "unicode2latex",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Mapping to convert unicode characters to LaTeX commands",
   "main": "dist/index.js",
   "scripts": {
