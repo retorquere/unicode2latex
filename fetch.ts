@@ -86,7 +86,7 @@ class CharMap {
     await this.milde()
     await this.vim()
 
-    fs.ensureDirSync('dist')
+    fs.ensureDirSync('tables')
     for (const target of ['unicode', 'ascii']) {
       const mapping = {}
       for (const [unicode, tex] of Object.entries(this.charmap)) {
@@ -108,7 +108,7 @@ class CharMap {
           if (mapping[unicode].text && mapping[unicode].math) console.log('dual-mapping', mapping[unicode])
         }
       }
-      fs.writeFileSync(`dist/${target}.json`, escapedJSON(mapping))
+      fs.writeFileSync(`tables/${target}.json`, escapedJSON(mapping))
     }
   }
 
@@ -250,7 +250,7 @@ class CharMap {
     return
     */
 
-    const baseline = require('./dist/ascii.json')
+    const baseline = require('./tables/ascii.json')
     for (const [unicode, tex] of Object.entries(baseline) as any[]) {
       if (tex.math) this.add(unicode, { mode: 'math', tex: tex.math, baseline: true })
       if (tex.text) this.add(unicode, { mode: 'text', tex: tex.text, baseline: true })
