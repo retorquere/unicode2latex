@@ -18,16 +18,13 @@ function main(asyncMain) {
 
 function maybeIndent(lines) {
   const compact = ` ${lines.join(', ')} `
-  if (compact.length < 80) return compact
+  if (compact.length < 120) return compact
   return `\n${indent(lines.join(',\n'), 2)}\n`
 }
 
 function keySort(a, b) {
   if (a.k.length !== b.k.length) return a.k.length - b.k.length
   return a.k.localeCompare(b.k)
-}
-function kmsSort(a, b) {
-  return b.k.localeCompare(a.k)
 }
 
 function escapedJSON(obj) {
@@ -38,17 +35,22 @@ function escapedJSON(obj) {
 
   if (typeof obj === 'object') {
     let padding = 0
-    const kms = !Object.keys(obj).find(k => !(['key', 'math', 'space'].includes(k)))
     const body = Object.entries(obj)
       .map(member => {
         const k = escapedJSON('' + member[0])
         const v = escapedJSON(member[1])
 
-        if (!kms && k.length > padding) padding = k.length
+        if (k.length > padding) padding = k.length
         return {k, v}
       })
-      .sort(kms ? kmsSort : keySort)
+      .sort(keySort)
       .map(member => `${member.k.padEnd(padding, ' ')}: ${member.v}`)
+      .map(member => {
+        if (member.includes('\n')) return member
+
+        const colon = member.indexOf(':')
+        return member.slice(0, colon + 2) + JSON.stringify(JSON.parse(member.slice(colon + 2)), null, 1).replace(/\n/g, '')
+      })
 
     return `{${maybeIndent(body)}}`
   }
@@ -70,11 +72,13 @@ class CharMap {
       target: 'unicode' | 'ascii'
     }
   }
+  private package: { [key: string]: string }
   private always_replace = '\u00A0\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u200B\u202F\u205F\u3000\uFEFF<>\\#$%&^_{}~'
 
   constructor() {
     this.source = ''
     this.charmap = {}
+    this.package = {}
   }
 
   public async load() {
@@ -85,6 +89,8 @@ class CharMap {
     await this.w3('http://www.w3.org/Math/characters/unicode.xml', 'w3.math', '')
     await this.milde()
     await this.vim()
+
+    await this.textcomp()
 
     fs.ensureDirSync('tables')
     for (const target of ['unicode', 'ascii']) {
@@ -103,6 +109,8 @@ class CharMap {
           if (mapping[unicode].text && mapping[unicode].text.includes('\\fontencoding') && mapping[unicode].math && !mapping[unicode].math.includes('\\fontencoding')) {
             delete mapping[unicode].text
           }
+          if (mapping[unicode].text && this.package[mapping[unicode].text]) mapping[unicode].textpackage = this.package[mapping[unicode].text]
+          if (mapping[unicode].math && this.package[mapping[unicode].math]) mapping[unicode].mathpackage = this.package[mapping[unicode].math]
 
           if (!mapping[unicode].text && !mapping[unicode].math) throw new Error('No TeX')
           if (mapping[unicode].text && mapping[unicode].math) console.log('dual-mapping', mapping[unicode])
@@ -274,6 +282,14 @@ class CharMap {
       for (const tex of mapping.tex.source.split('|')) {
         this.add(mapping.unicode, { tex })
       }
+    }
+  }
+
+  private async textcomp() {
+    const textcomp: string = await request('http://ctan.triasinformatica.nl/obsolete/fonts/psfonts/ts1/textcomp.dtx')
+    for (const line of textcomp.split('\n')) {
+      const m = line.match(/^\\DeclareTextSymbol{(.*?)}/)
+      if (m) this.package[`${m[1]}{}`] = 'textcomp'
     }
   }
 
