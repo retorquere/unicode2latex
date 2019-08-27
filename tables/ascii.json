@@ -820,7 +820,6 @@
   "\u203A"      : { "text": "\\guilsinglright{}" },
   "\u203C"      : { "math": "\\Exclam{}" },
   "\u203E"      : { "text": "-" },
-  "\u2040"      : { "text": "\\t{ia}" },
   "\u2043"      : { "math": "\\hyphenbullet{}" },
   "\u2044"      : { "math": "\\fracslash{}" },
   "\u2047"      : { "math": "\\Question{}" },
@@ -3797,5 +3796,6 @@
   "\uD835\uDFFC": { "math": "\\mathtt{6}" },
   "\uD835\uDFFD": { "math": "\\mathtt{7}" },
   "\uD835\uDFFE": { "math": "\\mathtt{8}" },
-  "\uD835\uDFFF": { "math": "\\mathtt{9}" }
+  "\uD835\uDFFF": { "math": "\\mathtt{9}" },
+  "i\ufe20a\ufe21": { "text": "\\t{ia}" }
 }
