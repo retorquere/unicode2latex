@@ -52,7 +52,7 @@
   "\u00C6"      : { "text": "\\AE{}" },
   "\u00C7"      : { "text": "{\\c C}" },
   "\u00C8"      : { "text": "\\`E" },
-  "\u00C9"      : { "text": "\\'E" },
+  "\u00C9"      : { "text": "\\'E", "preftext": true },
   "\u00CA"      : { "text": "\\^E" },
   "\u00CB"      : { "text": "\\\"E" },
   "\u00CC"      : { "text": "\\`I" },
