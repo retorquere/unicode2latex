@@ -231,10 +231,8 @@ class Tuples(Config):
       table = json.load(f)
 
     for rel in table:
-      try:
-        meta = rel[3]
-      except:
-        meta = {}
+      meta = {}
+      if len(rel) == 4: meta = rel[3]
 
       if rel[1] == 'unicode-to-text':
         self.unicode_to(rel[0], 'text', rel[2], meta)
@@ -269,8 +267,8 @@ class Tuples(Config):
       isspace = 0
     if type(ucodes) != list: ucodes = [ ucodes ]
     for ucode in ucodes:
-      self.db.execute('INSERT INTO build (unicode, relation, latex, isspace, package) VALUES (?, ?, ?, ?, ?)', [ucode, f'unicode-to-{mode}', latex, isspace, meta.get('package')])
+      self.db.execute('INSERT INTO build (unicode, relation, latex, isspace, package) VALUES (?, ?, ?, ?, ?)', [ucode, f'unicode-to-{mode}', latex, isspace, meta.get('packages')])
 
-#convert = Tuples()
-convert = Legacy()
+convert = Tuples()
+#convert = Legacy()
 convert.save()
