@@ -51,7 +51,7 @@ class Config:
     ''')
 
     self.db.execute('''
-      CREATE TRIGGER consistency BEFORE INSERT ON build 
+      CREATE TRIGGER consistency BEFORE INSERT ON build
         BEGIN
           SELECT RAISE(ABORT, 'duplicate unicode-to-latex')
           WHERE EXISTS (
@@ -81,7 +81,7 @@ class Config:
     if len(packages) > 0:
       m['packages'] = ' '.join(sorted(list(set(packages))))
     if isspace:
-      m['isspace'] = True
+      m['space'] = True
     return m
 
   def add(self, relation, ucode, latex):
@@ -138,10 +138,10 @@ class Config:
 
   def save(self):
     table = {}
-    for ucode, relation, latex, package, isspace in self.db.execute("SELECT unicode, relation, latex, package, isspace FROM tuples WHERE relation LIKE 'unicode-to-%' ORDER BY unicode"):
+    for ucode, relation, latex, package, isspace in self.db.execute("SELECT unicode, relation, latex, package, isspace FROM tuples WHERE relation LIKE 'unicode-to-%' ORDER BY unicode ASC, relation DESC"):
       table[ucode] = table.get(ucode, {})
       table[ucode][relation.replace('unicode-to-', '')] = latex
-    for ucode, relation, latex, package, isspace in self.db.execute("SELECT unicode, relation, latex, package, isspace FROM tuples WHERE relation LIKE 'unicode-to-%' ORDER BY unicode"):
+    for ucode, relation, latex, package, isspace in self.db.execute("SELECT unicode, relation, latex, package, isspace FROM tuples WHERE relation LIKE 'unicode-to-%' ORDER BY unicode ASC, relation DESC"):
       if isspace == 1: table[ucode]['space'] = True
       if package: table[ucode]['package'] = package
     with open ('tables/ascii.json', 'w') as f:
@@ -230,5 +230,47 @@ class Tuples(Config):
     with open('tables/config.json') as f:
       table = json.load(f)
 
+    for rel in table:
+      try:
+        meta = rel[3]
+      except:
+        meta = {}
+
+      if rel[1] == 'unicode-to-text':
+        self.unicode_to(rel[0], 'text', rel[2], meta)
+      elif rel[1] == 'unicode-to-math':
+        self.unicode_to(rel[0], 'math', rel[2], meta)
+      elif rel[1] == 'unicode-to-tex':
+        self.unicode_to(rel[0], 'text', rel[2], meta)
+        self.unicode_to(rel[0], 'math', rel[2], meta)
+      elif rel[1] == 'unicode-is-text':
+        self.unicode_to(rel[0], 'text', rel[2], meta)
+        self.tex_to(rel[2], rel[0])
+      elif rel[1] == 'unicode-is-math':
+        self.unicode_to(rel[0], 'math', rel[2], meta)
+        self.tex_to(rel[2], rel[0])
+      elif rel[1] == 'tex-to-unicode':
+        self.tex_to(rel[0], rel[2])
+      else:
+        raise ValueError(rel[1])
+
+    self.db.execute('CREATE TABLE tuples AS SELECT DISTINCT * FROM build')
+    self.db.commit()
+
+  def tex_to(self, latex, ucode):
+    if type(latex) != list: latex = [ latex ]
+    for tex in latex:
+      self.db.execute('INSERT INTO build (latex, relation, unicode, isspace) VALUES (?, ?, ?, 0)', [tex, 'tex-to-unicode', ucode])
+
+  def unicode_to(self, ucodes, mode, latex, meta):
+    if meta.get('space'):
+      isspace = 1
+    else:
+      isspace = 0
+    if type(ucodes) != list: ucodes = [ ucodes ]
+    for ucode in ucodes:
+      self.db.execute('INSERT INTO build (unicode, relation, latex, isspace, package) VALUES (?, ?, ?, ?, ?)', [ucode, f'unicode-to-{mode}', latex, isspace, meta.get('package')])
+
+#convert = Tuples()
 convert = Legacy()
 convert.save()
