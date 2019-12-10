@@ -143,7 +143,7 @@ class Config:
       table[ucode][relation.replace('unicode-to-', '')] = latex
     for ucode, relation, latex, package, isspace in self.db.execute("SELECT unicode, relation, latex, package, isspace FROM tuples WHERE relation LIKE 'unicode-to-%' ORDER BY unicode ASC, relation DESC"):
       if isspace == 1: table[ucode]['space'] = True
-      if package: table[ucode]['package'] = package
+      if package: table[ucode]['packages'] = package.split(' ')
     with open ('tables/ascii.json', 'w') as f:
       print(json.dumps(table, ensure_ascii=True, cls=TableJSONEncoder), file=f)
     for ucode in list(table.keys()):

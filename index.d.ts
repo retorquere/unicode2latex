@@ -1,2 +1,3 @@
-export declare const ascii: { [key: string]: { text?: string; math?: string; space?: boolean; } }
-export declare const unicode: { [key: string]: { text?: string; math?: string; space?: boolean; } }
+export declare const ascii: Record<string, { text?: string; math?: string; space?: boolean; packages: string[]; }>
+export declare const unicode: Record<string, { text?: string; math?: string; space?: boolean; packages: string[]; }>
+export declare const latex: Record<string, string>
