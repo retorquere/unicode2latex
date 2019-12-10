@@ -153,7 +153,7 @@ class Config:
       print(json.dumps(table, ensure_ascii=True, cls=TableJSONEncoder), file=f)
 
     table = {}
-    for latex, relation, ucode in self.db.execute("SELECT latex, relation, unicode FROM tuples WHERE relation = 'tex-to-unicode' ORDER BY unicode"):
+    for latex, relation, ucode in self.db.execute("SELECT latex, relation, unicode FROM tuples WHERE relation = 'tex-to-unicode' ORDER BY unicode, latex"):
       table[latex] = ucode
     with open ('tables/latex.json', 'w') as f:
       print(json.dumps(table, ensure_ascii=True, cls=TableJSONEncoder), file=f)
