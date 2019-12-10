@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "baseline": "ts-node fetch baseline",
-    "start": "ts-node fetch",
+    "fetch": "ts-node fetch",
     "prestart": "npm test",
-    "poststart": "git diff -w",
     "test": "tslint -t stylish --project .",
+    "start": "ts-node unicode2latex",
+    "preversion": "npm start",
     "postversion": "npm publish"
   },
   "author": "Emiliano Heyns",
@@ -28,5 +29,12 @@
     "xmldom": "^0.1.27",
     "xpath": "0.0.27",
     "punycode": "^2.1.1"
-  }
+  },
+  "files": [
+    "package.json",
+    "index.js",
+    "tables/ascii.json",
+    "tables/unicode.json",
+    "tables/latex.json"
+  ]
 }

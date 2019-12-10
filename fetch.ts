@@ -1,5 +1,8 @@
 // tslint:disable:no-console no-magic-numbers no-eval
 
+// https://wiki.contextgarden.net/Word-to-LaTeX
+// https://github.com/physikerwelt/utf8tex/blob/master/unicode2tex.csv
+
 import { DOMParser } from 'xmldom'
 import * as xpath from 'xpath'
 import * as request from 'request-promise'
