@@ -44,7 +44,7 @@ class Config:
       CREATE TABLE build (
         unicode NOT NULL,
         relation TEXT CHECK (relation IN ('unicode-to-math', 'unicode-to-text', 'tex-to-unicode')),
-        latex NOT NULL,
+        latex NOT NULL CHECK (latex <> ''),
         isspace CHECK (isspace in (0, 1)),
         package CHECK ((relation = 'tex-to-unicode' AND package IS NULL) OR relation <> 'tex-to-unicode')
       )
@@ -139,6 +139,7 @@ class Config:
   def save(self):
     table = {}
     for ucode, relation, latex, package, isspace in self.db.execute("SELECT unicode, relation, latex, package, isspace FROM tuples WHERE relation LIKE 'unicode-to-%' ORDER BY unicode ASC, relation DESC"):
+      if re.match(r'.*\\[0-1a-zA-Z]+$', latex): latex += '{}'
       table[ucode] = table.get(ucode, {})
       table[ucode][relation.replace('unicode-to-', '')] = latex
     for ucode, relation, latex, package, isspace in self.db.execute("SELECT unicode, relation, latex, package, isspace FROM tuples WHERE relation LIKE 'unicode-to-%' ORDER BY unicode ASC, relation DESC"):
@@ -206,9 +207,11 @@ class Tuples(Config):
   def tex_to(self, latex, ucode):
     if type(latex) != list: latex = [ latex ]
     for tex in latex:
+      if tex.endswith('{}'): tex = tex[:-2]
       self.db.execute('INSERT INTO build (latex, relation, unicode, isspace) VALUES (?, ?, ?, 0)', [tex, 'tex-to-unicode', ucode])
 
   def unicode_to(self, ucodes, mode, latex, meta):
+    if latex.endswith('{}'): latex = latex[:-2]
     if meta.get('space'):
       isspace = 1
     else:
