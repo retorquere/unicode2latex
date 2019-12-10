@@ -171,58 +171,6 @@ class Config:
     with open('tables/config.json', 'w') as f:
       print(json.dumps(tuples, ensure_ascii=True, cls=ConfigJSONEncoder), file=f)
 
-class Legacy(Config):
-  def __init__(self):
-    super().__init__()
-
-    with open('tables/legacy.json') as f:
-      table = json.load(f)
-
-    for ucode, latex in table.items():
-      for key in latex.keys():
-        if key not in ['space', 'math', 'text', 'alttext', 'altmath', 'dupmath', 'duptext', 'textpackage', 'mathpackage', 'package']:
-          raise ValueError(key)
-
-      isspace = 1 if 'space' in latex else 0
-      for mode in ['text', 'math']:
-        if mode in latex:
-          self.db.execute('INSERT INTO build (unicode, relation, latex, package, isspace) VALUES (?, ?, ?, ?, ?)', [ucode, f'unicode-to-{mode}', latex[mode], latex.get(f'{mode}package', latex.get('package')), isspace ])
-          if not f'dup{mode}' in latex:
-            if re.search('[\\{_^]', latex[mode]):
-              try:
-                self.db.execute('INSERT INTO build (latex, relation, unicode, package, isspace) VALUES (?, ?, ?, ?, ?)', [latex[mode], f'tex-to-unicode', ucode, None, isspace ])
-              except:
-                print([latex[mode], f'tex-to-unicode', ucode, None, isspace ])
-                raise
-
-        if f'alt{mode}' in latex:
-          for tex in latex[f'alt{mode}']:
-            self.db.execute('INSERT INTO build (latex, relation, unicode, package, isspace) VALUES (?, ?, ?, ?, ?)', [tex, f'tex-to-unicode', ucode, None, isspace ])
-
-    manual = [
-      ('\\', '\\'),
-      ('\\textmu{}', '\u03BC'),
-      ('\\to{}', '\u2192'),
-      ('\\varGamma{}', '\u0393'),
-      ('\\ocirc{u}', '\u016F'),
-      ('\\textless{}', '<'),
-      ('\\textgreater{}', '>'),
-      ('{\\~ w}', 'w\u0303'),
-      ('\\textasciitilde{}', '~'),
-      ('\\LaTeX{}', 'LaTeX'),
-      ('{\\c e}', '\u1E1D'),
-      ('\\neg{}', '\u00ac'),
-      ('\\Box{}', '\u25a1'),
-      ('\\le{}', '\u2264'),
-      ("\\'\\i", '\u00ED')
-    ]
-    for latex, ucode in manual:
-      self.db.execute('INSERT INTO build (latex, relation, unicode, package, isspace) VALUES (?, ?, ?, ?, ?)', [latex, f'tex-to-unicode', ucode, None, 0 ])
-
-    self.db.execute('CREATE TABLE tuples AS SELECT DISTINCT * FROM build')
-
-    self.db.commit()
-
 class Tuples(Config):
   def __init__(self):
     super().__init__()
