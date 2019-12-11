@@ -39,7 +39,12 @@ class Config:
   def __init__(self):
     self.tuples = []
 
-    self.db = sqlite3.connect(':memory:')
+    dbname = 'tuples.sqlite'
+    dbname = ':memory:'
+
+    if dbname[0] != ':' and os.path.exists(dbname): os.remove(dbname)
+    self.db = sqlite3.connect(dbname)
+
     self.db.execute('''
       CREATE TABLE build (
         unicode NOT NULL,
@@ -96,19 +101,27 @@ class Config:
 
   def compact(self):
     bidi = '''
-      SELECT u.unicode, u.relation, u.latex
-      FROM tuples u
-      JOIN tuples l ON
-        u.unicode = l.unicode AND u.latex = l.latex
-        AND u.relation <> l.relation
-        AND u.relation IN ('unicode-to-math', 'unicode-to-text')
-        AND l.relation = 'tex-to-unicode'
+      SELECT tex.unicode, tex.latex, utext.relation, umath.relation
+      FROM tuples tex
+      LEFT JOIN tuples utext ON utext.unicode = tex.unicode AND utext.latex = tex.latex AND utext.relation = 'unicode-to-text'
+      LEFT JOIN tuples umath ON umath.unicode = tex.unicode AND umath.latex = tex.latex AND umath.relation = 'unicode-to-math'
+      WHERE tex.relation = 'tex-to-unicode'
     '''
-    for row in list(self.db.execute(bidi)):
-      ucode, relation, latex = row
-      self.add(relation.replace('-to-', '-is-'), ucode, latex)
-      self.db.execute('DELETE FROM tuples WHERE unicode = ? AND relation = ? AND latex = ?', row)
-      self.db.execute("DELETE FROM tuples WHERE unicode = ? AND relation = 'tex-to-unicode' AND latex = ?", [row[0], row[2]])
+    for ucode, latex, utext, umath in list(self.db.execute(bidi)):
+      if utext and umath:
+        self.add('unicode-is-tex', ucode, latex)
+      elif utext:
+        self.add('unicode-is-text', ucode, latex)
+      elif umath:
+        self.add('unicode-is-math', ucode, latex)
+      else:
+        continue
+
+      self.db.execute("DELETE FROM tuples WHERE unicode = ? AND relation = 'tex-to-unicode' AND latex = ?", [ucode, latex])
+      if utext:
+        self.db.execute("DELETE FROM tuples WHERE unicode = ? AND relation = 'unicode-to-text' AND latex = ?", [ucode, latex])
+      if umath:
+        self.db.execute("DELETE FROM tuples WHERE unicode = ? AND relation = 'unicode-to-math' AND latex = ?", [ucode, latex])
 
     math_text = '''
       SELECT t.unicode, t.latex
@@ -137,6 +150,17 @@ class Config:
         self.add(relation, ucodes, latex)
 
   def save(self):
+    check = '''
+      SELECT DISTINCT u.latex FROM tuples u WHERE u.relation LIKE 'unicode-to-%' AND u.latex LIKE '%\%' AND u.latex NOT IN (SELECT t.latex FROM tuples t WHERE t.relation = 'tex-to-unicode');
+    '''
+    errors = False
+    for (latex,) in self.db.execute(check):
+      if ' ' in latex: continue
+      print(f'{latex} does not have a tex-to-unicode mapping')
+      errors = True
+    if errors:
+      raise ValueError('please fix')
+
     table = {}
     for ucode, relation, latex, package, isspace in self.db.execute("SELECT unicode, relation, latex, package, isspace FROM tuples WHERE relation LIKE 'unicode-to-%' ORDER BY unicode ASC, relation DESC"):
       if re.match(r'.*\\[0-1a-zA-Z]+$', latex): latex += '{}'
@@ -185,19 +209,30 @@ class Tuples(Config):
 
       if rel[1] == 'unicode-to-text':
         self.unicode_to(rel[0], 'text', rel[2], meta)
+
       elif rel[1] == 'unicode-to-math':
         self.unicode_to(rel[0], 'math', rel[2], meta)
+
       elif rel[1] == 'unicode-to-tex':
         self.unicode_to(rel[0], 'text', rel[2], meta)
         self.unicode_to(rel[0], 'math', rel[2], meta)
+
       elif rel[1] == 'unicode-is-text':
         self.unicode_to(rel[0], 'text', rel[2], meta)
         self.tex_to(rel[2], rel[0])
+
       elif rel[1] == 'unicode-is-math':
         self.unicode_to(rel[0], 'math', rel[2], meta)
         self.tex_to(rel[2], rel[0])
+
+      elif rel[1] == 'unicode-is-tex':
+        self.unicode_to(rel[0], 'text', rel[2], meta)
+        self.unicode_to(rel[0], 'math', rel[2], meta)
+        self.tex_to(rel[2], rel[0])
+
       elif rel[1] == 'tex-to-unicode':
         self.tex_to(rel[0], rel[2])
+
       else:
         raise ValueError(rel[1])
 
