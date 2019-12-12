@@ -150,6 +150,8 @@ class Config:
         self.add(relation, ucodes, latex)
 
   def save(self):
+    if not os.path.exists('tables'): os.mkdir('tables')
+
     check = '''
       SELECT DISTINCT u.latex FROM tuples u WHERE u.relation LIKE 'unicode-to-%' AND u.latex LIKE '%\%' AND u.latex NOT IN (SELECT t.latex FROM tuples t WHERE t.relation = 'tex-to-unicode');
     '''
@@ -193,14 +195,14 @@ class Config:
       if type(ucode) == list: ucode = ucode[0]
       return ucode
     tuples = sorted(self.tuples, key=key)
-    with open('tables/config.json', 'w') as f:
+    with open('config.json', 'w') as f:
       print(json.dumps(tuples, ensure_ascii=True, cls=ConfigJSONEncoder), file=f)
 
 class Tuples(Config):
   def __init__(self):
     super().__init__()
 
-    with open('tables/config.json') as f:
+    with open('config.json') as f:
       table = json.load(f)
 
     for rel in table:
