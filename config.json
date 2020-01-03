@@ -18,6 +18,7 @@
   [ "{\\~ w}", "tex-to-unicode", "w\u0303" ],
   [ "{", "unicode-is-text", "\\{" ],
   [ "{", "unicode-is-math", "\\lbrace" ],
+  [ "\\textbar", "tex-to-unicode", "|" ],
   [ "}", "unicode-is-math", "\\rbrace" ],
   [ "}", "unicode-is-text", "\\}" ],
   [ "~", "unicode-is-text", "\\textasciitilde" ],
