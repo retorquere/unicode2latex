@@ -39,8 +39,8 @@ class Config:
   def __init__(self):
     self.tuples = []
 
-    dbname = 'tuples.sqlite'
     dbname = ':memory:'
+    dbname = 'tuples.sqlite'
 
     if dbname[0] != ':' and os.path.exists(dbname): os.remove(dbname)
     self.db = sqlite3.connect(dbname)
@@ -73,20 +73,31 @@ class Config:
 
   def meta(self, latex):
     assert type(latex) == str
-    packages = []
+    packages = {'text': [], 'math': []}
     isspace = False
 
-    for pkg, sp in self.db.execute('SELECT package, isspace FROM tuples WHERE latex = ?', [latex]):
-      if pkg: packages += [ p for p in re.split(r'[ ,]', pkg) if p != '' ]
+    for relation, pkg, sp in self.db.execute('SELECT relation, package, isspace FROM tuples WHERE latex = ?', [latex]):
+      if not relation.startswith('unicode-to-'): continue
+      mode = relation.replace('unicode-to-', '')
+
+      if pkg: packages[mode] += [ p for p in re.split(r'[ ,]', pkg) if p != '' ]
       isspace = isspace or (sp == 1)
 
-    if len(packages) == 0 and not isspace: return None
+    if len(packages['text']) == 0 and len(packages['math']) == 0 and not isspace: return None
+
+    packages['text'] = sorted(list(set(packages['text'])))
+    packages['math'] = sorted(list(set(packages['math'])))
 
     m = {}
-    if len(packages) > 0:
-      m['packages'] = ' '.join(sorted(list(set(packages))))
-    if isspace:
-      m['space'] = True
+
+    if packages['text'] == packages['math'] and len(packages['text']) != 0: # strange
+      m['packages'] = ' '.join(packages['tex'])
+    else:
+      if len(packages['text']) > 0: m['textpackages'] = ' '.join(packages['text'])
+      if len(packages['math']) > 0: m['mathpackages'] = ' '.join(packages['math'])
+
+    if isspace: m['space'] = True
+
     return m
 
   def add(self, relation, ucode, latex):
@@ -169,8 +180,14 @@ class Config:
       table[ucode] = table.get(ucode, {})
       table[ucode][relation.replace('unicode-to-', '')] = latex
     for ucode, relation, latex, package, isspace in self.db.execute("SELECT unicode, relation, latex, package, isspace FROM tuples WHERE relation LIKE 'unicode-to-%' ORDER BY unicode ASC, relation DESC"):
+      mode = relation.replace('unicode-to-', '')
       if isspace == 1: table[ucode]['space'] = True
-      if package: table[ucode]['packages'] = package.split(' ')
+      if package: table[ucode][f'{mode}packages'] = package.split(' ')
+    for ucode, config in table.items():
+      if 'textpackages' in config and 'mathpackages' in config and config['textpackages'] == config['mathpackages']:
+        config['packages'] = config['textpackages']
+        del config['textpackages']
+        del config['mathpackages']
     with open ('tables/ascii.json', 'w') as f:
       print(json.dumps(table, ensure_ascii=True, cls=TableJSONEncoder), file=f)
     for ucode in list(table.keys()):
@@ -255,7 +272,7 @@ class Tuples(Config):
       isspace = 0
     if type(ucodes) != list: ucodes = [ ucodes ]
     for ucode in ucodes:
-      self.db.execute('INSERT INTO build (unicode, relation, latex, isspace, package) VALUES (?, ?, ?, ?, ?)', [ucode, f'unicode-to-{mode}', latex, isspace, meta.get('packages')])
+      self.db.execute('INSERT INTO build (unicode, relation, latex, isspace, package) VALUES (?, ?, ?, ?, ?)', [ucode, f'unicode-to-{mode}', latex, isspace, meta.get(f'{mode}packages', meta.get('packages'))])
 
 convert = Tuples()
 #convert = Legacy()
