@@ -9,6 +9,9 @@ branches:
   except:
     - gh-pages
 
+install:
+  - npm i
+
 cache:
   npm: true
   pip: true
