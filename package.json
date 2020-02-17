@@ -7,7 +7,8 @@
     "test": "npm start",
     "start": "./load.py",
     "preversion": "npm start",
-    "postversion": "npm publish && git push --tags"
+    "_postversion": "npm publish && git push --tags"
+    "postversion": "git push --tags"
   },
   "author": "Emiliano Heyns",
   "license": "ISC",
