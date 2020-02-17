@@ -1,7 +1,21 @@
-language: node_js
-node_js:
-- '12'
-cache: npm
+dist: xenial
+language: python
+python:
+  - 3.7
+services:
+  - xvfb
+
+branches:
+  except:
+    - gh-pages
+
+cache:
+  npm: true
+  pip: true
+  directories:
+  - node_modules
+  - .cache/pip
+
 deploy:
   on:
     tags: true
