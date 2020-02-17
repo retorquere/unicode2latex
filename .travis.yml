@@ -11,6 +11,8 @@ branches:
 
 install:
   - npm i
+script:
+  - npm test
 
 cache:
   npm: true
