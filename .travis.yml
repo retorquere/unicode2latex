@@ -4,11 +4,11 @@ node_js:
 cache: npm
 
 stages:
-  - deploy
+  - test
 
 jobs:
   include:
-    - stage: deploy
+    - stage: test
       if: tag IS present
       script:
         - echo _auth=$NPM_TOKEN > .npmrc
