@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+- '12'
+cache: npm
+
+stages:
+  - deploy
+
+jobs:
+  include:
+    - stage: deploy
+      if: tag IS present
+      script:
+        - echo _auth=$NPM_TOKEN > .npmrc
+        - echo email=emiliano.heyns@iris-advies.com >> .npmrc
+        - echo always-auth=true >> .npmrc
+        - npm publish
