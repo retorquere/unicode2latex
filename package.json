@@ -4,6 +4,7 @@
   "description": "Mapping to convert unicode characters from and to LaTeX commands",
   "main": "index.js",
   "scripts": {
+    "test": "npm start",
     "start": "./load.py",
     "preversion": "npm start",
     "postversion": "npm publish && git push --tags"
