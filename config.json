@@ -7,6 +7,7 @@
   [ "<", "unicode-to-math", "<" ],
   [ "\\textgreater", "tex-to-unicode", ">" ],
   [ ">", "unicode-to-math", ">" ],
+  [ "\\LaTeX", "tex-to-unicode", "LaTeX" ],
   [ "\\", "unicode-is-text", "\\textbackslash" ],
   [ "\\", "unicode-is-math", "\\backslash" ],
   [ "\\", "tex-to-unicode", "\\" ],
