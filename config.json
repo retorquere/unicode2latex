@@ -557,6 +557,7 @@
   [ "\u0428", "unicode-is-text", "\\cyrchar\\CYRSH" ],
   [ "\u0429", "unicode-is-text", "\\cyrchar\\CYRSHCH" ],
   [ "\u042a", "unicode-is-text", "\\cyrchar\\CYRHRDSN" ],
+  [ ["\\bud", "\\cdprime"], "tex-to-unicode", "\u042a" ],
   [ "\u042b", "unicode-is-text", "\\cyrchar\\CYRERY" ],
   [ "\u042c", "unicode-is-text", "\\cyrchar\\CYRSFTSN" ],
   [ "\\cprime", "tex-to-unicode", "\u042c" ],
