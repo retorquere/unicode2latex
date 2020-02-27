@@ -342,6 +342,7 @@
   [ "\u02b8", "unicode-is-text", "\\textsuperscript{y}" ],
   [ "\u02b8", "unicode-is-math", "^{y}" ],
   [ ["\u02b9", "\u02bb", "\u02bc", "\u02bd", "\u0374", "\u2019"], "unicode-to-text", "'" ],
+  [ "\u02bf", "unicode-is-text", "\\lasp", {"textpackages": "mathscinet"} ],
   [ "\u02c6", "unicode-is-text", "\\textasciicircum" ],
   [ "\u02c7", "unicode-is-text", "\\textasciicaron" ],
   [ "\u02c8", "unicode-is-math", "\\Elzverts" ],
