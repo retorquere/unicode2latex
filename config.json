@@ -37,6 +37,7 @@
   [ "\u00a8", "unicode-is-text", "\\textasciidieresis" ],
   [ "\u00a8", "unicode-is-math", "\\spddot" ],
   [ "\u00a9", "unicode-is-text", "\\textcopyright", {"textpackages": "textcomp"} ],
+  [ "\\copy", "tex-to-unicode", "\u00a9" ],
   [ "\u00aa", "unicode-is-text", "\\textordfeminine", {"textpackages": "textcomp"} ],
   [ "\u00ab", "unicode-is-text", "\\guillemotleft" ],
   [ "\u00ac", "unicode-is-math", "\\lnot" ],
