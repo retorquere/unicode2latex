@@ -176,14 +176,16 @@ class load:
       print(json.dumps(compacted, ensure_ascii=True, cls=ConfigJSONEncoder), file=f)
 
   def make_tables(self):
+    combining_diacritic = { 'tolatex': {}, 'tounicode': {}, 'commands': [] }
+
     with open(os.path.join(self.tables, 'latex.json'), 'w') as f:
       table = {}
       for tex, ucode, metadata in self.db.execute('SELECT tex, ucode, metadata from tex2ucode ORDER BY ucode'):
-        metadata = json.loads(metadata)
-        if metadata.get('combiningdiacritic', False):
-          table[tex] = { 'combiningdiacritic': ucode }
-        else:
-          table[tex] = ucode
+        table[tex] = ucode
+
+        if 'combiningdiacritic' in json.loads(metadata):
+          if re.match(r'\\[a-z]+$', tex): combining_diacritic['commands'].append(tex[1:])
+          if tex[0] == '\\': combining_diacritic['tounicode'][tex[1:]] = ucode
       print(json.dumps(table, ensure_ascii=True, cls=TableJSONEncoder), file=f)
 
     table = {}
@@ -200,6 +202,8 @@ class load:
           assert v and (not k in table[ucode] or table[ucode])
           table[ucode][k] = v
 
+          if k == 'combiningdiacritic' and mode == 'text' and tex[0] == '\\': combining_diacritic['tolatex'][ucode] = tex[1:].replace('{}', '')
+
     with open(os.path.join(self.tables, 'ascii.json'), 'w') as f:
       print(json.dumps(table, ensure_ascii=True, cls=TableJSONEncoder), file=f)
     for ucode in list(table.keys()):
@@ -207,4 +211,7 @@ class load:
         del table[ucode]
     with open(os.path.join(self.tables, 'unicode.json'), 'w') as f:
       print(json.dumps(table, ensure_ascii=True, cls=TableJSONEncoder), file=f)
+
+    with open(os.path.join(self.tables, 'diacritics.json'), 'w') as f:
+      print(json.dumps(combining_diacritic, ensure_ascii=True, indent='  '), file=f)
 

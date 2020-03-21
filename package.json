@@ -18,6 +18,7 @@
     "index.d.ts",
     "tables/ascii.json",
     "tables/unicode.json",
-    "tables/latex.json"
+    "tables/latex.json",
+    "tables/diacritics.json"
   ]
 }
