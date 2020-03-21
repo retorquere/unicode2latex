@@ -46,7 +46,8 @@ db.execute('''
     SELECT ucode, 'tex-to-unicode', tex, metadata FROM tex2ucode
 ''')
 
-load(db, 'config.json')
+if not os.path.exists('tables'): os.mkdir('tables')
+load(db, 'config.json', 'tables')
 
 #for row in db.execute("select json_extract(metadata, '$.space') from u2l"):
 #  print(row)

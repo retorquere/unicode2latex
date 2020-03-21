@@ -4,9 +4,10 @@ import sys, os
 import collections
 from builder.json import ConfigJSONEncoder, TableJSONEncoder
 
-class Loader:
-  def __init__(self, db, configfile):
+class load:
+  def __init__(self, db, configfile, tables):
     self.db = db
+    self.tables = tables
 
     with open(configfile) as f:
       config = [(cfg if len(cfg) == 4 else (cfg + [{}])) for cfg in json.load(f)]
@@ -16,7 +17,7 @@ class Loader:
     self.verify()
     self.compact(configfile)
     db.commit()
-    self.tables()
+    self.make_tables()
 
   def add(self, _from, _relation, _to, _meta):
     if type(_from) == list:
@@ -74,10 +75,6 @@ class Loader:
         missing = True
         print(f'Missing tex2ucode mapping for {json.dumps(tex)}')
     if missing: sys.exit(1)
-
-  def query(self, name):
-    with open(os.path.join(os.path.dirname(__file__), name + '.sql')) as f:
-      return f.read()
 
   def row(self, row, metadata):
     if len(metadata) > 0: row.append(metadata)
@@ -178,8 +175,8 @@ class Loader:
     with open(filename, 'w') as f:
       print(json.dumps(compacted, ensure_ascii=True, cls=ConfigJSONEncoder), file=f)
 
-  def tables(self):
-    with open('tables/latex.json', 'w') as f:
+  def make_tables(self):
+    with open(os.path.join(self.tables, 'latex.json'), 'w') as f:
       table = {}
       for tex, ucode in self.db.execute('SELECT tex, ucode from tex2ucode ORDER BY ucode'):
         table[tex] = ucode
@@ -199,13 +196,11 @@ class Loader:
           assert v and (not k in table[ucode] or table[ucode])
           table[ucode][k] = v
 
-    with open ('tables/ascii.json', 'w') as f:
+    with open(os.path.join(self.tables, 'ascii.json'), 'w') as f:
       print(json.dumps(table, ensure_ascii=True, cls=TableJSONEncoder), file=f)
     for ucode in list(table.keys()):
       if ucode not in '\u00A0\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u200B\u202F\u205F\u3000\uFEFF<>\\#$%&^_{}~':
         del table[ucode]
-    with open ('tables/unicode.json', 'w') as f:
+    with open(os.path.join(self.tables, 'unicode.json'), 'w') as f:
       print(json.dumps(table, ensure_ascii=True, cls=TableJSONEncoder), file=f)
 
-def load(db, config):
-  Loader(db, config)
