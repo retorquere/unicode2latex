@@ -51,7 +51,8 @@ class Config:
         relation TEXT CHECK (relation IN ('unicode-to-math', 'unicode-to-text', 'tex-to-unicode')),
         latex NOT NULL CHECK (latex <> ''),
         isspace CHECK (isspace in (0, 1)),
-        package CHECK ((relation = 'tex-to-unicode' AND package IS NULL) OR relation <> 'tex-to-unicode')
+        package CHECK ((relation = 'tex-to-unicode' AND package IS NULL) OR relation <> 'tex-to-unicode'),
+        iscombiningdiacritic CHECK ((relation = 'unicode-to-text' AND (iscombiningdiacritic IS NULL OR iscombiningdiacritic = 1)) OR (relation <> 'unicode-to-text' AND iscombiningdiacritic IS NULL))
       )
     ''')
 
@@ -60,13 +61,13 @@ class Config:
         BEGIN
           SELECT RAISE(ABORT, 'duplicate unicode-to-latex')
           WHERE EXISTS (
-            SELECT 1 FROM build WHERE relation = NEW.relation AND relation in ('unicode-to-math', 'unicode-to-text') AND unicode = NEW.unicode AND latex <> NEW.latex
+            SELECT 1 FROM build WHERE relation in ('unicode-to-math', 'unicode-to-text') AND relation = NEW.relation AND unicode = NEW.unicode
           );
 
           -- test latex -> unicode
           SELECT RAISE(ABORT, 'duplicate tex-to-unicode')
           WHERE EXISTS (
-            SELECT 1 FROM build WHERE relation = NEW.relation AND relation = 'tex-to-unicode' AND latex = NEW.latex AND unicode <> NEW.unicode
+            SELECT 1 FROM build WHERE relation = 'tex-to-unicode' AND relation = NEW.relation AND latex = NEW.latex
           );
         END
     ''')
@@ -75,13 +76,15 @@ class Config:
     assert type(latex) == str
     packages = {'text': [], 'math': []}
     isspace = False
+    iscombiningdiacritic = False
 
-    for relation, pkg, sp in self.db.execute('SELECT relation, package, isspace FROM tuples WHERE latex = ?', [latex]):
+    for relation, pkg, sp, icd in self.db.execute('SELECT relation, package, isspace, iscombiningdiacritic FROM tuples WHERE latex = ?', [latex]):
       if not relation.startswith('unicode-to-'): continue
       mode = relation.replace('unicode-to-', '')
 
       if pkg: packages[mode] += [ p for p in re.split(r'[ ,]', pkg) if p != '' ]
       isspace = isspace or (sp == 1)
+      iscombiningdiacritic = iscombiningdiacritic or (icd == 1)
 
     if len(packages['text']) == 0 and len(packages['math']) == 0 and not isspace: return None
 
@@ -97,6 +100,7 @@ class Config:
       if len(packages['math']) > 0: m['mathpackages'] = ' '.join(packages['math'])
 
     if isspace: m['space'] = True
+    if iscombiningdiacritic: m['iscombiningdiacritic'] = True
 
     return m
 
