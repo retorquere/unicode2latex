@@ -178,8 +178,12 @@ class load:
   def make_tables(self):
     with open(os.path.join(self.tables, 'latex.json'), 'w') as f:
       table = {}
-      for tex, ucode in self.db.execute('SELECT tex, ucode from tex2ucode ORDER BY ucode'):
-        table[tex] = ucode
+      for tex, ucode, metadata in self.db.execute('SELECT tex, ucode, metadata from tex2ucode ORDER BY ucode'):
+        metadata = json.loads(metadata)
+        if metadata.get('combiningdiacritic', False):
+          table[tex] = { 'combiningdiacritic': ucode }
+        else:
+          table[tex] = ucode
       print(json.dumps(table, ensure_ascii=True, cls=TableJSONEncoder), file=f)
 
     table = {}
