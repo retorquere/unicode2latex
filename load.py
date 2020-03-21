@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
 
 import sqlite3
-import os
+import os, sys
 from builder.load import load
 from builder.json import TableJSONEncoder, ConfigJSONEncoder
 
-dbname = ':memory:'
-dbname = 'tuples.sqlite'
+if len(sys.argv) == 1:
+  dbname = ':memory:'
+elif len(sys.argv) == 2 and sys.argv[1].endswith('.sqlite'):
+  dbname = sys.argv[1]
+else:
+  print('Unexpected command line:', sys.argv)
+  sys.exit(1)
 
 if dbname[0] != ':' and os.path.exists(dbname): os.remove(dbname)
 db = sqlite3.connect(dbname)
