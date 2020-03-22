@@ -185,11 +185,12 @@ class load:
 
         if 'combiningdiacritic' in json.loads(metadata):
           if re.match(r'\\[a-z]+$', tex): combining_diacritic['commands'].append(tex[1:])
-          if tex[0] == '\\': combining_diacritic['tounicode'][tex[1:]] = ucode
+          if tex[0] == '\\': combining_diacritic['tounicode'][tex[1:].replace('{}', '')] = ucode
       print(json.dumps(table, ensure_ascii=True, cls=TableJSONEncoder), file=f)
 
     table = {}
-    for ucode, mode, tex, metadata in self.db.execute('SELECT ucode, mode, tex, metadata FROM ucode2tex ORDER BY ucode'):
+    # sort by mode so text overwrites math for combining_diacritic['tounicode']
+    for ucode, mode, tex, metadata in self.db.execute('SELECT ucode, mode, tex, metadata FROM ucode2tex ORDER BY ucode, mode'):
       if re.match(r'.*\\[0-1a-zA-Z]+$', tex): tex += '{}'
       table[ucode] = table.get(ucode, {})
       table[ucode][mode] = tex
@@ -202,7 +203,10 @@ class load:
           assert v and (not k in table[ucode] or table[ucode])
           table[ucode][k] = v
 
-          if k == 'combiningdiacritic' and mode == 'text' and tex[0] == '\\': combining_diacritic['tolatex'][ucode] = tex[1:].replace('{}', '')
+          if k == 'combiningdiacritic' and tex[0] == '\\':
+            combining_diacritic['tolatex'][ucode] = tex[1:].replace('{}', '')
+            if re.match(r'\\[a-z]+$', tex): combining_diacritic['commands'].append(tex[1:])
+            if tex[0] == '\\': combining_diacritic['tounicode'][tex[1:].replace('{}', '')] = ucode
 
     with open(os.path.join(self.tables, 'ascii.json'), 'w') as f:
       print(json.dumps(table, ensure_ascii=True, cls=TableJSONEncoder), file=f)
@@ -213,5 +217,6 @@ class load:
       print(json.dumps(table, ensure_ascii=True, cls=TableJSONEncoder), file=f)
 
     with open(os.path.join(self.tables, 'diacritics.json'), 'w') as f:
-      print(json.dumps(combining_diacritic, ensure_ascii=True, indent='  '), file=f)
+      combining_diacritic['commands'] = sorted(list(set(combining_diacritic['commands'])))
+      print(json.dumps(combining_diacritic, sort_keys=True, ensure_ascii=True, indent='  '), file=f)
 
