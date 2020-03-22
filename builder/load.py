@@ -204,7 +204,7 @@ class load:
           table[ucode][k] = v
 
           if k == 'combiningdiacritic' and tex[0] == '\\':
-            combining_diacritic['tolatex'][ucode] = tex[1:].replace('{}', '')
+            combining_diacritic['tolatex'][ucode] = { 'mode': mode, 'command': tex[1:].replace('{}', '') }
             if re.match(r'\\[a-z]+$', tex): combining_diacritic['commands'].append(tex[1:])
             if tex[0] == '\\': combining_diacritic['tounicode'][tex[1:].replace('{}', '')] = ucode
 
