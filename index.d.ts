@@ -3,6 +3,6 @@ export declare const unicode: Record<string, { text?: string; math?: string; spa
 export declare const latex: Record<string, string>
 export declare const diacritics: {
   commands: string[],
-  tolatex: Record<string, string>
+  tolatex: Record<string, { mode: 'math' | 'text', command: string}>
   tounicode: Record<string, string>
 }
