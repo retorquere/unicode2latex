@@ -878,7 +878,7 @@
   [ "\u2009", "unicode-is-text", "\\,", {"space": true} ],
   [ "\u200a", "unicode-is-math", "\\mkern1mu", {"space": true} ],
   [ "\u200b", "unicode-is-text", "\\mbox", {"space": true} ],
-  [ "\u200b/", "unicode-is-text", "\\slash" ],
+  [ "/\u200b", "unicode-is-text", "\\slash" ],
   [ "\u200c", "unicode-is-text", "{\\aftergroup\\ignorespaces}" ],
   [ "\u2013", "unicode-is-text", "\\textendash" ],
   [ "\u2014", "unicode-is-text", "\\textemdash" ],
