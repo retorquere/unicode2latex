@@ -3,6 +3,7 @@ import re
 import sys, os
 import collections
 from builder.json import ConfigJSONEncoder, TableJSONEncoder
+from itertools import permutations
 
 class load:
   def __init__(self, db, configfile, tables):
@@ -18,6 +19,13 @@ class load:
     self.compact(configfile)
     db.commit()
     self.make_tables()
+
+  def execute(self, query, values):
+    try:
+      self.db.execute(query, values)
+    except Exception as ex:
+      print(query, values)
+      raise ex
 
   def add(self, _from, _relation, _to, _meta):
     if type(_from) == list:
@@ -41,11 +49,11 @@ class load:
 
     if _relation == 'unicode-to-text' or _relation == 'unicode-to-math':
       if _to.endswith('{}'): _to = _to[:-2]
-      self.db.execute('INSERT INTO ucode2tex (ucode, tex, mode, metadata) VALUES (?, ?, ?, ?)', [_from, _to, _relation[-4:], json.dumps(_meta, sort_keys=True) ])
+      self.execute('INSERT INTO ucode2tex (ucode, tex, mode, metadata) VALUES (?, ?, ?, ?)', [_from, _to, _relation[-4:], json.dumps(_meta, sort_keys=True) ])
 
     elif _relation == 'tex-to-unicode':
       if _from.endswith('{}'): _from = _from[:-2]
-      self.db.execute('INSERT INTO tex2ucode (tex, ucode, metadata) VALUES (?, ?, ?)', [_from, _to, json.dumps(_meta, sort_keys=True) ])
+      self.execute('INSERT INTO tex2ucode (tex, ucode, metadata) VALUES (?, ?, ?)', [_from, _to, json.dumps(_meta, sort_keys=True) ])
       pass
 
     elif _relation == 'unicode-is-tex':
@@ -158,7 +166,16 @@ class load:
       print(missing)
       sys.exit(1)
 
-    # sort on ucode ASC, relation DESC
+    combining_diacritic = []
+    other = []
+    for mapping in compacted:
+      # compacted = sortcode, from, relation, to, metadata(optional)
+      if len(mapping) == 5 and 'combiningdiacritic' in mapping[4]:
+        combining_diacritic.append(tuple(mapping[1:]))
+      else:
+        other.append(mapping)
+
+    # sort non-CD on ucode ASC, relation DESC
     def minor(row):
       return row[2]
     def major(row):
@@ -168,9 +185,15 @@ class load:
       elif row[2] == 'tex-to-unicode':
         return row[3]
       raise ValueError(str(row))
-    compacted = sorted(compacted, key=minor, reverse=True)
-    compacted = sorted(compacted, key=major)
-    compacted = [tuple(c[1:]) for c in compacted]
+    other = sorted(other, key=minor, reverse=True)
+    other = sorted(other, key=major)
+    other = [tuple(c[1:]) for c in other]
+
+    combining_diacritic = sorted(combining_diacritic, key=lambda x: x[0])
+    combining_diacritic = sorted(combining_diacritic, key=lambda x: x[1])
+    combining_diacritic = sorted(combining_diacritic, key=lambda x: x[2])
+
+    compacted = other + combining_diacritic
 
     with open(filename, 'w') as f:
       print(json.dumps(compacted, ensure_ascii=True, cls=ConfigJSONEncoder), file=f)
@@ -192,21 +215,29 @@ class load:
     # sort by mode so text overwrites math for combining_diacritic['tounicode']
     for ucode, mode, tex, metadata in self.db.execute('SELECT ucode, mode, tex, metadata FROM ucode2tex ORDER BY ucode, mode'):
       if re.match(r'.*\\[0-1a-zA-Z]+$', tex): tex += '{}'
-      table[ucode] = table.get(ucode, {})
-      table[ucode][mode] = tex
 
-      for k, v in json.loads(metadata).items():
-        if k in ['textpackages', 'mathpackages']:
-          assert type(v) == list, metadata
-          table[ucode][k] = sorted(set(table[ucode].get(k, []) + v))
-        elif k in ['space', 'combiningdiacritic']:
-          assert v and (not k in table[ucode] or table[ucode])
-          table[ucode][k] = v
+      ucodes = [ ucode ]
+      metadata = json.loads(metadata)
+      if metadata.get('combiningdiacritic'):
+        ucodes = [''.join(cp) for cp in permutations(list(ucode))]
 
-          if k == 'combiningdiacritic' and tex[0] == '\\':
-            combining_diacritic['tolatex'][ucode] = { 'mode': mode, 'command': tex[1:].replace('{}', '') }
-            if re.match(r'\\[a-z]+$', tex): combining_diacritic['commands'].append(tex[1:])
-            if tex[0] == '\\': combining_diacritic['tounicode'][tex[1:].replace('{}', '')] = ucode
+      for ucode in ucodes:
+        table[ucode] = table.get(ucode, {})
+        table[ucode][mode] = tex
+
+        for k, v in metadata.items():
+          if k in ['textpackages', 'mathpackages']:
+            assert type(v) == list, metadata
+            table[ucode][k] = sorted(set(table[ucode].get(k, []) + v))
+
+          elif k in ['space', 'combiningdiacritic']:
+            assert v and (not k in table[ucode] or table[ucode])
+            table[ucode][k] = v
+
+            if k == 'combiningdiacritic' and tex[0] == '\\':
+              combining_diacritic['tolatex'][ucode] = { 'mode': mode, 'command': tex[1:].replace('{}', '') }
+              if re.match(r'\\[a-z]+$', tex): combining_diacritic['commands'].append(tex[1:])
+              if tex[0] == '\\': combining_diacritic['tounicode'][tex[1:].replace('{}', '')] = ucode
 
     with open(os.path.join(self.tables, 'ascii.json'), 'w') as f:
       print(json.dumps(table, ensure_ascii=True, cls=TableJSONEncoder), file=f)
