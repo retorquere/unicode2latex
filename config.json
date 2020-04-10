@@ -3672,6 +3672,7 @@
   [ "\u0304", "unicode-is-text", "\\=", {"combiningdiacritic": true} ],
   [ "\u0304", "unicode-is-math", "\\bar", {"combiningdiacritic": true} ],
   [ "\u0304\u0300", "unicode-to-text", "\\textgravemacron", {"combiningdiacritic": true, "textpackages": ["tipa"]} ],
+  [ "\u0305", "unicode-is-math", "\\overline", {"combiningdiacritic": true} ],
   [ "\u0306", "unicode-is-text", "\\u", {"combiningdiacritic": true} ],
   [ "\u0306", "unicode-is-math", "\\breve", {"combiningdiacritic": true} ],
   [ "\u0306\u0304", "unicode-is-text", "\\textbrevemacron", {"combiningdiacritic": true, "textpackages": ["tipa"]} ],
