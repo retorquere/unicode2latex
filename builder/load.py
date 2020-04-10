@@ -24,7 +24,7 @@ class load:
     try:
       self.db.execute(query, values)
     except Exception as ex:
-      print(query, values)
+      print(query, json.dumps(values, ensure_ascii=True))
       raise ex
 
   def add(self, _from, _relation, _to, _meta):
@@ -189,9 +189,9 @@ class load:
     other = sorted(other, key=major)
     other = [tuple(c[1:]) for c in other]
 
-    combining_diacritic = sorted(combining_diacritic, key=lambda x: x[0])
-    combining_diacritic = sorted(combining_diacritic, key=lambda x: x[1])
     combining_diacritic = sorted(combining_diacritic, key=lambda x: x[2])
+    combining_diacritic = sorted(combining_diacritic, key=lambda x: x[1], reverse=True)
+    combining_diacritic = sorted(combining_diacritic, key=lambda x: x[0])
 
     compacted = other + combining_diacritic
 
