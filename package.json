@@ -17,6 +17,7 @@
     "index.js",
     "index.d.ts",
     "tables/ascii.json",
+    "tables/ascii-bibtex-creator.json",
     "tables/unicode.json",
     "tables/latex.json",
     "tables/diacritics.json"

@@ -4,6 +4,7 @@ import sys, os
 import collections
 from builder.json import ConfigJSONEncoder, TableJSONEncoder
 from itertools import permutations
+from copy import deepcopy
 
 class load:
   def __init__(self, db, configfile, tables):
@@ -211,7 +212,7 @@ class load:
           if tex[0] == '\\': combining_diacritic['tounicode'][tex[1:].replace('{}', '')] = ucode
       print(json.dumps(table, ensure_ascii=True, cls=TableJSONEncoder), file=f)
 
-    table = {}
+    ascii_table = {}
     # sort by mode so text overwrites math for combining_diacritic['tounicode']
     for ucode, mode, tex, metadata in self.db.execute('SELECT ucode, mode, tex, metadata FROM ucode2tex ORDER BY ucode, mode'):
       if re.match(r'.*\\[0-1a-zA-Z]+$', tex): tex += '{}'
@@ -222,31 +223,61 @@ class load:
         ucodes = [''.join(cp) for cp in permutations(list(ucode))]
 
       for ucode in ucodes:
-        table[ucode] = table.get(ucode, {})
-        table[ucode][mode] = tex
+        ascii_table[ucode] = ascii_table.get(ucode, {})
+        ascii_table[ucode][mode] = tex
 
         for k, v in metadata.items():
           if k in ['textpackages', 'mathpackages']:
             assert type(v) == list, metadata
-            table[ucode][k] = sorted(set(table[ucode].get(k, []) + v))
+            ascii_table[ucode][k] = sorted(set(ascii_table[ucode].get(k, []) + v))
 
           elif k in ['space', 'combiningdiacritic']:
-            assert v and (not k in table[ucode] or table[ucode])
-            table[ucode][k] = v
+            assert v and (not k in ascii_table[ucode] or ascii_table[ucode])
+            ascii_table[ucode][k] = v
 
             if k == 'combiningdiacritic' and tex[0] == '\\':
               combining_diacritic['tolatex'][ucode] = { 'mode': mode, 'command': tex[1:].replace('{}', '') }
               if re.match(r'\\[a-z]+$', tex): combining_diacritic['commands'].append(tex[1:])
               if tex[0] == '\\': combining_diacritic['tounicode'][tex[1:].replace('{}', '')] = ucode
 
+    # ascii
     with open(os.path.join(self.tables, 'ascii.json'), 'w') as f:
-      print(json.dumps(table, ensure_ascii=True, cls=TableJSONEncoder), file=f)
-    for ucode in list(table.keys()):
-      if ucode not in '\u00A0\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u200B\u202F\u205F\u3000\uFEFF<>\\#$%&^_{}~' and ucode != "/\u200b":
-        del table[ucode]
-    with open(os.path.join(self.tables, 'unicode.json'), 'w') as f:
-      print(json.dumps(table, ensure_ascii=True, cls=TableJSONEncoder), file=f)
+      print(json.dumps(ascii_table, ensure_ascii=True, cls=TableJSONEncoder), file=f)
 
+    # https://github.com/retorquere/zotero-better-bibtex/issues/1189
+    # Needed so that composite characters are counted as single characters
+    # for in-text citation generation. This messes with the {} cleanup
+    # so the resulting TeX will be more verbose; doing this only for
+    # bibtex because biblatex doesn't appear to need it.
+    #
+    # Only testing ascii.text because that's the only place (so far)
+    # that these have turned up.
+    creator_name_table = deepcopy(ascii_table)
+    for ucode, mapping in list(creator_name_table.items()):
+      if not 'text' in mapping: continue
+
+      text = mapping['text']
+
+      if re.match(r'^\\[`\'^~"=.][A-Za-z]$', text) or re.match(r'^\\[^]\\[ij]$', text) or re.match(r'^\\[kr]\{[a-zA-Z]\}$', text):
+        text = f'{{{text}}}'
+      elif (m := re.match(r'^\\(L|O|AE|AA|DH|DJ|OE|SS|TH|NG)\{\}$', text, re.IGNORECASE)) is not None:
+        text = f'{{\\{m.group(1)}}}'
+      elif (m := re.match(r'^\\([a-zA-Z])\{([a-zA-Z0-9])\}$', text)) is not None:
+        text = f'{{\\{m.group(1)} {m.group(2)}}}'
+
+      mapping['text'] = text
+    with open(os.path.join(self.tables, 'ascii-bibtex-creator.json'), 'w') as f:
+      print(json.dumps(creator_name_table, ensure_ascii=True, cls=TableJSONEncoder), file=f)
+
+    # unicode
+    unicode_table = deepcopy(ascii_table)
+    for ucode in list(unicode_table.keys()):
+      if ucode not in '\u00A0\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u200B\u202F\u205F\u3000\uFEFF<>\\#$%&^_{}~' and ucode != "/\u200b":
+        del unicode_table[ucode]
+    with open(os.path.join(self.tables, 'unicode.json'), 'w') as f:
+      print(json.dumps(unicode_table, ensure_ascii=True, cls=TableJSONEncoder), file=f)
+
+    # diacritics
     with open(os.path.join(self.tables, 'diacritics.json'), 'w') as f:
       combining_diacritic['commands'] = sorted(list(set(combining_diacritic['commands'])))
       print(json.dumps(combining_diacritic, sort_keys=True, ensure_ascii=True, indent='  '), file=f)
