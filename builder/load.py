@@ -258,7 +258,7 @@ class load:
 
       text = mapping['text']
 
-      if re.match(r'^\\[`\'^~"=.][A-Za-z]$', text) or re.match(r'^\\[^]\\[ij]$', text) or re.match(r'^\\[kr]\{[a-zA-Z]\}$', text):
+      if re.match(r'^\\[`\'^~"=.][A-Za-z]$', text) or re.match(r'^\\[\^]\\[ij]$', text) or re.match(r'^\\[kr]\{[a-zA-Z]\}$', text):
         text = f'{{{text}}}'
       elif (m := re.match(r'^\\(L|O|AE|AA|DH|DJ|OE|SS|TH|NG)\{\}$', text, re.IGNORECASE)) is not None:
         text = f'{{\\{m.group(1)}}}'
