@@ -280,6 +280,7 @@ class load:
       if not 'text' in mapping: continue
 
       text = mapping['text']
+      mapping.pop('commandspacer', None)
 
       if re.match(r'^\\[`\'^~"=.][A-Za-z]$', text) or re.match(r'^\\[\^]\\[ij]$', text) or re.match(r'^\\[kr]\{[a-zA-Z]\}$', text):
         text = f'{{{text}}}'
@@ -289,6 +290,9 @@ class load:
         text = f'{{\\{m.group(1)} {m.group(2)}}}'
       elif not 'combiningdiacritic' in mapping and len(text) > 2 and re.match(r'[\\_^]', text) and (text[0] != '{' or text[-1] != '}'):
         text = f'{{{text}}}'
+      else:
+        if re.match(r'.*\\[0-1a-zA-Z]+$', text) and not mapping.get('combiningdiacritic'):
+          mapping['commandspacer'] = True
 
       mapping['text'] = text
     with open(os.path.join(self.tables, 'ascii-bibtex-creator.json'), 'w') as f:
