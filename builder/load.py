@@ -278,7 +278,14 @@ class load:
     # Only testing ascii.text because that's the only place (so far)
     # that these have turned up.
     creator_name_table = deepcopy(ascii_table)
-    diacritic_markers = ['\\' + marker for marker in diacritic_markers]
+    diacritic_re = []
+    for marker in diacritic_markers:
+      if re.match(r'^[a-zA-Z]$', marker):
+        diacritic_re.append(re.escape(marker) + r'[^a-zA-Z]')
+        diacritic_re.append(re.escape(marker) + r'$')
+      else:
+        diacritic_re.append(re.escape(marker))
+    diacritic_re = re.escape('\\') + '(' + '|'.join(diacritic_re) + ')'
     for ucode, mapping in list(creator_name_table.items()):
       if not 'text' in mapping: continue
 
@@ -291,7 +298,7 @@ class load:
         text = f'{{\\{m.group(1)}}}'
       elif (m := re.match(r'^\\([a-zA-Z])\{([a-zA-Z0-9])\}$', text)) is not None:
         text = f'{{\\{m.group(1)} {m.group(2)}}}'
-      elif not 'combiningdiacritic' in mapping and next((marker for marker in diacritic_markers if marker in text), None):
+      elif not 'combiningdiacritic' in mapping and text[0] != '{' and text[-1] != '}' and re.search(diacritic_re, text):
         text = f'{{{text}}}'
       else:
         if re.match(r'.*\\[0-1a-zA-Z]+$', text) and not mapping.get('combiningdiacritic'):
