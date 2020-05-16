@@ -232,16 +232,20 @@ class load:
     # sort by mode so text overwrites math for combining_diacritic['tounicode']
     for ucode, mode, tex, metadata in self.db.execute('SELECT ucode, mode, tex, metadata FROM ucode2tex ORDER BY ucode, mode'):
       # commented out addition of ending {} -- I need to be able to distinguish between \k{} (command with empty arg) and \slash{} (command with separator)
-      # if re.match(r'.*\\[0-1a-zA-Z]+$', tex): tex += '{}'
 
       ucodes = [ ucode ]
       metadata = json.loads(metadata)
+
+      commandspacer = mode == 'text' and re.match(r'.*\\[0-1a-zA-Z]+$', tex)
+
       if metadata.get('combiningdiacritic'):
         ucodes = [''.join(cp) for cp in permutations(list(ucode))]
 
       for ucode in ucodes:
         ascii_table[ucode] = ascii_table.get(ucode, {})
         ascii_table[ucode][mode] = tex
+
+        if commandspacer: ascii_table[ucode]['commandspacer'] = True
 
         for k, v in metadata.items():
           if k in ['textpackages', 'mathpackages']:
