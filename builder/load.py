@@ -12,6 +12,7 @@ class load:
     self.tables = tables
 
     with open(configfile) as f:
+      # load mappings and add empty meta dict if missing
       config = [(cfg if len(cfg) == 4 else (cfg + [{}])) for cfg in json.load(f)]
     for _from, _relation, _to, _meta in config:
       self.add(_from, _relation, _to, _meta)
@@ -49,11 +50,13 @@ class load:
         raise ValueError(f'Unexpected metadata: {k}')
 
     if _relation == 'unicode-to-text' or _relation == 'unicode-to-math':
-      if _to.endswith('{}'): _to = _to[:-2]
+      # commented out because we need the ending {} for things like \k{}
+      # if _to.endswith('{}'): _to = _to[:-2]
       self.execute('INSERT INTO ucode2tex (ucode, tex, mode, metadata) VALUES (?, ?, ?, ?)', [_from, _to, _relation[-4:], json.dumps(_meta, sort_keys=True) ])
 
     elif _relation == 'tex-to-unicode':
-      if _from.endswith('{}'): _from = _from[:-2]
+      # commented out because we need the ending {} for things like \k{}
+      # if _from.endswith('{}'): _from = _from[:-2]
       self.execute('INSERT INTO tex2ucode (tex, ucode, metadata) VALUES (?, ?, ?)', [_from, _to, json.dumps(_meta, sort_keys=True) ])
       pass
 
@@ -79,10 +82,22 @@ class load:
 
   def verify(self):
     missing = False
-    for (tex,) in self.db.execute('SELECT DISTINCT ucode2tex.tex FROM ucode2tex LEFT JOIN tex2ucode on ucode2tex.tex = tex2ucode.tex WHERE tex2ucode.tex IS NULL'):
-      if '\\' in tex or '{' in tex or '}' in tex or '^' in tex or '_' in tex:
-        missing = True
-        print(f'Missing tex2ucode mapping for {json.dumps(tex)}')
+    sql = '''
+      SELECT DISTINCT ucode2tex.tex
+      FROM ucode2tex
+      LEFT JOIN tex2ucode on ucode2tex.tex = tex2ucode.tex OR ucode2tex.tex = tex2ucode.tex || '{}'
+      WHERE tex2ucode.tex IS NULL AND (
+        ucode2tex.tex LIKE '%\\%' OR
+        ucode2tex.tex LIKE '%{%' OR
+        ucode2tex.tex LIKE '%}%' OR
+        ucode2tex.tex LIKE '%^%' OR
+        ucode2tex.tex LIKE '%=_%' ESCAPE '='
+      )
+    '''
+    # print((' '.join(sql.replace('\n', ' ').split())).strip())
+    for (tex,) in self.db.execute(sql):
+      missing = True
+      print(f'Missing tex2ucode mapping for {json.dumps(tex)}')
     if missing: sys.exit(1)
 
   def row(self, row, metadata):
@@ -209,13 +224,15 @@ class load:
 
         if 'combiningdiacritic' in json.loads(metadata):
           if re.match(r'\\[a-z]+$', tex): combining_diacritic['commands'].append(tex[1:])
+          # strip ending {} because we want the command name only
           if tex[0] == '\\': combining_diacritic['tounicode'][tex[1:].replace('{}', '')] = ucode
       print(json.dumps(table, ensure_ascii=True, cls=TableJSONEncoder), file=f)
 
     ascii_table = {}
     # sort by mode so text overwrites math for combining_diacritic['tounicode']
     for ucode, mode, tex, metadata in self.db.execute('SELECT ucode, mode, tex, metadata FROM ucode2tex ORDER BY ucode, mode'):
-      if re.match(r'.*\\[0-1a-zA-Z]+$', tex): tex += '{}'
+      # commented out addition of ending {} -- I need to be able to distinguish between \k{} (command with empty arg) and \slash{} (command with separator)
+      # if re.match(r'.*\\[0-1a-zA-Z]+$', tex): tex += '{}'
 
       ucodes = [ ucode ]
       metadata = json.loads(metadata)
@@ -236,8 +253,10 @@ class load:
             ascii_table[ucode][k] = v
 
             if k == 'combiningdiacritic' and tex[0] == '\\':
+              # string ending {} because we want the command name only
               combining_diacritic['tolatex'][ucode] = { 'mode': mode, 'command': tex[1:].replace('{}', '') }
               if re.match(r'\\[a-z]+$', tex): combining_diacritic['commands'].append(tex[1:])
+              # string ending {} because we want the command name only
               if tex[0] == '\\': combining_diacritic['tounicode'][tex[1:].replace('{}', '')] = ucode
 
     # ascii
@@ -264,6 +283,8 @@ class load:
         text = f'{{\\{m.group(1)}}}'
       elif (m := re.match(r'^\\([a-zA-Z])\{([a-zA-Z0-9])\}$', text)) is not None:
         text = f'{{\\{m.group(1)} {m.group(2)}}}'
+      elif not 'combiningdiacritic' in mapping and len(text) > 2 and re.match(r'[\\_^]', text) and (text[0] != '{' or text[-1] != '}'):
+        text = f'{{{text}}}'
 
       mapping['text'] = text
     with open(os.path.join(self.tables, 'ascii-bibtex-creator.json'), 'w') as f:
