@@ -298,7 +298,7 @@ class load:
         text = f'{{\\{m.group(1)}}}'
       elif (m := re.match(r'^\\([a-zA-Z])\{([a-zA-Z0-9])\}$', text)) is not None:
         text = f'{{\\{m.group(1)} {m.group(2)}}}'
-      elif not 'combiningdiacritic' in mapping and text[0] != '{' and text[-1] != '}' and re.search(diacritic_re, text):
+      elif not 'combiningdiacritic' in mapping and not (text[0] == '{' and text[-1] == '}') and re.search(diacritic_re, text):
         text = f'{{{text}}}'
       else:
         if re.match(r'.*\\[0-1a-zA-Z]+$', text) and not mapping.get('combiningdiacritic'):
