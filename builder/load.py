@@ -217,12 +217,14 @@ class load:
   def make_tables(self):
     combining_diacritic = { 'tolatex': {}, 'tounicode': {}, 'commands': [] }
 
+    diacritic_markers = set()
     with open(os.path.join(self.tables, 'latex.json'), 'w') as f:
       table = {}
       for tex, ucode, metadata in self.db.execute('SELECT tex, ucode, metadata from tex2ucode ORDER BY ucode'):
         table[tex] = ucode
 
         if 'combiningdiacritic' in json.loads(metadata):
+          if re.match(r'^\\.$', tex): diacritic_markers.add(tex[1])
           if re.match(r'\\[a-z]+$', tex): combining_diacritic['commands'].append(tex[1:])
           # strip ending {} because we want the command name only
           if tex[0] == '\\': combining_diacritic['tounicode'][tex[1:].replace('{}', '')] = ucode
@@ -276,6 +278,7 @@ class load:
     # Only testing ascii.text because that's the only place (so far)
     # that these have turned up.
     creator_name_table = deepcopy(ascii_table)
+    diacritic_markers = ['\\' + marker for marker in diacritic_markers]
     for ucode, mapping in list(creator_name_table.items()):
       if not 'text' in mapping: continue
 
@@ -288,7 +291,7 @@ class load:
         text = f'{{\\{m.group(1)}}}'
       elif (m := re.match(r'^\\([a-zA-Z])\{([a-zA-Z0-9])\}$', text)) is not None:
         text = f'{{\\{m.group(1)} {m.group(2)}}}'
-      elif not 'combiningdiacritic' in mapping and len(text) > 2 and re.match(r'[\\_^]', text) and (text[0] != '{' or text[-1] != '}'):
+      elif not 'combiningdiacritic' in mapping and next((marker for marker in diacritic_markers if marker in text), None):
         text = f'{{{text}}}'
       else:
         if re.match(r'.*\\[0-1a-zA-Z]+$', text) and not mapping.get('combiningdiacritic'):
