@@ -277,6 +277,8 @@ class load:
     #
     # Only testing ascii.text because that's the only place (so far)
     # that these have turned up.
+    # https://github.com/retorquere/zotero-better-bibtex/issues/1538
+    # Further workarounds because bibtex inserts an NBSP for \o{}x in author names, which is insane, but that's bibtex for ya
     creator_name_table = deepcopy(ascii_table)
     diacritic_re = []
     for marker in diacritic_markers:
@@ -290,9 +292,10 @@ class load:
       if not 'text' in mapping: continue
 
       text = mapping['text']
-      mapping.pop('commandspacer', None)
 
-      if re.match(r'^\\[`\'^~"=.][A-Za-z]$', text) or re.match(r'^\\[\^]\\[ij]$', text) or re.match(r'^\\[kr]\{[a-zA-Z]\}$', text):
+      if mapping.pop('commandspacer', None): # See #1538. *must* be first so it is always popped.
+        text = f'{{{text}}}'
+      elif re.match(r'^\\[`\'^~"=.][A-Za-z]$', text) or re.match(r'^\\[\^]\\[ij]$', text) or re.match(r'^\\[kr]\{[a-zA-Z]\}$', text):
         text = f'{{{text}}}'
       elif (m := re.match(r'^\\(L|O|AE|AA|DH|DJ|OE|SS|TH|NG)\{\}$', text, re.IGNORECASE)) is not None:
         text = f'{{\\{m.group(1)}}}'
