@@ -7,6 +7,7 @@
     "test": "npm start",
     "start": "./load.py",
     "preversion": "npm start",
+    "_postversion": "npm publish && git push --tags",
     "postversion": "npm publish && git push --tags"
   },
   "author": "Emiliano Heyns",
