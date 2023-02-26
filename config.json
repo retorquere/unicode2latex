@@ -189,7 +189,7 @@
   [ "\u0130", "unicode-is-text", "\\.I" ],
   [ "\u0131", "unicode-is-text", "\\i" ],
   [ "\u0131", "unicode-is-math", "\\imath" ],
-  [ "\u0132", "unicode-to-text", "IJ", {"onechar": true} ],
+  [ "\u0132", "unicode-to-text", "IJ" ],
   [ "\u0133", "unicode-to-text", "ij" ],
   [ "\u0134", "unicode-is-text", "\\^J" ],
   [ "\u0135", "unicode-is-text", "\\^\\j" ],

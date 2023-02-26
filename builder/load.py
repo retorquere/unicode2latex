@@ -44,7 +44,7 @@ class load:
           _meta[k] = sorted([ p for p in re.split(r'[ ,]+', v) if p != '' ])
         else:
           _meta[k] = sorted(v)
-      elif k in ['onechar', 'space', 'combiningdiacritic']:
+      elif k in ['space', 'combiningdiacritic']:
         assert _meta[k]
       else:
         raise ValueError(f'Unexpected metadata: {k}')
@@ -264,8 +264,6 @@ class load:
               if re.match(r'\\[a-z]+$', tex): combining_diacritic['commands'].append(tex[1:])
               # string ending {} because we want the command name only
               if tex[0] == '\\': combining_diacritic['tounicode'][tex[1:].replace('{}', '')] = ucode
-          elif k == 'onechar':
-            ascii_table[ucode][k] = v
           else:
             assert False, f'unhandled metadata {k}'
 
@@ -303,8 +301,6 @@ class load:
         text = f'{{{text}}}'
       elif (m := re.match(r'^\\(L|O|AE|AA|DH|DJ|OE|SS|TH|NG)\{\}$', text, re.IGNORECASE)) is not None:
         text = f'{{\\{m.group(1)}}}'
-      elif mapping.pop('onechar', None): # See #2419
-        text = f'{{{text}}}'
       elif (m := re.match(r'^\\([a-zA-Z])\{([a-zA-Z0-9])\}$', text)) is not None:
         text = f'{{\\{m.group(1)} {m.group(2)}}}'
       elif not 'combiningdiacritic' in mapping and not (text[0] == '{' and text[-1] == '}') and re.search(diacritic_re, text):
