@@ -1,4 +1,5 @@
 [
+  [ "\\textquotedbl", "tex-to-unicode", "\"" ],
   [ "#", "unicode-is-tex", "\\#" ],
   [ "$", "unicode-is-tex", "\\$" ],
   [ "%", "unicode-is-tex", "\\%" ],
