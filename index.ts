@@ -1,0 +1,5 @@
+export const ascii = require('./tables/ascii.json')
+export const ascii_bibtex_creator = require('./tables/ascii-bibtex-creator.json')
+export const unicode = require('./tables/unicode.json')
+export const latex = require('./tables/latex.json')
+export const diacritics = require('./tables/diacritics.json')

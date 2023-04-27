@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npm start",
-    "start": "./load.py",
+    "start": "./load.py && tsc",
     "preversion": "npm start",
     "postversion": "git push --tags"
   },
@@ -20,5 +20,9 @@
     "tables/unicode.json",
     "tables/latex.json",
     "tables/diacritics.json"
-  ]
+  ],
+  "devDependencies": {
+    "@types/node": "^18.16.1",
+    "typescript": "^5.0.4"
+  }
 }

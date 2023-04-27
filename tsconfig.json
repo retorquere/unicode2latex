@@ -12,10 +12,8 @@
     "sourceMap": false,
     "downlevelIteration": true,
     "lib": [ "es2017", "dom" ],
-    "outDir": "build",
     "typeRoots": [
       "./typings",
-      "./gen/typings",
       "./node_modules/@types"
     ]
   },
