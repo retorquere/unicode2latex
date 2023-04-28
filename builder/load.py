@@ -6,6 +6,9 @@ from builder.json import ConfigJSONEncoder, TableJSONEncoder
 from itertools import permutations
 from copy import deepcopy
 
+#ConfigJSONEncoder=None
+#TableJSONEncoder=None
+
 class load:
   def __init__(self, db, configfile, tables):
     self.db = db
