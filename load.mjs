@@ -97,6 +97,7 @@ new Diacritics().save('tables/diacritics.json')
 
 class U2T {
   constructor(mode) {
+    const escape = re => re.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
     const minimal = new RegExp(`^(${[
       '\u00A0',
       '\u180E',
@@ -130,7 +131,8 @@ class U2T {
       '~',
       '\\]',
       '/\u200b',
-    ].join('|')})$`)
+    ].map(escape).join('|')})$`)
+    console.log(minimal)
 
     this.base = {}
     this.package = {}
@@ -148,7 +150,6 @@ class U2T {
     https://github.com/retorquere/zotero-better-bibtex/issues/1538
     Further workarounds because bibtex inserts an NBSP for \o{}x in author names, which is insane, but that's bibtex for ya
     */
-    const escape = re => re.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
     /* ??
       if re.match(r'^[a-zA-Z]$', marker):
         diacritic_re.append(re.escape(marker) + r'[^a-zA-Z]')
