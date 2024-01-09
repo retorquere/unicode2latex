@@ -24,6 +24,7 @@ export type Options = {
   packages?: string[]
   math?: string
   text?: string
+  charmap?: CharMap
 }
 
 export function load(mode : 'bibtex' | 'biblatex',  options?: Options): CharMap {
@@ -37,5 +38,7 @@ export function load(mode : 'bibtex' | 'biblatex',  options?: Options): CharMap 
   for (const c of (options.math || '')) {
     if (map[c].math) delete map[c].text
   }
+
+  if (options.charmap) map = { ...map, ...options.charmap }
   return map
 }
