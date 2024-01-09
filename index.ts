@@ -24,7 +24,8 @@ export type Options = {
   math?: string
   text?: string
 }
-export function compile(mode : 'bibtex' | 'biblatex',  options?: Options) {
+
+export function load(mode : 'bibtex' | 'biblatex',  options?: Options) {
   let map = { ...maps[mode].base }
   for (const pkg of (options.packages || []).map(p => map.packages[p]).filter(p => p)) {
     map = { ...map, ...pkg }
