@@ -1,4 +1,4 @@
-type CharMap = Record<string, { math?: string, text?: string, commandspacer?: boolean }>
+export type CharMap = Record<string, { math?: string, text?: string, commandspacer?: boolean }>
 export type TeXMap = {
   base: CharMap
   package: Record<string, CharMap>
