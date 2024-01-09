@@ -30,7 +30,8 @@ export type Options = {
 
 export function load(mode : 'bibtex' | 'biblatex' | 'minimal',  options?: Options): CharMap {
   let map = { ...maps[mode].base }
-  for (const pkg of (options.packages || []).map(p => map.packages[p]).filter(p => p)) {
+  const packages = maps[mode].package
+  for (const pkg of (options.packages || []).map(p => packages[p]).filter(p => p)) {
     map = { ...map, ...pkg }
   }
   for (const c of (options.text || '')) {
