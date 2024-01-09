@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npm start",
-    "start": "./load.py && tsc",
+    "start": "./load.mjs && tsc",
     "preversion": "npm start",
     "postversion": "git push --tags"
   },
@@ -15,14 +15,17 @@
     "package.json",
     "index.js",
     "index.d.ts",
-    "tables/ascii.json",
-    "tables/ascii-bibtex-creator.json",
-    "tables/unicode.json",
-    "tables/latex.json",
+    "tables/biblatex.json",
+    "tables/bibtex.json",
+    "tables/minimal.json",
+    "tables/latex2unicode.json",
     "tables/diacritics.json"
   ],
   "devDependencies": {
-    "@types/node": "^18.16.1",
-    "typescript": "^5.0.4"
+    "@types/node": "^20.10.8",
+    "json-stringify-pretty-compact": "^4.0.0",
+    "papaparse": "^5.4.1",
+    "permutation": "^0.0.1",
+    "typescript": "^5.3.3"
   }
 }

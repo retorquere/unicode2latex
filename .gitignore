@@ -4,3 +4,5 @@ node_modules
 tables/*.json
 *.js
 *.d.ts
+*.bak
+*.py
