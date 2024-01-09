@@ -132,7 +132,6 @@ class U2T {
       '\\]',
       '/\u200b',
     ].map(escape).join('|')})$`)
-    console.log(minimal)
 
     this.base = {}
     this.package = {}
