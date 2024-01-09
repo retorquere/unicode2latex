@@ -2,8 +2,21 @@
 
 import csv from 'papaparse'
 import fs from 'fs'
-import permutations from 'permutation'
 import stringify from 'json-stringify-pretty-compact'
+
+function permutations(v) {
+  function p(prefix, s, acc) {
+    acc = acc || []
+    var n = s.length
+    if (n === 0) return acc.push(prefix)
+    for (var i = 0; i < n; i++) {
+      p(prefix + s.charAt(i), s.substring(0, i) + s.substring(i+1), acc)
+    }
+    return acc
+  }
+
+  return p('', v)
+}
 
 function tojson(str) {
   return stringify(str).replace(/[\u007F-\uFFFF]/g, chr => `\\u${(`0000${chr.charCodeAt(0).toString(16)}`).substr(-4)}`)

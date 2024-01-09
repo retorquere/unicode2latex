@@ -25,7 +25,6 @@
     "@types/node": "^20.10.8",
     "json-stringify-pretty-compact": "^4.0.0",
     "papaparse": "^5.4.1",
-    "permutation": "^0.0.1",
     "typescript": "^5.3.3"
   }
 }
