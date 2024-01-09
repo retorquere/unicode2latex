@@ -10,7 +10,7 @@ export const biblatex: TeXMap = require('./tables/biblatex.json')
 export const bibtex: TeXMap = require('./tables/bibtex.json')
 export const minimal: TeXMap = require('./tables/minimal.json')
 
-const maps = { biblatex, bibtex }
+const maps = { biblatex, bibtex, minimal }
 
 export const latex2unicode: Record<string, string> = require('./tables/latex2unicode.json')
 
@@ -24,10 +24,11 @@ export type Options = {
   packages?: string[]
   math?: string
   text?: string
+  ascii?: string
   charmap?: CharMap
 }
 
-export function load(mode : 'bibtex' | 'biblatex',  options?: Options): CharMap {
+export function load(mode : 'bibtex' | 'biblatex' | 'minimal',  options?: Options): CharMap {
   let map = { ...maps[mode].base }
   for (const pkg of (options.packages || []).map(p => map.packages[p]).filter(p => p)) {
     map = { ...map, ...pkg }
@@ -37,6 +38,9 @@ export function load(mode : 'bibtex' | 'biblatex',  options?: Options): CharMap 
   }
   for (const c of (options.math || '')) {
     if (map[c].math) delete map[c].text
+  }
+  for (const c of (options.ascii || '')) {
+    if (bibtex.base[c]) map[c] = bibtex.base[c]
   }
 
   if (options.charmap) map = { ...map, ...options.charmap }
