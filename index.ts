@@ -1,6 +1,7 @@
+type CharMap = Record<string, { math?: string, text?: string, commandspacer?: boolean }>
 export type TeXMap = {
-  base: Record<string, { math?: string, text?: string, commandspacer?: boolean }>
-  package: Record<string, Record<string, { math?: string, text?: string }>>
+  base: CharMap
+  package: Record<string, CharMap>
   provides: Record<string, string>
   stopgap: string
 }
@@ -25,7 +26,7 @@ export type Options = {
   text?: string
 }
 
-export function load(mode : 'bibtex' | 'biblatex',  options?: Options) {
+export function load(mode : 'bibtex' | 'biblatex',  options?: Options): CharMap {
   let map = { ...maps[mode].base }
   for (const pkg of (options.packages || []).map(p => map.packages[p]).filter(p => p)) {
     map = { ...map, ...pkg }
