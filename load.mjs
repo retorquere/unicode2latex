@@ -167,15 +167,16 @@ class U2T {
     const bibtex = (c, m) => {
       const commandspacer = m.commandspacer
       delete m.commandspacer
-      if (commandspacer) return (m.text = `{{${m.text}}}`) // See #1538.
-      
-      if (m.text.match(/^\\[`\'^~"=.][A-Za-z]$/) || m.text.match(/^\\[\^]\\[ij]$/) || m.text.match(/^\\[kr]\{[a-zA-Z]\}$/)) return (m.text = `{{${m.text}}}`)
+
+      if (commandspacer) return (m.text = `{${m.text}}`) // See #1538.
+
+      if (m.text.match(/^\\[`\'^~"=.][A-Za-z]$/) || m.text.match(/^\\[\^]\\[ij]$/) || m.text.match(/^\\[kr]\{[a-zA-Z]\}$/)) return (m.text = `{${m.text}}`)
 
       let r
-      if (r = m.text.match(/^\\(L|O|AE|AA|DH|DJ|OE|SS|TH|NG)\{\}$/i)) return (m.text = `{{\\${r[1]}}}`)
-      if (r = m.text.match(/^\\([a-z])\{([a-z0-9])\}$/i)) return (m.text = `{{\\${r[1]} ${r[2]}}}`)
+      if (r = m.text.match(/^\\(L|O|AE|AA|DH|DJ|OE|SS|TH|NG)\{\}$/i)) return (m.text = `{\\${r[1]}}`)
+      if (r = m.text.match(/^\\([a-z])\{([a-z0-9])\}$/i)) return (m.text = `{\\${r[1]} ${r[2]}}`)
 
-      if (!c.flag.combiningdiacritic && !m.text.match(/^[{].*[}]$/) && cd.test(m.text)) return (m.text = `{{${m.tex}}}`)
+      if (!c.flag.combiningdiacritic && !m.text.match(/^[{].*[}]$/) && cd.test(m.text)) return (m.text = `{${m.text}}`)
 
       if (m.text.match(/.*\\[0-1a-z]+$/i) && !c.flag.combiningdiacritic) m.commandspacer = true
     }
