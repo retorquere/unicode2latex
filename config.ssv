@@ -371,11 +371,14 @@ w̃ < @{\~ w}@
 ‧ > - text
 ‾ > - text
 ─ > - text
+─ = \textSFx text.pmboxdraw
 ┄ > - text
 ┈ > - text
 ╌ > - text
 ╼ > - text
+╼ = \pmboxdrawuni{257C} text.pmboxdraw
 ╾ > - text
+╾ = \pmboxdrawuni{257E} text.pmboxdraw
 ˌ = \Elzverti math
 ː = \Elzlmrk math
 ˑ = \Elzhlmrk math
@@ -442,16 +445,16 @@ w̃ < @{\~ w}@
 Λ = \Lambda math
 Μ > M math
 𝚳 > M math
-𝛍 > M math
+𝛍 > m math
 𝛭 > M math
 𝜧 > M math
 𝝡 > M math
 Ν > N math
 𝚴 > N math
-𝛎 > N math
+𝛎 > v math
 𝛮 > N math
 𝜨 > N math
-𝝂 > N math
+𝝂 > v math
 𝝢 > N math
 Ξ = \Xi math
 Ο > O math
@@ -1774,126 +1777,232 @@ w̃ < @{\~ w}@
 Ⓩ > (Z) text stopgap
 ⓪ > (0) text stopgap
 ━ > = text stopgap
+━ = \pmboxdrawuni{2501} text.pmboxdraw
 ┅ > = text stopgap
 ┉ > = text stopgap
 ╍ > = text stopgap
 ═ > = text stopgap
+═ = \textSFxliii text.pmboxdraw
 │ > | text stopgap
+│ = \textSFxi text.pmboxdraw
 ┃ > | text stopgap
+┃ = \pmboxdrawuni{2503} text.pmboxdraw
 ┇ > | text stopgap
 ┊ > | text stopgap
 ┋ > | text stopgap
 ╎ > | text stopgap
 ╏ > | text stopgap
 ║ > | text stopgap
+║ = \textSFxxiv text.pmboxdraw
 ╽ > | text stopgap
+╽ = \pmboxdrawuni{257D} text.pmboxdraw
 ╿ > | text stopgap
+╿ = \pmboxdrawuni{257F} text.pmboxdraw
 ┆ = \Elzdshfnc math
 ┌ > + text stopgap
+┌ = \textSFi text.pmboxdraw
 ┍ > + text stopgap
+┍ = \pmboxdrawuni{250D} text.pmboxdraw
 ┎ > + text stopgap
+┎ = \pmboxdrawuni{250E} text.pmboxdraw
 ┏ > + text stopgap
+┏ = \pmboxdrawuni{250F} text.pmboxdraw
 ┐ > + text stopgap
+┐ = \textSFiii text.pmboxdraw
 ┑ > + text stopgap
+┑ = \pmboxdrawuni{2511} text.pmboxdraw
 ┒ > + text stopgap
+┒ = \pmboxdrawuni{2512} text.pmboxdraw
 ┓ > + text stopgap
+┓ = \pmboxdrawuni{2513} text.pmboxdraw
 └ > + text stopgap
+└ = \textSFii text.pmboxdraw
 ┕ > + text stopgap
+┕ = \pmboxdrawuni{2515} text.pmboxdraw
 ┖ > + text stopgap
+┖ = \pmboxdrawuni{2516} text.pmboxdraw
 ┗ > + text stopgap
+┗ = \pmboxdrawuni{2517} text.pmboxdraw
 ┘ > + text stopgap
+┘ = \textSFiv text.pmboxdraw
 ┚ > + text stopgap
+┚ = \pmboxdrawuni{251A} text.pmboxdraw
 ┛ > + text stopgap
+┛ = \pmboxdrawuni{251B} text.pmboxdraw
 ├ > + text stopgap
+├ = \textSFviii text.pmboxdraw
 ┝ > + text stopgap
+┝ = \pmboxdrawuni{251D} text.pmboxdraw
 ┞ > + text stopgap
+┞ = \pmboxdrawuni{251E} text.pmboxdraw
 ┟ > + text stopgap
+┟ = \pmboxdrawuni{251F} text.pmboxdraw
 ┠ > + text stopgap
+┠ = \pmboxdrawuni{2520} text.pmboxdraw
 ┡ > + text stopgap
+┡ = \pmboxdrawuni{2521} text.pmboxdraw
 ┢ > + text stopgap
+┢ = \pmboxdrawuni{2522} text.pmboxdraw
 ┣ > + text stopgap
+┣ = \pmboxdrawuni{2523} text.pmboxdraw
 ┤ > + text stopgap
+┤ = \textSFix text.pmboxdraw
 ┥ > + text stopgap
+┥ = \pmboxdrawuni{2525} text.pmboxdraw
 ┦ > + text stopgap
+┦ = \pmboxdrawuni{2526} text.pmboxdraw
 ┧ > + text stopgap
+┧ = \pmboxdrawuni{2527} text.pmboxdraw
 ┨ > + text stopgap
+┨ = \pmboxdrawuni{2528} text.pmboxdraw
 ┩ > + text stopgap
+┩ = \pmboxdrawuni{2529} text.pmboxdraw
 ┪ > + text stopgap
+┪ = \pmboxdrawuni{252A} text.pmboxdraw
 ┫ > + text stopgap
+┫ = \pmboxdrawuni{252B} text.pmboxdraw
 ┬ > + text stopgap
+┬ = \textSFvi text.pmboxdraw
 ┭ > + text stopgap
+┭ = \pmboxdrawuni{252D} text.pmboxdraw
 ┮ > + text stopgap
+┮ = \pmboxdrawuni{252E} text.pmboxdraw
 ┯ > + text stopgap
+┯ = \pmboxdrawuni{252F} text.pmboxdraw
 ┰ > + text stopgap
+┰ = \pmboxdrawuni{2530} text.pmboxdraw
 ┱ > + text stopgap
+┱ = \pmboxdrawuni{2531} text.pmboxdraw
 ┲ > + text stopgap
+┲ = \pmboxdrawuni{2532} text.pmboxdraw
 ┳ > + text stopgap
+┳ = \pmboxdrawuni{2533} text.pmboxdraw
 ┴ > + text stopgap
+┴ = \textSFvii text.pmboxdraw
 ┵ > + text stopgap
+┵ = \pmboxdrawuni{2535} text.pmboxdraw
 ┶ > + text stopgap
+┶ = \pmboxdrawuni{2536} text.pmboxdraw
 ┷ > + text stopgap
+┷ = \pmboxdrawuni{2537} text.pmboxdraw
 ┸ > + text stopgap
+┸ = \pmboxdrawuni{2538} text.pmboxdraw
 ┹ > + text stopgap
+┹ = \pmboxdrawuni{2539} text.pmboxdraw
 ┺ > + text stopgap
+┺ = \pmboxdrawuni{253A} text.pmboxdraw
 ┻ > + text stopgap
+┻ = \pmboxdrawuni{253B} text.pmboxdraw
 ┼ > + text stopgap
+┼ = \textSFv text.pmboxdraw
 ┽ > + text stopgap
+┽ = \pmboxdrawuni{253D} text.pmboxdraw
 ┾ > + text stopgap
+┾ = \pmboxdrawuni{253E} text.pmboxdraw
 ┿ > + text stopgap
+┿ = \pmboxdrawuni{253F} text.pmboxdraw
 ╀ > + text stopgap
+╀ = \pmboxdrawuni{2540} text.pmboxdraw
 ╁ > + text stopgap
+╁ = \pmboxdrawuni{2541} text.pmboxdraw
 ╂ > + text stopgap
+╂ = \pmboxdrawuni{2542} text.pmboxdraw
 ╃ > + text stopgap
+╃ = \pmboxdrawuni{2543} text.pmboxdraw
 ╄ > + text stopgap
+╄ = \pmboxdrawuni{2544} text.pmboxdraw
 ╅ > + text stopgap
+╅ = \pmboxdrawuni{2545} text.pmboxdraw
 ╆ > + text stopgap
+╆ = \pmboxdrawuni{2546} text.pmboxdraw
 ╇ > + text stopgap
+╇ = \pmboxdrawuni{2547} text.pmboxdraw
 ╈ > + text stopgap
+╈ = \pmboxdrawuni{2548} text.pmboxdraw
 ╉ > + text stopgap
+╉ = \pmboxdrawuni{2549} text.pmboxdraw
 ╊ > + text stopgap
+╊ = \pmboxdrawuni{254A} text.pmboxdraw
 ╋ > + text stopgap
+╋ = \pmboxdrawuni{254B} text.pmboxdraw
 ╒ > + text stopgap
+╒ = \textSFli text.pmboxdraw
 ╓ > + text stopgap
+╓ = \textSFlii text.pmboxdraw
 ╔ > + text stopgap
+╔ = \textSFxxxix text.pmboxdraw
 ╕ > + text stopgap
+╕ = \textSFxxii text.pmboxdraw
 ╖ > + text stopgap
+╖ = \textSFxxi text.pmboxdraw
 ╗ > + text stopgap
+╗ = \textSFxxv text.pmboxdraw
 ╘ > + text stopgap
+╘ = \textSFl text.pmboxdraw
 ╙ > + text stopgap
+╙ = \textSFxlix text.pmboxdraw
 ╚ > + text stopgap
+╚ = \textSFxxxviii text.pmboxdraw
 ╛ > + text stopgap
+╛ = \textSFxxviii text.pmboxdraw
 ╜ > + text stopgap
+╜ = \textSFxxvii text.pmboxdraw
 ╝ > + text stopgap
+╝ = \textSFxxvi text.pmboxdraw
 ╞ > + text stopgap
+╞ = \textSFxxxvi text.pmboxdraw
 ╟ > + text stopgap
+╟ = \textSFxxxvii text.pmboxdraw
 ╠ > + text stopgap
+╠ = \textSFxlii text.pmboxdraw
 ╡ > + text stopgap
+╡ = \textSFxix text.pmboxdraw
 ╢ > + text stopgap
+╢ = \textSFxx text.pmboxdraw
 ╣ > + text stopgap
+╣ = \textSFxxiii text.pmboxdraw
 ╤ > + text stopgap
+╤ = \textSFxlvii text.pmboxdraw
 ╥ > + text stopgap
+╥ = \textSFxlviii text.pmboxdraw
 ╦ > + text stopgap
+╦ = \textSFxli text.pmboxdraw
 ╧ > + text stopgap
+╧ = \textSFxlv text.pmboxdraw
 ╨ > + text stopgap
+╨ = \textSFxlvi text.pmboxdraw
 ╩ > + text stopgap
+╩ = \textSFxl text.pmboxdraw
 ╪ > + text stopgap
+╪ = \textSFliv text.pmboxdraw
 ╫ > + text stopgap
+╫ = \textSFliii text.pmboxdraw
 ╬ > + text stopgap
+╬ = \textSFxliv text.pmboxdraw
 ╭ > + text stopgap
 ╮ > + text stopgap
 ╯ > + text stopgap
 ╰ > + text stopgap
 ┙ = \Elzsqfnw math
+┙ = \pmboxdrawuni{2519} text.pmboxdraw
 ╱ = \diagup math
 ╲ > \ text
 ▀ = \blockuphalf math
+▀ = \textupblock text.pmboxdraw
 ▄ = \blocklowhalf math
+▄ = \textdnblock text.pmboxdraw
 █ = \blockfull math
+█ = \textblock text.pmboxdraw
 ▌ = \blocklefthalf math
+▌ = \textlfblock text.pmboxdraw
 ▐ = \blockrighthalf math
+▐ = \textrtblock text.pmboxdraw
 ░ = \blockqtrshaded math
+░ = \textltshade text.pmboxdraw
 ▒ = \blockhalfshaded math
+▒ = \textshade text.pmboxdraw
 ▓ = \blockthreeqtrshaded math
+▓ = \textdkshade text.pmboxdraw
 ■ = \ding{110} text
 ■ = \mdlgblksquare math
 □ = \square math
@@ -3959,3 +4068,35 @@ w̃ < @{\~ w}@
 ̻ = \textsubsquare text.tipa combiningdiacritic
 ̼ = \textseagull text.tipa combiningdiacritic
 ̽ = \textovercross text.tipa combiningdiacritic
+╴ = \pmboxdrawuni{2574} text.pmboxdraw
+╵ = \pmboxdrawuni{2575} text.pmboxdraw
+╶ = \pmboxdrawuni{2576} text.pmboxdraw
+╷ = \pmboxdrawuni{2577} text.pmboxdraw
+╸ = \pmboxdrawuni{2578} text.pmboxdraw
+╹ = \pmboxdrawuni{2579} text.pmboxdraw
+╺ = \pmboxdrawuni{257A} text.pmboxdraw
+╻ = \pmboxdrawuni{257B} text.pmboxdraw
+▁ = \pmboxdrawuni{2581} text.pmboxdraw
+▂ = \pmboxdrawuni{2582} text.pmboxdraw
+▃ = \pmboxdrawuni{2583} text.pmboxdraw
+▅ = \pmboxdrawuni{2585} text.pmboxdraw
+▆ = \pmboxdrawuni{2586} text.pmboxdraw
+▇ = \pmboxdrawuni{2587} text.pmboxdraw
+▉ = \pmboxdrawuni{2589} text.pmboxdraw
+▊ = \pmboxdrawuni{258A} text.pmboxdraw
+▋ = \pmboxdrawuni{258B} text.pmboxdraw
+▍ = \pmboxdrawuni{258D} text.pmboxdraw
+▎ = \pmboxdrawuni{258E} text.pmboxdraw
+▏ = \pmboxdrawuni{258F} text.pmboxdraw
+▔ = \pmboxdrawuni{2594} text.pmboxdraw
+▕ = \pmboxdrawuni{2595} text.pmboxdraw
+▖ = \pmboxdrawuni{2596} text.pmboxdraw
+▗ = \pmboxdrawuni{2597} text.pmboxdraw
+▘ = \pmboxdrawuni{2598} text.pmboxdraw
+▙ = \pmboxdrawuni{2599} text.pmboxdraw
+▚ = \pmboxdrawuni{259A} text.pmboxdraw
+▛ = \pmboxdrawuni{259B} text.pmboxdraw
+▜ = \pmboxdrawuni{259C} text.pmboxdraw
+▝ = \pmboxdrawuni{259D} text.pmboxdraw
+▞ = \pmboxdrawuni{259E} text.pmboxdraw
+▟ = \pmboxdrawuni{259F} text.pmboxdraw
