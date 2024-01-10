@@ -7,7 +7,7 @@
     "test": "npm start",
     "start": "mkdir -p tables && ./load.mjs && tsc",
     "preversion": "npm start",
-    "postversion": "git push --tags"
+    "postversion": "git push --tags && git push"
   },
   "author": "Emiliano Heyns",
   "license": "ISC",
