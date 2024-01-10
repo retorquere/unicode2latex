@@ -193,8 +193,7 @@ class U2T {
         if ((m.text || m.math) && c.flag.stopgap) continue // already have least as good option
         m[cmode] = c.tex
         if (c.flag.stopgap) m.stopgap = true
-        // tex() has made sure we don't need command spacers
-        if (c.flag.commandspacer && mode !== 'bibtex') m.commandspacer = true
+        if (c.flag.commandspacer) m.commandspacer = true
 
         if (mode === 'bibtex' && cmode === 'text') bibtex(c, m)
       }
