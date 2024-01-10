@@ -223,7 +223,6 @@ class U2T {
       }
     }
 
-
     this.provides = {}
     for (const [u, p] of Object.entries(alts)) {
       if (!this.base[u]) this.provides[p] = (this.provides[p] || '') + u
@@ -236,6 +235,7 @@ class U2T {
   }
 
   save(filename) {
+    console.log(Object.keys(this.package).sort().map(pkg => '`' + pkg + '`').join(', '))
     fs.writeFileSync(filename, tojson({ base: this.base, package: this.package, provides: this.provides, stopgap: this.stopgap }))
   }
 }
