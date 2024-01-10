@@ -44,7 +44,7 @@ w̃ < @{\~ w}@
 ¬ < \neg
 ­ = \-
 ® = \textregistered text.textcomp
-® < \circledR math
+® = \circledR math
 ¯ = \textasciimacron text
 ° = \textdegree text.textcomp
 ° = ^\circ math
