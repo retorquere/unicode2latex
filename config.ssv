@@ -22,8 +22,8 @@ w̃ < @{\~ w}@
 | < \textbar
 } = \} text
 } = \rbrace math
-~ = \textasciitilde text
 ~ = \sptilde math
+~ = \textasciitilde text
   > ~ space
 ¡ = \textexclamdown text
 ¢ = \textcent text.textcomp
@@ -1030,23 +1030,28 @@ w̃ < @{\~ w}@
 ℆ > c/u text
 ℇ = \Euler math
 ℉ > F text
-ℊ = \mathscr{g} math
-ℋ = \mathscr{H} math
+ℊ > g math stopgap
+ℊ = \mathscr{g} math.mathrsfs
+ℋ > H math stopgap
+ℋ = \mathscr{H} math.mathrsfs
 ℌ = \mathfrak{H} math
 ℍ = \mathbb{H} math
 ℎ = \Planckconst math
 ℏ = \hslash math
-ℐ = \mathscr{I} math
+ℐ > I math stopgap
+ℐ = \mathscr{I} math.mathrsfs
 ℑ = \mathfrak{I} math
-ℒ = \mathscr{L} math
-ℓ = \mathscr{l} math
+ℒ > L math stopgap
+ℒ = \mathscr{L} math.mathrsfs
+ℓ = \ell math
 ℕ = \mathbb{N} math
 № = \cyrchar\textnumero text
 ℗ = \textcircledP text
 ℘ = \wp math
 ℙ = \mathbb{P} math
 ℚ = \mathbb{Q} math
-ℛ = \mathscr{R} math
+ℛ > R math stopgap
+ℛ = \mathscr{R} math.mathrsfs
 ℜ = \mathfrak{R} math
 ℝ = \mathbb{R} math
 ℞ = \Elzxrat math
@@ -1061,15 +1066,21 @@ w̃ < @{\~ w}@
 K > K text
 Å > \AA text
 Å = \Angstroem math
-ℬ = \mathscr{B} math
+ℬ > B math stopgap
+ℬ = \mathscr{B} math.mathrsfs
 ℭ = \mathfrak{C} math
 ℮ = \textestimated text
-ℯ = \mathscr{e} math
-ℰ = \mathscr{E} math
-ℱ = \mathscr{F} math
+ℯ > e math stopgap
+ℯ = \mathscr{e} math.mathrsfs
+ℰ > E math stopgap
+ℰ = \mathscr{E} math.mathrsfs
+ℱ > F math stopgap
+ℱ = \mathscr{F} math.mathrsfs
 Ⅎ = \Finv math
-ℳ = \mathscr{M} math
-ℴ = \mathscr{o} math
+ℳ > M math stopgap
+ℳ = \mathscr{M} math.mathrsfs
+ℴ > o math stopgap
+ℴ = \mathscr{o} math.mathrsfs
 ℵ = \aleph math
 ℶ = \beth math
 ℷ = \gimel math
@@ -3027,47 +3038,88 @@ w̃ < @{\~ w}@
 𝒙 = \mathbit{x} math
 𝒚 = \mathbit{y} math
 𝒛 = \mathbit{z} math
-𝒜 = \mathscr{A} math
-𝒞 = \mathscr{C} math
-𝒟 = \mathscr{D} math
-𝒢 = \mathscr{G} math
-𝒥 = \mathscr{J} math
-𝒦 = \mathscr{K} math
-𝒩 = \mathscr{N} math
-𝒪 = \mathscr{O} math
-𝒫 = \mathscr{P} math
-𝒬 = \mathscr{Q} math
-𝒮 = \mathscr{S} math
-𝒯 = \mathscr{T} math
-𝒰 = \mathscr{U} math
-𝒱 = \mathscr{V} math
-𝒲 = \mathscr{W} math
-𝒳 = \mathscr{X} math
-𝒴 = \mathscr{Y} math
-𝒵 = \mathscr{Z} math
-𝒶 = \mathscr{a} math
-𝒷 = \mathscr{b} math
-𝒸 = \mathscr{c} math
-𝒹 = \mathscr{d} math
-𝒻 = \mathscr{f} math
-𝒽 = \mathscr{h} math
-𝒾 = \mathscr{i} math
-𝒿 = \mathscr{j} math
-𝓀 = \mathscr{k} math
-𝓁 > \mathscr{l} math
-𝓂 = \mathscr{m} math
-𝓃 = \mathscr{n} math
-𝓅 = \mathscr{p} math
-𝓆 = \mathscr{q} math
-𝓇 = \mathscr{r} math
-𝓈 = \mathscr{s} math
-𝓉 = \mathscr{t} math
-𝓊 = \mathscr{u} math
-𝓋 = \mathscr{v} math
-𝓌 = \mathscr{w} math
-𝓍 = \mathscr{x} math
-𝓎 = \mathscr{y} math
-𝓏 = \mathscr{z} math
+𝒜 > A math stopgap
+𝒜 = \mathscr{A} math.mathrsfs
+𝒞 > C math stopgap
+𝒞 = \mathscr{C} math.mathrsfs
+𝒟 > D math stopgap
+𝒟 = \mathscr{D} math.mathrsfs
+𝒢 > G math stopgap
+𝒢 = \mathscr{G} math.mathrsfs
+𝒥 > J math stopgap
+𝒥 = \mathscr{J} math.mathrsfs
+𝒦 > K math stopgap
+𝒦 = \mathscr{K} math.mathrsfs
+𝒩 > N math stopgap
+𝒩 = \mathscr{N} math.mathrsfs
+𝒪 > O math stopgap
+𝒪 = \mathscr{O} math.mathrsfs
+𝒫 > P math stopgap
+𝒫 = \mathscr{P} math.mathrsfs
+𝒬 > Q math stopgap
+𝒬 = \mathscr{Q} math.mathrsfs
+𝒮 > S math stopgap
+𝒮 = \mathscr{S} math.mathrsfs
+𝒯 > T math stopgap
+𝒯 = \mathscr{T} math.mathrsfs
+𝒰 > U math stopgap
+𝒰 = \mathscr{U} math.mathrsfs
+𝒱 > V math stopgap
+𝒱 = \mathscr{V} math.mathrsfs
+𝒲 > W math stopgap
+𝒲 = \mathscr{W} math.mathrsfs
+𝒳 > X math stopgap
+𝒳 = \mathscr{X} math.mathrsfs
+𝒴 > Y math stopgap
+𝒴 = \mathscr{Y} math.mathrsfs
+𝒵 > Z math stopgap
+𝒵 = \mathscr{Z} math.mathrsfs
+𝒶 > a math stopgap
+𝒶 = \mathscr{a} math.mathrsfs
+𝒷 > b math stopgap
+𝒷 = \mathscr{b} math.mathrsfs
+𝒸 > c math stopgap
+𝒸 = \mathscr{c} math.mathrsfs
+𝒹 > d math stopgap
+𝒹 = \mathscr{d} math.mathrsfs
+𝒻 > f math stopgap
+𝒻 = \mathscr{f} math.mathrsfs
+𝒽 > h math stopgap
+𝒽 = \mathscr{h} math.mathrsfs
+𝒾 > i math stopgap
+𝒾 = \mathscr{i} math.mathrsfs
+𝒿 > j math stopgap
+𝒿 = \mathscr{j} math.mathrsfs
+𝓀 > k math stopgap
+𝓀 = \mathscr{k} math.mathrsfs
+𝓁 > l math stopgap
+𝓁 = \mathscr{l} math.mathrsfs
+𝓂 > m math stopgap
+𝓂 = \mathscr{m} math.mathrsfs
+𝓃 > n math stopgap
+𝓃 = \mathscr{n} math.mathrsfs
+𝓅 > p math stopgap
+𝓅 = \mathscr{p} math.mathrsfs
+𝓆 > q math stopgap
+𝓆 = \mathscr{q} math.mathrsfs
+𝓇 > r math stopgap
+𝓇 = \mathscr{r} math.mathrsfs
+𝓈 > s math stopgap
+𝓈 = \mathscr{s} math.mathrsfs
+𝓉 > t math stopgap
+𝓉 = \mathscr{t} math.mathrsfs
+𝓊 > u math stopgap
+𝓊 = \mathscr{u} math.mathrsfs
+𝓋 > v math stopgap
+𝓋 = \mathscr{v} math.mathrsfs
+𝓌 > w math stopgap
+𝓌 = \mathscr{w} math.mathrsfs
+𝓍 > x math stopgap
+𝓍 = \mathscr{x} math.mathrsfs
+𝓎 > y math stopgap
+𝓎 = \mathscr{y} math.mathrsfs
+𝓏 > z math stopgap
+𝓏 = \mathscr{z} math.mathrsfs
 𝓐 = \mathmit{A} math
 𝓑 = \mathmit{B} math
 𝓒 = \mathmit{C} math
