@@ -34,7 +34,7 @@ class Mapping {
 
     let m
     for (const op of stanza) {
-      if (m = op.match(/^(math|text)(?:[.]([a-z]+))?/)) {
+      if (m = op.match(/^(math|text)(?:[.]([-a-zA-Z]+))?$/)) {
         this.mode = m[1]
         this.package = m[2] || ''
       }
@@ -49,6 +49,7 @@ class Mapping {
     if ((this.mode == 'text' || this.mode == '') && this.tex.match(/\\[0-1A-Za-z]+$/)) this.flag.commandspacer = true
 
     if (this.flag.stopgap && this.conversion === '=') throw new Error('sus conversion')
+
   }
 
   get u2t() {
@@ -203,7 +204,7 @@ class U2T {
       if (!c.u2t) continue
 
       if (mode === 'minimal' && ! c.unicode.match(minimal)) continue
-      if (mode === 'minimal' && c.package != '') throw new Error(c.tex)
+      if (mode === 'minimal' && c.package != '') throw c
 
       if (c.package === '') {
         const b = this.base[c.unicode] || { }

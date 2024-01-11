@@ -1,79 +1,107 @@
+! < \mathexclam math.unicode-math
 " < \textquotedbl
+# < \mathoctothorpe math.unicode-math
 # = \#
+$ < \mathdollar math.unicode-math
+$ < \textdollar text.textcomp
 $ = \$
+% < \mathpercent math.unicode-math
 % = \%
+& < \mathampersand math.unicode-math
 & = \&
+( < \lparen math.unicode-math
+) < \rparen math.unicode-math
+* < \textasteriskcentered text
++ < \mathplus math.unicode-math
+, < \mathcomma math.unicode-math
+. < \mathperiod math.unicode-math
+/ < \mathslash math.unicode-math
 /​ = \slash text
+: < \mathcolon math.unicode-math
+; < \mathsemicolon math.unicode-math
+< < \less math.unicode-math
+< < \textless text
 < > < math
-< < \textless
-> > > math
+= < \equal math.unicode-math
+> < \greater math.unicode-math
 > < \textgreater
+> > > math
+? < \mathquestion math.unicode-math
+@@@@ < \mathatsign math.unicode-math
 LaTeX < \LaTeX
-\ = \textbackslash text
-\ = \backslash math
+[ < \lbrack math.unicode-math
 \ < \
+\ = \backslash math
+\ = \textbackslash text
+] < \rbrack math.unicode-math
 ^ = \^ text
-^ = \sphat math
+_ < \textunderscore text.textcomp
 _ = \_
 i︠a︡ = \t{ia} text
 w̃ < @{\~ w}@
+{ < \textbraceleft text
+{ < \lbrace math.unicode-math
 { = \{ text
-{ = \lbrace math
-| < \textbar
+| = \textbar text
+| = \vert math.unicode-math
+} < \textbraceright text
+} < \rbrace math.unicode-math
 } = \} text
-} = \rbrace math
-~ = \sptilde math
 ~ = \textasciitilde text
   > ~ space
 ¡ = \textexclamdown text
 ¢ = \textcent text.textcomp
-¢ = \cent math
+£ < \mathsterling math.unicode-math
+£ = \pounds
 £ = \textsterling text.textcomp
-£ = \pounds math
 ¤ = \textcurrency text.textcomp
 ¥ = \textyen text.textcomp
-¥ = \yen math
 ¦ = \textbrokenbar text.textcomp
+§ < \mathsection math.unicode-math
+§ = \S
 § = \textsection text.textcomp
 ¨ = \textasciidieresis text
-¨ = \spddot math
+© = \copyright
 © = \textcopyright text.textcomp
 ª = \textordfeminine text.textcomp
 « = \guillemotleft text
+¬ < \neg math.unicode-math
 ¬ = \lnot math
-¬ < \neg
 ­ = \-
+® < \textcircled{R} text.amsmath
 ® = \textregistered text.textcomp
-® = \circledR math
 ¯ = \textasciimacron text
 ° = \textdegree text.textcomp
 ° = ^\circ math
-± = \pm math
+± = \pm math.unicode-math
 ² = ^{2} math
 ³ = ^{3} math
 ´ = \textasciiacute text
 µ = \textmu text
+¶ < \mathparagraph math.unicode-math
+¶ = \P
 ¶ = \textparagraph text.textcomp
+· < \cdotp math.unicode-math
 · > \cdot math
 ¸ > \c text
 ¹ = ^{1} math
 º = \textordmasculine text.textcomp
 » = \guillemotright text
-¼ = \frac{1}{4} math
 ¼ < \textonequarter
-½ = \frac{1}{2} math
+¼ = \frac{1}{4} math
 ½ < \textonehalf
-¾ = \frac{3}{4} math
+½ = \frac{1}{2} math
 ¾ < \textthreequarters
+¾ = \frac{3}{4} math
 ¿ = \textquestiondown text
 À = \`A text
 Á = \'A text
 Â = \^A text
 Ã = \~A text
 Ä = \"A text
-Å = \AA text
-Å < \r{A}
 Å < @{\r A}@
+Å < \r{A}
+Å = \AA text
 Æ = \AE text
 Ç = \c{C} text
 È = \`E text
@@ -106,26 +134,27 @@ w̃ < @{\~ w}@
 â = \^a text
 ã = \~a text
 ä = \"a text
-å = \aa text
-å < \r{a}
 å < @{\r a}@
+å < \r{a}
+å = \aa text
 æ = \ae text
 ç = \c{c} text
 è = \`e text
 é = \'e text
 ê = \^e text
 ë = \"e text
-ì = \`i text
 ì < \`\i
-í = \'i text
+ì = \`i text
 í < \'\i
-î = \^i text
+í = \'i text
 î < \^\i
-ï = \"i text
+î = \^i text
 ï < \"\i
+ï = \"i text
 ð = \dh text
 ð = \eth math.amssymb
 ð = \eth math.arevmath
+ð = \textdh text.textcomp
 ñ = \~n text
 ò = \`o text
 ó = \'o text
@@ -179,8 +208,8 @@ w̃ < @{\~ w}@
 ģ = \c{g} text
 Ĥ = \^H text
 ĥ = \^h text
-Ħ = {\fontencoding{LELA}\selectfont\char40} text
-ħ = \Elzxh math
+ħ = \hbar math
+ħ = \textcrh text.tipa
 Ĩ = \~I text
 ĩ = \~i text
 Ī = \=I text
@@ -198,15 +227,13 @@ w̃ < @{\~ w}@
 ĵ = \^\j text
 Ķ = \c{K} text
 ķ = \c{k} text
-ĸ = {\fontencoding{LELA}\selectfont\char91} text
+ĸ = ?? text.tipa
 Ĺ = \'L text
 ĺ = \'l text
 Ļ = \c{L} text
 ļ = \c{l} text
 Ľ = \v{L} text
 ľ = \v{l} text
-Ŀ = {\fontencoding{LELA}\selectfont\char201} text
-ŀ = {\fontencoding{LELA}\selectfont\char202} text
 Ł = \L text
 ł = \l text
 Ń = \'N text
@@ -244,19 +271,17 @@ w̃ < @{\~ w}@
 ţ = \c{t} text
 Ť = \v{T} text
 ť = \v{t} text
-Ŧ = {\fontencoding{LELA}\selectfont\char47} text
-ŧ = {\fontencoding{LELA}\selectfont\char63} text
 Ũ = \~U text
 ũ = \~u text
 Ū = \=U text
 ū = \=u text
 Ŭ = \u{U} text
 ŭ = \u{u} text
-Ů = \r{U} text
 Ů < @{\r U}@
-ů = \r{u} text
-ů < \ocirc{u}
+Ů = \r{U} text
 ů < @{\r u}@
+ů < \ocirc{u}
+ů = \r{u} text
 Ű = \H{U} text
 ű = \H{u} text
 Ų = \k{U} text
@@ -274,11 +299,9 @@ w̃ < @{\~ w}@
 ž = \v{z} text
 ſ > s text
 ƒ > f math
-ƕ = \texthvlig text
-ƞ = \textnrleg text
+ƕ = \texthvlig text.tipa
+ƞ = \textipa{\textnrleg} text.tipa
 ƪ = \textesh text
-Ƶ = \Zbar math
-ƺ = {\fontencoding{LELA}\selectfont\char195} text
 ǂ = \textdoublepipe text
 Ǎ = \v{A} text
 ǎ = \v{a} text
@@ -300,50 +323,19 @@ w̃ < @{\~ w}@
 Ȩ = \c{E} text
 ȩ = \c{e} text
 ȷ = \jmath math
-ɐ = \Elztrna math
-ɒ = \Elztrnsa math
-ɔ = \Elzopeno math
-ɖ = \Elzrtld math
-ɘ = {\fontencoding{LEIP}\selectfont\char61} text
-ə = \Elzschwa math
+ɐ = \textipa{\textturna} text.tipa
+ɒ = textipa{\textopeno} text.tipa
+ɔ = \textipa{O} text.tipa
+ɖ < \textsubbridge{d} text.tipa
+ɖ = \textrtaild text.tipa
+ə = \textschwa text.tipa
 ɛ = \varepsilon math
 ɡ > g text
-ɣ = \Elzpgamma math
-ɤ = \Elzpbgam math
-ɥ = \Elztrnh math
-ɬ = \Elzbtdl math
-ɭ = \Elzrtll math
-ɯ = \Elztrnm math
-ɰ = \Elztrnmlr math
-ɱ = \Elzltlmr math
-ɲ = \Elzltln text
-ɳ = \Elzrtln math
-ɷ = \Elzclomeg math
-ɸ = \textphi text
-ɹ = \Elztrnr math
-ɺ = \Elztrnrl math
-ɻ = \Elzrttrnr math
-ɼ = \Elzrl math
-ɽ = \Elzrtlr math
-ɾ = \Elzfhr math
-ɿ = {\fontencoding{LEIP}\selectfont\char202} text
-ʂ = \Elzrtls math
-ʃ = \Elzesh math
-ʇ = \Elztrnt math
-ʈ = \Elzrtlt math
-ʊ = \Elzpupsil math
-ʋ = \Elzpscrv math
-ʌ = \Elzinvv math
-ʍ = \Elzinvw math
-ʎ = \Elztrny math
-ʐ = \Elzrtlz math
-ʒ = \Elzyogh math
-ʔ = \Elzglst math
-ʕ = \Elzreglst math
-ʖ = \Elzinglst math
-ʞ = \textturnk text
-ʤ = \Elzdyogh math
-ʧ = \Elztesh math
+ɣ = \gamma math
+ɤ = \textrevscripta text.tipa
+ɯ = \textturnm text.ipa
+ɸ = \textphi text.tipa
+ʞ = \textturnk text.tipa
 ʰ = \textsuperscript{h} text
 ʰ = ^{h} math
 ʲ = \textsuperscript{j} text
@@ -358,34 +350,10 @@ w̃ < @{\~ w}@
 ʻ > ' text
 ʼ > ' text
 ʽ > ' text
-ʹ > ' text
-’ > ' text
 ʿ = \lasp text.mathscinet
 ˆ = \textasciicircum text
 ˇ = \textasciicaron text
-ˈ = \Elzverts math
 ˉ > - text
-‐ > - text
-‑ > - text
-‒ > - text
-‧ > - text
-‾ > - text
-─ > - text
-─ = \textSFx text.pmboxdraw
-┄ > - text
-┈ > - text
-╌ > - text
-╼ > - text
-╼ = \pmboxdrawuni{257C} text.pmboxdraw
-╾ > - text
-╾ = \pmboxdrawuni{257E} text.pmboxdraw
-ˌ = \Elzverti math
-ː = \Elzlmrk math
-ˑ = \Elzhlmrk math
-˒ = \Elzsbrhr math
-˓ = \Elzsblhr math
-˔ = \Elzrais math
-˕ = \Elzlow math
 ˘ = \textasciibreve text
 ˙ = \textperiodcentered text.textcomp
 ˚ > \r{} text
@@ -398,30 +366,95 @@ w̃ < @{\~ w}@
 ˢ = ^{s} math
 ˣ = \textsuperscript{x} text
 ˣ = ^{x} math
-˥ = \tone{55} text
-˦ = \tone{44} text
-˧ = \tone{33} text
-˨ = \tone{22} text
-˩ = \tone{11} text
-̉ = \ovhook math
-̌ = \check math
-̑ = {\fontencoding{LECO}\selectfont\char177} text
-̒ = \oturnedcomma math
-̕ = \ocommatopright math
-̚ = \droang math
-̡ = \Elzpalh math
-̢ = \Elzrh text
-̪ = \Elzsbbrg math
-̫ = {\fontencoding{LECO}\selectfont\char203} text
-̰ = \utilde math
+˥ = \tone{55} text.tipa
+˦ = \tone{44} text.tipa
+˧ = \tone{33} text.tipa
+˨ = \tone{22} text.tipa
+˩ = \tone{11} text.tipa
+̀ = \` text combiningdiacritic
+̀ = \grave math.unicode-math combiningdiacritic
+̀̄ = \textgravemacron text.tipa combiningdiacritic
+̀̇ = \textgravedot text.tipa combiningdiacritic
+́ = \' text combiningdiacritic
+́ = \acute math.unicode-math combiningdiacritic
+́̄ = \textacutemacron text.tipa combiningdiacritic
+́̌ = \textacutewedge text.tipa combiningdiacritic
+̂ < \widehat math.unicode-math combiningdiacritic
+̂ = \hat math.unicode-math combiningdiacritic
+̂ > \^ text combiningdiacritic
+̂̇ = \textcircumdot text.tipa combiningdiacritic
+̃ < \widetilde math.unicode-math combiningdiacritic
+̃ = \tilde math.unicode-math combiningdiacritic
+̃ = \~ text combiningdiacritic
+̃̇ = \texttildedot text.tipa combiningdiacritic
+̄ = \= text combiningdiacritic
+̄ = \bar math.unicode-math combiningdiacritic
+̄̀ > \textgravemacron text.tipa combiningdiacritic
+̅ < \overbar math.unicode-math combiningdiacritic
+̅ < \wideoverbar math.unicode-math combiningdiacritic
+̅ = \overline math combiningdiacritic
+̆ < \widebreve math.unicode-math combiningdiacritic
+̆ = \breve math.unicode-math combiningdiacritic
+̆ = \u text combiningdiacritic
+̆̄ = \textbrevemacron text.tipa combiningdiacritic
+̇ = \. text combiningdiacritic
+̇ = \dot math.unicode-math combiningdiacritic
+̇́ = \textdotacute text.tipa combiningdiacritic
+̇̆ > \textdotbreve text.tipa combiningdiacritic
+̈ = \" text combiningdiacritic
+̈ = \ddot math.unicode-math combiningdiacritic
+̉ = \ovhook math.unicode-math
+̊ < \ocirc math.unicode-math combiningdiacritic
+̊ = \mathring math combiningdiacritic
+̊ = \r text combiningdiacritic
+̊̄ = \textringmacron text.tipa combiningdiacritic
+̋ = \H text combiningdiacritic
+̌ < \widecheck math.unicode-math
+̌ = \check math.unicode-math
+̌ = \v text combiningdiacritic
+̍ = \textvbaraccent text.tipa combiningdiacritic
+̎ = \textdoublevbaraccent text.tipa combiningdiacritic
+̏ = \textdoublegrave text combiningdiacritic
+̐ = \candra math.unicode-math
+̐ = \textdotbreve text.tipa combiningdiacritic
+̒ = \oturnedcomma math.unicode-math
+̕ = \ocommatopright math.unicode-math
+̖ = \textsubgrave text combiningdiacritic
+̘ = \textadvancing text.tipa combiningdiacritic
+̙ = \textretracting text.tipa combiningdiacritic
+̚ = \droang math.unicode-math
+̚ = \textcorner text.tipa combiningdiacritic
+̜ = \textsublhalfring text.tipa combiningdiacritic
+̝ = \textraising text.tipa combiningdiacritic
+̞ = \textlowering text.tipa combiningdiacritic
+̟ = \textsubplus text.tipa combiningdiacritic
+̣ = \d text combiningdiacritic
+̤ = \textsubumlaut text.tipa combiningdiacritic
+̥ = \textsubring text.tipa combiningdiacritic
+̧ = \c text combiningdiacritic
+̨ = \k text combiningdiacritic
+̩ = \textsyllabic text.tipa combiningdiacritic
+̪ = \textsubbridge text.tipa combiningdiacritic
+̬ = \textsubwedge text.tipa combiningdiacritic
+̯ = \textsubarch text.tipa combiningdiacritic
+̰ < \utilde math
+̰ < \wideutilde math.unicode-math
+̰ = \textsubtilde text.tipa combiningdiacritic
+̱ = \textsubbar text.tipa combiningdiacritic
+̱ = \underbar math combiningdiacritic
+̲ < \mathunderbar math.unicode-math
 ̲ = \underline math
-̵ = \Elzxl text
-̶ = \Elzbar text
-̷ = {\fontencoding{LECO}\selectfont\char215} text
+̴ = \textsuperimposetilde text.tipa combiningdiacritic
+̸ < \notaccent math.unicode-math
 ̸ = \not math
-͡ = {\fontencoding{LECO}\selectfont\char225} text
+̹ = \textsubrhalfring text.tipa combiningdiacritic
+̺ = \textinvsubbridge text.tipa combiningdiacritic
+̻ = \textsubsquare text.tipa combiningdiacritic
+̼ = \textseagull text.tipa combiningdiacritic
+̽ = \textovercross text.tipa combiningdiacritic
+͍ = \underleftrightarrow math.unicode-math
+ʹ > ' text
 ͵ > , text
-‚ > , text
 ; > ; text
 Ά > \'A text
 Έ > \'E text
@@ -431,86 +464,113 @@ w̃ < @{\~ w}@
 Ύ = \mathrm{'Y} math
 Ώ = \mathrm{'\Omega} math
 ΐ = \acute{\ddot{\iota}} math
-Α > A math
-Β > B math
-Γ = \Gamma math
+Α = \mupAlpha math.unicode-math
+Α > A math stopgap
+Β = \mupBeta math.unicode-math
+Β > B math stopgap
 Γ < \varGamma
+Γ = \Gamma math
+Γ = \mupGamma math.unicode-math
 Δ = \Delta math
-Ε > E math
-Ζ > Z math
-Η > H math
+Δ = \mupDelta math.unicode-math
+Ε < \mscrE math
+Ε = \mupEpsilon math.unicode-math
+Ε > E math stopgap
+Ζ = \mupZeta math.unicode-math
+Ζ > Z math stopgap
+Η = \mupEta math.unicode-math
+Η > H math stopgap
 Θ = \Theta math
-Ι > I math
-Κ > K math
+Θ = \mupTheta math.unicode-math
+Ι = \mupIota math.unicode-math
+Ι > I math stopgap
+Κ = \mupKappa math.unicode-math
+Κ > K math stopgap
 Λ = \Lambda math
-Μ > M math
-𝚳 > M math
-𝛍 > m math
-𝛭 > M math
-𝜧 > M math
-𝝡 > M math
-Ν > N math
-𝚴 > N math
-𝛎 > v math
-𝛮 > N math
-𝜨 > N math
-𝝂 > v math
-𝝢 > N math
+Λ = \mupLambda math.unicode-math
+Μ = \mupMu math.unicode-math
+Μ > M math stopgap
+Ν = \mupNu math.unicode-math
+Ν > N math stopgap
+Ξ < \mupXi math.unicode-math
 Ξ = \Xi math
-Ο > O math
-𝚶 > O math
-𝛐 > O math
-𝛰 > O math
-𝜪 > O math
-𝝄 > O math
-𝝤 > O math
+Ο = \mupOmicron math.unicode-math
+Ο > O math stopgap
+Π < \mupPi math.unicode-math
 Π = \Pi math
-Ρ > P math
+Ρ = \mupRho math.unicode-math
+Ρ > P math stopgap
+Σ < \mupSigma math.unicode-math
 Σ = \Sigma math
-Τ > T math
+Τ = \mupTau math.unicode-math
+Τ > T math stopgap
+Υ < \mupUpsilon math.unicode-math
 Υ = \Upsilon math
+Φ < \mupPhi math.unicode-math
 Φ = \Phi math
-Χ > X math
+Χ = \mupChi math.unicode-math
+Χ > X math stopgap
+Ψ < \mupPsi math.unicode-math
 Ψ = \Psi math
+Ω < \mupOmega math.unicode-math
 Ω = \Omega math
 Ϊ = \mathrm{\ddot{I}} math
 Ϋ = \mathrm{\ddot{Y}} math
-ά = {\'$\alpha$} text
+ά = \acute{\alpha} math
 έ = \acute{\epsilon} math
 ή = \acute{\eta} math
 ί = \acute{\iota} math
 ΰ = \acute{\ddot{\upsilon}} math
+α < \mupalpha math.unicode-math
 α = \alpha math
+β < \mupbeta math.unicode-math
 β = \beta math
+γ < \mupgamma math.unicode-math
 γ = \gamma math
+δ < \mupdelta math.unicode-math
 δ = \delta math
-ε > \epsilon math
+ε < \mupvarepsilon math.unicode-math
+ε = \epsilon math
+ζ < \mupzeta math.unicode-math
 ζ = \zeta math
+η < \mupeta math.unicode-math
 η = \eta math
+θ < \muptheta math.unicode-math
 θ = \texttheta text
 θ = \theta math
+ι < \mupiota math.unicode-math
 ι = \iota math
+κ < \mupkappa math.unicode-math
 κ = \kappa math
+λ < \muplambda math.unicode-math
 λ = \lambda math
-μ > \mu math
-𝝁 > \mu math
-𝝻 > \mu math
-𝞵 > \mu math
+μ < \mupmu math.unicode-math
+μ = \mu math
+ν < \mupnu math.unicode-math
 ν = \nu math
+ξ < \mupxi math.unicode-math
 ξ = \xi math
-ο > o math
-𝜊 > o math
-𝝾 > o math
-𝞸 > o math
+ο = \mupomicron math.unicode-math
+ο > o math stopgap
+π < \muppi math.unicode-math
 π = \pi math
+ρ < \muprho math.unicode-math
 ρ = \rho math
+ς < \mupvarsigma math.unicode-math
 ς = \varsigma math
+σ < \mupsigma math.unicode-math
 σ = \sigma math
+τ < \muptau math.unicode-math
 τ = \tau math
+υ < \mupupsilon math.unicode-math
 υ = \upsilon math
+φ < \mupvarphi math.unicode-math
 φ = \varphi math
+χ < \mupchi math.unicode-math
 χ = \chi math
+ψ < \muppsi math.unicode-math
 ψ = \psi math
+ω < \mupomega math.unicode-math
 ω = \omega math
 ϊ = \ddot{\iota} math
 ϋ = \ddot{\upsilon} math
@@ -518,28 +578,40 @@ w̃ < @{\~ w}@
 ύ = \acute{\upsilon} math
 ώ = \acute{\omega} math
 ϐ = \Pisymbol{ppi022}{87} text
-ϐ = \varbeta math
+ϐ = \varbeta math.MinionPro
+ϐ = \varbeta math.unicode-math
+ϑ < \mupvartheta math.unicode-math
 ϑ = \textvartheta text
 ϑ = \vartheta math
 ϒ > \Upsilon math
+ϕ < \mupphi math.unicode-math
 ϕ = \phi math
+ϖ < \mupvarpi math.unicode-math
 ϖ = \varpi math
 Ϙ = \Qoppa math
 ϙ = \qoppa math
 Ϛ = \Stigma math
 ϛ = \stigma math
+Ϝ < \upDigamma math.unicode-math
 Ϝ = \Digamma math
+ϝ < \updigamma math.unicode-math
 ϝ = \digamma math
 Ϟ = \Koppa math
 ϟ = \koppa math
 Ϡ = \Sampi math
 ϡ = \sampi math
-ϰ = \varkappa math
+ϰ < \mupvarkappa math.unicode-math
+ϰ = \varkappa math.MinionPro
+ϰ = \varkappa math.unicode-math
+ϱ < \mupvarrho math.unicode-math
 ϱ = \varrho math
+ϴ < \mupvarTheta math.unicode-math
 ϴ = \textTheta text
 ϴ = \upvarTheta math
+ϵ < \mupepsilon math.unicode-math
 ϵ = \epsilon math
 ϶ = \backepsilon math
+϶ = \upbackepsilon math.unicode-math
 Ё = \cyrchar\CYRYO text
 Ђ = \cyrchar\CYRDJE text
 Ѓ = \cyrchar{\'\CYRG} text
@@ -580,12 +652,12 @@ w̃ < @{\~ w}@
 Ч = \cyrchar\CYRCH text
 Ш = \cyrchar\CYRSH text
 Щ = \cyrchar\CYRSHCH text
-Ъ = \cyrchar\CYRHRDSN text
 Ъ < \bud
 Ъ < \cdprime
+Ъ = \cyrchar\CYRHRDSN text
 Ы = \cyrchar\CYRERY text
-Ь = \cyrchar\CYRSFTSN text
 Ь < \cprime
+Ь = \cyrchar\CYRSFTSN text
 Э = \cyrchar\CYREREV text
 Ю = \cyrchar\CYRYU text
 Я = \cyrchar\CYRYA text
@@ -734,30 +806,1026 @@ w̃ < @{\~ w}@
 Ө = \cyrchar\CYROTLD text
 ө = \cyrchar\cyrotld text
 ࡱ = \\backslash math
+ᵀ0 = \mbfA math.unicode-math
+ᵀ1 = \mbfB math.unicode-math
+ᵀ2 = \mbfC math.unicode-math
+ᵀ3 = \mbfD math.unicode-math
+ᵀ4 = \mbfE math.unicode-math
+ᵀ5 = \mbfF math.unicode-math
+ᵀ6 = \mbfG math.unicode-math
+ᵀ7 = \mbfH math.unicode-math
+ᵀ8 = \mbfI math.unicode-math
+ᵀ9 = \mbfJ math.unicode-math
+ᵀA = \mbfK math.unicode-math
+ᵀB = \mbfL math.unicode-math
+ᵀC = \mbfM math.unicode-math
+ᵀD = \mbfN math.unicode-math
+ᵀE = \mbfO math.unicode-math
+ᵀF = \mbfP math.unicode-math
+ᵁ0 = \mbfQ math.unicode-math
+ᵁ1 = \mbfR math.unicode-math
+ᵁ2 = \mbfS math.unicode-math
+ᵁ3 = \mbfT math.unicode-math
+ᵁ4 = \mbfU math.unicode-math
+ᵁ5 = \mbfV math.unicode-math
+ᵁ6 = \mbfW math.unicode-math
+ᵁ7 = \mbfX math.unicode-math
+ᵁ8 = \mbfY math.unicode-math
+ᵁ9 = \mbfZ math.unicode-math
+ᵁA = \mbfa math.unicode-math
+ᵁB = \mbfb math.unicode-math
+ᵁC = \mbfc math.unicode-math
+ᵁD = \mbfd math.unicode-math
+ᵁE = \mbfe math.unicode-math
+ᵁF = \mbff math.unicode-math
+ᵂ0 = \mbfg math.unicode-math
+ᵂ1 = \mbfh math.unicode-math
+ᵂ2 = \mbfi math.unicode-math
+ᵂ3 = \mbfj math.unicode-math
+ᵂ4 = \mbfk math.unicode-math
+ᵂ5 = \mbfl math.unicode-math
+ᵂ6 = \mbfm math.unicode-math
+ᵂ7 = \mbfn math.unicode-math
+ᵂ8 = \mbfo math.unicode-math
+ᵂ9 = \mbfp math.unicode-math
+ᵂA = \mbfq math.unicode-math
+ᵂB = \mbfr math.unicode-math
+ᵂC = \mbfs math.unicode-math
+ᵂD = \mbft math.unicode-math
+ᵂE = \mbfu math.unicode-math
+ᵂF = \mbfv math.unicode-math
 ᵃ = \textsuperscript{a} text
 ᵃ = ^{a} math
+ᵃ0 = \mbfw math.unicode-math
+ᵃ1 = \mbfx math.unicode-math
+ᵃ2 = \mbfy math.unicode-math
+ᵃ3 = \mbfz math.unicode-math
+ᵃ4 = \mitA math.unicode-math
+ᵃ5 = \mitB math.unicode-math
+ᵃ6 = \mitC math.unicode-math
+ᵃ7 = \mitD math.unicode-math
+ᵃ8 = \mitE math.unicode-math
+ᵃ9 = \mitF math.unicode-math
+ᵃA = \mitG math.unicode-math
+ᵃB = \mitH math.unicode-math
+ᵃC = \mitI math.unicode-math
+ᵃD = \mitJ math.unicode-math
+ᵃE = \mitK math.unicode-math
+ᵃF = \mitL math.unicode-math
+ᵄ0 = \mitM math.unicode-math
+ᵄ1 = \mitN math.unicode-math
+ᵄ2 = \mitO math.unicode-math
+ᵄ3 = \mitP math.unicode-math
+ᵄ4 = \mitQ math.unicode-math
+ᵄ5 = \mitR math.unicode-math
+ᵄ6 = \mitS math.unicode-math
+ᵄ7 = \mitT math.unicode-math
+ᵄ8 = \mitU math.unicode-math
+ᵄ9 = \mitV math.unicode-math
+ᵄA = \mitW math.unicode-math
+ᵄB = \mitX math.unicode-math
+ᵄC = \mitY math.unicode-math
+ᵄD = \mitZ math.unicode-math
+ᵄE = \mita math.unicode-math
+ᵄF = \mitb math.unicode-math
+ᵅ0 = \mitc math.unicode-math
+ᵅ1 = \mitd math.unicode-math
+ᵅ2 = \mite math.unicode-math
+ᵅ3 = \mitf math.unicode-math
+ᵅ4 = \mitg math.unicode-math
+ᵅ6 = \miti math.unicode-math
+ᵅ7 = \mitj math.unicode-math
+ᵅ8 = \mitk math.unicode-math
+ᵅ9 = \mitl math.unicode-math
+ᵅA = \mitm math.unicode-math
+ᵅB = \mitn math.unicode-math
+ᵅC = \mito math.unicode-math
+ᵅD = \mitp math.unicode-math
+ᵅE = \mitq math.unicode-math
+ᵅF = \mitr math.unicode-math
+ᵆ0 = \mits math.unicode-math
+ᵆ1 = \mitt math.unicode-math
+ᵆ2 = \mitu math.unicode-math
+ᵆ3 = \mitv math.unicode-math
+ᵆ4 = \mitw math.unicode-math
+ᵆ5 = \mitx math.unicode-math
+ᵆ6 = \mity math.unicode-math
+ᵆ7 = \mitz math.unicode-math
+ᵆ8 = \mbfitA math.unicode-math
+ᵆ9 = \mbfitB math.unicode-math
+ᵆA = \mbfitC math.unicode-math
+ᵆB = \mbfitD math.unicode-math
+ᵆC = \mbfitE math.unicode-math
+ᵆD = \mbfitF math.unicode-math
+ᵆE = \mbfitG math.unicode-math
+ᵆF = \mbfitH math.unicode-math
 ᵇ = \textsuperscript{b} text
 ᵇ = ^{b} math
+ᵇ0 = \mbfitI math.unicode-math
+ᵇ1 = \mbfitJ math.unicode-math
+ᵇ2 = \mbfitK math.unicode-math
+ᵇ3 = \mbfitL math.unicode-math
+ᵇ4 = \mbfitM math.unicode-math
+ᵇ5 = \mbfitN math.unicode-math
+ᵇ6 = \mbfitO math.unicode-math
+ᵇ7 = \mbfitP math.unicode-math
+ᵇ8 = \mbfitQ math.unicode-math
+ᵇ9 = \mbfitR math.unicode-math
+ᵇA = \mbfitS math.unicode-math
+ᵇB = \mbfitT math.unicode-math
+ᵇC = \mbfitU math.unicode-math
+ᵇD = \mbfitV math.unicode-math
+ᵇE = \mbfitW math.unicode-math
+ᵇF = \mbfitX math.unicode-math
 ᵈ = \textsuperscript{d} text
 ᵈ = ^{d} math
+ᵈ0 = \mbfitY math.unicode-math
+ᵈ1 = \mbfitZ math.unicode-math
+ᵈ2 = \mbfita math.unicode-math
+ᵈ3 = \mbfitb math.unicode-math
+ᵈ4 = \mbfitc math.unicode-math
+ᵈ5 = \mbfitd math.unicode-math
+ᵈ6 = \mbfite math.unicode-math
+ᵈ7 = \mbfitf math.unicode-math
+ᵈ8 = \mbfitg math.unicode-math
+ᵈ9 = \mbfith math.unicode-math
+ᵈA = \mbfiti math.unicode-math
+ᵈB = \mbfitj math.unicode-math
+ᵈC = \mbfitk math.unicode-math
+ᵈD = \mbfitl math.unicode-math
+ᵈE = \mbfitm math.unicode-math
+ᵈF = \mbfitn math.unicode-math
 ᵉ = \textsuperscript{e} text
 ᵉ = ^{e} math
+ᵉ0 = \mbfito math.unicode-math
+ᵉ1 = \mbfitp math.unicode-math
+ᵉ2 = \mbfitq math.unicode-math
+ᵉ3 = \mbfitr math.unicode-math
+ᵉ4 = \mbfits math.unicode-math
+ᵉ5 = \mbfitt math.unicode-math
+ᵉ6 = \mbfitu math.unicode-math
+ᵉ7 = \mbfitv math.unicode-math
+ᵉ8 = \mbfitw math.unicode-math
+ᵉ9 = \mbfitx math.unicode-math
+ᵉA = \mbfity math.unicode-math
+ᵉB = \mbfitz math.unicode-math
+ᵉC = \mscrA math.unicode-math
+ᵉE = \mscrC math.unicode-math
+ᵉF = \mscrD math.unicode-math
+ᵊ2 = \mscrG math.unicode-math
+ᵊ5 = \mscrJ math.unicode-math
+ᵊ6 = \mscrK math.unicode-math
+ᵊ9 = \mscrN math.unicode-math
+ᵊA = \mscrO math.unicode-math
+ᵊB = \mscrP math.unicode-math
+ᵊC = \mscrQ math.unicode-math
+ᵊE = \mscrS math.unicode-math
+ᵊF = \mscrT math.unicode-math
+ᵋ0 = \mscrU math.unicode-math
+ᵋ1 = \mscrV math.unicode-math
+ᵋ2 = \mscrW math.unicode-math
+ᵋ3 = \mscrX math.unicode-math
+ᵋ4 = \mscrY math.unicode-math
+ᵋ5 = \mscrZ math.unicode-math
+ᵋ6 = \mscra math.unicode-math
+ᵋ7 = \mscrb math.unicode-math
+ᵋ8 = \mscrc math.unicode-math
+ᵋ9 = \mscrd math.unicode-math
+ᵋB = \mscrf math.unicode-math
+ᵋD = \mscrh math.unicode-math
+ᵋE = \mscri math.unicode-math
+ᵋF = \mscrj math.unicode-math
+ᵌ0 = \mscrk math.unicode-math
+ᵌ1 = \mscrl math.unicode-math
+ᵌ2 = \mscrm math.unicode-math
+ᵌ3 = \mscrn math.unicode-math
+ᵌ5 = \mscrp math.unicode-math
+ᵌ6 = \mscrq math.unicode-math
+ᵌ7 = \mscrr math.unicode-math
+ᵌ8 = \mscrs math.unicode-math
+ᵌ9 = \mscrt math.unicode-math
+ᵌA = \mscru math.unicode-math
+ᵌB = \mscrv math.unicode-math
+ᵌC = \mscrw math.unicode-math
+ᵌD = \mscrx math.unicode-math
+ᵌE = \mscry math.unicode-math
+ᵌF = \mscrz math.unicode-math
 ᵍ = \textsuperscript{g} text
 ᵍ = ^{g} math
+ᵍ0 = \mbfscrA math.unicode-math
+ᵍ1 = \mbfscrB math.unicode-math
+ᵍ2 = \mbfscrC math.unicode-math
+ᵍ3 = \mbfscrD math.unicode-math
+ᵍ4 = \mbfscrE math.unicode-math
+ᵍ5 = \mbfscrF math.unicode-math
+ᵍ6 = \mbfscrG math.unicode-math
+ᵍ7 = \mbfscrH math.unicode-math
+ᵍ8 = \mbfscrI math.unicode-math
+ᵍ9 = \mbfscrJ math.unicode-math
+ᵍA = \mbfscrK math.unicode-math
+ᵍB = \mbfscrL math.unicode-math
+ᵍC = \mbfscrM math.unicode-math
+ᵍD = \mbfscrN math.unicode-math
+ᵍE = \mbfscrO math.unicode-math
+ᵍF = \mbfscrP math.unicode-math
+ᵎ0 = \mbfscrQ math.unicode-math
+ᵎ1 = \mbfscrR math.unicode-math
+ᵎ2 = \mbfscrS math.unicode-math
+ᵎ3 = \mbfscrT math.unicode-math
+ᵎ4 = \mbfscrU math.unicode-math
+ᵎ5 = \mbfscrV math.unicode-math
+ᵎ6 = \mbfscrW math.unicode-math
+ᵎ7 = \mbfscrX math.unicode-math
+ᵎ8 = \mbfscrY math.unicode-math
+ᵎ9 = \mbfscrZ math.unicode-math
+ᵎA = \mbfscra math.unicode-math
+ᵎB = \mbfscrb math.unicode-math
+ᵎC = \mbfscrc math.unicode-math
+ᵎD = \mbfscrd math.unicode-math
+ᵎE = \mbfscre math.unicode-math
+ᵎF = \mbfscrf math.unicode-math
 ᵏ = \textsuperscript{k} text
 ᵏ = ^{k} math
+ᵏ0 = \mbfscrg math.unicode-math
+ᵏ1 = \mbfscrh math.unicode-math
+ᵏ2 = \mbfscri math.unicode-math
+ᵏ3 = \mbfscrj math.unicode-math
+ᵏ4 = \mbfscrk math.unicode-math
+ᵏ5 = \mbfscrl math.unicode-math
+ᵏ6 = \mbfscrm math.unicode-math
+ᵏ7 = \mbfscrn math.unicode-math
+ᵏ8 = \mbfscro math.unicode-math
+ᵏ9 = \mbfscrp math.unicode-math
+ᵏA = \mbfscrq math.unicode-math
+ᵏB = \mbfscrr math.unicode-math
+ᵏC = \mbfscrs math.unicode-math
+ᵏD = \mbfscrt math.unicode-math
+ᵏE = \mbfscru math.unicode-math
+ᵏF = \mbfscrv math.unicode-math
 ᵐ = \textsuperscript{m} text
 ᵐ = ^{m} math
+ᵐ0 = \mbfscrw math.unicode-math
+ᵐ1 = \mbfscrx math.unicode-math
+ᵐ2 = \mbfscry math.unicode-math
+ᵐ3 = \mbfscrz math.unicode-math
+ᵐ4 = \mfrakA math.unicode-math
+ᵐ5 = \mfrakB math.unicode-math
+ᵐ7 = \mfrakD math.unicode-math
+ᵐ8 = \mfrakE math.unicode-math
+ᵐ9 = \mfrakF math.unicode-math
+ᵐA = \mfrakG math.unicode-math
+ᵐD = \mfrakJ math.unicode-math
+ᵐE = \mfrakK math.unicode-math
+ᵐF = \mfrakL math.unicode-math
+ᵑ0 = \mfrakM math.unicode-math
+ᵑ1 = \mfrakN math.unicode-math
+ᵑ2 = \mfrakO math.unicode-math
+ᵑ3 = \mfrakP math.unicode-math
+ᵑ4 = \mfrakQ math.unicode-math
+ᵑ6 = \mfrakS math.unicode-math
+ᵑ7 = \mfrakT math.unicode-math
+ᵑ8 = \mfrakU math.unicode-math
+ᵑ9 = \mfrakV math.unicode-math
+ᵑA = \mfrakW math.unicode-math
+ᵑB = \mfrakX math.unicode-math
+ᵑC = \mfrakY math.unicode-math
+ᵑE = \mfraka math.unicode-math
+ᵑF = \mfrakb math.unicode-math
 ᵒ = \textsuperscript{o} text
 ᵒ = ^{o} math
+ᵒ0 = \mfrakc math.unicode-math
+ᵒ1 = \mfrakd math.unicode-math
+ᵒ2 = \mfrake math.unicode-math
+ᵒ3 = \mfrakf math.unicode-math
+ᵒ4 = \mfrakg math.unicode-math
+ᵒ5 = \mfrakh math.unicode-math
+ᵒ6 = \mfraki math.unicode-math
+ᵒ7 = \mfrakj math.unicode-math
+ᵒ8 = \mfrakk math.unicode-math
+ᵒ9 = \mfrakl math.unicode-math
+ᵒA = \mfrakm math.unicode-math
+ᵒB = \mfrakn math.unicode-math
+ᵒC = \mfrako math.unicode-math
+ᵒD = \mfrakp math.unicode-math
+ᵒE = \mfrakq math.unicode-math
+ᵒF = \mfrakr math.unicode-math
+ᵓ0 = \mfraks math.unicode-math
+ᵓ1 = \mfrakt math.unicode-math
+ᵓ2 = \mfraku math.unicode-math
+ᵓ3 = \mfrakv math.unicode-math
+ᵓ4 = \mfrakw math.unicode-math
+ᵓ5 = \mfrakx math.unicode-math
+ᵓ6 = \mfraky math.unicode-math
+ᵓ7 = \mfrakz math.unicode-math
+ᵓ8 = \BbbA math.unicode-math
+ᵓ9 = \BbbB math.unicode-math
+ᵓB = \BbbD math.unicode-math
+ᵓC = \BbbE math.unicode-math
+ᵓD = \BbbF math.unicode-math
+ᵓE = \BbbG math.unicode-math
+ᵔ0 = \BbbI math.unicode-math
+ᵔ1 = \BbbJ math.unicode-math
+ᵔ2 = \BbbK math.unicode-math
+ᵔ3 = \BbbL math.unicode-math
+ᵔ4 = \BbbM math.unicode-math
+ᵔ6 = \BbbO math.unicode-math
+ᵔA = \BbbS math.unicode-math
+ᵔB = \BbbT math.unicode-math
+ᵔC = \BbbU math.unicode-math
+ᵔD = \BbbV math.unicode-math
+ᵔE = \BbbW math.unicode-math
+ᵔF = \BbbX math.unicode-math
+ᵕ0 = \BbbY math.unicode-math
+ᵕ2 = \Bbba math.unicode-math
+ᵕ3 = \Bbbb math.unicode-math
+ᵕ4 = \Bbbc math.unicode-math
+ᵕ5 = \Bbbd math.unicode-math
+ᵕ6 = \Bbbe math.unicode-math
+ᵕ7 = \Bbbf math.unicode-math
+ᵕ8 = \Bbbg math.unicode-math
+ᵕ9 = \Bbbh math.unicode-math
+ᵕA = \Bbbi math.unicode-math
+ᵕB = \Bbbj math.unicode-math
+ᵕC = \Bbbk math.unicode-math
+ᵕD = \Bbbl math.unicode-math
+ᵕE = \Bbbm math.unicode-math
+ᵕF = \Bbbn math.unicode-math
 ᵖ = \textsuperscript{p} text
 ᵖ = ^{p} math
+ᵖ0 = \Bbbo math.unicode-math
+ᵖ1 = \Bbbp math.unicode-math
+ᵖ2 = \Bbbq math.unicode-math
+ᵖ3 = \Bbbr math.unicode-math
+ᵖ4 = \Bbbs math.unicode-math
+ᵖ5 = \Bbbt math.unicode-math
+ᵖ6 = \Bbbu math.unicode-math
+ᵖ7 = \Bbbv math.unicode-math
+ᵖ8 = \Bbbw math.unicode-math
+ᵖ9 = \Bbbx math.unicode-math
+ᵖA = \Bbby math.unicode-math
+ᵖB = \Bbbz math.unicode-math
+ᵖC = \mbffrakA math.unicode-math
+ᵖD = \mbffrakB math.unicode-math
+ᵖE = \mbffrakC math.unicode-math
+ᵖF = \mbffrakD math.unicode-math
 ᵗ = \textsuperscript{t} text
 ᵗ = ^{t} math
+ᵗ0 = \mbffrakE math.unicode-math
+ᵗ1 = \mbffrakF math.unicode-math
+ᵗ2 = \mbffrakG math.unicode-math
+ᵗ3 = \mbffrakH math.unicode-math
+ᵗ4 = \mbffrakI math.unicode-math
+ᵗ5 = \mbffrakJ math.unicode-math
+ᵗ6 = \mbffrakK math.unicode-math
+ᵗ7 = \mbffrakL math.unicode-math
+ᵗ8 = \mbffrakM math.unicode-math
+ᵗ9 = \mbffrakN math.unicode-math
+ᵗA = \mbffrakO math.unicode-math
+ᵗB = \mbffrakP math.unicode-math
+ᵗC = \mbffrakQ math.unicode-math
+ᵗD = \mbffrakR math.unicode-math
+ᵗE = \mbffrakS math.unicode-math
+ᵗF = \mbffrakT math.unicode-math
 ᵘ = \textsuperscript{u} text
 ᵘ = ^{u} math
+ᵘ0 = \mbffrakU math.unicode-math
+ᵘ1 = \mbffrakV math.unicode-math
+ᵘ2 = \mbffrakW math.unicode-math
+ᵘ3 = \mbffrakX math.unicode-math
+ᵘ4 = \mbffrakY math.unicode-math
+ᵘ5 = \mbffrakZ math.unicode-math
+ᵘ6 = \mbffraka math.unicode-math
+ᵘ7 = \mbffrakb math.unicode-math
+ᵘ8 = \mbffrakc math.unicode-math
+ᵘ9 = \mbffrakd math.unicode-math
+ᵘA = \mbffrake math.unicode-math
+ᵘB = \mbffrakf math.unicode-math
+ᵘC = \mbffrakg math.unicode-math
+ᵘD = \mbffrakh math.unicode-math
+ᵘE = \mbffraki math.unicode-math
+ᵘF = \mbffrakj math.unicode-math
+ᵙ0 = \mbffrakk math.unicode-math
+ᵙ1 = \mbffrakl math.unicode-math
+ᵙ2 = \mbffrakm math.unicode-math
+ᵙ3 = \mbffrakn math.unicode-math
+ᵙ4 = \mbffrako math.unicode-math
+ᵙ5 = \mbffrakp math.unicode-math
+ᵙ6 = \mbffrakq math.unicode-math
+ᵙ7 = \mbffrakr math.unicode-math
+ᵙ8 = \mbffraks math.unicode-math
+ᵙ9 = \mbffrakt math.unicode-math
+ᵙA = \mbffraku math.unicode-math
+ᵙB = \mbffrakv math.unicode-math
+ᵙC = \mbffrakw math.unicode-math
+ᵙD = \mbffrakx math.unicode-math
+ᵙE = \mbffraky math.unicode-math
+ᵙF = \mbffrakz math.unicode-math
+ᵚ0 = \msansA math.unicode-math
+ᵚ1 = \msansB math.unicode-math
+ᵚ2 = \msansC math.unicode-math
+ᵚ3 = \msansD math.unicode-math
+ᵚ4 = \msansE math.unicode-math
+ᵚ5 = \msansF math.unicode-math
+ᵚ6 = \msansG math.unicode-math
+ᵚ7 = \msansH math.unicode-math
+ᵚ8 = \msansI math.unicode-math
+ᵚ9 = \msansJ math.unicode-math
+ᵚA = \msansK math.unicode-math
+ᵚB = \msansL math.unicode-math
+ᵚC = \msansM math.unicode-math
+ᵚD = \msansN math.unicode-math
+ᵚE = \msansO math.unicode-math
+ᵚF = \msansP math.unicode-math
 ᵛ = \textsuperscript{v} text
 ᵛ = ^{v} math
+ᵛ0 = \msansQ math.unicode-math
+ᵛ1 = \msansR math.unicode-math
+ᵛ2 = \msansS math.unicode-math
+ᵛ3 = \msansT math.unicode-math
+ᵛ4 = \msansU math.unicode-math
+ᵛ5 = \msansV math.unicode-math
+ᵛ6 = \msansW math.unicode-math
+ᵛ7 = \msansX math.unicode-math
+ᵛ8 = \msansY math.unicode-math
+ᵛ9 = \msansZ math.unicode-math
+ᵛA = \msansa math.unicode-math
+ᵛB = \msansb math.unicode-math
+ᵛC = \msansc math.unicode-math
+ᵛD = \msansd math.unicode-math
+ᵛE = \msanse math.unicode-math
+ᵛF = \msansf math.unicode-math
+ᵜ0 = \msansg math.unicode-math
+ᵜ1 = \msansh math.unicode-math
+ᵜ2 = \msansi math.unicode-math
+ᵜ3 = \msansj math.unicode-math
+ᵜ4 = \msansk math.unicode-math
+ᵜ5 = \msansl math.unicode-math
+ᵜ6 = \msansm math.unicode-math
+ᵜ7 = \msansn math.unicode-math
+ᵜ8 = \msanso math.unicode-math
+ᵜ9 = \msansp math.unicode-math
+ᵜA = \msansq math.unicode-math
+ᵜB = \msansr math.unicode-math
+ᵜC = \msanss math.unicode-math
+ᵜD = \msanst math.unicode-math
+ᵜE = \msansu math.unicode-math
+ᵜF = \msansv math.unicode-math
+ᵝ0 = \msansw math.unicode-math
+ᵝ1 = \msansx math.unicode-math
+ᵝ2 = \msansy math.unicode-math
+ᵝ3 = \msansz math.unicode-math
+ᵝ4 = \mbfsansA math.unicode-math
+ᵝ5 = \mbfsansB math.unicode-math
+ᵝ6 = \mbfsansC math.unicode-math
+ᵝ7 = \mbfsansD math.unicode-math
+ᵝ8 = \mbfsansE math.unicode-math
+ᵝ9 = \mbfsansF math.unicode-math
+ᵝA = \mbfsansG math.unicode-math
+ᵝB = \mbfsansH math.unicode-math
+ᵝC = \mbfsansI math.unicode-math
+ᵝD = \mbfsansJ math.unicode-math
+ᵝE = \mbfsansK math.unicode-math
+ᵝF = \mbfsansL math.unicode-math
+ᵞ0 = \mbfsansM math.unicode-math
+ᵞ1 = \mbfsansN math.unicode-math
+ᵞ2 = \mbfsansO math.unicode-math
+ᵞ3 = \mbfsansP math.unicode-math
+ᵞ4 = \mbfsansQ math.unicode-math
+ᵞ5 = \mbfsansR math.unicode-math
+ᵞ6 = \mbfsansS math.unicode-math
+ᵞ7 = \mbfsansT math.unicode-math
+ᵞ8 = \mbfsansU math.unicode-math
+ᵞ9 = \mbfsansV math.unicode-math
+ᵞA = \mbfsansW math.unicode-math
+ᵞB = \mbfsansX math.unicode-math
+ᵞC = \mbfsansY math.unicode-math
+ᵞD = \mbfsansZ math.unicode-math
+ᵞE = \mbfsansa math.unicode-math
+ᵞF = \mbfsansb math.unicode-math
+ᵟ0 = \mbfsansc math.unicode-math
+ᵟ1 = \mbfsansd math.unicode-math
+ᵟ2 = \mbfsanse math.unicode-math
+ᵟ3 = \mbfsansf math.unicode-math
+ᵟ4 = \mbfsansg math.unicode-math
+ᵟ5 = \mbfsansh math.unicode-math
+ᵟ6 = \mbfsansi math.unicode-math
+ᵟ7 = \mbfsansj math.unicode-math
+ᵟ8 = \mbfsansk math.unicode-math
+ᵟ9 = \mbfsansl math.unicode-math
+ᵟA = \mbfsansm math.unicode-math
+ᵟB = \mbfsansn math.unicode-math
+ᵟC = \mbfsanso math.unicode-math
+ᵟD = \mbfsansp math.unicode-math
+ᵟE = \mbfsansq math.unicode-math
+ᵟF = \mbfsansr math.unicode-math
+ᵠ0 = \mbfsanss math.unicode-math
+ᵠ1 = \mbfsanst math.unicode-math
+ᵠ2 = \mbfsansu math.unicode-math
+ᵠ3 = \mbfsansv math.unicode-math
+ᵠ4 = \mbfsansw math.unicode-math
+ᵠ5 = \mbfsansx math.unicode-math
+ᵠ6 = \mbfsansy math.unicode-math
+ᵠ7 = \mbfsansz math.unicode-math
+ᵠ8 = \mitsansA math.unicode-math
+ᵠ9 = \mitsansB math.unicode-math
+ᵠA = \mitsansC math.unicode-math
+ᵠB = \mitsansD math.unicode-math
+ᵠC = \mitsansE math.unicode-math
+ᵠD = \mitsansF math.unicode-math
+ᵠE = \mitsansG math.unicode-math
+ᵠF = \mitsansH math.unicode-math
+ᵡ0 = \mitsansI math.unicode-math
+ᵡ1 = \mitsansJ math.unicode-math
+ᵡ2 = \mitsansK math.unicode-math
+ᵡ3 = \mitsansL math.unicode-math
+ᵡ4 = \mitsansM math.unicode-math
+ᵡ5 = \mitsansN math.unicode-math
+ᵡ6 = \mitsansO math.unicode-math
+ᵡ7 = \mitsansP math.unicode-math
+ᵡ8 = \mitsansQ math.unicode-math
+ᵡ9 = \mitsansR math.unicode-math
+ᵡA = \mitsansS math.unicode-math
+ᵡB = \mitsansT math.unicode-math
+ᵡC = \mitsansU math.unicode-math
+ᵡD = \mitsansV math.unicode-math
+ᵡE = \mitsansW math.unicode-math
+ᵡF = \mitsansX math.unicode-math
+ᵢ0 = \mitsansY math.unicode-math
+ᵢ1 = \mitsansZ math.unicode-math
+ᵢ2 = \mitsansa math.unicode-math
+ᵢ3 = \mitsansb math.unicode-math
+ᵢ4 = \mitsansc math.unicode-math
+ᵢ5 = \mitsansd math.unicode-math
+ᵢ6 = \mitsanse math.unicode-math
+ᵢ7 = \mitsansf math.unicode-math
+ᵢ8 = \mitsansg math.unicode-math
+ᵢ9 = \mitsansh math.unicode-math
+ᵢA = \mitsansi math.unicode-math
+ᵢB = \mitsansj math.unicode-math
+ᵢC = \mitsansk math.unicode-math
+ᵢD = \mitsansl math.unicode-math
+ᵢE = \mitsansm math.unicode-math
+ᵢF = \mitsansn math.unicode-math
+ᵣ0 = \mitsanso math.unicode-math
+ᵣ1 = \mitsansp math.unicode-math
+ᵣ2 = \mitsansq math.unicode-math
+ᵣ3 = \mitsansr math.unicode-math
+ᵣ4 = \mitsanss math.unicode-math
+ᵣ5 = \mitsanst math.unicode-math
+ᵣ6 = \mitsansu math.unicode-math
+ᵣ7 = \mitsansv math.unicode-math
+ᵣ8 = \mitsansw math.unicode-math
+ᵣ9 = \mitsansx math.unicode-math
+ᵣA = \mitsansy math.unicode-math
+ᵣB = \mitsansz math.unicode-math
+ᵣC = \mbfitsansA math.unicode-math
+ᵣD = \mbfitsansB math.unicode-math
+ᵣE = \mbfitsansC math.unicode-math
+ᵣF = \mbfitsansD math.unicode-math
+ᵤ0 = \mbfitsansE math.unicode-math
+ᵤ1 = \mbfitsansF math.unicode-math
+ᵤ2 = \mbfitsansG math.unicode-math
+ᵤ3 = \mbfitsansH math.unicode-math
+ᵤ4 = \mbfitsansI math.unicode-math
+ᵤ5 = \mbfitsansJ math.unicode-math
+ᵤ6 = \mbfitsansK math.unicode-math
+ᵤ7 = \mbfitsansL math.unicode-math
+ᵤ8 = \mbfitsansM math.unicode-math
+ᵤ9 = \mbfitsansN math.unicode-math
+ᵤA = \mbfitsansO math.unicode-math
+ᵤB = \mbfitsansP math.unicode-math
+ᵤC = \mbfitsansQ math.unicode-math
+ᵤD = \mbfitsansR math.unicode-math
+ᵤE = \mbfitsansS math.unicode-math
+ᵤF = \mbfitsansT math.unicode-math
+ᵥ0 = \mbfitsansU math.unicode-math
+ᵥ1 = \mbfitsansV math.unicode-math
+ᵥ2 = \mbfitsansW math.unicode-math
+ᵥ3 = \mbfitsansX math.unicode-math
+ᵥ4 = \mbfitsansY math.unicode-math
+ᵥ5 = \mbfitsansZ math.unicode-math
+ᵥ6 = \mbfitsansa math.unicode-math
+ᵥ7 = \mbfitsansb math.unicode-math
+ᵥ8 = \mbfitsansc math.unicode-math
+ᵥ9 = \mbfitsansd math.unicode-math
+ᵥA = \mbfitsanse math.unicode-math
+ᵥB = \mbfitsansf math.unicode-math
+ᵥC = \mbfitsansg math.unicode-math
+ᵥD = \mbfitsansh math.unicode-math
+ᵥE = \mbfitsansi math.unicode-math
+ᵥF = \mbfitsansj math.unicode-math
+ᵦ0 = \mbfitsansk math.unicode-math
+ᵦ1 = \mbfitsansl math.unicode-math
+ᵦ2 = \mbfitsansm math.unicode-math
+ᵦ3 = \mbfitsansn math.unicode-math
+ᵦ4 = \mbfitsanso math.unicode-math
+ᵦ5 = \mbfitsansp math.unicode-math
+ᵦ6 = \mbfitsansq math.unicode-math
+ᵦ7 = \mbfitsansr math.unicode-math
+ᵦ8 = \mbfitsanss math.unicode-math
+ᵦ9 = \mbfitsanst math.unicode-math
+ᵦA = \mbfitsansu math.unicode-math
+ᵦB = \mbfitsansv math.unicode-math
+ᵦC = \mbfitsansw math.unicode-math
+ᵦD = \mbfitsansx math.unicode-math
+ᵦE = \mbfitsansy math.unicode-math
+ᵦF = \mbfitsansz math.unicode-math
+ᵧ0 = \mttA math.unicode-math
+ᵧ1 = \mttB math.unicode-math
+ᵧ2 = \mttC math.unicode-math
+ᵧ3 = \mttD math.unicode-math
+ᵧ4 = \mttE math.unicode-math
+ᵧ5 = \mttF math.unicode-math
+ᵧ6 = \mttG math.unicode-math
+ᵧ7 = \mttH math.unicode-math
+ᵧ8 = \mttI math.unicode-math
+ᵧ9 = \mttJ math.unicode-math
+ᵧA = \mttK math.unicode-math
+ᵧB = \mttL math.unicode-math
+ᵧC = \mttM math.unicode-math
+ᵧD = \mttN math.unicode-math
+ᵧE = \mttO math.unicode-math
+ᵧF = \mttP math.unicode-math
+ᵨ0 = \mttQ math.unicode-math
+ᵨ1 = \mttR math.unicode-math
+ᵨ2 = \mttS math.unicode-math
+ᵨ3 = \mttT math.unicode-math
+ᵨ4 = \mttU math.unicode-math
+ᵨ5 = \mttV math.unicode-math
+ᵨ6 = \mttW math.unicode-math
+ᵨ7 = \mttX math.unicode-math
+ᵨ8 = \mttY math.unicode-math
+ᵨ9 = \mttZ math.unicode-math
+ᵨA = \mtta math.unicode-math
+ᵨB = \mttb math.unicode-math
+ᵨC = \mttc math.unicode-math
+ᵨD = \mttd math.unicode-math
+ᵨE = \mtte math.unicode-math
+ᵨF = \mttf math.unicode-math
+ᵩ0 = \mttg math.unicode-math
+ᵩ1 = \mtth math.unicode-math
+ᵩ2 = \mtti math.unicode-math
+ᵩ3 = \mttj math.unicode-math
+ᵩ4 = \mttk math.unicode-math
+ᵩ5 = \mttl math.unicode-math
+ᵩ6 = \mttm math.unicode-math
+ᵩ7 = \mttn math.unicode-math
+ᵩ8 = \mtto math.unicode-math
+ᵩ9 = \mttp math.unicode-math
+ᵩA = \mttq math.unicode-math
+ᵩB = \mttr math.unicode-math
+ᵩC = \mtts math.unicode-math
+ᵩD = \mttt math.unicode-math
+ᵩE = \mttu math.unicode-math
+ᵩF = \mttv math.unicode-math
+ᵪ0 = \mttw math.unicode-math
+ᵪ1 = \mttx math.unicode-math
+ᵪ2 = \mtty math.unicode-math
+ᵪ3 = \mttz math.unicode-math
+ᵪ4 = \imath math.unicode-math
+ᵪ5 = \jmath math.unicode-math
+ᵪ8 = \mbfAlpha math.unicode-math
+ᵪ9 = \mbfBeta math.unicode-math
+ᵪA = \mbfGamma math.unicode-math
+ᵪB = \mbfDelta math.unicode-math
+ᵪC = \mbfEpsilon math.unicode-math
+ᵪD = \mbfZeta math.unicode-math
+ᵪE = \mbfEta math.unicode-math
+ᵪF = \mbfTheta math.unicode-math
+ᵫ0 = \mbfIota math.unicode-math
+ᵫ1 = \mbfKappa math.unicode-math
+ᵫ2 = \mbfLambda math.unicode-math
+ᵫ3 = \mbfMu math.unicode-math
+ᵫ4 = \mbfNu math.unicode-math
+ᵫ5 = \mbfXi math.unicode-math
+ᵫ6 = \mbfOmicron math.unicode-math
+ᵫ7 = \mbfPi math.unicode-math
+ᵫ8 = \mbfRho math.unicode-math
+ᵫ9 = \mbfvarTheta math.unicode-math
+ᵫA = \mbfSigma math.unicode-math
+ᵫB = \mbfTau math.unicode-math
+ᵫC = \mbfUpsilon math.unicode-math
+ᵫD = \mbfPhi math.unicode-math
+ᵫE = \mbfChi math.unicode-math
+ᵫF = \mbfPsi math.unicode-math
+ᵬ0 = \mbfOmega math.unicode-math
+ᵬ1 = \mbfnabla math.unicode-math
+ᵬ2 = \mbfalpha math.unicode-math
+ᵬ3 = \mbfbeta math.unicode-math
+ᵬ4 = \mbfgamma math.unicode-math
+ᵬ5 = \mbfdelta math.unicode-math
+ᵬ6 = \mbfvarepsilon math.unicode-math
+ᵬ7 = \mbfzeta math.unicode-math
+ᵬ8 = \mbfeta math.unicode-math
+ᵬ9 = \mbftheta math.unicode-math
+ᵬA = \mbfiota math.unicode-math
+ᵬB = \mbfkappa math.unicode-math
+ᵬC = \mbflambda math.unicode-math
+ᵬD = \mbfmu math.unicode-math
+ᵬE = \mbfnu math.unicode-math
+ᵬF = \mbfxi math.unicode-math
+ᵭ0 = \mbfomicron math.unicode-math
+ᵭ1 = \mbfpi math.unicode-math
+ᵭ2 = \mbfrho math.unicode-math
+ᵭ3 = \mbfvarsigma math.unicode-math
+ᵭ4 = \mbfsigma math.unicode-math
+ᵭ5 = \mbftau math.unicode-math
+ᵭ6 = \mbfupsilon math.unicode-math
+ᵭ7 = \mbfvarphi math.unicode-math
+ᵭ8 = \mbfchi math.unicode-math
+ᵭ9 = \mbfpsi math.unicode-math
+ᵭA = \mbfomega math.unicode-math
+ᵭB = \mbfpartial math.unicode-math
+ᵭC = \mbfepsilon math.unicode-math
+ᵭD = \mbfvartheta math.unicode-math
+ᵭE = \mbfvarkappa math.unicode-math
+ᵭF = \mbfphi math.unicode-math
+ᵮ0 = \mbfvarrho math.unicode-math
+ᵮ1 = \mbfvarpi math.unicode-math
+ᵮ2 = \mitAlpha math.unicode-math
+ᵮ3 = \mitBeta math.unicode-math
+ᵮ4 = \mitGamma math.unicode-math
+ᵮ5 = \mitDelta math.unicode-math
+ᵮ6 = \mitEpsilon math.unicode-math
+ᵮ7 = \mitZeta math.unicode-math
+ᵮ8 = \mitEta math.unicode-math
+ᵮ9 = \mitTheta math.unicode-math
+ᵮA = \mitIota math.unicode-math
+ᵮB = \mitKappa math.unicode-math
+ᵮC = \mitLambda math.unicode-math
+ᵮD = \mitMu math.unicode-math
+ᵮE = \mitNu math.unicode-math
+ᵮF = \mitXi math.unicode-math
+ᵯ0 = \mitOmicron math.unicode-math
+ᵯ1 = \mitPi math.unicode-math
+ᵯ2 = \mitRho math.unicode-math
+ᵯ3 = \mitvarTheta math.unicode-math
+ᵯ4 = \mitSigma math.unicode-math
+ᵯ5 = \mitTau math.unicode-math
+ᵯ6 = \mitUpsilon math.unicode-math
+ᵯ7 = \mitPhi math.unicode-math
+ᵯ8 = \mitChi math.unicode-math
+ᵯ9 = \mitPsi math.unicode-math
+ᵯA = \mitOmega math.unicode-math
+ᵯB = \mitnabla math.unicode-math
+ᵯC = \mitalpha math.unicode-math
+ᵯD = \mitbeta math.unicode-math
+ᵯE = \mitgamma math.unicode-math
+ᵯF = \mitdelta math.unicode-math
+ᵰ0 = \mitvarepsilon math.unicode-math
+ᵰ1 = \mitzeta math.unicode-math
+ᵰ2 = \miteta math.unicode-math
+ᵰ3 = \mittheta math.unicode-math
+ᵰ4 = \mitiota math.unicode-math
+ᵰ5 = \mitkappa math.unicode-math
+ᵰ6 = \mitlambda math.unicode-math
+ᵰ7 = \mitmu math.unicode-math
+ᵰ8 = \mitnu math.unicode-math
+ᵰ9 = \mitxi math.unicode-math
+ᵰA = \mitomicron math.unicode-math
+ᵰB = \mitpi math.unicode-math
+ᵰC = \mitrho math.unicode-math
+ᵰD = \mitvarsigma math.unicode-math
+ᵰE = \mitsigma math.unicode-math
+ᵰF = \mittau math.unicode-math
+ᵱ0 = \mitupsilon math.unicode-math
+ᵱ1 = \mitvarphi math.unicode-math
+ᵱ2 = \mitchi math.unicode-math
+ᵱ3 = \mitpsi math.unicode-math
+ᵱ4 = \mitomega math.unicode-math
+ᵱ5 = \mitpartial math.unicode-math
+ᵱ6 = \mitepsilon math.unicode-math
+ᵱ7 = \mitvartheta math.unicode-math
+ᵱ8 = \mitvarkappa math.unicode-math
+ᵱ9 = \mitphi math.unicode-math
+ᵱA = \mitvarrho math.unicode-math
+ᵱB = \mitvarpi math.unicode-math
+ᵱC = \mbfitAlpha math.unicode-math
+ᵱD = \mbfitBeta math.unicode-math
+ᵱE = \mbfitGamma math.unicode-math
+ᵱF = \mbfitDelta math.unicode-math
+ᵲ0 = \mbfitEpsilon math.unicode-math
+ᵲ1 = \mbfitZeta math.unicode-math
+ᵲ2 = \mbfitEta math.unicode-math
+ᵲ3 = \mbfitTheta math.unicode-math
+ᵲ4 = \mbfitIota math.unicode-math
+ᵲ5 = \mbfitKappa math.unicode-math
+ᵲ6 = \mbfitLambda math.unicode-math
+ᵲ7 = \mbfitMu math.unicode-math
+ᵲ8 = \mbfitNu math.unicode-math
+ᵲ9 = \mbfitXi math.unicode-math
+ᵲA = \mbfitOmicron math.unicode-math
+ᵲB = \mbfitPi math.unicode-math
+ᵲC = \mbfitRho math.unicode-math
+ᵲD = \mbfitvarTheta math.unicode-math
+ᵲE = \mbfitSigma math.unicode-math
+ᵲF = \mbfitTau math.unicode-math
+ᵳ0 = \mbfitUpsilon math.unicode-math
+ᵳ1 = \mbfitPhi math.unicode-math
+ᵳ2 = \mbfitChi math.unicode-math
+ᵳ3 = \mbfitPsi math.unicode-math
+ᵳ4 = \mbfitOmega math.unicode-math
+ᵳ5 = \mbfitnabla math.unicode-math
+ᵳ6 = \mbfitalpha math.unicode-math
+ᵳ7 = \mbfitbeta math.unicode-math
+ᵳ8 = \mbfitgamma math.unicode-math
+ᵳ9 = \mbfitdelta math.unicode-math
+ᵳA = \mbfitvarepsilon math.unicode-math
+ᵳB = \mbfitzeta math.unicode-math
+ᵳC = \mbfiteta math.unicode-math
+ᵳD = \mbfittheta math.unicode-math
+ᵳE = \mbfitiota math.unicode-math
+ᵳF = \mbfitkappa math.unicode-math
+ᵴ0 = \mbfitlambda math.unicode-math
+ᵴ1 = \mbfitmu math.unicode-math
+ᵴ2 = \mbfitnu math.unicode-math
+ᵴ3 = \mbfitxi math.unicode-math
+ᵴ4 = \mbfitomicron math.unicode-math
+ᵴ5 = \mbfitpi math.unicode-math
+ᵴ6 = \mbfitrho math.unicode-math
+ᵴ7 = \mbfitvarsigma math.unicode-math
+ᵴ8 = \mbfitsigma math.unicode-math
+ᵴ9 = \mbfittau math.unicode-math
+ᵴA = \mbfitupsilon math.unicode-math
+ᵴB = \mbfitvarphi math.unicode-math
+ᵴC = \mbfitchi math.unicode-math
+ᵴD = \mbfitpsi math.unicode-math
+ᵴE = \mbfitomega math.unicode-math
+ᵴF = \mbfitpartial math.unicode-math
+ᵵ0 = \mbfitepsilon math.unicode-math
+ᵵ1 = \mbfitvartheta math.unicode-math
+ᵵ2 = \mbfitvarkappa math.unicode-math
+ᵵ3 = \mbfitphi math.unicode-math
+ᵵ4 = \mbfitvarrho math.unicode-math
+ᵵ5 = \mbfitvarpi math.unicode-math
+ᵵ6 = \mbfsansAlpha math.unicode-math
+ᵵ7 = \mbfsansBeta math.unicode-math
+ᵵ8 = \mbfsansGamma math.unicode-math
+ᵵ9 = \mbfsansDelta math.unicode-math
+ᵵA = \mbfsansEpsilon math.unicode-math
+ᵵB = \mbfsansZeta math.unicode-math
+ᵵC = \mbfsansEta math.unicode-math
+ᵵD = \mbfsansTheta math.unicode-math
+ᵵE = \mbfsansIota math.unicode-math
+ᵵF = \mbfsansKappa math.unicode-math
+ᵶ0 = \mbfsansLambda math.unicode-math
+ᵶ1 = \mbfsansMu math.unicode-math
+ᵶ2 = \mbfsansNu math.unicode-math
+ᵶ3 = \mbfsansXi math.unicode-math
+ᵶ4 = \mbfsansOmicron math.unicode-math
+ᵶ5 = \mbfsansPi math.unicode-math
+ᵶ6 = \mbfsansRho math.unicode-math
+ᵶ7 = \mbfsansvarTheta math.unicode-math
+ᵶ8 = \mbfsansSigma math.unicode-math
+ᵶ9 = \mbfsansTau math.unicode-math
+ᵶA = \mbfsansUpsilon math.unicode-math
+ᵶB = \mbfsansPhi math.unicode-math
+ᵶC = \mbfsansChi math.unicode-math
+ᵶD = \mbfsansPsi math.unicode-math
+ᵶE = \mbfsansOmega math.unicode-math
+ᵶF = \mbfsansnabla math.unicode-math
+ᵷ0 = \mbfsansalpha math.unicode-math
+ᵷ1 = \mbfsansbeta math.unicode-math
+ᵷ2 = \mbfsansgamma math.unicode-math
+ᵷ3 = \mbfsansdelta math.unicode-math
+ᵷ4 = \mbfsansvarepsilon math.unicode-math
+ᵷ5 = \mbfsanszeta math.unicode-math
+ᵷ6 = \mbfsanseta math.unicode-math
+ᵷ7 = \mbfsanstheta math.unicode-math
+ᵷ8 = \mbfsansiota math.unicode-math
+ᵷ9 = \mbfsanskappa math.unicode-math
+ᵷA = \mbfsanslambda math.unicode-math
+ᵷB = \mbfsansmu math.unicode-math
+ᵷC = \mbfsansnu math.unicode-math
+ᵷD = \mbfsansxi math.unicode-math
+ᵷE = \mbfsansomicron math.unicode-math
+ᵷF = \mbfsanspi math.unicode-math
+ᵸ0 = \mbfsansrho math.unicode-math
+ᵸ1 = \mbfsansvarsigma math.unicode-math
+ᵸ2 = \mbfsanssigma math.unicode-math
+ᵸ3 = \mbfsanstau math.unicode-math
+ᵸ4 = \mbfsansupsilon math.unicode-math
+ᵸ5 = \mbfsansvarphi math.unicode-math
+ᵸ6 = \mbfsanschi math.unicode-math
+ᵸ7 = \mbfsanspsi math.unicode-math
+ᵸ8 = \mbfsansomega math.unicode-math
+ᵸ9 = \mbfsanspartial math.unicode-math
+ᵸA = \mbfsansepsilon math.unicode-math
+ᵸB = \mbfsansvartheta math.unicode-math
+ᵸC = \mbfsansvarkappa math.unicode-math
+ᵸD = \mbfsansphi math.unicode-math
+ᵸE = \mbfsansvarrho math.unicode-math
+ᵸF = \mbfsansvarpi math.unicode-math
+ᵹ0 = \mbfitsansAlpha math.unicode-math
+ᵹ1 = \mbfitsansBeta math.unicode-math
+ᵹ2 = \mbfitsansGamma math.unicode-math
+ᵹ3 = \mbfitsansDelta math.unicode-math
+ᵹ4 = \mbfitsansEpsilon math.unicode-math
+ᵹ5 = \mbfitsansZeta math.unicode-math
+ᵹ6 = \mbfitsansEta math.unicode-math
+ᵹ7 = \mbfitsansTheta math.unicode-math
+ᵹ8 = \mbfitsansIota math.unicode-math
+ᵹ9 = \mbfitsansKappa math.unicode-math
+ᵹA = \mbfitsansLambda math.unicode-math
+ᵹB = \mbfitsansMu math.unicode-math
+ᵹC = \mbfitsansNu math.unicode-math
+ᵹD = \mbfitsansXi math.unicode-math
+ᵹE = \mbfitsansOmicron math.unicode-math
+ᵹF = \mbfitsansPi math.unicode-math
+ᵺ0 = \mbfitsansRho math.unicode-math
+ᵺ1 = \mbfitsansvarTheta math.unicode-math
+ᵺ2 = \mbfitsansSigma math.unicode-math
+ᵺ3 = \mbfitsansTau math.unicode-math
+ᵺ4 = \mbfitsansUpsilon math.unicode-math
+ᵺ5 = \mbfitsansPhi math.unicode-math
+ᵺ6 = \mbfitsansChi math.unicode-math
+ᵺ7 = \mbfitsansPsi math.unicode-math
+ᵺ8 = \mbfitsansOmega math.unicode-math
+ᵺ9 = \mbfitsansnabla math.unicode-math
+ᵺA = \mbfitsansalpha math.unicode-math
+ᵺB = \mbfitsansbeta math.unicode-math
+ᵺC = \mbfitsansgamma math.unicode-math
+ᵺD = \mbfitsansdelta math.unicode-math
+ᵺE = \mbfitsansvarepsilon math.unicode-math
+ᵺF = \mbfitsanszeta math.unicode-math
+ᵻ0 = \mbfitsanseta math.unicode-math
+ᵻ1 = \mbfitsanstheta math.unicode-math
+ᵻ2 = \mbfitsansiota math.unicode-math
+ᵻ3 = \mbfitsanskappa math.unicode-math
+ᵻ4 = \mbfitsanslambda math.unicode-math
+ᵻ5 = \mbfitsansmu math.unicode-math
+ᵻ6 = \mbfitsansnu math.unicode-math
+ᵻ7 = \mbfitsansxi math.unicode-math
+ᵻ8 = \mbfitsansomicron math.unicode-math
+ᵻ9 = \mbfitsanspi math.unicode-math
+ᵻA = \mbfitsansrho math.unicode-math
+ᵻB = \mbfitsansvarsigma math.unicode-math
+ᵻC = \mbfitsanssigma math.unicode-math
+ᵻD = \mbfitsanstau math.unicode-math
+ᵻE = \mbfitsansupsilon math.unicode-math
+ᵻF = \mbfitsansvarphi math.unicode-math
+ᵼ0 = \mbfitsanschi math.unicode-math
+ᵼ1 = \mbfitsanspsi math.unicode-math
+ᵼ2 = \mbfitsansomega math.unicode-math
+ᵼ3 = \mbfitsanspartial math.unicode-math
+ᵼ4 = \mbfitsansepsilon math.unicode-math
+ᵼ5 = \mbfitsansvartheta math.unicode-math
+ᵼ6 = \mbfitsansvarkappa math.unicode-math
+ᵼ7 = \mbfitsansphi math.unicode-math
+ᵼ8 = \mbfitsansvarrho math.unicode-math
+ᵼ9 = \mbfitsansvarpi math.unicode-math
+ᵼA = \mbfDigamma math.unicode-math
+ᵼB = \mbfdigamma math.unicode-math
+ᵼE = \mbfzero math.unicode-math
+ᵼF = \mbfone math.unicode-math
+ᵽ0 = \mbftwo math.unicode-math
+ᵽ1 = \mbfthree math.unicode-math
+ᵽ2 = \mbffour math.unicode-math
+ᵽ3 = \mbffive math.unicode-math
+ᵽ4 = \mbfsix math.unicode-math
+ᵽ5 = \mbfseven math.unicode-math
+ᵽ6 = \mbfeight math.unicode-math
+ᵽ7 = \mbfnine math.unicode-math
+ᵽ8 = \Bbbzero math.unicode-math
+ᵽ9 = \Bbbone math.unicode-math
+ᵽA = \Bbbtwo math.unicode-math
+ᵽB = \Bbbthree math.unicode-math
+ᵽC = \Bbbfour math.unicode-math
+ᵽD = \Bbbfive math.unicode-math
+ᵽE = \Bbbsix math.unicode-math
+ᵽF = \Bbbseven math.unicode-math
+ᵾ0 = \Bbbeight math.unicode-math
+ᵾ1 = \Bbbnine math.unicode-math
+ᵾ2 = \msanszero math.unicode-math
+ᵾ3 = \msansone math.unicode-math
+ᵾ4 = \msanstwo math.unicode-math
+ᵾ5 = \msansthree math.unicode-math
+ᵾ6 = \msansfour math.unicode-math
+ᵾ7 = \msansfive math.unicode-math
+ᵾ8 = \msanssix math.unicode-math
+ᵾ9 = \msansseven math.unicode-math
+ᵾA = \msanseight math.unicode-math
+ᵾB = \msansnine math.unicode-math
+ᵾC = \mbfsanszero math.unicode-math
+ᵾD = \mbfsansone math.unicode-math
+ᵾE = \mbfsanstwo math.unicode-math
+ᵾF = \mbfsansthree math.unicode-math
+ᵿ0 = \mbfsansfour math.unicode-math
+ᵿ1 = \mbfsansfive math.unicode-math
+ᵿ2 = \mbfsanssix math.unicode-math
+ᵿ3 = \mbfsansseven math.unicode-math
+ᵿ4 = \mbfsanseight math.unicode-math
+ᵿ5 = \mbfsansnine math.unicode-math
+ᵿ6 = \mttzero math.unicode-math
+ᵿ7 = \mttone math.unicode-math
+ᵿ8 = \mtttwo math.unicode-math
+ᵿ9 = \mttthree math.unicode-math
+ᵿA = \mttfour math.unicode-math
+ᵿB = \mttfive math.unicode-math
+ᵿC = \mttsix math.unicode-math
+ᵿD = \mttseven math.unicode-math
+ᵿE = \mtteight math.unicode-math
+ᵿF = \mttnine math.unicode-math
 ᶜ = \textsuperscript{c} text
 ᶜ = ^{c} math
 ᶠ = \textsuperscript{f} text
@@ -876,6 +1944,8 @@ w̃ < @{\~ w}@
 ọ = \d{o} text
 Ụ = \d{U} text
 ụ = \d{u} text
+ữ0 = \arabicmaj math.unicode-math
+ữ1 = \arabichad math.unicode-math
 Ỳ = \`Y text
 ỳ = \`y text
 Ỵ = \d{Y} text
@@ -895,53 +1965,71 @@ w̃ < @{\~ w}@
   = \mkern1mu math space
 ​ = \hspace{0pt} text space
 ‌ = {\aftergroup\ignorespaces} text
+‐ = \mathhyphen math.unicode-math
+‐ > - text
+‑ > - text
+‒ > - text
 – = \textendash text
 — = \textemdash text
+― = \horizbar math.unicode-math
 ― = \rule{1em}{1pt} text
-― = \horizbar math
-‖ = \Vert math
-‗ = \twolowline math
-‘ > ` text
+‖ = \Vert math.unicode-math
+‗ = \twolowline math.unicode-math
 ‘ < \textquoteleft
+‘ > ` text
 ’ < \textquoteright
-‛ = \Elzreapos math
-“ > `` text
+’ > ' text
+‚ > , text
 “ < \textquotedblleft
-” > '' text
+“ > `` text
 ” < \textquotedblright
+” > '' text
 „ > ,, text
 ‟ = \quotedblbase text
-† = \textdagger text.textcomp
-† = \dagger math
-‡ = \textdaggerdbl text.textcomp
-‡ = \ddagger math
-• > \bullet math
+† < \dagger math.unicode-math
+† < \textdagger text.textcomp
+† = \dag
+‡ < \ddagger math.unicode-math
+‡ < \textdaggerdbl text.textcomp
+‡ = \ddag
+• < \smblkcircle math.unicode-math
 • = \textbullet text.textcomp
+• > \bullet math
 ‣ > > text
 ․ > . text
+‥ = \enleadertwodots math.unicode-math
 ‥ > .. text
-‥ = \enleadertwodots math
-… = \ldots
+… < \ldots
+… < \textellipsis text.textcomp
+… < \unicodeellipsis math.unicode-math
+… = \dots
+‧ > - text
   > \, text space
 ‰ = \textperthousand text.textcomp
 ‱ = \textpertenthousand text.textcomp
+′ = \prime math.unicode-math
 ′ = {'} math
+″ = \dprime math.unicode-math
 ″ = {''} math
+‴ = \trprime math.unicode-math
 ‴ = {'''} math
-‵ = \backprime math
-‶ = \backdprime math
-‷ = \backtrprime math
-‸ = \caretinsert math
+‵ = \backprime math.unicode-math
+‶ = \backdprime math.unicode-math
+‷ = \backtrprime math.unicode-math
+‸ = \caretinsert math.unicode-math
 ‹ = \guilsinglleft text
 › = \guilsinglright text
-‼ = \Exclam math
-⁃ = \hyphenbullet math
-⁄ = \fracslash math
-⁇ = \Question math
+‼ = \Exclam math.unicode-math
+‾ > - text
+⁀ = \tieconcat math.unicode-math
+⁃ = \hyphenbullet math.unicode-math
+⁄ = \fracslash math.unicode-math
+⁇ = \Question math.unicode-math
 ⁈ > ?! text
 ⁉ > !? text
 ⁊ > 7 text
-⁐ = \closure math
+⁐ = \closure math.unicode-math
+⁗ = \qprime math.unicode-math
 ⁗ > '''' math
   = \: space
 ⁠ = \nolinebreak text
@@ -1001,141 +2089,183 @@ w̃ < @{\~ w}@
 ₛ = _{s} math
 ₜ = \textsubscript{t} text
 ₜ = _{t} math
-₧ = \ensuremath{\Elzpes} text
+€ = \euro math.unicode-math
 € = \texteuro text
-€ = \euro math
+⃐ < \leftharpoonaccent math.unicode-math
+⃐ < \overleftharpoon math.unicode-math
 ⃐ = \lvec math
+⃑ < \overrightharpoon math.unicode-math
+⃑ < \rightharpoonaccent math.unicode-math
 ⃑ > \rightharpoonup math.amsmath
 ⃑ > \rightharpoonup math.amssymb
-⃒ = \vertoverlay math
+⃒ = \vertoverlay math.unicode-math
+⃖ < \overleftarrow.unicode-math
 ⃖ = \LVec math
-⃗ = \vec math
-⃛ = \dddot math
-⃜ = \ddddot math
-⃝ = \enclosecircle math
-⃞ = \enclosesquare math
-⃟ = \enclosediamond math
-⃡ = \overleftrightarrow math
-⃤ = \enclosetriangle math
-⃧ = \annuity math
-⃨ = \threeunderdot math
-⃩ = \widebridgeabove math
-⃬ = \underrightharpoondown math
-⃭ = \underleftharpoondown math
-⃮ = \underleftarrow math
-⃯ = \underrightarrow math
-⃰ = \asteraccent math
+⃗ < \overrightarrow math.unicode-math
+⃗ = \vec math.unicode-math
+⃛ = \dddot math.unicode-math
+⃜ = \ddddot math.unicode-math
+⃝ = \enclosecircle math.unicode-math
+⃞ = \enclosesquare math.unicode-math
+⃟ = \enclosediamond math.unicode-math
+⃡ = \overleftrightarrow math.unicode-math
+⃤ = \enclosetriangle math.unicode-math
+⃧ = \annuity math.unicode-math
+⃨ = \threeunderdot math.unicode-math
+⃩ = \widebridgeabove math.unicode-math
+⃬ = \underrightharpoondown math.unicode-math
+⃭ = \underleftharpoondown math.unicode-math
+⃮ = \underleftarrow math.unicode-math
+⃯ = \underrightarrow math.unicode-math
+⃰ = \asteraccent math.unicode-math
 ℀ > a/c text
 ℁ > a/s text
+ℂ < \BbbC math.unicode-math
 ℂ = \mathbb{C} math
 ℃ = \textcelsius text
 ℅ > c/o text
 ℆ > c/u text
+ℇ < \Eulerconst math.unicode-math
 ℇ = \Euler math
 ℉ > F text
-ℊ > g math stopgap
+ℊ < \mscrg math.unicode-math
 ℊ = \mathscr{g} math.mathrsfs
-ℋ > H math stopgap
+ℊ > g math stopgap
+ℋ < \mscrH math.unicode-math
 ℋ = \mathscr{H} math.mathrsfs
+ℋ > H math stopgap
+ℌ < \mfrakH math.unicode-math
 ℌ = \mathfrak{H} math
+ℍ < \BbbH math.unicode-math
 ℍ = \mathbb{H} math
-ℎ = \Planckconst math
-ℏ = \hslash math
-ℐ > I math stopgap
+ℎ = \Planckconst math.unicode-math
+ℏ = \hslash math.unicode-math
+ℐ < \mscrI math.unicode-math
 ℐ = \mathscr{I} math.mathrsfs
+ℐ > I math stopgap
+ℑ < \Im math.unicode-math
 ℑ = \mathfrak{I} math
-ℒ > L math stopgap
 ℒ = \mathscr{L} math.mathrsfs
+ℒ = \mscrL math.unicode-math
+ℒ > L math stopgap
 ℓ = \ell math
+ℕ < \BbbN math.unicode-math
 ℕ = \mathbb{N} math
 № = \cyrchar\textnumero text
 ℗ = \textcircledP text
 ℘ = \wp math
+ℙ < \BbbP math.unicode-math
 ℙ = \mathbb{P} math
+ℚ < \BbbQ math.unicode-math
 ℚ = \mathbb{Q} math
-ℛ > R math stopgap
 ℛ = \mathscr{R} math.mathrsfs
+ℛ = \mscrR math.unicode-math
+ℛ > R math stopgap
+ℜ < \Re math.unicode-math
 ℜ = \mathfrak{R} math
+ℝ < \BbbR math.unicode-math
 ℝ = \mathbb{R} math
-℞ = \Elzxrat math
+℞ = \textrecipe text.textcomp
 ℠ = \textservicemark text
 ℡ > TEL text
 ™ = \texttrademark text.textcomp
+ℤ < \BbbZ math.unicode-math
 ℤ = \mathbb{Z} math
 Ω > \Omega math
-℧ = \mho math
+℧ = \mho math.unicode-math
+ℨ < \mfrakZ math.unicode-math
 ℨ = \mathfrak{Z} math
 ℩ = \textriota text
+℩ = \turnediota math.unicode-math
 K > K text
-Å > \AA text
+Å < \Angstrom math.unicode-math
 Å = \Angstroem math
-ℬ > B math stopgap
+Å > \AA text
+ℬ < \mscrB math.unicode-math
 ℬ = \mathscr{B} math.mathrsfs
+ℬ > B math stopgap
+ℭ < \mfrakC math.unicode-math
 ℭ = \mathfrak{C} math
 ℮ = \textestimated text
-ℯ > e math stopgap
+ℯ < \mscre math.unicode-math
 ℯ = \mathscr{e} math.mathrsfs
-ℰ > E math stopgap
+ℯ > e math stopgap
+ℰ < \mscrE math.unicode-math
 ℰ = \mathscr{E} math.mathrsfs
-ℱ > F math stopgap
+ℰ > E math stopgap
+ℱ < \mscrF math.unicode-math
 ℱ = \mathscr{F} math.mathrsfs
-Ⅎ = \Finv math
-ℳ > M math stopgap
+ℱ > F math stopgap
+Ⅎ = \Finv math.unicode-math
+ℳ < \mscrM math.unicode-math
 ℳ = \mathscr{M} math.mathrsfs
-ℴ > o math stopgap
+ℳ > M math stopgap
+ℴ < \mscro math.unicode-math
 ℴ = \mathscr{o} math.mathrsfs
+ℴ > o math stopgap
 ℵ = \aleph math
-ℶ = \beth math
-ℷ = \gimel math
-ℸ = \daleth math
+ℶ = \beth math.unicode-math
+ℷ = \gimel math.unicode-math
+ℸ = \daleth math.unicode-math
+ℼ < \Bbbpi math.unicode-math
 ℼ = \mathbb{\pi} math
+ℽ < \Bbbgamma math.unicode-math
 ℽ = \mathbb{\gamma} math
+ℾ < \BbbGamma math.unicode-math
 ℾ = \mathbb{\Gamma} math
+ℿ < \BbbPi math.unicode-math
 ℿ = \mathbb{\Pi} math
+⅀ < \Bbbsum math.unicode-math
 ⅀ = \mathbb{\Sigma} math
-⅁ = \Game math
-⅂ = \sansLturned math
-⅃ = \sansLmirrored math
-⅄ = \Yup math
-ⅅ = \CapitalDifferentialD math
+⅁ = \Game math.unicode-math
+⅂ = \sansLturned math.unicode-math
+⅃ = \sansLmirrored math.unicode-math
+⅄ = \Yup math.unicode-math
+ⅅ < \mitBbbD math.unicode-math
+ⅅ = \CapitalDifferentialD math.unicode-math
+ⅆ < \mitBbbd math.unicode-math
 ⅆ = \DifferentialD math
+ⅇ < \mitBbbe math.unicode-math
 ⅇ = \ExponetialE math
+ⅈ < \mitBbbi math.unicode-math
 ⅈ = \ComplexI math
+ⅉ < \mitBbbj math.unicode-math
 ⅉ = \ComplexJ math
-⅊ = \PropertyLine math
+⅊ = \PropertyLine math.unicode-math
+⅋ < \upand math.unicode-math
 ⅋ = \invamp math
-⅐ = \frac{1}{7} math
 ⅐ < \textfrac{1}{7}
-⅑ = \frac{1}{9} math
+⅐ = \frac{1}{7} math
 ⅑ < \textfrac{1}{9}
-⅒ = \frac{1}{10} math
+⅑ = \frac{1}{9} math
 ⅒ < \textfrac{1}{10}
-⅓ = \frac{1}{3} math
+⅒ = \frac{1}{10} math
 ⅓ < \textfrac{1}{3}
-⅔ = \frac{2}{3} math
+⅓ = \frac{1}{3} math
 ⅔ < \textfrac{2}{3}
-⅕ = \frac{1}{5} math
+⅔ = \frac{2}{3} math
 ⅕ < \textfrac{1}{5}
-⅖ = \frac{2}{5} math
+⅕ = \frac{1}{5} math
 ⅖ < \textfrac{2}{5}
-⅗ = \frac{3}{5} math
+⅖ = \frac{2}{5} math
 ⅗ < \textfrac{3}{5}
-⅘ = \frac{4}{5} math
+⅗ = \frac{3}{5} math
 ⅘ < \textfrac{4}{5}
-⅙ = \frac{1}{6} math
+⅘ = \frac{4}{5} math
 ⅙ < \textfrac{1}{6}
-⅚ = \frac{5}{6} math
+⅙ = \frac{1}{6} math
 ⅚ < \textfrac{5}{6}
-⅛ = \frac{1}{8} math
+⅚ = \frac{5}{6} math
 ⅛ < \textfrac{1}{8}
-⅜ = \frac{3}{8} math
+⅛ = \frac{1}{8} math
 ⅜ < \textfrac{3}{8}
-⅝ = \frac{5}{8} math
+⅜ = \frac{3}{8} math
 ⅝ < \textfrac{5}{8}
-⅞ = \frac{7}{8} math
+⅝ = \frac{5}{8} math
 ⅞ < \textfrac{7}{8}
-⅟ = \frac{1} math
+⅞ = \frac{7}{8} math
 ⅟ < \textfrac{1}
+⅟ = \frac{1} math
 Ⅰ > I text
 Ⅱ > II text
 Ⅲ > III text
@@ -1146,8 +2276,6 @@ w̃ < @{\~ w}@
 Ⅷ > VIII text
 Ⅸ > IX text
 Ⅹ > X text
-╳ > X text
-☓ > X text
 Ⅺ > XI text
 Ⅻ > XII text
 Ⅼ > L text
@@ -1170,13 +2298,13 @@ w̃ < @{\~ w}@
 ⅽ > c text
 ⅾ > d text
 ⅿ > m text
-↉ = \frac{0}{3} math
 ↉ < \textfrac{0}{3}
+↉ = \frac{0}{3} math
 ← = \leftarrow math
 ↑ = \uparrow math
-→ = \textrightarrow text.textcomp
-→ = \rightarrow math
 → < \to
+→ = \rightarrow math
+→ = \textrightarrow text.textcomp
 ↓ = \downarrow math
 ↔ = \leftrightarrow math
 ↕ = \updownarrow math
@@ -1184,459 +2312,570 @@ w̃ < @{\~ w}@
 ↗ = \nearrow math
 ↘ = \searrow math
 ↙ = \swarrow math
-↚ = \nleftarrow math
-↛ = \nrightarrow math
+↚ = \nleftarrow math.unicode-math
+↛ = \nrightarrow math.unicode-math
+↜ < \leftwavearrow math.unicode-math
 ↜ = \arrowwaveleft math
+↝ < \rightwavearrow math.unicode-math
 ↝ = \arrowwaveright math
-↞ = \twoheadleftarrow math
-↟ = \twoheaduparrow math
-↠ = \twoheadrightarrow math
-↡ = \twoheaddownarrow math
-↢ = \leftarrowtail math
-↣ = \rightarrowtail math
-↤ = \mapsfrom math
-↥ = \MapsUp math
-↦ = \mapsto math
-↧ = \MapsDown math
-↨ = \updownarrowbar math
-↩ = \hookleftarrow math
-↪ = \hookrightarrow math
-↫ = \looparrowleft math
-↬ = \looparrowright math
-↭ = \leftrightsquigarrow math
-↮ = \nleftrightarrow math
+↞ = \twoheadleftarrow math.unicode-math
+↟ = \twoheaduparrow math.unicode-math
+↠ = \twoheadrightarrow math.unicode-math
+↡ = \twoheaddownarrow math.unicode-math
+↢ = \leftarrowtail math.unicode-math
+↣ = \rightarrowtail math.unicode-math
+↤ = \mapsfrom math.unicode-math
+↥ < \MapsUp math
+↥ = \mapsup math.unicode-math
+↦ = \mapsto math.unicode-math
+↧ < \MapsDown math
+↧ = \mapsdown math.unicode-math
+↨ = \updownarrowbar math.unicode-math
+↩ = \hookleftarrow math.unicode-math
+↪ = \hookrightarrow math.unicode-math
+↫ = \looparrowleft math.unicode-math
+↬ = \looparrowright math.unicode-math
+↭ = \leftrightsquigarrow math.unicode-math
+↮ = \nleftrightarrow math.unicode-math
+↯ < \downzigzagarrow math.unicode-math
 ↯ = \lightning math
-↰ = \Lsh math
-↱ = \Rsh math
+↰ = \Lsh math.unicode-math
+↱ = \Rsh math.unicode-math
+↲ < \Ldsh math.unicode-math
 ↲ = \dlsh math
+↳ = \Rdsh math.unicode-math
 ↳ = \reflectbox{\carriagereturn} text.graphics
 ↳ = \reflectbox{\carriagereturn} text.unicode-math
-↴ = \linefeed math
-↵ = \carriagereturn math
-↶ = \curvearrowleft math
-↷ = \curvearrowright math
-↸ = \barovernorthwestarrow math
-↹ = \barleftarrowrightarrowba math
-↺ = \circlearrowleft math
+↴ = \linefeed math.unicode-math
+↵ = \carriagereturn math.unicode-math
+↶ = \curvearrowleft math.unicode-math
+↷ = \curvearrowright math.unicode-math
+↸ = \barovernorthwestarrow math.unicode-math
+↹ = \barleftarrowrightarrowbar math.unicode-math
+↺ < \acwopencirclearrow math.unicode-math
+↺ = \circlearrowleft math.unicode-math
+↻ < \cwopencirclearrow math.unicode-math
 ↻ = \circlearrowright math
-↼ = \leftharpoonup math
-↽ = \leftharpoondown math
-↾ = \upharpoonright math
-↿ = \upharpoonleft math
+↼ = \leftharpoonup math.unicode-math
+↽ = \leftharpoondown math.unicode-math
+↾ = \upharpoonright math.unicode-math
+↿ = \upharpoonleft math.unicode-math
 ⇀ = \rightharpoonup math.amsmath
-⇀ = \rightharpoonup math.amssymb
-⇁ = \rightharpoondown math
-⇂ = \downharpoonright math
-⇃ = \downharpoonleft math
-⇄ = \rightleftarrows math
+⇀ = \rightharpoonup math.unicode-math
+⇁ = \rightharpoondown math.unicode-math
+⇂ = \downharpoonright math.unicode-math
+⇃ = \downharpoonleft math.unicode-math
+⇄ = \rightleftarrows math.unicode-math
+⇅ < \updownarrows math.unicode-math
 ⇅ = \dblarrowupdown math
-⇆ = \leftrightarrows math
-⇇ = \leftleftarrows math
-⇈ = \upuparrows math
-⇉ = \rightrightarrows math
-⇊ = \downdownarrows math
-⇋ = \leftrightharpoons math
-⇌ = \rightleftharpoons math
-⇍ = \nLeftarrow math
-⇎ = \nLeftrightarrow math
-⇏ = \nRightarrow math
-⇐ = \Leftarrow math
-⇑ = \Uparrow math
-⇒ = \Rightarrow math
-⇓ = \Downarrow math
-⇔ = \Leftrightarrow math
-⇕ = \Updownarrow math
-⇖ = \Nwarrow math
-⇗ = \Nearrow math
-⇘ = \Searrow math
-⇙ = \Swarrow math
-⇚ = \Lleftarrow math
-⇛ = \Rrightarrow math
-⇜ = \leftsquigarrow math
-⇝ = \rightsquigarrow math
-⇞ = \nHuparrow math
-⇟ = \nHdownarrow math
+⇆ = \leftrightarrows math.unicode-math
+⇇ = \leftleftarrows math.unicode-math
+⇈ = \upuparrows math.unicode-math
+⇉ = \rightrightarrows math.unicode-math
+⇊ = \downdownarrows math.unicode-math
+⇋ = \leftrightharpoons math.unicode-math
+⇌ = \rightleftharpoons math.unicode-math
+⇍ = \nLeftarrow math.unicode-math
+⇎ = \nLeftrightarrow math.unicode-math
+⇏ = \nRightarrow math.unicode-math
+⇐ = \Leftarrow math.unicode-math
+⇑ = \Uparrow math.unicode-math
+⇒ = \Rightarrow math.unicode-math
+⇓ = \Downarrow math.unicode-math
+⇔ = \Leftrightarrow math.unicode-math
+⇕ = \Updownarrow math.unicode-math
+⇖ = \Nwarrow math.unicode-math
+⇗ = \Nearrow math.unicode-math
+⇘ = \Searrow math.unicode-math
+⇙ = \Swarrow math.unicode-math
+⇚ = \Lleftarrow math.unicode-math
+⇛ = \Rrightarrow math.unicode-math
+⇜ = \leftsquigarrow math.unicode-math
+⇝ = \rightsquigarrow math.unicode-math
+⇞ = \nHuparrow math.unicode-math
+⇟ = \nHdownarrow math.unicode-math
+⇠ < \leftdasharrow math.unicode-math
 ⇠ = \dashleftarrow math
-⇡ = \updasharrow math
+⇡ = \updasharrow math.unicode-math
+⇢ < \rightdasharrow math.unicode-math
 ⇢ = \dashrightarrow math
-⇣ = \downdasharrow math
+⇣ = \downdasharrow math.unicode-math
+⇤ < \barleftarrow math.unicode-math
 ⇤ = \LeftArrowBar math
+⇥ < \rightarrowbar math.unicode-math
 ⇥ = \RightArrowBar math
-⇦ = \leftwhitearrow math
-⇧ = \upwhitearrow math
-⇨ = \rightwhitearrow math
-⇩ = \downwhitearrow math
-⇪ = \whitearrowupfrombar math
-⇴ = \circleonrightarrow math
+⇦ = \leftwhitearrow math.unicode-math
+⇧ = \upwhitearrow math.unicode-math
+⇨ = \rightwhitearrow math.unicode-math
+⇩ = \downwhitearrow math.unicode-math
+⇪ = \whitearrowupfrombar math.unicode-math
+⇴ = \circleonrightarrow math.unicode-math
+⇵ < \downuparrows math.unicode-math
 ⇵ = \DownArrowUpArrow math
-⇶ = \rightthreearrows math
-⇷ = \nvleftarrow math
+⇶ = \rightthreearrows math.unicode-math
+⇷ = \nvleftarrow math.unicode-math
+⇸ < \nvrightarrow math.unicode-math
 ⇸ = \pfun math
-⇹ = \nvleftrightarrow math
-⇺ = \nVleftarrow math
+⇹ = \nvleftrightarrow math.unicode-math
+⇺ = \nVleftarrow math.unicode-math
+⇻ < \nVrightarrow math.unicode-math
 ⇻ = \ffun math
-⇼ = \nVleftrightarrow math
-⇽ = \leftarrowtriangle math
-⇾ = \rightarrowtriangle math
-⇿ = \leftrightarrowtriangle math
-∀ = \forall math
-∁ = \complement math
-∂ = \partial math
-∃ = \exists math
-∄ = \nexists math
-∅ = \varnothing math
-∆ = \increment math
-∇ = \nabla math
-∈ = \in math
+⇼ = \nVleftrightarrow math.unicode-math
+⇽ = \leftarrowtriangle math.unicode-math
+⇾ = \rightarrowtriangle math.unicode-math
+⇿ = \leftrightarrowtriangle math.unicode-math
+∀ = \forall math.unicode-math
+∁ = \complement math.unicode-math
+∂ = \partial math.unicode-math
+∃ = \exists math.unicode-math
+∄ = \nexists math.unicode-math
+∅ = \varnothing math.unicode-math
+∆ = \increment math.unicode-math
+∇ = \nabla math.unicode-math
+∈ = \in math.unicode-math
+∉ < \notin math.unicode-math
 ∉ = \not\in math
-∊ = \smallin math
-∋ = \ni math
+∊ = \smallin math.unicode-math
+∋ = \ni math.unicode-math
+∌ < \nni math.unicode-math
 ∌ = \not\ni math
-∍ = \smallni math
-∎ = \QED math
-∏ = \prod math
-∐ = \coprod math
-∑ = \sum math
+∍ = \smallni math.unicode-math
+∎ = \QED math.unicode-math
+∏ = \prod math.unicode-math
+∐ = \coprod math.unicode-math
+∑ = \sum math.unicode-math
+− < \minus math.unicode-math
 − > -
-∓ = \mp math
-∔ = \dotplus math
+∓ = \mp math.unicode-math
+∔ = \dotplus math.unicode-math
+∕ = \divslash math.unicode-math
 ∕ > / text
-∖ = \setminus math
-∗ = {_\ast} math
+∖ = \setminus math.unicode-math
+∗ < {_\ast} math
+∗ = \ast math.unicode-math
+∘ < \vysmwhtcircle math.unicode-math
 ∘ = \circ math
+∙ < \vysmblkcircle math.unicode-math
 ∙ = \bullet math
-√ = \surd math
+√ < \surd math.unicode-math
+√ = \sqrt math.unicode-math
+∛ < \cuberoot math.unicode-math
 ∛ = \sqrt[3] math
+∜ < \fourthroot math.unicode-math
 ∜ = \sqrt[4] math
-∝ = \propto math
-∞ = \infty math
-∟ = \rightangle math
+∝ = \propto math.unicode-math
+∞ = \infty math.unicode-math
+∟ = \rightangle math.unicode-math
 ∠ = \angle math
-∡ = \measuredangle math
-∢ = \sphericalangle math
-∣ = \mid math
-∤ = \nmid math
-∥ = \parallel math
-∦ = \nparallel math
-∧ = \wedge math
-∨ = \vee math
-∩ = \cap math
-∪ = \cup math
-∫ = \int math
+∡ = \measuredangle math.unicode-math
+∢ = \sphericalangle math.unicode-math
+∣ = \mid math.unicode-math
+∤ = \nmid math.unicode-math
+∥ = \parallel math.unicode-math
+∦ = \nparallel math.unicode-math
+∧ = \wedge math.unicode-math
+∨ = \vee math.unicode-math
+∩ = \cap math.unicode-math
+∪ = \cup math.unicode-math
+∫ = \int math.unicode-math
+∬ < \iint math.unicode-math
 ∬ = {\int\!\int} math
+∭ < \iiint math.unicode-math
 ∭ = {\int\!\int\!\int} math
-∮ = \oint math
+∮ = \oint math.unicode-math
+∯ < \oiint math.unicode-math
 ∯ = \surfintegral math
+∰ < \oiiint math.unicode-math
 ∰ = \volintegral math
+∱ < \intclockwise math.unicode-math
 ∱ = \clwintegral math
+∲ < \varointclockwise math.unicode-math
 ∲ = \lcirclerightint math.MnSymbol
+∲ = \lcirclerightint math.unicode-math
+∳ < \ointctrclockwise math.unicode-math
 ∳ = \rcirclerightint math.MnSymbol
-∴ = \therefore math
-∵ = \because math
+∴ = \therefore math.unicode-math
+∵ = \because math.unicode-math
+∶ < \mathratio math.unicode-math
 ∶ > : math
-∷ = \Colon math
+∷ = \Colon math.unicode-math
+∸ < \dotminus math.unicode-math
 ∸ = \dotdiv math.mathabx
-∹ = \eqcolon math
+∹ < \dashcolon math.unicode-math
+∹ = \eqcolon math.unicode-math
+∺ < \dotsminusdots math.unicode-math
 ∺ = \mathbin{{:}\!\!{-}\!\!{:}} math
+∻ < \kernelcontraction math.unicode-math
 ∻ = \homothetic math
-∼ = \sim math
-∽ = \backsim math
+∼ = \sim math.unicode-math
+∽ = \backsim math.unicode-math
+∾ < \invlazys math.unicode-math
 ∾ = \lazysinv math
+∿ < \sinewave math.unicode-math
 ∿ = \AC math
-≀ = \wr math
+≀ = \wr math.unicode-math
+≁ < \nsim math.unicode-math
 ≁ = \not\sim math
+≂ < \eqsim math.unicode-math
 ≂ = \texteqsim math.xecjk
 ≂̸ = \NotEqualTilde math
-≃ = \simeq math
+≃ < \sime math.unicode-math
+≃ = \simeq math.unicode-math
+≄ < \nsime math.unicode-math
+≄ < \nsimeq math.unicode-math
 ≄ = \not\simeq math
-≅ = \cong math
+≅ = \cong math.unicode-math
+≆ < \simneqq math.unicode-math
 ≆ = \approxnotequal math
+≇ < \ncong math.unicode-math
 ≇ = \not\cong math
-≈ = \approx math
+≈ = \approx math.unicode-math
+≉ < \napprox math.unicode-math
 ≉ = \not\approx math
-≊ = \approxeq math
+≊ = \approxeq math.unicode-math
+≋ < \approxident math.unicode-math
 ≋ = \tildetrpl math
 ≋̸ = \not\apid math
+≌ < \backcong math.unicode-math
 ≌ = \allequal math
-≍ = \asymp math
-≎ = \Bumpeq math
+≍ = \asymp math.unicode-math
+≎ = \Bumpeq math.unicode-math
 ≎̸ = \NotHumpDownHump math
-≏ = \bumpeq math
+≏ = \bumpeq math.unicode-math
 ≏̸ = \NotHumpEqual math
-≐ = \doteq math
+≐ = \doteq math.unicode-math
 ≐̸ = \not\doteq math
+≑ < \Doteq math.unicode-math
 ≑ = \doteqdot math
-≒ = \fallingdotseq math
-≓ = \risingdotseq math
+≒ = \fallingdotseq math.unicode-math
+≓ = \risingdotseq math.unicode-math
+≔ = \coloneq math.unicode-math
+≔ > := math.unicode-math
 ≔ > := text
-≔ = \coloneq math
+≕ < \eqcolon math.unicode-math
 ≕ > =: math
-≖ = \eqcirc math
-≗ = \circeq math
-≘ = \arceq math
+≖ = \eqcirc math.unicode-math
+≗ = \circeq math.unicode-math
+≘ = \arceq math.unicode-math
+≙ < \wedgeq math.unicode-math
 ≙ = \estimates math
+≚ = \veeeq math.unicode-math
+≛ < \stareq math.unicode-math
 ≛ = \starequal math
-≜ = \triangleq math
-≝ = \eqdef math
-≞ = \measeq math
-≠ = \neq math
-≡ = \equiv math
+≜ = \triangleq math.unicode-math
+≝ = \eqdef math.unicode-math
+≞ = \measeq math.unicode-math
+≟ = \questeq math.unicode-math
+≠ < \ne math.unicode-math
+≠ = \neq math.unicode-math
+≡ = \equiv math.unicode-math
+≢ < \nequiv math.unicode-math
 ≢ = \not\equiv math
-≣ = \Equiv math
-≤ = \leq math
+≣ = \Equiv math.unicode-math
 ≤ < \le
-≥ = \geq math
-≦ = \leqq math
-≧ = \geqq math
-≨ = \lneqq math
+≤ = \leq math.unicode-math
+≥ = \geq math.unicode-math
+≦ = \leqq math.unicode-math
+≧ = \geqq math.unicode-math
+≨ = \lneqq math.unicode-math
 ≨︀ = \lvertneqq math
-≩ = \gneqq math
+≩ = \gneqq math.unicode-math
 ≩︀ = \gvertneqq math
-≪ = \ll math
+≪ = \ll math.unicode-math
 ≪̸ = \NotLessLess math
-≫ = \gg math
+≫ = \gg math.unicode-math
 ≫̸ = \NotGreaterGreater math
-≬ = \between math
+≬ = \between math.unicode-math
+≭ = \nasymp math.unicode-math
 ≭ = {\not\kern-0.3em\times} math
+≮ < \nless math.unicode-math
 ≮ = \not< math
+≯ < \ngtr math.unicode-math
 ≯ = \not> math
+≰ < \nleq math.unicode-math
 ≰ = \not\leq math
+≱ < \ngeq math.unicode-math
 ≱ = \not\geq math
+≲ < \lesssim math.unicode-math
 ≲ = \lessequivlnt math
+≳ < \gtrsim math.unicode-math
 ≳ = \greaterequivlnt math
-≶ = \lessgtr math
-≷ = \gtrless math
+≴ = \nlesssim math.unicode-math
+≵ = \ngtrsim math.unicode-math
+≶ = \lessgtr math.unicode-math
+≷ = \gtrless math.unicode-math
+≸ < \nlessgtr math.unicode-math
 ≸ = \notlessgreater math
+≹ < \ngtrless math.unicode-math
 ≹ = \notgreaterless math
-≺ = \prec math
-≻ = \succ math
-≼ = \preccurlyeq math
-≽ = \succcurlyeq math
+≺ = \prec math.unicode-math
+≻ = \succ math.unicode-math
+≼ = \preccurlyeq math.unicode-math
+≽ = \succcurlyeq math.unicode-math
+≾ < \precsim math.unicode-math
 ≾ > \precapprox math
 ≾̸ = \NotPrecedesTilde math
-≿ > \succapprox math
+≿ < \succsim math.unicode-math
+≿ = \succapprox math
 ≿̸ = \NotSucceedsTilde math
+⊀ < \nprec math.unicode-math
 ⊀ = \not\prec math
+⊁ < \nsucc math.unicode-math
 ⊁ = \not\succ math
-⊂ = \subset math
-⊃ = \supset math
+⊂ = \subset math.unicode-math
+⊃ = \supset math.unicode-math
+⊄ < \nsubset math.unicode-math
 ⊄ = \not\subset math
+⊅ < \nsupset math.unicode-math
 ⊅ = \not\supset math
-⊆ = \subseteq math
-⊇ = \supseteq math
+⊆ = \subseteq math.unicode-math
+⊇ = \supseteq math.unicode-math
+⊈ < \nsubseteq math.unicode-math
 ⊈ = \not\subseteq math
+⊉ < \nsupseteq math.unicode-math
 ⊉ = \not\supseteq math
-⊊ = \subsetneq math
+⊊ = \subsetneq math.unicode-math
 ⊊︀ = \varsubsetneqq math
-⊋ = \supsetneq math
+⊋ = \supsetneq math.unicode-math
 ⊋︀ = \varsupsetneq math
-⊌ = \cupleftarrow math
-⊍ = \cupdot math
-⊎ = \uplus math
-⊏ = \sqsubset math
+⊌ = \cupleftarrow math.unicode-math
+⊍ = \cupdot math.unicode-math
+⊎ = \uplus math.unicode-math
+⊏ = \sqsubset math.unicode-math
 ⊏̸ = \NotSquareSubset math
-⊐ = \sqsupset math
+⊐ = \sqsupset math.unicode-math
 ⊐̸ = \NotSquareSuperset math
-⊑ = \sqsubseteq math
-⊒ = \sqsupseteq math
-⊓ = \sqcap math
-⊔ = \sqcup math
-⊕ = \oplus math
-⊖ = \ominus math
-⊗ = \otimes math
-⊘ = \oslash math
-⊙ = \odot math
-⊚ = \circledcirc math
-⊛ = \circledast math
-⊜ = \circledequal math
-⊝ = \circleddash math
-⊞ = \boxplus math
-⊟ = \boxminus math
-⊠ = \boxtimes math
-⊡ = \boxdot math
-⊢ = \vdash math
-⊣ = \dashv math
-⊤ = \top math
-⊥ > \perp math
-⊦ = \assert math
+⊑ = \sqsubseteq math.unicode-math
+⊒ = \sqsupseteq math.unicode-math
+⊓ = \sqcap math.unicode-math
+⊔ < \textvisiblespace text
+⊔ = \sqcup math.unicode-math
+⊕ = \oplus math.unicode-math
+⊖ = \ominus math.unicode-math
+⊗ = \otimes math.unicode-math
+⊘ = \oslash math.unicode-math
+⊙ = \odot math.unicode-math
+⊚ = \circledcirc math.unicode-math
+⊛ = \circledast math.unicode-math
+⊜ = \circledequal math.unicode-math
+⊝ = \circleddash math.unicode-math
+⊞ = \boxplus math.unicode-math
+⊟ = \boxminus math.unicode-math
+⊠ = \boxtimes math.unicode-math
+⊡ = \boxdot math.unicode-math
+⊢ = \vdash math.unicode-math
+⊣ = \dashv math.unicode-math
+⊤ = \top math.unicode-math
+⊥ < \bot math.unicode-math
+⊥ = \perp math.unicode-math
+⊦ = \assert math.unicode-math
+⊧ < \models math.unicode-math
 ⊧ = \truestate math
+⊨ < \vDash math.unicode-math
 ⊨ = \forcesextra math
-⊩ = \Vdash math
-⊪ = \Vvdash math
-⊫ = \VDash math
-⊬ = \nvdash math
-⊭ = \nvDash math
-⊮ = \nVdash math
-⊯ = \nVDash math
-⊰ = \prurel math
-⊱ = \scurel math
-⊲ = \vartriangleleft math
-⊳ = \vartriangleright math
-⊴ = \trianglelefteq math
-⊵ = \trianglerighteq math
+⊩ = \Vdash math.unicode-math
+⊪ = \Vvdash math.unicode-math
+⊫ = \VDash math.unicode-math
+⊬ = \nvdash math.unicode-math
+⊭ = \nvDash math.unicode-math
+⊮ = \nVdash math.unicode-math
+⊯ = \nVDash math.unicode-math
+⊰ = \prurel math.unicode-math
+⊱ = \scurel math.unicode-math
+⊲ = \vartriangleleft math.unicode-math
+⊳ = \vartriangleright math.unicode-math
+⊴ = \trianglelefteq math.unicode-math
+⊵ = \trianglerighteq math.unicode-math
+⊶ < \origof math.unicode-math
 ⊶ = \original math
+⊷ < \imageof math.unicode-math
 ⊷ = \image math
-⊸ = \multimap math
+⊸ = \multimap math.unicode-math
+⊹ < \hermitmatrix math.unicode-math
 ⊹ = \hermitconjmatrix math
-⊺ = \intercal math
-⊻ = \veebar math
-⊼ > \barwedge math
-⊽ = \barvee math
+⊺ = \intercal math.unicode-math
+⊻ = \veebar math.unicode-math
+⊼ = \barwedge math.unicode-math
+⊽ = \barvee math.unicode-math
+⊾ < \measuredrightangle math.unicode-math
 ⊾ = \rightanglearc math
-⊿ = \varlrtriangle math
-⋂ = \bigcap math
-⋃ = \bigcup math
+⊿ = \varlrtriangle math.unicode-math
+⋀ = \bigwedge math.unicode-math
+⋁ = \bigvee math.unicode-math
+⋂ = \bigcap math.unicode-math
+⋃ = \bigcup math.unicode-math
+⋄ < \smwhtdiamond math.unicode-math
 ⋄ = \diamond math
-⋅ = \cdot math
-⋆ = \star math
-⋇ = \divideontimes math
-⋈ = \bowtie math
-⋉ = \ltimes math
-⋊ = \rtimes math
-⋋ = \leftthreetimes math
-⋌ = \rightthreetimes math
-⋍ = \backsimeq math
-⋎ = \curlyvee math
-⋏ = \curlywedge math
-⋐ = \Subset math
-⋑ = \Supset math
-⋒ = \Cap math
-⋓ = \Cup math
-⋔ = \pitchfork math
-⋕ = \hash math
-⋖ = \lessdot math
-⋗ = \gtrdot math
+⋅ = \cdot math.unicode-math
+⋆ = \star math.unicode-math
+⋇ = \divideontimes math.unicode-math
+⋈ = \bowtie math.unicode-math
+⋉ = \ltimes math.unicode-math
+⋊ = \rtimes math.unicode-math
+⋋ = \leftthreetimes math.unicode-math
+⋌ = \rightthreetimes math.unicode-math
+⋍ = \backsimeq math.unicode-math
+⋎ = \curlyvee math.unicode-math
+⋏ = \curlywedge math.unicode-math
+⋐ = \Subset math.unicode-math
+⋑ = \Supset math.unicode-math
+⋒ = \Cap math.unicode-math
+⋓ = \Cup math.unicode-math
+⋔ = \pitchfork math.unicode-math
+⋕ < \equalparallel math.unicode-math
+⋕ = \hash math.unicode-math
+⋖ = \lessdot math.unicode-math
+⋗ = \gtrdot math.unicode-math
+⋘ < \lll math.unicode-math
 ⋘ = \verymuchless math
+⋙ < \ggg math.unicode-math
 ⋙ = \verymuchgreater math
-⋚ = \lesseqgtr math
-⋛ = \gtreqless math
-⋜ = \eqless math
-⋝ = \eqgtr math
-⋞ = \curlyeqprec math
-⋟ = \curlyeqsucc math
-⋠ = \npreceq math
-⋡ = \nsucceq math
+⋚ = \lesseqgtr math.unicode-math
+⋛ = \gtreqless math.unicode-math
+⋜ = \eqless math.unicode-math
+⋝ = \eqgtr math.unicode-math
+⋞ = \curlyeqprec math.unicode-math
+⋟ = \curlyeqsucc math.unicode-math
+⋠ < \npreccurlyeq math.unicode-math
+⋠ = \npreceq math.unicode-math
+⋡ < \nsucccurlyeq math.unicode-math
+⋡ = \nsucceq math.unicode-math
+⋢ < \nsqsubseteq math.unicode-math
 ⋢ = \not\sqsubseteq math
+⋣ < \nsqsupseteq math.unicode-math
 ⋣ = \not\sqsupseteq math
-⋤ = \sqsubsetneq math
-⋥ = \Elzsqspne math
-⋦ = \lnsim math
-⋧ = \gnsim math
-⋨ = \precedesnotsimilar math
-⋩ = \succnsim math
+⋤ = \sqsubsetneq math.unicode-math
+⋥ = \sqsupsetneq math.unicode-math
+⋦ = \lnsim math.unicode-math
+⋧ = \gnsim math.unicode-math
+⋨ < \precnsim math.unicode-math
+⋨ = \precedesnotsimilar math.unicode-math
+⋩ = \succnsim math.unicode-math
+⋪ < \nvartriangleleft math.unicode-math
 ⋪ = \ntriangleleft math
+⋫ < \nvartriangleright math.unicode-math
 ⋫ = \ntriangleright math
-⋬ = \ntrianglelefteq math
-⋭ = \ntrianglerighteq math
-⋮ = \vdots math
+⋬ = \ntrianglelefteq math.unicode-math
+⋭ = \ntrianglerighteq math.unicode-math
+⋮ = \vdots math.unicode-math
+⋯ < \unicodecdots math.unicode-math
 ⋯ = \cdots math
+⋰ < \adots math.unicode-math
 ⋰ = \upslopeellipsis math
+⋱ < \ddots math.unicode-math
 ⋱ = \downslopeellipsis math
-⋲ = \disin math
-⋳ = \varisins math
-⋴ = \isins math
-⋵ = \isindot math
+⋲ = \disin math.unicode-math
+⋳ = \varisins math.unicode-math
+⋴ = \isins math.unicode-math
+⋵ = \isindot math.unicode-math
+⋶ < \varisinobar math.unicode-math
 ⋶ = \barin math
-⋷ = \isinobar math
-⋸ = \isinvb math
-⋹ = \isinE math
-⋺ = \nisd math
-⋻ = \varnis math
-⋼ = \nis math
-⋽ = \varniobar math
-⋾ = \niobar math
-⋿ = \bagmember math
-⌀ = \diameter math
-⌂ = \house math
-⌅ = \barwedge text
-⌅ = \varbarwedge math
+⋷ = \isinobar math.unicode-math
+⋸ = \isinvb math.unicode-math
+⋹ = \isinE math.unicode-math
+⋺ = \nisd math.unicode-math
+⋻ = \varnis math.unicode-math
+⋼ = \nis math.unicode-math
+⋽ = \varniobar math.unicode-math
+⋾ = \niobar math.unicode-math
+⋿ = \bagmember math.unicode-math
+⌀ = \diameter math.unicode-math
+⌂ = \house math.unicode-math
+⌅ = \barwedge text.unicode-math
+⌅ = \varbarwedge math.unicode-math
+⌆ < \vardoublebarwedge math.unicode-math
 ⌆ = \perspcorrespond math
-⌈ = \lceil math
-⌉ = \rceil math
-⌊ = \lfloor math
-⌋ = \rfloor math
-⌐ = \invneg math
+⌈ = \lceil math.unicode-math
+⌉ = \rceil math.unicode-math
+⌊ = \lfloor math.unicode-math
+⌋ = \rfloor math.unicode-math
+⌐ < \invnot math.unicode-math
+⌐ = \invneg math.unicode-math
+⌑ < \sqlozenge math.unicode-math
 ⌑ = \wasylozenge math
-⌒ = \profline math
-⌓ = \profsurf math
+⌒ = \profline math.unicode-math
+⌓ = \profsurf math.unicode-math
 ⌕ = \recorder math
 ⌖ = {\mathchar"2208} math
-⌗ = \viewdata math
-⌙ = \turnednot math
-⌜ = \ulcorner math
-⌝ = \urcorner math
-⌞ = \llcorner math
-⌟ = \lrcorner math
-⌠ = \inttop math
-⌡ = \intbottom math
-⌢ = \frown math
-⌣ = \smile math
+⌗ = \viewdata math.unicode-math
+⌙ = \turnednot math.unicode-math
+⌜ = \ulcorner math.unicode-math
+⌝ = \urcorner math.unicode-math
+⌞ = \llcorner math.unicode-math
+⌟ = \lrcorner math.unicode-math
+⌠ = \inttop math.unicode-math
+⌡ = \intbottom math.unicode-math
+⌢ = \frown math.unicode-math
+⌣ = \smile math.unicode-math
 〈 > \langle math
-〈 > \langle math
 〉 > \rangle math
-〉 > \rangle math
-⌬ = \varhexagonlrbonds math
-⌲ = \conictaper math
-⌶ = \topbot math
+⌬ = \varhexagonlrbonds math.unicode-math
+⌲ = \conictaper math.unicode-math
+⌶ = \topbot math.unicode-math
 ⌹ = \APLinv math
+⌽ = \obar math.unicode-math
+⌿ < \APLnotslash math.unicode-math
 ⌿ = \notslash math
+⍀ < \APLnotbackslash math.unicode-math
 ⍀ = \notbackslash math
 ⍇ = \APLleftarrowbox math
 ⍈ = \APLrightarrowbox math
 ⍉ = \invdiameter math
 ⍐ = \APLuparrowbox math
-⍓ = \APLboxupcaret math
+⍓ = \APLboxupcaret math.unicode-math
 ⍗ = \APLdownarrowbox math
 ⍝ = \APLcomment math
 ⍞ = \APLinput math
 ⍟ = \APLlog math
-⍰ = \APLboxquestion math
-⍼ = \rangledownzigzagarrow math
-⎔ = \hexagon math
-⎛ = \lparenuend math
-⎜ = \lparenextender math
-⎝ = \lparenlend math
-⎞ = \rparenuend math
-⎟ = \rparenextender math
-⎠ = \rparenlend math
-⎡ = \lbrackuend math
-⎢ = \lbrackextender math
-⎣ = \Elzdlcorn math
-⎤ = \rbrackuend math
-⎥ = \rbrackextender math
-⎦ = \rbracklend math
-⎧ = \lbraceuend math
-⎨ = \lbracemid math
-⎩ = \lbracelend math
-⎪ = \vbraceextender math
-⎫ = \rbraceuend math
-⎬ = \rbracemid math
-⎭ = \rbracelend math
-⎮ = \intextender math
-⎯ = \harrowextender math
-⎰ = \lmoustache math
-⎱ = \rmoustache math
-⎲ = \sumtop math
-⎳ = \sumbottom math
-⎴ = \overbracket math
-⎵ = \underbracket math
-⎶ = \bbrktbrk math
-⎷ = \sqrtbottom math
-⎸ = \lvboxline math
-⎹ = \rvboxline math
-⏎ = \varcarriagereturn math
-⏜ = \overparen math
-⏝ = \underparen math
-⏞ = \overbrace math
-⏟ = \underbrace math
-⏠ = \obrbrak math
-⏡ = \ubrbrak math
-⏢ = \trapezium math
-⏣ = \benzenr math
-⏤ = \strns math
-⏥ = \fltns math
-⏦ = \accurrent math
-⏧ = \elinters math
+⍰ = \APLboxquestion math.unicode-math
+⍼ = \rangledownzigzagarrow math.unicode-math
+⎔ = \hexagon math.unicode-math
+⎛ = \lparenuend math.unicode-math
+⎜ = \lparenextender math.unicode-math
+⎝ = \lparenlend math.unicode-math
+⎞ = \rparenuend math.unicode-math
+⎟ = \rparenextender math.unicode-math
+⎠ = \rparenlend math.unicode-math
+⎡ = \lbrackuend math.unicode-math
+⎢ = \lbrackextender math.unicode-math
+⎣ = \lbracklend math.unicode-math
+⎤ = \rbrackuend math.unicode-math
+⎥ = \rbrackextender math.unicode-math
+⎦ = \rbracklend math.unicode-math
+⎧ = \lbraceuend math.unicode-math
+⎨ = \lbracemid math.unicode-math
+⎩ = \lbracelend math.unicode-math
+⎪ = \vbraceextender math.unicode-math
+⎫ = \rbraceuend math.unicode-math
+⎬ = \rbracemid math.unicode-math
+⎭ = \rbracelend math.unicode-math
+⎮ = \intextender math.unicode-math
+⎯ = \harrowextender math.unicode-math
+⎰ = \lmoustache math.unicode-math
+⎱ = \rmoustache math.unicode-math
+⎲ = \sumtop math.unicode-math
+⎳ = \sumbottom math.unicode-math
+⎴ = \overbracket math.unicode-math
+⎵ = \underbracket math.unicode-math
+⎶ = \bbrktbrk math.unicode-math
+⎷ = \sqrtbottom math.unicode-math
+⎸ = \lvboxline math.unicode-math
+⎹ = \rvboxline math.unicode-math
+⏎ = \varcarriagereturn math.unicode-math
+⏜ = \overparen math.unicode-math
+⏝ = \underparen math.unicode-math
+⏞ = \overbrace math.unicode-math
+⏟ = \underbrace math.unicode-math
+⏠ = \obrbrak math.unicode-math
+⏡ = \ubrbrak math.unicode-math
+⏢ = \trapezium math.unicode-math
+⏣ = \benzenr math.unicode-math
+⏤ = \strns math.unicode-math
+⏥ = \fltns math.unicode-math
+⏦ = \accurrent math.unicode-math
+⏧ = \elinters math.unicode-math
+␢ = \blanksymbol math.unicode-math
+␣ = \mathvisiblespace math.unicode-math
 ① = \ding{172} text
 ② = \ding{173} text
 ③ = \ding{174} text
@@ -1648,25 +2887,15 @@ w̃ < @{\~ w}@
 ⑨ = \ding{180} text
 ⑩ = \ding{181} text
 ⑪ > (11) text
-⑾ > (11) text
 ⑫ > (12) text
-⑿ > (12) text
 ⑬ > (13) text
-⒀ > (13) text
 ⑭ > (14) text
-⒁ > (14) text
 ⑮ > (15) text
-⒂ > (15) text
 ⑯ > (16) text
-⒃ > (16) text
 ⑰ > (17) text
-⒄ > (17) text
 ⑱ > (18) text
-⒅ > (18) text
 ⑲ > (19) text
-⒆ > (19) text
 ⑳ > (20) text
-⒇ > (20) text
 ⑴ > (1) text
 ⑵ > (2) text
 ⑶ > (3) text
@@ -1677,6 +2906,16 @@ w̃ < @{\~ w}@
 ⑻ > (8) text
 ⑼ > (9) text
 ⑽ > (10) text
+⑾ > (11) text
+⑿ > (12) text
+⒀ > (13) text
+⒁ > (14) text
+⒂ > (15) text
+⒃ > (16) text
+⒄ > (17) text
+⒅ > (18) text
+⒆ > (19) text
+⒇ > (20) text
 ⒈ > 1. text
 ⒉ > 2. text
 ⒊ > 3. text
@@ -1698,57 +2937,31 @@ w̃ < @{\~ w}@
 ⒚ > 19. text
 ⒛ > 20. text
 ⒜ > (a) text
-ⓐ > (a) text stopgap
 ⒝ > (b) text
-ⓑ > (b) text stopgap
 ⒞ > (c) text
-ⓒ > (c) text stopgap
 ⒟ > (d) text
-ⓓ > (d) text stopgap
 ⒠ > (e) text
-ⓔ > (e) text stopgap
 ⒡ > (f) text
-ⓕ > (f) text stopgap
 ⒢ > (g) text
-ⓖ > (g) text stopgap
 ⒣ > (h) text
-ⓗ > (h) text stopgap
 ⒤ > (i) text
-ⓘ > (i) text stopgap
 ⒥ > (j) text
-ⓙ > (j) text stopgap
 ⒦ > (k) text
-ⓚ > (k) text stopgap
 ⒧ > (l) text
-ⓛ > (l) text stopgap
 ⒨ > (m) text
-ⓜ > (m) text stopgap
 ⒩ > (n) text
-ⓝ > (n) text stopgap
 ⒪ > (o) text
-ⓞ > (o) text stopgap
 ⒫ > (p) text
-ⓟ > (p) text stopgap
 ⒬ > (q) text
-ⓠ > (q) text stopgap
 ⒭ > (r) text
-ⓡ > (r) text stopgap
 ⒮ > (s) text
-ⓢ > (s) text stopgap
 ⒯ > (t) text
-ⓣ > (t) text stopgap
 ⒰ > (u) text
-ⓤ > (u) text stopgap
 ⒱ > (v) text
-ⓥ > (v) text stopgap
 ⒲ > (w) text
-ⓦ > (w) text stopgap
 ⒳ > (x) text
-ⓧ > (x) text stopgap
 ⒴ > (y) text
-ⓨ > (y) text stopgap
 ⒵ > (z) text
-ⓩ > (z) text stopgap
 Ⓐ > (A) text stopgap
 Ⓑ > (B) text stopgap
 Ⓒ > (C) text stopgap
@@ -1775,366 +2988,454 @@ w̃ < @{\~ w}@
 Ⓧ > (X) text stopgap
 Ⓨ > (Y) text stopgap
 Ⓩ > (Z) text stopgap
+ⓐ > (a) text stopgap
+ⓑ > (b) text stopgap
+ⓒ > (c) text stopgap
+ⓓ > (d) text stopgap
+ⓔ > (e) text stopgap
+ⓕ > (f) text stopgap
+ⓖ > (g) text stopgap
+ⓗ > (h) text stopgap
+ⓘ > (i) text stopgap
+ⓙ > (j) text stopgap
+ⓚ > (k) text stopgap
+ⓛ > (l) text stopgap
+ⓜ > (m) text stopgap
+ⓝ > (n) text stopgap
+ⓞ > (o) text stopgap
+ⓟ > (p) text stopgap
+ⓠ > (q) text stopgap
+ⓡ > (r) text stopgap
+ⓢ > (s) text stopgap
+ⓣ > (t) text stopgap
+ⓤ > (u) text stopgap
+ⓥ > (v) text stopgap
+ⓦ > (w) text stopgap
+ⓧ > (x) text stopgap
+ⓨ > (y) text stopgap
+ⓩ > (z) text stopgap
 ⓪ > (0) text stopgap
-━ > = text stopgap
+─ = \textSFx text.pmboxdraw
+─ > - text
 ━ = \pmboxdrawuni{2501} text.pmboxdraw
-┅ > = text stopgap
-┉ > = text stopgap
-╍ > = text stopgap
-═ > = text stopgap
-═ = \textSFxliii text.pmboxdraw
-│ > | text stopgap
+━ > = text stopgap
 │ = \textSFxi text.pmboxdraw
-┃ > | text stopgap
+│ > | text stopgap
 ┃ = \pmboxdrawuni{2503} text.pmboxdraw
+┃ > | text stopgap
+┄ > - text
+┅ > = text stopgap
+┆ = \bdtriplevdash math.unicode-math
 ┇ > | text stopgap
+┈ > - text
+┉ > = text stopgap
 ┊ > | text stopgap
 ┋ > | text stopgap
+┌ = \textSFi text.pmboxdraw
+┌ > + text stopgap
+┍ = \pmboxdrawuni{250D} text.pmboxdraw
+┍ > + text stopgap
+┎ = \pmboxdrawuni{250E} text.pmboxdraw
+┎ > + text stopgap
+┏ = \pmboxdrawuni{250F} text.pmboxdraw
+┏ > + text stopgap
+┐ = \textSFiii text.pmboxdraw
+┐ > + text stopgap
+┑ = \pmboxdrawuni{2511} text.pmboxdraw
+┑ > + text stopgap
+┒ = \pmboxdrawuni{2512} text.pmboxdraw
+┒ > + text stopgap
+┓ = \pmboxdrawuni{2513} text.pmboxdraw
+┓ > + text stopgap
+└ = \textSFii text.pmboxdraw
+└ > + text stopgap
+┕ = \pmboxdrawuni{2515} text.pmboxdraw
+┕ > + text stopgap
+┖ = \pmboxdrawuni{2516} text.pmboxdraw
+┖ > + text stopgap
+┗ = \pmboxdrawuni{2517} text.pmboxdraw
+┗ > + text stopgap
+┘ = \textSFiv text.pmboxdraw
+┘ > + text stopgap
+┙ = \pmboxdrawuni{2519} text.pmboxdraw
+┚ = \pmboxdrawuni{251A} text.pmboxdraw
+┚ > + text stopgap
+┛ = \pmboxdrawuni{251B} text.pmboxdraw
+┛ > + text stopgap
+├ = \textSFviii text.pmboxdraw
+├ > + text stopgap
+┝ = \pmboxdrawuni{251D} text.pmboxdraw
+┝ > + text stopgap
+┞ = \pmboxdrawuni{251E} text.pmboxdraw
+┞ > + text stopgap
+┟ = \pmboxdrawuni{251F} text.pmboxdraw
+┟ > + text stopgap
+┠ = \pmboxdrawuni{2520} text.pmboxdraw
+┠ > + text stopgap
+┡ = \pmboxdrawuni{2521} text.pmboxdraw
+┡ > + text stopgap
+┢ = \pmboxdrawuni{2522} text.pmboxdraw
+┢ > + text stopgap
+┣ = \pmboxdrawuni{2523} text.pmboxdraw
+┣ > + text stopgap
+┤ = \textSFix text.pmboxdraw
+┤ > + text stopgap
+┥ = \pmboxdrawuni{2525} text.pmboxdraw
+┥ > + text stopgap
+┦ = \pmboxdrawuni{2526} text.pmboxdraw
+┦ > + text stopgap
+┧ = \pmboxdrawuni{2527} text.pmboxdraw
+┧ > + text stopgap
+┨ = \pmboxdrawuni{2528} text.pmboxdraw
+┨ > + text stopgap
+┩ = \pmboxdrawuni{2529} text.pmboxdraw
+┩ > + text stopgap
+┪ = \pmboxdrawuni{252A} text.pmboxdraw
+┪ > + text stopgap
+┫ = \pmboxdrawuni{252B} text.pmboxdraw
+┫ > + text stopgap
+┬ = \textSFvi text.pmboxdraw
+┬ > + text stopgap
+┭ = \pmboxdrawuni{252D} text.pmboxdraw
+┭ > + text stopgap
+┮ = \pmboxdrawuni{252E} text.pmboxdraw
+┮ > + text stopgap
+┯ = \pmboxdrawuni{252F} text.pmboxdraw
+┯ > + text stopgap
+┰ = \pmboxdrawuni{2530} text.pmboxdraw
+┰ > + text stopgap
+┱ = \pmboxdrawuni{2531} text.pmboxdraw
+┱ > + text stopgap
+┲ = \pmboxdrawuni{2532} text.pmboxdraw
+┲ > + text stopgap
+┳ = \pmboxdrawuni{2533} text.pmboxdraw
+┳ > + text stopgap
+┴ = \textSFvii text.pmboxdraw
+┴ > + text stopgap
+┵ = \pmboxdrawuni{2535} text.pmboxdraw
+┵ > + text stopgap
+┶ = \pmboxdrawuni{2536} text.pmboxdraw
+┶ > + text stopgap
+┷ = \pmboxdrawuni{2537} text.pmboxdraw
+┷ > + text stopgap
+┸ = \pmboxdrawuni{2538} text.pmboxdraw
+┸ > + text stopgap
+┹ = \pmboxdrawuni{2539} text.pmboxdraw
+┹ > + text stopgap
+┺ = \pmboxdrawuni{253A} text.pmboxdraw
+┺ > + text stopgap
+┻ = \pmboxdrawuni{253B} text.pmboxdraw
+┻ > + text stopgap
+┼ = \textSFv text.pmboxdraw
+┼ > + text stopgap
+┽ = \pmboxdrawuni{253D} text.pmboxdraw
+┽ > + text stopgap
+┾ = \pmboxdrawuni{253E} text.pmboxdraw
+┾ > + text stopgap
+┿ = \pmboxdrawuni{253F} text.pmboxdraw
+┿ > + text stopgap
+╀ = \pmboxdrawuni{2540} text.pmboxdraw
+╀ > + text stopgap
+╁ = \pmboxdrawuni{2541} text.pmboxdraw
+╁ > + text stopgap
+╂ = \pmboxdrawuni{2542} text.pmboxdraw
+╂ > + text stopgap
+╃ = \pmboxdrawuni{2543} text.pmboxdraw
+╃ > + text stopgap
+╄ = \pmboxdrawuni{2544} text.pmboxdraw
+╄ > + text stopgap
+╅ = \pmboxdrawuni{2545} text.pmboxdraw
+╅ > + text stopgap
+╆ = \pmboxdrawuni{2546} text.pmboxdraw
+╆ > + text stopgap
+╇ = \pmboxdrawuni{2547} text.pmboxdraw
+╇ > + text stopgap
+╈ = \pmboxdrawuni{2548} text.pmboxdraw
+╈ > + text stopgap
+╉ = \pmboxdrawuni{2549} text.pmboxdraw
+╉ > + text stopgap
+╊ = \pmboxdrawuni{254A} text.pmboxdraw
+╊ > + text stopgap
+╋ = \pmboxdrawuni{254B} text.pmboxdraw
+╋ > + text stopgap
+╌ > - text
+╍ > = text stopgap
 ╎ > | text stopgap
 ╏ > | text stopgap
-║ > | text stopgap
+═ = \textSFxliii text.pmboxdraw
+═ > = text stopgap
 ║ = \textSFxxiv text.pmboxdraw
-╽ > | text stopgap
-╽ = \pmboxdrawuni{257D} text.pmboxdraw
-╿ > | text stopgap
-╿ = \pmboxdrawuni{257F} text.pmboxdraw
-┆ = \Elzdshfnc math
-┌ > + text stopgap
-┌ = \textSFi text.pmboxdraw
-┍ > + text stopgap
-┍ = \pmboxdrawuni{250D} text.pmboxdraw
-┎ > + text stopgap
-┎ = \pmboxdrawuni{250E} text.pmboxdraw
-┏ > + text stopgap
-┏ = \pmboxdrawuni{250F} text.pmboxdraw
-┐ > + text stopgap
-┐ = \textSFiii text.pmboxdraw
-┑ > + text stopgap
-┑ = \pmboxdrawuni{2511} text.pmboxdraw
-┒ > + text stopgap
-┒ = \pmboxdrawuni{2512} text.pmboxdraw
-┓ > + text stopgap
-┓ = \pmboxdrawuni{2513} text.pmboxdraw
-└ > + text stopgap
-└ = \textSFii text.pmboxdraw
-┕ > + text stopgap
-┕ = \pmboxdrawuni{2515} text.pmboxdraw
-┖ > + text stopgap
-┖ = \pmboxdrawuni{2516} text.pmboxdraw
-┗ > + text stopgap
-┗ = \pmboxdrawuni{2517} text.pmboxdraw
-┘ > + text stopgap
-┘ = \textSFiv text.pmboxdraw
-┚ > + text stopgap
-┚ = \pmboxdrawuni{251A} text.pmboxdraw
-┛ > + text stopgap
-┛ = \pmboxdrawuni{251B} text.pmboxdraw
-├ > + text stopgap
-├ = \textSFviii text.pmboxdraw
-┝ > + text stopgap
-┝ = \pmboxdrawuni{251D} text.pmboxdraw
-┞ > + text stopgap
-┞ = \pmboxdrawuni{251E} text.pmboxdraw
-┟ > + text stopgap
-┟ = \pmboxdrawuni{251F} text.pmboxdraw
-┠ > + text stopgap
-┠ = \pmboxdrawuni{2520} text.pmboxdraw
-┡ > + text stopgap
-┡ = \pmboxdrawuni{2521} text.pmboxdraw
-┢ > + text stopgap
-┢ = \pmboxdrawuni{2522} text.pmboxdraw
-┣ > + text stopgap
-┣ = \pmboxdrawuni{2523} text.pmboxdraw
-┤ > + text stopgap
-┤ = \textSFix text.pmboxdraw
-┥ > + text stopgap
-┥ = \pmboxdrawuni{2525} text.pmboxdraw
-┦ > + text stopgap
-┦ = \pmboxdrawuni{2526} text.pmboxdraw
-┧ > + text stopgap
-┧ = \pmboxdrawuni{2527} text.pmboxdraw
-┨ > + text stopgap
-┨ = \pmboxdrawuni{2528} text.pmboxdraw
-┩ > + text stopgap
-┩ = \pmboxdrawuni{2529} text.pmboxdraw
-┪ > + text stopgap
-┪ = \pmboxdrawuni{252A} text.pmboxdraw
-┫ > + text stopgap
-┫ = \pmboxdrawuni{252B} text.pmboxdraw
-┬ > + text stopgap
-┬ = \textSFvi text.pmboxdraw
-┭ > + text stopgap
-┭ = \pmboxdrawuni{252D} text.pmboxdraw
-┮ > + text stopgap
-┮ = \pmboxdrawuni{252E} text.pmboxdraw
-┯ > + text stopgap
-┯ = \pmboxdrawuni{252F} text.pmboxdraw
-┰ > + text stopgap
-┰ = \pmboxdrawuni{2530} text.pmboxdraw
-┱ > + text stopgap
-┱ = \pmboxdrawuni{2531} text.pmboxdraw
-┲ > + text stopgap
-┲ = \pmboxdrawuni{2532} text.pmboxdraw
-┳ > + text stopgap
-┳ = \pmboxdrawuni{2533} text.pmboxdraw
-┴ > + text stopgap
-┴ = \textSFvii text.pmboxdraw
-┵ > + text stopgap
-┵ = \pmboxdrawuni{2535} text.pmboxdraw
-┶ > + text stopgap
-┶ = \pmboxdrawuni{2536} text.pmboxdraw
-┷ > + text stopgap
-┷ = \pmboxdrawuni{2537} text.pmboxdraw
-┸ > + text stopgap
-┸ = \pmboxdrawuni{2538} text.pmboxdraw
-┹ > + text stopgap
-┹ = \pmboxdrawuni{2539} text.pmboxdraw
-┺ > + text stopgap
-┺ = \pmboxdrawuni{253A} text.pmboxdraw
-┻ > + text stopgap
-┻ = \pmboxdrawuni{253B} text.pmboxdraw
-┼ > + text stopgap
-┼ = \textSFv text.pmboxdraw
-┽ > + text stopgap
-┽ = \pmboxdrawuni{253D} text.pmboxdraw
-┾ > + text stopgap
-┾ = \pmboxdrawuni{253E} text.pmboxdraw
-┿ > + text stopgap
-┿ = \pmboxdrawuni{253F} text.pmboxdraw
-╀ > + text stopgap
-╀ = \pmboxdrawuni{2540} text.pmboxdraw
-╁ > + text stopgap
-╁ = \pmboxdrawuni{2541} text.pmboxdraw
-╂ > + text stopgap
-╂ = \pmboxdrawuni{2542} text.pmboxdraw
-╃ > + text stopgap
-╃ = \pmboxdrawuni{2543} text.pmboxdraw
-╄ > + text stopgap
-╄ = \pmboxdrawuni{2544} text.pmboxdraw
-╅ > + text stopgap
-╅ = \pmboxdrawuni{2545} text.pmboxdraw
-╆ > + text stopgap
-╆ = \pmboxdrawuni{2546} text.pmboxdraw
-╇ > + text stopgap
-╇ = \pmboxdrawuni{2547} text.pmboxdraw
-╈ > + text stopgap
-╈ = \pmboxdrawuni{2548} text.pmboxdraw
-╉ > + text stopgap
-╉ = \pmboxdrawuni{2549} text.pmboxdraw
-╊ > + text stopgap
-╊ = \pmboxdrawuni{254A} text.pmboxdraw
-╋ > + text stopgap
-╋ = \pmboxdrawuni{254B} text.pmboxdraw
-╒ > + text stopgap
+║ > | text stopgap
 ╒ = \textSFli text.pmboxdraw
-╓ > + text stopgap
+╒ > + text stopgap
 ╓ = \textSFlii text.pmboxdraw
-╔ > + text stopgap
+╓ > + text stopgap
 ╔ = \textSFxxxix text.pmboxdraw
-╕ > + text stopgap
+╔ > + text stopgap
 ╕ = \textSFxxii text.pmboxdraw
-╖ > + text stopgap
+╕ > + text stopgap
 ╖ = \textSFxxi text.pmboxdraw
-╗ > + text stopgap
+╖ > + text stopgap
 ╗ = \textSFxxv text.pmboxdraw
-╘ > + text stopgap
+╗ > + text stopgap
 ╘ = \textSFl text.pmboxdraw
-╙ > + text stopgap
+╘ > + text stopgap
 ╙ = \textSFxlix text.pmboxdraw
-╚ > + text stopgap
+╙ > + text stopgap
 ╚ = \textSFxxxviii text.pmboxdraw
-╛ > + text stopgap
+╚ > + text stopgap
 ╛ = \textSFxxviii text.pmboxdraw
-╜ > + text stopgap
+╛ > + text stopgap
 ╜ = \textSFxxvii text.pmboxdraw
-╝ > + text stopgap
+╜ > + text stopgap
 ╝ = \textSFxxvi text.pmboxdraw
-╞ > + text stopgap
+╝ > + text stopgap
 ╞ = \textSFxxxvi text.pmboxdraw
-╟ > + text stopgap
+╞ > + text stopgap
 ╟ = \textSFxxxvii text.pmboxdraw
-╠ > + text stopgap
+╟ > + text stopgap
 ╠ = \textSFxlii text.pmboxdraw
-╡ > + text stopgap
+╠ > + text stopgap
 ╡ = \textSFxix text.pmboxdraw
-╢ > + text stopgap
+╡ > + text stopgap
 ╢ = \textSFxx text.pmboxdraw
-╣ > + text stopgap
+╢ > + text stopgap
 ╣ = \textSFxxiii text.pmboxdraw
-╤ > + text stopgap
+╣ > + text stopgap
 ╤ = \textSFxlvii text.pmboxdraw
-╥ > + text stopgap
+╤ > + text stopgap
 ╥ = \textSFxlviii text.pmboxdraw
-╦ > + text stopgap
+╥ > + text stopgap
 ╦ = \textSFxli text.pmboxdraw
-╧ > + text stopgap
+╦ > + text stopgap
 ╧ = \textSFxlv text.pmboxdraw
-╨ > + text stopgap
+╧ > + text stopgap
 ╨ = \textSFxlvi text.pmboxdraw
-╩ > + text stopgap
+╨ > + text stopgap
 ╩ = \textSFxl text.pmboxdraw
-╪ > + text stopgap
+╩ > + text stopgap
 ╪ = \textSFliv text.pmboxdraw
-╫ > + text stopgap
+╪ > + text stopgap
 ╫ = \textSFliii text.pmboxdraw
-╬ > + text stopgap
+╫ > + text stopgap
 ╬ = \textSFxliv text.pmboxdraw
+╬ > + text stopgap
 ╭ > + text stopgap
 ╮ > + text stopgap
 ╯ > + text stopgap
 ╰ > + text stopgap
-┙ = \Elzsqfnw math
-┙ = \pmboxdrawuni{2519} text.pmboxdraw
 ╱ = \diagup math
 ╲ > \ text
-▀ = \blockuphalf math
+╳ > X text
+╴ = \pmboxdrawuni{2574} text.pmboxdraw
+╵ = \pmboxdrawuni{2575} text.pmboxdraw
+╶ = \pmboxdrawuni{2576} text.pmboxdraw
+╷ = \pmboxdrawuni{2577} text.pmboxdraw
+╸ = \pmboxdrawuni{2578} text.pmboxdraw
+╹ = \pmboxdrawuni{2579} text.pmboxdraw
+╺ = \pmboxdrawuni{257A} text.pmboxdraw
+╻ = \pmboxdrawuni{257B} text.pmboxdraw
+╼ = \pmboxdrawuni{257C} text.pmboxdraw
+╼ > - text
+╽ = \pmboxdrawuni{257D} text.pmboxdraw
+╽ > | text stopgap
+╾ = \pmboxdrawuni{257E} text.pmboxdraw
+╾ > - text
+╿ = \pmboxdrawuni{257F} text.pmboxdraw
+╿ > | text stopgap
+▀ = \blockuphalf math.unicode-math
 ▀ = \textupblock text.pmboxdraw
-▄ = \blocklowhalf math
+▁ = \pmboxdrawuni{2581} text.pmboxdraw
+▂ = \pmboxdrawuni{2582} text.pmboxdraw
+▃ = \pmboxdrawuni{2583} text.pmboxdraw
+▄ = \blocklowhalf math.unicode-math
 ▄ = \textdnblock text.pmboxdraw
-█ = \blockfull math
+▅ = \pmboxdrawuni{2585} text.pmboxdraw
+▆ = \pmboxdrawuni{2586} text.pmboxdraw
+▇ = \pmboxdrawuni{2587} text.pmboxdraw
+█ = \blockfull math.unicode-math
 █ = \textblock text.pmboxdraw
-▌ = \blocklefthalf math
+▉ = \pmboxdrawuni{2589} text.pmboxdraw
+▊ = \pmboxdrawuni{258A} text.pmboxdraw
+▋ = \pmboxdrawuni{258B} text.pmboxdraw
+▌ = \blocklefthalf math.unicode-math
 ▌ = \textlfblock text.pmboxdraw
-▐ = \blockrighthalf math
+▍ = \pmboxdrawuni{258D} text.pmboxdraw
+▎ = \pmboxdrawuni{258E} text.pmboxdraw
+▏ = \pmboxdrawuni{258F} text.pmboxdraw
+▐ = \blockrighthalf math.unicode-math
 ▐ = \textrtblock text.pmboxdraw
-░ = \blockqtrshaded math
+░ = \blockqtrshaded math.unicode-math
 ░ = \textltshade text.pmboxdraw
-▒ = \blockhalfshaded math
+▒ = \blockhalfshaded math.unicode-math
 ▒ = \textshade text.pmboxdraw
-▓ = \blockthreeqtrshaded math
+▓ = \blockthreeqtrshaded math.unicode-math
 ▓ = \textdkshade text.pmboxdraw
+▔ = \pmboxdrawuni{2594} text.pmboxdraw
+▕ = \pmboxdrawuni{2595} text.pmboxdraw
+▖ = \pmboxdrawuni{2596} text.pmboxdraw
+▗ = \pmboxdrawuni{2597} text.pmboxdraw
+▘ = \pmboxdrawuni{2598} text.pmboxdraw
+▙ = \pmboxdrawuni{2599} text.pmboxdraw
+▚ = \pmboxdrawuni{259A} text.pmboxdraw
+▛ = \pmboxdrawuni{259B} text.pmboxdraw
+▜ = \pmboxdrawuni{259C} text.pmboxdraw
+▝ = \pmboxdrawuni{259D} text.pmboxdraw
+▞ = \pmboxdrawuni{259E} text.pmboxdraw
+▟ = \pmboxdrawuni{259F} text.pmboxdraw
 ■ = \ding{110} text
-■ = \mdlgblksquare math
-□ = \square math
+■ = \mdlgblksquare math.unicode-math
 □ < \Box
-▢ = \squoval math
-▣ = \blackinwhitesquare math
-▤ = \squarehfill math
-▥ = \squarevfill math
-▦ = \squarehvfill math
-▧ = \squarenwsefill math
-▨ = \squareneswfill math
-▩ = \squarecrossfill math
-▪ > \blacksquare math
-◼ > \blacksquare math
-▫ = \smwhtsquare math
-▬ = \hrectangleblack math
-▭ = \fbox{~~} math
-▮ = \vrectangleblack math
-▯ = \Elzvrecto math
-▰ = \parallelogramblack math
+□ < \mdlgwhtsquare math.unicode-math
+□ = \square math
+▢ = \squoval math.unicode-math
+▣ = \blackinwhitesquare math.unicode-math
+▤ = \squarehfill math.unicode-math
+▥ = \squarevfill math.unicode-math
+▦ = \squarehvfill math.unicode-math
+▧ = \squarenwsefill math.unicode-math
+▨ = \squareneswfill math.unicode-math
+▩ = \squarecrossfill math.unicode-math
+▪ < \blacksquare math
+▪ = \smblksquare math.unicode-math
+▫ = \smwhtsquare math.unicode-math
+▬ = \hrectangleblack math.unicode-math
+▭ < \fbox{~~} math
+▭ = \hrectangle math.unicode-math
+▮ = \vrectangleblack math.unicode-math
+▯ = \vrectangle math.unicode-math
+▰ = \parallelogramblack math.unicode-math
+▱ = \parallelogram math.unicode-math
+▲ = \bigblacktriangleup math.unicode-math
 ▲ = \ding{115} text
-▲ = \bigblacktriangleup math
-△ = \bigtriangleup math
-▴ = \blacktriangle math
-▵ = \vartriangle math
+△ = \bigtriangleup math.unicode-math
+▴ = \blacktriangle math.unicode-math
+▵ = \vartriangle math.unicode-math
+▶ < \blacktriangleright math.unicode-math
 ▶ = \RHD math
+▷ < \triangleright math.unicode-math
 ▷ = \rhd math
-▸ = \blacktriangleright math
-▹ = \triangleright math
-► = \blackpointerright math
-▻ = \whitepointerright math
+▸ = \smallblacktriangleright math.unicode-math
+▹ = \smalltriangleright math.unicode-math
+► = \blackpointerright math.unicode-math
+▻ = \whitepointerright math.unicode-math
+▼ = \bigblacktriangledown math.unicode-math
 ▼ = \ding{116} text
-▼ = \bigblacktriangledown math
-▽ = \bigtriangledown math
-▾ = \blacktriangledown math
-▿ = \triangledown math
+▽ = \bigtriangledown math.unicode-math
+▾ = \blacktriangledown math.unicode-math
+▿ = \triangledown math.unicode-math
+◀ < \blacktriangleleft math.unicode-math
 ◀ = \LHD math
+◁ < \triangleleft math.unicode-math
 ◁ = \lhd math
-◂ = \blacktriangleleft math
-◃ = \triangleleft math
-◄ = \blackpointerleft math
-◅ = \whitepointerleft math
-◆ = \ding{117} text
+◂ = \smallblacktriangleleft math.unicode-math
+◃ = \smalltriangleleft math.unicode-math
+◄ = \blackpointerleft math.unicode-math
+◅ = \whitepointerleft math.unicode-math
+◆ < \mdlgblkdiamond math.unicode-math
 ◆ = \Diamondblack math
+◆ = \ding{117} text
+◇ < \mdlgwhtdiamond math.unicode-math
 ◇ = \Diamond math
-◈ = \blackinwhitediamond math
-◉ = \fisheye math
-◊ = \lozenge math
-○ > \bigcirc math
-◌ = \dottedcircle math
-◍ = \circlevertfill math
-◎ = \bullseye math
-● = \ding{108} text
+◈ = \blackinwhitediamond math.unicode-math
+◉ = \fisheye math.unicode-math
+◊ < \mdlgwhtlozenge math.unicode-math
+◊ = \lozenge math.unicode-math
+○ < \mdlgwhtcircle math.unicode-math
+○ = \bigcirc math
+◌ = \dottedcircle math.unicode-math
+◍ = \circlevertfill math.unicode-math
+◎ = \bullseye math.unicode-math
+● < \mdlgblkcircle math.unicode-math
 ● = \CIRCLE math
-◐ = \Elzcirfl math
-◑ = \Elzcirfr math
-◒ = \Elzcirfb math
-◓ = \circletophalfblack math
-◔ = \circleurquadblack math
-◕ = \blackcircleulquadwhite math
-◖ = \LEFTCIRCLE math
+● = \ding{108} text
+◐ = \circlelefthalfblack math.unicode-math
+◑ = \circlerighthalfblack math.unicode-math
+◒ = \circlebottomhalfblack math.unicode-math
+◓ = \circletophalfblack math.unicode-math
+◔ = \circleurquadblack math.unicode-math
+◕ = \blackcircleulquadwhite math.unicode-math
+◖ < \LEFTCIRCLE math
+◖ = \blacklefthalfcircle math.unicode-math
+◗ < \RIGHTCIRCLE math
+◗ = \blackrighthalfcircle math.unicode-math
 ◗ = \ding{119} text
-◗ = \RIGHTCIRCLE math
-◘ = \Elzrvbull math
-◙ = \inversewhitecircle math
-◚ = \invwhiteupperhalfcircle math
-◛ = \invwhitelowerhalfcircle math
-◜ = \ularc math
-◝ = \urarc math
-◞ = \lrarc math
-◟ = \llarc math
-◠ = \topsemicircle math
-◡ = \botsemicircle math
-◢ = \lrblacktriangle math
-◣ = \llblacktriangle math
-◤ = \ulblacktriangle math
-◥ = \urblacktriangle math
-◦ = \smwhtcircle math
-◧ = \Elzsqfl math
-◨ = \Elzsqfr math
-◩ = \squareulblack math
-◪ = \Elzsqfse math
-◫ = \boxbar math
-◬ = \trianglecdot math
-◭ = \triangleleftblack math
-◮ = \trianglerightblack math
+◘ = \inversebullet math.unicode-math
+◙ = \inversewhitecircle math.unicode-math
+◚ = \invwhiteupperhalfcircle math.unicode-math
+◛ = \invwhitelowerhalfcircle math.unicode-math
+◜ = \ularc math.unicode-math
+◝ = \urarc math.unicode-math
+◞ = \lrarc math.unicode-math
+◟ = \llarc math.unicode-math
+◠ = \topsemicircle math.unicode-math
+◡ = \botsemicircle math.unicode-math
+◢ = \lrblacktriangle math.unicode-math
+◣ = \llblacktriangle math.unicode-math
+◤ = \ulblacktriangle math.unicode-math
+◥ = \urblacktriangle math.unicode-math
+◦ = \smwhtcircle math.unicode-math
+◧ = \squareleftblack math.unicode-math
+◨ = \squarerightblack math.unicode-math
+◩ = \squareulblack math.unicode-math
+◪ = \squarelrblack math.unicode-math
+◫ = \boxbar math.unicode-math
+◬ = \trianglecdot math.unicode-math
+◭ = \triangleleftblack math.unicode-math
+◮ = \trianglerightblack math.unicode-math
+◯ < \lgwhtcircle math.unicode-math
 ◯ = \bigcirc math
-◰ = \squareulquad math
-◱ = \squarellquad math
-◲ = \squarelrquad math
-◳ = \squareurquad math
-◴ = \circleulquad math
-◵ = \circlellquad math
-◶ = \circlelrquad math
-◷ = \circleurquad math
-◸ = \ultriangle math
-◹ = \urtriangle math
-◺ = \lltriangle math
-◻ > \square math
-⬜ > \square math
-◽ = \mdsmwhtsquare math
-◾ = \mdsmblksquare math
-◿ = \lrtriangle math
+◰ = \squareulquad math.unicode-math
+◱ = \squarellquad math.unicode-math
+◲ = \squarelrquad math.unicode-math
+◳ = \squareurquad math.unicode-math
+◴ = \circleulquad math.unicode-math
+◵ = \circlellquad math.unicode-math
+◶ = \circlelrquad math.unicode-math
+◷ = \circleurquad math.unicode-math
+◸ = \ultriangle math.unicode-math
+◹ = \urtriangle math.unicode-math
+◺ = \lltriangle math.unicode-math
+◻ < \square math
+◻ = \mdwhtsquare math.unicode-math
+◼ < \blacksquare math
+◼ = \mdblksquare math.unicode-math
+◽ = \mdsmwhtsquare math.unicode-math
+◾ = \mdsmblksquare math.unicode-math
+◿ = \lrtriangle math.unicode-math
+★ = \bigstar math.unicode-math
 ★ = \ding{72} text
-★ = \bigstar math
+☆ = \bigwhitestar math.unicode-math
 ☆ = \ding{73} text
-☆ = \bigwhitestar math
+☉ < \astrosun math.unicode-math
 ☉ = \Sun math
 ☎ = \ding{37} text
 ☐ = \Square math
 ☑ = \CheckedBox math
 ☒ = \XBox math
+☓ > X text
 ☕ = \steaming math
 ☛ = \ding{42} text
 ☞ = \ding{43} text
 ☞ = \pointright math
 ☠ = \skull math
-☡ = \danger math
+☡ = \danger math.unicode-math
 ☢ = \radiation math
 ☣ = \biohazard math
 ☯ = \yinyang math
 ☹ = \frownie math
 ☺ = \smiley math
-☻ = \blacksmiley math
-☼ = \sun math
+☻ = \blacksmiley math.unicode-math
+☼ = \sun math.unicode-math
+☽ = \rightmoon math.unicode-math
 ☽ = \rightmoon text.wasysym
+☾ = \leftmoon math.unicode-math
 ☾ = \leftmoon text.wasysym
 ☿ = \mercury
+♀ = \female math.unicode-math
 ♀ = \venus text
-♀ = \female math
 ♁ = \earth math
-♂ = \male
+♂ = \male math.unicode-math
 ♃ = \jupiter
 ♄ = \saturn
 ♅ = \uranus
@@ -2153,44 +3454,47 @@ w̃ < @{\~ w}@
 ♒ = \aquarius
 ♓ = \pisces
 ♠ = \ding{171} text
-♠ = \spadesuit math
-♡ = \heartsuit math
-♢ > \diamond math
-♣ = \ding{168} text
-♣ = \clubsuit math
-♤ = \varspadesuit math
+♠ = \spadesuit math.unicode-math
+♡ = \heartsuit math.unicode-math
+♢ < \diamond math
+♢ = \diamondsuit math.unicode-math
+♣ < \ding{168} text
+♣ = \clubsuit math.unicode-math
+♤ = \varspadesuit math.unicode-math
 ♥ = \ding{170} text
-♥ = \varheartsuit math
+♥ = \varheartsuit math.unicode-math
 ♦ = \ding{169} text
-♦ = \vardiamondsuit math
-♧ = \varclubsuit math
-♩ = \quarternote
-♪ = \eighthnote
-♫ = \twonotes math
-♬ = \sixteenthnote math
-♭ = \flat math
-♮ = \natural math
-♯ = \sharp math
+♦ = \vardiamondsuit math.unicode-math
+♧ = \varclubsuit math.unicode-math
+♩ = \quarternote math.unicode-math
+♪ = \eighthnote math.unicode-math
+♫ = \twonotes math.unicode-math
+♬ = \sixteenthnote math.unicode-math
+♭ = \flat math.unicode-math
+♮ = \natural math.unicode-math
+♯ = \sharp math.unicode-math
 ♻ = \recycle math
-♾ = \acidfree math
-⚀ = \dicei math
-⚁ = \diceii math
-⚂ = \diceiii math
-⚃ = \diceiv math
-⚄ = \dicev math
-⚅ = \dicevi math
-⚆ = \circledrightdot math
-⚇ = \circledtwodots math
-⚈ = \blackcircledrightdot math
-⚉ = \blackcircledtwodots math
+♾ = \acidfree math.unicode-math
+⚀ = \dicei math.unicode-math
+⚁ = \diceii math.unicode-math
+⚂ = \diceiii math.unicode-math
+⚃ = \diceiv math.unicode-math
+⚄ = \dicev math.unicode-math
+⚅ = \dicevi math.unicode-math
+⚆ = \circledrightdot math.unicode-math
+⚇ = \circledtwodots math.unicode-math
+⚈ = \blackcircledrightdot math.unicode-math
+⚉ = \blackcircledtwodots math.unicode-math
 ⚓ = \anchor math
 ⚔ = \swords math
 ⚠ = \warning math
-⚥ = \Hermaphrodite math
+⚥ = \Hermaphrodite math.unicode-math
+⚪ < \mdwhtcircle math.unicode-math
 ⚪ = \medcirc math
+⚫ < \mdblkcircle math.unicode-math
 ⚫ = \medbullet math
-⚬ = \mdsmwhtcircle math
-⚲ = \neuter math
+⚬ = \mdsmwhtcircle math.unicode-math
+⚲ = \neuter math.unicode-math
 ✁ = \ding{33} text
 ✂ = \ding{34} text
 ✃ = \ding{35} text
@@ -2207,13 +3511,13 @@ w̃ < @{\~ w}@
 ✐ = \ding{48} text
 ✑ = \ding{49} text
 ✒ = \ding{50} text
+✓ = \checkmark math.unicode-math
 ✓ = \ding{51} text
-✓ = \checkmark math
 ✔ = \ding{52} text
 ✕ = \ding{53} text
 ✖ = \ding{54} text
-✗ = \ding{55} text
 ✗ = \ballotx math
+✗ = \ding{55} text
 ✘ = \ding{56} text
 ✙ = \ding{57} text
 ✚ = \ding{58} text
@@ -2223,7 +3527,7 @@ w̃ < @{\~ w}@
 ✞ = \ding{62} text
 ✟ = \ding{63} text
 ✠ = \ding{64} text
-✠ = \maltese math
+✠ = \maltese math.unicode-math
 ✡ = \ding{65} text
 ✢ = \ding{66} text
 ✣ = \ding{67} text
@@ -2232,8 +3536,8 @@ w̃ < @{\~ w}@
 ✦ = \ding{70} text
 ✧ = \ding{71} text
 ✩ > \ding{73} text
+✪ = \circledstar math.unicode-math
 ✪ = \ding{74} text
-✪ = \circledstar math
 ✫ = \ding{75} text
 ✬ = \ding{76} text
 ✭ = \ding{77} text
@@ -2246,15 +3550,15 @@ w̃ < @{\~ w}@
 ✴ = \ding{84} text
 ✵ = \ding{85} text
 ✶ = \ding{86} text
-✶ = \varstar math
+✶ = \varstar math.unicode-math
 ✷ = \ding{87} text
 ✸ = \ding{88} text
 ✹ = \ding{89} text
 ✺ = \ding{90} text
 ✻ = \ding{91} text
 ✼ = \ding{92} text
+✽ = \dingasterisk math.unicode-math
 ✽ = \ding{93} text
-✽ = \dingasterisk math
 ✾ = \ding{94} text
 ✿ = \ding{95} text
 ❀ = \ding{96} text
@@ -2289,8 +3593,8 @@ w̃ < @{\~ w}@
 ❥ = \ding{165} text
 ❦ = \ding{166} text
 ❧ = \ding{167} text
-❲ > \lbrbrak math
-❳ > \rbrbrak math
+❲ = \lbrbrak math.unicode-math
+❳ = \rbrbrak math.unicode-math
 ❶ = \ding{182} text
 ❷ = \ding{183} text
 ❸ = \ding{184} text
@@ -2326,15 +3630,15 @@ w̃ < @{\~ w}@
 ➙ = \ding{217} text
 ➚ = \ding{218} text
 ➛ = \ding{219} text
-➛ = \draftingarrow math
+➛ = \draftingarrow math.unicode-math
 ➜ = \ding{220} text
 ➝ = \ding{221} text
 ➞ = \ding{222} text
 ➟ = \ding{223} text
 ➠ = \ding{224} text
 ➡ = \ding{225} text
-➢ = \ding{226} text
 ➢ = \arrowbullet math
+➢ = \ding{226} text
 ➣ = \ding{227} text
 ➤ = \ding{228} text
 ➥ = \ding{229} text
@@ -2362,628 +3666,755 @@ w̃ < @{\~ w}@
 ➼ = \ding{252} text
 ➽ = \ding{253} text
 ➾ = \ding{254} text
-⟀ = \threedangle math
-⟁ = \whiteinwhitetriangle math
-⟂ = \perp math
-⟃ = \subsetcirc math
-⟄ = \supsetcirc math
+⟀ = \threedangle math.unicode-math
+⟁ = \whiteinwhitetriangle math.unicode-math
+⟂ = \perp math.unicode-math
+⟃ = \subsetcirc math.unicode-math
+⟄ = \supsetcirc math.unicode-math
+⟅ < \lbag math.unicode-math
 ⟅ = \Lbag math
+⟆ < \rbag math.unicode-math
 ⟆ = \Rbag math
-⟇ = \veedot math
-⟈ = \bsolhsub math
-⟉ = \suphsol math
-⟌ = \longdivision math
+⟇ = \veedot math.unicode-math
+⟈ = \bsolhsub math.unicode-math
+⟉ = \suphsol math.unicode-math
+⟋ = \diagup math.unicode-math
+⟌ = \longdivision math.unicode-math
+⟍ = \diagdown math.unicode-math
+⟐ < \diamondcdot math.unicode-math
 ⟐ = \Diamonddot math
-⟑ = \wedgedot math
-⟒ = \upin math
-⟓ = \pullback math
-⟔ = \pushout math
-⟕ = \leftouterjoin math
-⟖ = \rightouterjoin math
-⟗ = \fullouterjoin math
-⟘ = \bigbot math
-⟙ = \bigtop math
-⟚ = \DashVDash math
-⟛ = \dashVdash math
-⟜ = \multimapinv math
-⟝ = \vlongdash math
-⟞ = \longdashv math
-⟟ = \cirbot math
-⟠ = \lozengeminus math
-⟡ = \concavediamond math
-⟢ = \concavediamondtickleft math
-⟣ = \concavediamondtickright math
-⟤ = \whitesquaretickleft math
-⟥ = \whitesquaretickright math
+⟑ = \wedgedot math.unicode-math
+⟒ = \upin math.unicode-math
+⟓ = \pullback math.unicode-math
+⟔ = \pushout math.unicode-math
+⟕ = \leftouterjoin math.unicode-math
+⟖ = \rightouterjoin math.unicode-math
+⟗ = \fullouterjoin math.unicode-math
+⟘ = \bigbot math.unicode-math
+⟙ = \bigtop math.unicode-math
+⟚ = \DashVDash math.unicode-math
+⟛ = \dashVdash math.unicode-math
+⟜ = \multimapinv math.unicode-math
+⟝ = \vlongdash math.unicode-math
+⟞ = \longdashv math.unicode-math
+⟟ = \cirbot math.unicode-math
+⟠ = \lozengeminus math.unicode-math
+⟡ = \concavediamond math.unicode-math
+⟢ = \concavediamondtickleft math.unicode-math
+⟣ = \concavediamondtickright math.unicode-math
+⟤ = \whitesquaretickleft math.unicode-math
+⟥ = \whitesquaretickright math.unicode-math
+⟦ < \lBrack math.unicode-math
 ⟦ = \llbracket math
+⟧ < \rBrack math.unicode-math
 ⟧ = \rrbracket math
-⟨ = \langle math
-⟩ = \rangle math
+⟨ = \langle math.unicode-math
+⟩ = \rangle math.unicode-math
+⟪ < \lAngle math.unicode-math
 ⟪ = \lang math
-⟫ = \rang math
-⟬ = \Lbrbrak math
-⟭ = \Rbrbrak math
-⟮ = \lgroup math
-⟯ = \rgroup math
-⟰ = \UUparrow math
-⟱ = \DDownarrow math
-⟲ = \acwgapcirclearrow math
-⟳ = \cwgapcirclearrow math
-⟴ = \rightarrowonoplus math
-⟵ = \longleftarrow math
-⟶ = \longrightarrow math
-⟷ = \longleftrightarrow math
-⟸ = \Longleftarrow math
-⟹ = \Longrightarrow math
-⟺ = \Longleftrightarrow math
-⟻ = \longmapsfrom math
-⟼ = \longmapsto math
-⟽ = \Longmapsfrom math
-⟾ = \Longmapsto math
-⟿ = \sim\joinrel\leadsto math
+⟫ < \rAngle math.unicode-math
+⟫ = \rang math.unicode-math
+⟬ = \Lbrbrak math.unicode-math
+⟭ = \Rbrbrak math.unicode-math
+⟮ = \lgroup math.unicode-math
+⟯ = \rgroup math.unicode-math
+⟰ = \UUparrow math.unicode-math
+⟱ = \DDownarrow math.unicode-math
+⟲ = \acwgapcirclearrow math.unicode-math
+⟳ = \cwgapcirclearrow math.unicode-math
+⟴ = \rightarrowonoplus math.unicode-math
+⟵ = \longleftarrow math.unicode-math
+⟶ = \longrightarrow math.unicode-math
+⟷ = \longleftrightarrow math.unicode-math
+⟸ = \Longleftarrow math.unicode-math
+⟹ = \Longrightarrow math.unicode-math
+⟺ = \Longleftrightarrow math.unicode-math
+⟻ = \longmapsfrom math.unicode-math
+⟼ = \longmapsto math.unicode-math
+⟽ = \Longmapsfrom math.unicode-math
+⟾ = \Longmapsto math.unicode-math
+⟿ < \sim\joinrel\leadsto math
+⟿ = \longrightsquigarrow math.unicode-math
+⤀ < \nvtwoheadrightarrow math.unicode-math
 ⤀ = \psur math
-⤁ = \nVtwoheadrightarrow math
-⤂ = \nvLeftarrow math
-⤃ = \nvRightarrow math
-⤄ = \nvLeftrightarrow math
-⤆ = \Mapsfrom math
-⤇ = \Mapsto math
-⤈ = \downarrowbarred math
-⤉ = \uparrowbarred math
-⤊ = \Uuparrow math
-⤋ = \Ddownarrow math
-⤌ = \leftbkarrow math
-⤍ = \rightbkarrow math
-⤎ = \leftdbkarrow math
-⤏ = \dbkarow math
-⤐ = \drbkarow math
-⤑ = \rightdotarrow math
+⤁ = \nVtwoheadrightarrow math.unicode-math
+⤂ = \nvLeftarrow math.unicode-math
+⤃ = \nvRightarrow math.unicode-math
+⤄ = \nvLeftrightarrow math.unicode-math
+⤅ = \twoheadmapsto math.unicode-math
+⤆ = \Mapsfrom math.unicode-math
+⤇ = \Mapsto math.unicode-math
+⤈ = \downarrowbarred math.unicode-math
+⤉ = \uparrowbarred math.unicode-math
+⤊ = \Uuparrow math.unicode-math
+⤋ = \Ddownarrow math.unicode-math
+⤌ = \leftbkarrow math.unicode-math
+⤍ = \rightbkarrow math.unicode-math
+⤎ = \leftdbkarrow math.unicode-math
+⤏ = \dbkarrow math.unicode-math
+⤐ = \drbkarrow math.unicode-math
+⤑ = \rightdotarrow math.unicode-math
+⤒ < \baruparrow math.unicode-math
 ⤒ = \UpArrowBar math
+⤓ < \downarrowbar math.unicode-math
 ⤓ = \DownArrowBar math
+⤔ < \nvrightarrowtail math.unicode-math
 ⤔ = \pinj math
+⤕ < \nVrightarrowtail math.unicode-math
 ⤕ = \finj math
+⤖ < \twoheadrightarrowtail math.unicode-math
 ⤖ = \bij math
-⤗ = \nvtwoheadrightarrowtail math
-⤘ = \nVtwoheadrightarrowtail math
-⤙ = \lefttail math
-⤚ = \righttail math
-⤛ = \leftdbltail math
-⤜ = \rightdbltail math
-⤝ = \diamondleftarrow math
-⤞ = \rightarrowdiamond math
-⤟ = \diamondleftarrowbar math
-⤠ = \barrightarrowdiamond math
-⤡ = \nwsearrow math
-⤢ = \neswarrow math
-⤫ = \rdiagovfdiag math
-⤬ = \fdiagovrdiag math
-⤭ = \seovnearrow math
-⤮ = \neovsearrow math
-⤯ = \fdiagovnearrow math
-⤰ = \rdiagovsearrow math
-⤱ = \neovnwarrow math
-⤲ = \nwovnearrow math
-⤴ = \uprightcurvearrow math
-⤵ = \downrightcurvedarrow math
-⤸ = \cwrightarcarrow math
-⤹ = \acwleftarcarrow math
-⤺ = \acwoverarcarrow math
-⤻ = \acwunderarcarrow math
-⤼ = \curvearrowrightminus math
-⤽ = \curvearrowleftplus math
-⤾ = \cwundercurvearrow math
-⤿ = \ccwundercurvearrow math
+⤗ = \nvtwoheadrightarrowtail math.unicode-math
+⤘ = \nVtwoheadrightarrowtail math.unicode-math
+⤙ = \lefttail math.unicode-math
+⤚ = \righttail math.unicode-math
+⤛ = \leftdbltail math.unicode-math
+⤜ = \rightdbltail math.unicode-math
+⤝ = \diamondleftarrow math.unicode-math
+⤞ = \rightarrowdiamond math.unicode-math
+⤟ = \diamondleftarrowbar math.unicode-math
+⤠ = \barrightarrowdiamond math.unicode-math
+⤡ = \nwsearrow math.unicode-math
+⤢ = \neswarrow math.unicode-math
+⤣ = \hknwarrow math.unicode-math
+⤤ = \hknearrow math.unicode-math
+⤥ = \hksearrow math.unicode-math
+⤦ = \hkswarrow math.unicode-math
+⤧ = \tona math.unicode-math
+⤨ = \toea math.unicode-math
+⤩ = \tosa math.unicode-math
+⤪ = \towa math.unicode-math
+⤫ = \rdiagovfdiag math.unicode-math
+⤬ = \fdiagovrdiag math.unicode-math
+⤭ = \seovnearrow math.unicode-math
+⤮ = \neovsearrow math.unicode-math
+⤯ = \fdiagovnearrow math.unicode-math
+⤰ = \rdiagovsearrow math.unicode-math
+⤱ = \neovnwarrow math.unicode-math
+⤲ = \nwovnearrow math.unicode-math
+⤳ = \rightcurvedarrow math.unicode-math
+⤴ = \uprightcurvearrow math.unicode-math
+⤵ = \downrightcurvedarrow math.unicode-math
+⤶ = \leftdowncurvedarrow math.unicode-math
+⤷ = \rightdowncurvedarrow math.unicode-math
+⤸ = \cwrightarcarrow math.unicode-math
+⤹ = \acwleftarcarrow math.unicode-math
+⤺ = \acwoverarcarrow math.unicode-math
+⤻ = \acwunderarcarrow math.unicode-math
+⤼ = \curvearrowrightminus math.unicode-math
+⤽ = \curvearrowleftplus math.unicode-math
+⤾ = \cwundercurvearrow math.unicode-math
+⤿ = \ccwundercurvearrow math.unicode-math
+⥀ < \acwcirclearrow math.unicode-math
 ⥀ = \Elolarr math
+⥁ < \cwcirclearrow math.unicode-math
 ⥁ = \Elorarr math
-⥂ = \ElzRlarr math
-⥃ = \leftarrowshortrightarrow math
-⥄ = \ElzrLarr math
-⥅ = \rightarrowplus math
-⥆ = \leftarrowplus math
-⥇ = \Elzrarrx math
-⥈ = \leftrightarrowcircle math
-⥉ = \twoheaduparrowcircle math
+⥂ = \rightarrowshortleftarrow math.unicode-math
+⥃ = \leftarrowshortrightarrow math.unicode-math
+⥄ = \shortrightarrowleftarrow math.unicode-math
+⥅ = \rightarrowplus math.unicode-math
+⥆ = \leftarrowplus math.unicode-math
+⥇ = \rightarrowx math.unicode-math
+⥈ = \leftrightarrowcircle math.unicode-math
+⥉ = \twoheaduparrowcircle math.unicode-math
+⥊ < \leftrightharpoonupdown math.unicode-math
 ⥊ = \leftrightharpoon math
+⥋ < \leftrightharpoondownup math.unicode-math
 ⥋ = \rightleftharpoon math
-⥌ = \updownharpoonrightleft math
-⥍ = \updownharpoonleftright math
-⥎ = \LeftRightVector math
+⥌ = \updownharpoonrightleft math.unicode-math
+⥍ = \updownharpoonleftright math.unicode-math
+⥎ < \LeftRightVector math
+⥎ = \leftrightharpoonupup math.unicode-math
+⥏ < \updownharpoonrightright math.unicode-math
 ⥏ = \RightUpDownVector math
-⥐ = \DownLeftRightVector math
+⥐ < \leftrightharpoondowndown math.unicode-math
+⥐ = \DownLeftRightVector math.unicode-math
+⥑ < \updownharpoonleftleft math.unicode-math
 ⥑ = \LeftUpDownVector math
+⥒ < \barleftharpoonup math.unicode-math
 ⥒ = \LeftVectorBar math
+⥓ < \rightharpoonupbar math.unicode-math
 ⥓ = \RightVectorBar math
+⥔ < \barupharpoonright math.unicode-math
 ⥔ = \RightUpVectorBar math
+⥕ < \downharpoonrightbar math.unicode-math
 ⥕ = \RightDownVectorBar math
+⥖ < \barleftharpoondown math.unicode-math
 ⥖ = \DownLeftVectorBar math
+⥗ < \rightharpoondownbar math.unicode-math
 ⥗ = \DownRightVectorBar math
+⥘ < \barupharpoonleft math.unicode-math
 ⥘ = \LeftUpVectorBar math
+⥙ < \downharpoonleftbar math.unicode-math
 ⥙ = \LeftDownVectorBar math
+⥚ < \leftharpoonupbar math.unicode-math
 ⥚ = \LeftTeeVector math
+⥛ < \barrightharpoonup math.unicode-math
 ⥛ = \RightTeeVector math
+⥜ < \upharpoonrightbar math.unicode-math
 ⥜ = \RightUpTeeVector math
+⥝ < \bardownharpoonright math.unicode-math
 ⥝ = \RightDownTeeVector math
+⥞ < \leftharpoondownbar math.unicode-math
 ⥞ = \DownLeftTeeVector math
+⥟ < \barrightharpoondown math.unicode-math
 ⥟ = \DownRightTeeVector math
+⥠ < \upharpoonleftbar math.unicode-math
 ⥠ = \LeftUpTeeVector math
+⥡ < \bardownharpoonleft math.unicode-math
 ⥡ = \LeftDownTeeVector math
+⥢ < \leftharpoonsupdown math.unicode-math
 ⥢ = \leftleftharpoons math
+⥣ < \upharpoonsleftright math.unicode-math
 ⥣ = \upupharpoons math
+⥤ < \rightharpoonsupdown math.unicode-math
 ⥤ = \rightrightharpoons math
+⥥ < \downharpoonsleftright math.unicode-math
 ⥥ = \downdownharpoons math
-⥦ = \leftrightharpoonsup math
-⥧ = \leftrightharpoonsdown math
-⥨ = \rightleftharpoonsup math
-⥩ = \rightleftharpoonsdown math
+⥦ = \leftrightharpoonsup math.unicode-math
+⥧ = \leftrightharpoonsdown math.unicode-math
+⥨ = \rightleftharpoonsup math.unicode-math
+⥩ = \rightleftharpoonsdown math.unicode-math
+⥪ < \leftharpoonupdash math.unicode-math
 ⥪ = \leftbarharpoon math
+⥫ < \dashleftharpoondown math.unicode-math
 ⥫ = \barleftharpoon math
+⥬ < \rightharpoonupdash math.unicode-math
 ⥬ = \rightbarharpoon math
+⥭ < \dashrightharpoondown math.unicode-math
 ⥭ = \barrightharpoon math
+⥮ < \updownharpoonsleftright math.unicode-math
 ⥮ = \UpEquilibrium math
+⥯ < \downupharpoonsleftright math.unicode-math
 ⥯ = \ReverseUpEquilibrium math
+⥰ < \rightimply math.unicode-math
 ⥰ = \RoundImplies math
-⥱ = \equalrightarrow math
-⥲ = \similarrightarrow math
-⥳ = \leftarrowsimilar math
-⥴ = \rightarrowsimilar math
-⥵ = \rightarrowapprox math
-⥶ = \ltlarr math
-⥷ = \leftarrowless math
-⥸ = \gtrarr math
-⥹ = \subrarr math
-⥺ = \leftarrowsubset math
-⥻ = \suplarr math
-⥾ = \upfishtail math
-⥿ = \downfishtail math
-⦀ = \Elztfnc math
-⦁ = \spot math
-⦂ = \typecolon math
-⦃ = \lBrace math
-⦄ = \rBrace math
-⦆ = \Elroang math
-⦇ = \limg math
+⥱ = \equalrightarrow math.unicode-math
+⥲ = \similarrightarrow math.unicode-math
+⥳ = \leftarrowsimilar math.unicode-math
+⥴ = \rightarrowsimilar math.unicode-math
+⥵ = \rightarrowapprox math.unicode-math
+⥶ = \ltlarr math.unicode-math
+⥷ = \leftarrowless math.unicode-math
+⥸ = \gtrarr math.unicode-math
+⥹ = \subrarr math.unicode-math
+⥺ = \leftarrowsubset math.unicode-math
+⥻ = \suplarr math.unicode-math
+⥼ = \leftfishtail math.unicode-math
+⥽ = \rightfishtail math.unicode-math
+⥾ = \upfishtail math.unicode-math
+⥿ = \downfishtail math.unicode-math
+⦀ = \Vvert math.unicode-math
+⦁ < \mdsmblkcircle math.unicode-math
+⦁ = \spot math.unicode-math
+⦂ = \typecolon math.unicode-math
+⦃ = \lBrace math.unicode-math
+⦄ = \rBrace math.unicode-math
+⦅ = \lParen math.unicode-math
+⦆ < \rParen math.unicode-math
+⦆ = \Elroang math.unicode-math
+⦇ < \llparenthesis math.unicode-math
+⦇ = \limg math.unicode-math
+⦈ < \rrparenthesis math.unicode-math
 ⦈ = \rimg math
+⦉ < \llangle math.unicode-math
 ⦉ = \lblot math
+⦊ < \rrangle math.unicode-math
 ⦊ = \rblot math
-⦋ = \lbrackubar math
-⦌ = \rbrackubar math
-⦍ = \lbrackultick math
-⦎ = \rbracklrtick math
-⦏ = \lbracklltick math
-⦐ = \rbrackurtick math
-⦑ = \langledot math
-⦒ = \rangledot math
-⦓ = <\kern-0.58em( math
-⦕ = \Lparengtr math
-⦖ = \Rparenless math
-⦗ = \lblkbrbrak math
-⦘ = \rblkbrbrak math
-⦙ = \Elzddfnc math
-⦚ = \vzigzag math
-⦛ = \measuredangleleft math
+⦋ = \lbrackubar math.unicode-math
+⦌ = \rbrackubar math.unicode-math
+⦍ = \lbrackultick math.unicode-math
+⦎ = \rbracklrtick math.unicode-math
+⦏ = \lbracklltick math.unicode-math
+⦐ = \rbrackurtick math.unicode-math
+⦑ = \langledot math.unicode-math
+⦒ = \rangledot math.unicode-math
+⦓ < <\kern-0.58em( math
+⦓ = \lparenless math.unicode-math
+⦔ = \rparengtr math.unicode-math
+⦕ = \Lparengtr math.unicode-math
+⦖ = \Rparenless math.unicode-math
+⦗ = \lblkbrbrak math.unicode-math
+⦘ = \rblkbrbrak math.unicode-math
+⦙ = \fourvdots math.unicode-math
+⦚ = \vzigzag math.unicode-math
+⦛ = \measuredangleleft math.unicode-math
+⦜ < \rightanglesqr math.unicode-math
 ⦜ = \Angle math
-⦝ = \rightanglemdot math
-⦞ = \angles math
-⦟ = \angdnr math
-⦠ = \Elzlpargt math
-⦡ = \sphericalangleup math
-⦢ = \turnangle math
-⦣ = \revangle math
-⦤ = \angleubar math
-⦥ = \revangleubar math
-⦦ = \wideangledown math
-⦧ = \wideangleup math
-⦨ = \measanglerutone math
-⦩ = \measanglelutonw math
-⦪ = \measanglerdtose math
-⦫ = \measangleldtosw math
-⦬ = \measangleurtone math
-⦭ = \measangleultonw math
-⦮ = \measangledrtose math
-⦯ = \measangledltosw math
-⦰ = \revemptyset math
-⦱ = \emptysetobar math
-⦲ = \emptysetocirc math
-⦳ = \emptysetoarr math
-⦴ = \emptysetoarrl math
-⦷ = \circledparallel math
-⦸ = \circledbslash math
-⦹ = \operp math
-⦺ = \obot math
-⦻ = \olcross math
-⦼ = \odotslashdot math
-⦽ = \uparrowoncircle math
-⦾ = \circledwhitebullet math
-⦿ = \circledbullet math
-⧀ = \circledless math
-⧁ = \circledgtr math
-⧂ = \cirscir math
-⧃ = \cirE math
+⦝ = \rightanglemdot math.unicode-math
+⦞ = \angles math.unicode-math
+⦟ = \angdnr math.unicode-math
+⦠ = \gtlpar math.unicode-math
+⦡ = \sphericalangleup math.unicode-math
+⦢ = \turnangle math.unicode-math
+⦣ = \revangle math.unicode-math
+⦤ = \angleubar math.unicode-math
+⦥ = \revangleubar math.unicode-math
+⦦ = \wideangledown math.unicode-math
+⦧ = \wideangleup math.unicode-math
+⦨ = \measanglerutone math.unicode-math
+⦩ = \measanglelutonw math.unicode-math
+⦪ = \measanglerdtose math.unicode-math
+⦫ = \measangleldtosw math.unicode-math
+⦬ = \measangleurtone math.unicode-math
+⦭ = \measangleultonw math.unicode-math
+⦮ = \measangledrtose math.unicode-math
+⦯ = \measangledltosw math.unicode-math
+⦰ = \revemptyset math.unicode-math
+⦱ = \emptysetobar math.unicode-math
+⦲ = \emptysetocirc math.unicode-math
+⦳ = \emptysetoarr math.unicode-math
+⦴ = \emptysetoarrl math.unicode-math
+⦵ = \circlehbar math.unicode-math
+⦶ = \circledvert math.unicode-math
+⦷ = \circledparallel math.unicode-math
+⦸ < \obslash math.unicode-math
+⦸ = \circledbslash math.unicode-math
+⦹ = \operp math.unicode-math
+⦺ = \obot math.unicode-math
+⦻ = \olcross math.unicode-math
+⦼ = \odotslashdot math.unicode-math
+⦽ = \uparrowoncircle math.unicode-math
+⦾ = \circledwhitebullet math.unicode-math
+⦿ = \circledbullet math.unicode-math
+⧀ < \olessthan math.unicode-math
+⧀ = \circledless math.unicode-math
+⧁ < \ogreaterthan math.unicode-math
+⧁ = \circledgtr math.unicode-math
+⧂ = \cirscir math.unicode-math
+⧃ = \cirE math.unicode-math
+⧄ < \boxdiag math.unicode-math
 ⧄ = \boxslash math
-⧅ = \boxbslash math
-⧆ = \boxast math
-⧇ = \boxcircle math
-⧈ = \boxbox math
-⧉ = \boxonbox math
-⧊ = \ElzLap math
-⧋ = \Elzdefas math
-⧌ = \triangles math
-⧍ = \triangleserifs math
-⧎ = \rtriltri math
+⧅ = \boxbslash math.unicode-math
+⧆ = \boxast math.unicode-math
+⧇ = \boxcircle math.unicode-math
+⧈ = \boxbox math.unicode-math
+⧉ = \boxonbox math.unicode-math
+⧊ = \triangleodot math.unicode-math
+⧋ = \triangleubar math.unicode-math
+⧌ = \triangles math.unicode-math
+⧍ = \triangleserifs math.unicode-math
+⧎ = \rtriltri math.unicode-math
+⧏ < \ltrivb math.unicode-math
 ⧏ = \LeftTriangleBar math
 ⧏̸ = \NotLeftTriangleBar math
+⧐ < \vbrtri math.unicode-math
 ⧐ = \RightTriangleBar math
 ⧐̸ = \NotRightTriangleBar math
-⧑ = \lfbowtie math
-⧒ = \rfbowtie math
-⧓ = \fbowtie math
-⧔ = \lftimes math
-⧕ = \rftimes math
-⧖ = \hourglass math
-⧗ = \blackhourglass math
-⧘ = \lvzigzag math
-⧙ = \rvzigzag math
-⧚ = \Lvzigzag math
-⧛ = \Rvzigzag math
-⧝ = \tieinfty math
-⧞ = \nvinfty math
+⧑ = \lfbowtie math.unicode-math
+⧒ = \rfbowtie math.unicode-math
+⧓ = \fbowtie math.unicode-math
+⧔ = \lftimes math.unicode-math
+⧕ = \rftimes math.unicode-math
+⧖ = \hourglass math.unicode-math
+⧗ = \blackhourglass math.unicode-math
+⧘ = \lvzigzag math.unicode-math
+⧙ = \rvzigzag math.unicode-math
+⧚ = \Lvzigzag math.unicode-math
+⧛ = \Rvzigzag math.unicode-math
+⧜ = \iinfin math.unicode-math
+⧝ = \tieinfty math.unicode-math
+⧞ = \nvinfty math.unicode-math
+⧟ < \dualmap math.unicode-math
 ⧟ = \multimapboth math
-⧠ = \laplac math
-⧡ = \lrtriangleeq math
-⧢ = \shuffle math
-⧣ = \eparsl math
-⧤ = \smeparsl math
-⧥ = \eqvparsl math
-⧦ = \gleichstark math
-⧧ = \thermod math
-⧨ = \downtriangleleftblack math
-⧩ = \downtrianglerightblack math
-⧪ = \blackdiamonddownarrow math
-⧫ = \blacklozenge math
-⧬ = \circledownarrow math
-⧭ = \blackcircledownarrow math
-⧮ = \errbarsquare math
-⧯ = \errbarblacksquare math
-⧰ = \errbardiamond math
-⧱ = \errbarblackdiamond math
-⧲ = \errbarcircle math
-⧳ = \errbarblackcircle math
-⧴ = \RuleDelayed math
-⧵ > \setminus math
-⧶ = \dsol math
-⧷ = \rsolbar math
-⧸ = \xsol math
+⧠ = \laplac math.unicode-math
+⧡ = \lrtriangleeq math.unicode-math
+⧢ = \shuffle math.unicode-math
+⧣ = \eparsl math.unicode-math
+⧤ = \smeparsl math.unicode-math
+⧥ = \eqvparsl math.unicode-math
+⧦ = \gleichstark math.unicode-math
+⧧ = \thermod math.unicode-math
+⧨ = \downtriangleleftblack math.unicode-math
+⧩ = \downtrianglerightblack math.unicode-math
+⧪ = \blackdiamonddownarrow math.unicode-math
+⧫ < \mdlgblklozenge math.unicode-math
+⧫ = \blacklozenge math.unicode-math
+⧬ = \circledownarrow math.unicode-math
+⧭ = \blackcircledownarrow math.unicode-math
+⧮ = \errbarsquare math.unicode-math
+⧯ = \errbarblacksquare math.unicode-math
+⧰ = \errbardiamond math.unicode-math
+⧱ = \errbarblackdiamond math.unicode-math
+⧲ = \errbarcircle math.unicode-math
+⧳ = \errbarblackcircle math.unicode-math
+⧴ < \ruledelayed math.unicode-math
+⧴ = \RuleDelayed math.unicode-math
+⧵ < \reversesolidus math.unicode-math
+⧵ = \setminus math
+⧶ = \dsol math.unicode-math
+⧷ = \rsolbar math.unicode-math
+⧸ = \xsol math.unicode-math
+⧹ < \xbsol math.unicode-math
 ⧹ = \zhide math
-⧺ = \doubleplus math
-⧻ = \tripleplus math
-⧼ = \lcurvyangle math
-⧽ = \rcurvyangle math
-⧾ = \tplus math
-⧿ = \tminus math
-⨀ = \bigodot math
-⨁ = \bigoplus math
-⨂ = \bigotimes math
-⨃ = \bigcupdot math
-⨄ = \Elxuplus math
-⨅ = \ElzThr math
+⧺ = \doubleplus math.unicode-math
+⧻ = \tripleplus math.unicode-math
+⧼ = \lcurvyangle math.unicode-math
+⧽ = \rcurvyangle math.unicode-math
+⧾ = \tplus math.unicode-math
+⧿ = \tminus math.unicode-math
+⨀ = \bigodot math.unicode-math
+⨁ = \bigoplus math.unicode-math
+⨂ = \bigotimes math.unicode-math
+⨃ = \bigcupdot math.unicode-math
+⨄ < \biguplus math.unicode-math
+⨄ = \Elxuplus math.unicode-math
+⨅ = \bigsqcap math.unicode-math
+⨆ < \bigsqcup math.unicode-math
 ⨆ = \Elxsqcup math
-⨇ = \ElzInf math
-⨈ = \ElzSup math
+⨇ = \conjquant math.unicode-math
+⨈ = \disjquant math.unicode-math
+⨉ < \bigtimes math.unicode-math
 ⨉ = \varprod math
-⨊ = \modtwosum math
-⨋ = \sumint math
-⨌ = \iiiint math
-⨍ = \ElzCint math
-⨎ = \intBar math
+⨊ = \modtwosum math.unicode-math
+⨋ = \sumint math.unicode-math
+⨌ = \iiiint math.unicode-math
+⨍ = \intbar math.unicode-math
+⨎ = \intBar math.unicode-math
+⨏ < \fint math.unicode-math
 ⨏ = \clockoint math
-⨑ = \awint math
-⨒ = \rppolint math
-⨓ = \scpolint math
-⨔ = \npolint math
-⨕ = \pointint math
+⨐ = \cirfnint math.unicode-math
+⨑ = \awint math.unicode-math
+⨒ = \rppolint math.unicode-math
+⨓ = \scpolint math.unicode-math
+⨔ = \npolint math.unicode-math
+⨕ = \pointint math.unicode-math
+⨖ < \sqint math.unicode-math
 ⨖ = \sqrint math
-⨗ = \intlarhk math
-⨘ = \intx math
-⨙ = \intcap math
-⨚ = \intcup math
-⨛ = \upint math
-⨜ = \lowint math
-⨝ = \Join math
-⨞ = \bigtriangleleft math
-⨟ = \zcmp math
-⨠ = \zpipe math
-⨡ = \zproject math
-⨢ = \ringplus math
-⨣ = \plushat math
-⨤ = \simplus math
-⨦ = \plussim math
-⨧ = \plussubtwo math
-⨨ = \plustrif math
-⨩ = \commaminus math
-⨫ = \minusfdots math
-⨬ = \minusrdots math
-⨯ = \ElzTimes math
-⨰ = \dottimes math
-⨱ = \timesbar math
-⨲ = \btimes math
-⨳ = \smashtimes math
-⨶ = \otimeshat math
-⨷ = \Otimes math
-⨸ = \odiv math
-⨹ = \triangleplus math
-⨺ = \triangleminus math
-⨻ = \triangletimes math
-⨽ = \intprodr math
-⨾ = \fcmp math
-⨿ = \amalg math
-⩀ = \capdot math
-⩁ = \uminus math
-⩂ = \barcup math
-⩃ = \barcap math
-⩄ = \capwedge math
-⩅ = \cupvee math
-⩆ = \cupovercap math
-⩇ = \capovercup math
-⩈ = \cupbarcap math
-⩉ = \capbarcup math
-⩊ = \twocups math
-⩋ = \twocaps math
-⩌ = \closedvarcup math
-⩍ = \closedvarcap math
-⩎ = \Sqcap math
-⩏ = \Sqcup math
-⩐ = \closedvarcupsmashprod math
-⩑ = \wedgeodot math
-⩒ = \veeodot math
-⩓ = \ElzAnd math
-⩔ = \ElzOr math
+⨗ = \intlarhk math.unicode-math
+⨘ = \intx math.unicode-math
+⨙ = \intcap math.unicode-math
+⨚ = \intcup math.unicode-math
+⨛ = \upint math.unicode-math
+⨜ = \lowint math.unicode-math
+⨝ = \Join math.unicode-math
+⨞ = \bigtriangleleft math.unicode-math
+⨟ = \zcmp math.unicode-math
+⨠ = \zpipe math.unicode-math
+⨡ = \zproject math.unicode-math
+⨢ = \ringplus math.unicode-math
+⨣ = \plushat math.unicode-math
+⨤ = \simplus math.unicode-math
+⨥ = \plusdot math.unicode-math
+⨦ = \plussim math.unicode-math
+⨧ = \plussubtwo math.unicode-math
+⨨ = \plustrif math.unicode-math
+⨩ = \commaminus math.unicode-math
+⨪ = \minusdot math.unicode-math
+⨫ = \minusfdots math.unicode-math
+⨬ = \minusrdots math.unicode-math
+⨭ = \opluslhrim math.unicode-math
+⨮ = \oplusrhrim math.unicode-math
+⨯ = \vectimes math.unicode-math
+⨰ = \dottimes math.unicode-math
+⨱ = \timesbar math.unicode-math
+⨲ = \btimes math.unicode-math
+⨳ = \smashtimes math.unicode-math
+⨴ = \otimeslhrim math.unicode-math
+⨵ = \otimesrhrim math.unicode-math
+⨶ = \otimeshat math.unicode-math
+⨷ = \Otimes math.unicode-math
+⨸ = \odiv math.unicode-math
+⨹ = \triangleplus math.unicode-math
+⨺ = \triangleminus math.unicode-math
+⨻ = \triangletimes math.unicode-math
+⨼ = \intprod math.unicode-math
+⨽ = \intprodr math.unicode-math
+⨾ = \fcmp math.unicode-math
+⨿ = \amalg math.unicode-math
+⩀ = \capdot math.unicode-math
+⩁ = \uminus math.unicode-math
+⩂ = \barcup math.unicode-math
+⩃ = \barcap math.unicode-math
+⩄ = \capwedge math.unicode-math
+⩅ = \cupvee math.unicode-math
+⩆ = \cupovercap math.unicode-math
+⩇ = \capovercup math.unicode-math
+⩈ = \cupbarcap math.unicode-math
+⩉ = \capbarcup math.unicode-math
+⩊ = \twocups math.unicode-math
+⩋ = \twocaps math.unicode-math
+⩌ = \closedvarcup math.unicode-math
+⩍ = \closedvarcap math.unicode-math
+⩎ = \Sqcap math.unicode-math
+⩏ = \Sqcup math.unicode-math
+⩐ = \closedvarcupsmashprod math.unicode-math
+⩑ = \wedgeodot math.unicode-math
+⩒ = \veeodot math.unicode-math
+⩓ = \Wedge math.unicode-math
+⩔ = \Vee math.unicode-math
+⩕ = \wedgeonwedge math.unicode-math
+⩖ < \veeonvee math.unicode-math
 ⩖ = \ElOr math
-⩗ = \bigslopedvee math
-⩘ = \bigslopedwedge math
-⩙ = \veeonwedge math
-⩚ = \wedgemidvert math
-⩛ = \veemidvert math
-⩜ = \midbarwedge math
-⩝ = \midbarvee math
-⩞ > \perspcorrespond math
-⩟ = \Elzminhat math
-⩠ = \wedgedoublebar math
-⩡ = \varveebar math
-⩢ = \doublebarvee math
-⩤ = \dsub math
-⩥ = \rsub math
-⩦ = \eqdot math
-⩧ = \dotequiv math
-⩨ = \equivVert math
-⩩ = \equivVvert math
-⩪ = \dotsim math
-⩫ = \simrdots math
-⩬ = \simminussim math
-⩭ = \congdot math
+⩗ = \bigslopedvee math.unicode-math
+⩘ = \bigslopedwedge math.unicode-math
+⩙ = \veeonwedge math.unicode-math
+⩚ = \wedgemidvert math.unicode-math
+⩛ = \veemidvert math.unicode-math
+⩜ = \midbarwedge math.unicode-math
+⩝ = \midbarvee math.unicode-math
+⩞ < \doublebarwedge math.unicode-math
+⩞ = \perspcorrespond math
+⩟ = \wedgebar math.unicode-math
+⩠ = \wedgedoublebar math.unicode-math
+⩡ = \varveebar math.unicode-math
+⩢ = \doublebarvee math.unicode-math
+⩣ = \veedoublebar math.unicode-math
+⩤ = \dsub math.unicode-math
+⩥ = \rsub math.unicode-math
+⩦ = \eqdot math.unicode-math
+⩧ = \dotequiv math.unicode-math
+⩨ = \equivVert math.unicode-math
+⩩ = \equivVvert math.unicode-math
+⩪ = \dotsim math.unicode-math
+⩫ = \simrdots math.unicode-math
+⩬ = \simminussim math.unicode-math
+⩭ = \congdot math.unicode-math
+⩮ < \asteq math.unicode-math
 ⩮ = \stackrel{*}{=} math
-⩯ = \hatapprox math
-⩰ = \approxeqq math
-⩱ = \eqqplus math
-⩲ = \pluseqq math
-⩳ = \eqqsim math
-⩴ = \Coloneqq math
+⩯ = \hatapprox math.unicode-math
+⩰ = \approxeqq math.unicode-math
+⩱ = \eqqplus math.unicode-math
+⩲ = \pluseqq math.unicode-math
+⩳ = \eqqsim math.unicode-math
+⩴ < \Coloneq math.unicode-math
+⩴ = \Coloneqq math.unicode-math
+⩵ < \eqeq math.unicode-math
 ⩵ = \Equal math
+⩶ < \eqeqeq math.unicode-math
 ⩶ = \Same math
-⩷ = \ddotseq math
-⩸ = \equivDD math
-⩹ = \ltcir math
-⩺ = \gtcir math
-⩻ = \ltquest math
-⩼ = \gtquest math
+⩷ = \ddotseq math.unicode-math
+⩸ = \equivDD math.unicode-math
+⩹ = \ltcir math.unicode-math
+⩺ = \gtcir math.unicode-math
+⩻ = \ltquest math.unicode-math
+⩼ = \gtquest math.unicode-math
 ⩽ = \leqslant math.amssymb
+⩽ = \leqslant math.unicode-math
 ⩽̸ = \nleqslant math.amssymb
 ⩾ = \geqslant math.amssymb
+⩾ = \geqslant math.unicode-math
 ⩾̸ = \ngeqslant math.amssymb
-⩿ = \lesdot math
-⪀ = \gesdot math
-⪁ = \lesdoto math
-⪂ = \gesdoto math
-⪃ = \lesdotor math
-⪄ = \gesdotol math
-⪅ = \lessapprox math
-⪆ = \gtrapprox math
-⪇ = \lneq math
-⪈ = \gneq math
-⪉ = \lnapprox math
-⪊ = \gnapprox math
-⪋ = \lesseqqgtr math
-⪌ = \gtreqqless math
-⪍ = \lsime math
-⪎ = \gsime math
-⪏ = \lsimg math
-⪐ = \gsiml math
-⪑ = \lgE math
-⪒ = \glE math
-⪓ = \lesges math
-⪔ = \gesles math
-⪕ = \eqslantless math
-⪖ = \eqslantgtr math
-⪗ = \elsdot math
-⪘ = \egsdot math
-⪙ = \eqqless math
-⪚ = \eqqgtr math
-⪛ = \eqqslantless math
-⪜ = \eqqslantgtr math
-⪝ = \Pisymbol{ppi020}{117} math
-⪞ = \Pisymbol{ppi020}{105} math
-⪟ = \simlE math
-⪠ = \simgE math
+⩿ = \lesdot math.unicode-math
+⪀ = \gesdot math.unicode-math
+⪁ = \lesdoto math.unicode-math
+⪂ = \gesdoto math.unicode-math
+⪃ = \lesdotor math.unicode-math
+⪄ = \gesdotol math.unicode-math
+⪅ = \lessapprox math.unicode-math
+⪆ = \gtrapprox math.unicode-math
+⪇ = \lneq math.unicode-math
+⪈ = \gneq math.unicode-math
+⪉ = \lnapprox math.unicode-math
+⪊ = \gnapprox math.unicode-math
+⪋ = \lesseqqgtr math.unicode-math
+⪌ = \gtreqqless math.unicode-math
+⪍ = \lsime math.unicode-math
+⪎ = \gsime math.unicode-math
+⪏ = \lsimg math.unicode-math
+⪐ = \gsiml math.unicode-math
+⪑ = \lgE math.unicode-math
+⪒ = \glE math.unicode-math
+⪓ = \lesges math.unicode-math
+⪔ = \gesles math.unicode-math
+⪕ = \eqslantless math.unicode-math
+⪖ = \eqslantgtr math.unicode-math
+⪗ = \elsdot math.unicode-math
+⪘ = \egsdot math.unicode-math
+⪙ = \eqqless math.unicode-math
+⪚ = \eqqgtr math.unicode-math
+⪛ = \eqqslantless math.unicode-math
+⪜ = \eqqslantgtr math.unicode-math
+⪝ < \Pisymbol{ppi020}{117} math
+⪝ = \simless math.unicode-math
+⪞ < \Pisymbol{ppi020}{105} math
+⪞ = \simgtr math.unicode-math
+⪟ = \simlE math.unicode-math
+⪠ = \simgE math.unicode-math
+⪡ < \Lt math.unicode-math
 ⪡ = \NestedLessLess math
 ⪡̸ = \NotNestedLessLess math
+⪢ < \Gt math.unicode-math
 ⪢ = \NestedGreaterGreater math
 ⪢̸ = \NotNestedGreaterGreater math
-⪣ = \partialmeetcontraction math
-⪤ = \glj math
-⪥ = \gla math
+⪣ = \partialmeetcontraction math.unicode-math
+⪤ = \glj math.unicode-math
+⪥ = \gla math.unicode-math
+⪦ < \ltcc math.unicode-math
 ⪦ = \leftslice math
+⪧ < \gtcc math.unicode-math
 ⪧ = \rightslice math
-⪨ = \lescc math
-⪩ = \gescc math
-⪪ = \smt math
-⪫ = \lat math
-⪬ = \smte math
-⪭ = \late math
-⪮ = \bumpeqq math
-⪯ = \preceq math
+⪨ = \lescc math.unicode-math
+⪩ = \gescc math.unicode-math
+⪪ = \smt math.unicode-math
+⪫ = \lat math.unicode-math
+⪬ = \smte math.unicode-math
+⪭ = \late math.unicode-math
+⪮ = \bumpeqq math.unicode-math
+⪯ = \preceq math.unicode-math
 ⪯̸ = \not\preceq math
-⪰ = \succeq math
+⪰ = \succeq math.unicode-math
 ⪰̸ = \not\succeq math
-⪱ = \precneq math
-⪲ = \succneq math
-⪳ = \preceqq math
-⪴ = \succeqq math
-⪵ = \precneqq math
-⪶ = \succneqq math
-⪷ = \precapprox math
-⪸ = \succapprox math
-⪹ = \precnapprox math
-⪺ = \succnapprox math
+⪱ = \precneq math.unicode-math
+⪲ = \succneq math.unicode-math
+⪳ = \preceqq math.unicode-math
+⪴ = \succeqq math.unicode-math
+⪵ = \precneqq math.unicode-math
+⪶ = \succneqq math.unicode-math
+⪷ = \precapprox math.unicode-math
+⪸ = \succapprox math.unicode-math
+⪹ = \precnapprox math.unicode-math
+⪺ = \succnapprox math.unicode-math
+⪻ < \Prec math.unicode-math
 ⪻ = \llcurly math
+⪼ < \Succ math.unicode-math
 ⪼ = \ggcurly math
-⪽ = \subsetdot math
-⪾ = \supsetdot math
-⪿ = \subsetplus math
-⫀ = \supsetplus math
-⫁ = \submult math
-⫂ = \supmult math
-⫃ = \subedot math
-⫄ = \supedot math
-⫅ = \subseteqq math
+⪽ = \subsetdot math.unicode-math
+⪾ = \supsetdot math.unicode-math
+⪿ = \subsetplus math.unicode-math
+⫀ = \supsetplus math.unicode-math
+⫁ = \submult math.unicode-math
+⫂ = \supmult math.unicode-math
+⫃ = \subedot math.unicode-math
+⫄ = \supedot math.unicode-math
+⫅ = \subseteqq math.unicode-math
 ⫅̸ = \nsubseteqq math
-⫆ = \supseteqq math
+⫆ = \supseteqq math.unicode-math
 ⫆̸ = \nsupseteqq math
-⫇ = \subsim math
-⫈ = \supsim math
-⫉ = \subsetapprox math
-⫊ = \supsetapprox math
-⫋ = \subsetneqq math
-⫌ = \supsetneqq math
-⫍ = \lsqhook math
-⫎ = \rsqhook math
-⫏ = \csub math
-⫐ = \csup math
-⫑ = \csube math
-⫒ = \csupe math
-⫓ = \subsup math
-⫔ = \supsub math
-⫕ = \subsub math
-⫖ = \supsup math
-⫗ = \suphsub math
-⫘ = \supdsub math
-⫙ = \forkv math
-⫚ = \topfork math
-⫛ = \mlcp math
-⫝̸ = \forks math
-⫝ = \forksnot math
+⫇ = \subsim math.unicode-math
+⫈ = \supsim math.unicode-math
+⫉ = \subsetapprox math.unicode-math
+⫊ = \supsetapprox math.unicode-math
+⫋ = \subsetneqq math.unicode-math
+⫌ = \supsetneqq math.unicode-math
+⫍ = \lsqhook math.unicode-math
+⫎ = \rsqhook math.unicode-math
+⫏ = \csub math.unicode-math
+⫐ = \csup math.unicode-math
+⫑ = \csube math.unicode-math
+⫒ = \csupe math.unicode-math
+⫓ = \subsup math.unicode-math
+⫔ = \supsub math.unicode-math
+⫕ = \subsub math.unicode-math
+⫖ = \supsup math.unicode-math
+⫗ = \suphsub math.unicode-math
+⫘ = \supdsub math.unicode-math
+⫙ = \forkv math.unicode-math
+⫚ = \topfork math.unicode-math
+⫛ = \mlcp math.unicode-math
+⫝̸ = \forks math.unicode-math
+⫝ = \forksnot math.unicode-math
 ⫝̸ > \forks math
-⫞ = \shortlefttack math
-⫟ = \shortdowntack math
-⫠ = \shortuptack math
-⫡ = \perps math
-⫢ = \vDdash math
-⫣ = \dashV math
-⫤ = \Dashv math
-⫥ = \DashV math
-⫦ = \varVdash math
-⫧ = \Barv math
-⫨ = \vBar math
-⫩ = \vBarv math
+⫞ = \shortlefttack math.unicode-math
+⫟ = \shortdowntack math.unicode-math
+⫠ = \shortuptack math.unicode-math
+⫡ = \perps math.unicode-math
+⫢ = \vDdash math.unicode-math
+⫣ = \dashV math.unicode-math
+⫤ = \Dashv math.unicode-math
+⫥ = \DashV math.unicode-math
+⫦ = \varVdash math.unicode-math
+⫧ = \Barv math.unicode-math
+⫨ = \vBar math.unicode-math
+⫩ = \vBarv math.unicode-math
+⫪ < \barV math.unicode-math
 ⫪ = \Top math
-⫬ = \Not math
-⫭ = \bNot math
-⫮ = \revnmid math
-⫯ = \cirmid math
-⫰ = \midcir math
-⫱ = \topcir math
-⫲ = \nhpar math
-⫳ = \parsim math
-⫴ = \interleave math
-⫵ = \nhVvert math
-⫶ = \Elztdcol math
-⫷ = \lllnest math
-⫸ = \gggnest math
-⫹ = \leqqslant math
-⫺ = \geqqslant math
-⫻ = \trslash math
-⫼ = \biginterleave math
-⫽ = {{/}\!\!{/}} math
+⫫ = \Vbar math.unicode-math
+⫬ = \Not math.unicode-math
+⫭ = \bNot math.unicode-math
+⫮ = \revnmid math.unicode-math
+⫯ = \cirmid math.unicode-math
+⫰ = \midcir math.unicode-math
+⫱ = \topcir math.unicode-math
+⫲ = \nhpar math.unicode-math
+⫳ = \parsim math.unicode-math
+⫴ = \interleave math.unicode-math
+⫵ = \nhVvert math.unicode-math
+⫶ = \threedotcolon math.unicode-math
+⫷ = \lllnest math.unicode-math
+⫸ = \gggnest math.unicode-math
+⫹ = \leqqslant math.unicode-math
+⫺ = \geqqslant math.unicode-math
+⫻ = \trslash math.unicode-math
+⫼ = \biginterleave math.unicode-math
+⫽ < {{/}\!\!{/}} math.unicode-math
+⫽ = \sslash math.unicode-math
 ⫽⃥ = {\rlap{\textbackslash}{{/}\!\!{/}}} math
-⫾ = \talloblong math
-⫿ = \bigtalloblong math
-⬒ = \squaretopblack math
-⬓ = \squarebotblack math
-⬔ = \squareurblack math
-⬕ = \squarellblack math
-⬖ = \diamondleftblack math
-⬗ = \diamondrightblack math
-⬘ = \diamondtopblack math
-⬙ = \diamondbotblack math
-⬚ = \dottedsquare math
-⬛ = \blacksquare math
-⬝ = \vysmblksquare math
-⬞ = \vysmwhtsquare math
-⬟ = \pentagonblack math
-⬠ = \pentagon math
-⬡ = \varhexagon math
-⬢ = \varhexagonblack math
-⬣ = \hexagonblack math
-⬤ = \lgblkcircle math
-⬥ = \mdblkdiamond math
-⬦ = \mdwhtdiamond math
-⬧ = \mdblklozenge math
-⬨ = \mdwhtlozenge math
-⬩ = \smblkdiamond math
-⬪ = \smblklozenge math
-⬫ = \smwhtlozenge math
-⬬ = \blkhorzoval math
-⬭ = \whthorzoval math
-⬮ = \blkvertoval math
-⬯ = \whtvertoval math
-⬰ = \circleonleftarrow math
-⬱ = \leftthreearrows math
-⬲ = \leftarrowonoplus math
-⬳ = \longleftsquigarrow math
-⬴ = \nvtwoheadleftarrow math
-⬵ = \nVtwoheadleftarrow math
-⬶ = \twoheadmapsfrom math
-⬷ = \twoheadleftdbkarrow math
-⬸ = \leftdotarrow math
-⬹ = \nvleftarrowtail math
-⬺ = \nVleftarrowtail math
-⬻ = \twoheadleftarrowtail math
-⬼ = \nvtwoheadleftarrowtail math
-⬽ = \nVtwoheadleftarrowtail math
-⬾ = \leftarrowx math
-⬿ = \leftcurvedarrow math
-⭀ = \equalleftarrow math
-⭁ = \bsimilarleftarrow math
-⭂ = \leftarrowbackapprox math
-⭃ = \rightarrowgtr math
-⭄ = \rightarrowsupset math
-⭅ = \LLeftarrow math
-⭆ = \RRightarrow math
-⭇ = \bsimilarrightarrow math
-⭈ = \rightarrowbackapprox math
-⭉ = \similarleftarrow math
-⭊ = \leftarrowapprox math
-⭋ = \leftarrowbsimilar math
-⭌ = \rightarrowbsimilar math
-⭐ = \medwhitestar math
-⭑ = \medblackstar math
-⭒ = \smwhitestar math
-⭓ = \rightpentagonblack math
-⭔ = \rightpentagon math
-〒 = \postalmark math
+⫾ = \talloblong math.unicode-math
+⫿ = \bigtalloblong math.unicode-math
+⬒ = \squaretopblack math.unicode-math
+⬓ = \squarebotblack math.unicode-math
+⬔ = \squareurblack math.unicode-math
+⬕ = \squarellblack math.unicode-math
+⬖ = \diamondleftblack math.unicode-math
+⬗ = \diamondrightblack math.unicode-math
+⬘ = \diamondtopblack math.unicode-math
+⬙ = \diamondbotblack math.unicode-math
+⬚ = \dottedsquare math.unicode-math
+⬛ < \blacksquare math
+⬛ = \lgblksquare math.unicode-math
+⬜ = \lgwhtsquare math.unicode-math
+⬝ = \vysmblksquare math.unicode-math
+⬞ = \vysmwhtsquare math.unicode-math
+⬟ = \pentagonblack math.unicode-math
+⬠ = \pentagon math.unicode-math
+⬡ = \varhexagon math.unicode-math
+⬢ = \varhexagonblack math.unicode-math
+⬣ = \hexagonblack math.unicode-math
+⬤ = \lgblkcircle math.unicode-math
+⬥ = \mdblkdiamond math.unicode-math
+⬦ = \mdwhtdiamond math.unicode-math
+⬧ = \mdblklozenge math.unicode-math
+⬨ = \mdwhtlozenge math.unicode-math
+⬩ = \smblkdiamond math.unicode-math
+⬪ = \smblklozenge math.unicode-math
+⬫ = \smwhtlozenge math.unicode-math
+⬬ = \blkhorzoval math.unicode-math
+⬭ = \whthorzoval math.unicode-math
+⬮ = \blkvertoval math.unicode-math
+⬯ = \whtvertoval math.unicode-math
+⬰ = \circleonleftarrow math.unicode-math
+⬱ = \leftthreearrows math.unicode-math
+⬲ = \leftarrowonoplus math.unicode-math
+⬳ = \longleftsquigarrow math.unicode-math
+⬴ = \nvtwoheadleftarrow math.unicode-math
+⬵ = \nVtwoheadleftarrow math.unicode-math
+⬶ = \twoheadmapsfrom math.unicode-math
+⬷ = \twoheadleftdbkarrow math.unicode-math
+⬸ = \leftdotarrow math.unicode-math
+⬹ = \nvleftarrowtail math.unicode-math
+⬺ = \nVleftarrowtail math.unicode-math
+⬻ = \twoheadleftarrowtail math.unicode-math
+⬼ = \nvtwoheadleftarrowtail math.unicode-math
+⬽ = \nVtwoheadleftarrowtail math.unicode-math
+⬾ = \leftarrowx math.unicode-math
+⬿ = \leftcurvedarrow math.unicode-math
+⭀ = \equalleftarrow math.unicode-math
+⭁ = \bsimilarleftarrow math.unicode-math
+⭂ = \leftarrowbackapprox math.unicode-math
+⭃ = \rightarrowgtr math.unicode-math
+⭄ = \rightarrowsupset math.unicode-math
+⭅ = \LLeftarrow math.unicode-math
+⭆ = \RRightarrow math.unicode-math
+⭇ = \bsimilarrightarrow math.unicode-math
+⭈ = \rightarrowbackapprox math.unicode-math
+⭉ = \similarleftarrow math.unicode-math
+⭊ = \leftarrowapprox math.unicode-math
+⭋ = \leftarrowbsimilar math.unicode-math
+⭌ = \rightarrowbsimilar math.unicode-math
+⭐ = \medwhitestar math.unicode-math
+⭑ = \medblackstar math.unicode-math
+⭒ = \smwhitestar math.unicode-math
+⭓ = \rightpentagonblack math.unicode-math
+⭔ = \rightpentagon math.unicode-math
+〈 > \langle math
+〉 > \rangle math
+〒 = \postalmark math.unicode-math
 〔 = \lbrbrak math
 〕 = \rbrbrak math
 〚 = \openbracketleft math
 〛 = \openbracketright math
-〰 = \hzigzag math
+〰 = \hzigzag math.unicode-math
 ﬀ > ff text
 ﬁ > fi text
 ﬂ > fl text
@@ -3147,88 +4578,88 @@ w̃ < @{\~ w}@
 𝒙 = \mathbit{x} math
 𝒚 = \mathbit{y} math
 𝒛 = \mathbit{z} math
-𝒜 > A math stopgap
 𝒜 = \mathscr{A} math.mathrsfs
-𝒞 > C math stopgap
+𝒜 > A math stopgap
 𝒞 = \mathscr{C} math.mathrsfs
-𝒟 > D math stopgap
+𝒞 > C math stopgap
 𝒟 = \mathscr{D} math.mathrsfs
-𝒢 > G math stopgap
+𝒟 > D math stopgap
 𝒢 = \mathscr{G} math.mathrsfs
-𝒥 > J math stopgap
+𝒢 > G math stopgap
 𝒥 = \mathscr{J} math.mathrsfs
-𝒦 > K math stopgap
+𝒥 > J math stopgap
 𝒦 = \mathscr{K} math.mathrsfs
-𝒩 > N math stopgap
+𝒦 > K math stopgap
 𝒩 = \mathscr{N} math.mathrsfs
-𝒪 > O math stopgap
+𝒩 > N math stopgap
 𝒪 = \mathscr{O} math.mathrsfs
-𝒫 > P math stopgap
+𝒪 > O math stopgap
 𝒫 = \mathscr{P} math.mathrsfs
-𝒬 > Q math stopgap
+𝒫 > P math stopgap
 𝒬 = \mathscr{Q} math.mathrsfs
-𝒮 > S math stopgap
+𝒬 > Q math stopgap
 𝒮 = \mathscr{S} math.mathrsfs
-𝒯 > T math stopgap
+𝒮 > S math stopgap
 𝒯 = \mathscr{T} math.mathrsfs
-𝒰 > U math stopgap
+𝒯 > T math stopgap
 𝒰 = \mathscr{U} math.mathrsfs
-𝒱 > V math stopgap
+𝒰 > U math stopgap
 𝒱 = \mathscr{V} math.mathrsfs
-𝒲 > W math stopgap
+𝒱 > V math stopgap
 𝒲 = \mathscr{W} math.mathrsfs
-𝒳 > X math stopgap
+𝒲 > W math stopgap
 𝒳 = \mathscr{X} math.mathrsfs
-𝒴 > Y math stopgap
+𝒳 > X math stopgap
 𝒴 = \mathscr{Y} math.mathrsfs
-𝒵 > Z math stopgap
+𝒴 > Y math stopgap
 𝒵 = \mathscr{Z} math.mathrsfs
-𝒶 > a math stopgap
+𝒵 > Z math stopgap
 𝒶 = \mathscr{a} math.mathrsfs
-𝒷 > b math stopgap
+𝒶 > a math stopgap
 𝒷 = \mathscr{b} math.mathrsfs
-𝒸 > c math stopgap
+𝒷 > b math stopgap
 𝒸 = \mathscr{c} math.mathrsfs
-𝒹 > d math stopgap
+𝒸 > c math stopgap
 𝒹 = \mathscr{d} math.mathrsfs
-𝒻 > f math stopgap
+𝒹 > d math stopgap
 𝒻 = \mathscr{f} math.mathrsfs
-𝒽 > h math stopgap
+𝒻 > f math stopgap
 𝒽 = \mathscr{h} math.mathrsfs
-𝒾 > i math stopgap
+𝒽 > h math stopgap
 𝒾 = \mathscr{i} math.mathrsfs
-𝒿 > j math stopgap
+𝒾 > i math stopgap
 𝒿 = \mathscr{j} math.mathrsfs
-𝓀 > k math stopgap
+𝒿 > j math stopgap
 𝓀 = \mathscr{k} math.mathrsfs
-𝓁 > l math stopgap
+𝓀 > k math stopgap
 𝓁 = \mathscr{l} math.mathrsfs
-𝓂 > m math stopgap
+𝓁 > l math stopgap
 𝓂 = \mathscr{m} math.mathrsfs
-𝓃 > n math stopgap
+𝓂 > m math stopgap
 𝓃 = \mathscr{n} math.mathrsfs
-𝓅 > p math stopgap
+𝓃 > n math stopgap
 𝓅 = \mathscr{p} math.mathrsfs
-𝓆 > q math stopgap
+𝓅 > p math stopgap
 𝓆 = \mathscr{q} math.mathrsfs
-𝓇 > r math stopgap
+𝓆 > q math stopgap
 𝓇 = \mathscr{r} math.mathrsfs
-𝓈 > s math stopgap
+𝓇 > r math stopgap
 𝓈 = \mathscr{s} math.mathrsfs
-𝓉 > t math stopgap
+𝓈 > s math stopgap
 𝓉 = \mathscr{t} math.mathrsfs
-𝓊 > u math stopgap
+𝓉 > t math stopgap
 𝓊 = \mathscr{u} math.mathrsfs
-𝓋 > v math stopgap
+𝓊 > u math stopgap
 𝓋 = \mathscr{v} math.mathrsfs
-𝓌 > w math stopgap
+𝓋 > v math stopgap
 𝓌 = \mathscr{w} math.mathrsfs
-𝓍 > x math stopgap
+𝓌 > w math stopgap
 𝓍 = \mathscr{x} math.mathrsfs
-𝓎 > y math stopgap
+𝓍 > x math stopgap
 𝓎 = \mathscr{y} math.mathrsfs
-𝓏 > z math stopgap
+𝓎 > y math stopgap
 𝓏 = \mathscr{z} math.mathrsfs
+𝓏 > z math stopgap
 𝓐 = \mathmit{A} math
 𝓑 = \mathmit{B} math
 𝓒 = \mathmit{C} math
@@ -3696,22 +5127,20 @@ w̃ < @{\~ w}@
 𝚮 > \mathbf{H} math
 𝚯 = \mathbf{\Theta} math
 𝚰 > \mathbf{I} math
-𝛊 > \mathbf{I} math
 𝚱 > \mathbf{K} math
-𝛋 > \mathbf{K} math
 𝚲 = \mathbf{\Lambda} math
+𝚳 > M math
+𝚴 > N math
 𝚵 = \mathbf{\Xi} math
+𝚶 > O math
 𝚷 = \mathbf{\Pi} math
 𝚸 > \mathbf{P} math
-𝛒 > \mathbf{P} math
 𝚹 = \mathbf{\vartheta} math
 𝚺 = \mathbf{\Sigma} math
 𝚻 > \mathbf{T} math
-𝛕 > \mathbf{T} math
 𝚼 = \mathbf{\Upsilon} math
 𝚽 = \mathbf{\Phi} math
 𝚾 > \mathbf{X} math
-𝛘 > \mathbf{X} math
 𝚿 = \mathbf{\Psi} math
 𝛀 = \mathbf{\Omega} math
 𝛁 = \mathbf{\nabla} math
@@ -3723,79 +5152,83 @@ w̃ < @{\~ w}@
 𝛇 = \mathbf{\zeta} math
 𝛈 = \mathbf{\eta} math
 𝛉 = \mathbf{\theta} math
+𝛊 > \mathbf{I} math
+𝛋 > \mathbf{K} math
 𝛌 = \mathbf{\lambda} math
+𝛍 > m math
+𝛎 > v math
 𝛏 = \mathbf{\xi} math
+𝛐 > O math
 𝛑 = \mathbf{\pi} math
+𝛒 > \mathbf{P} math
 𝛓 = \mathbf{\varsigma} math
 𝛔 = \mathbf{\sigma} math
+𝛕 > \mathbf{T} math
 𝛖 = \mathbf{\upsilon} math
 𝛗 = \mathbf{\phi} math
+𝛘 > \mathbf{X} math
 𝛙 = \mathbf{\psi} math
 𝛚 = \mathbf{\omega} math
 𝛛 > \partial math
-𝜕 > \partial math
-𝝏 > \partial math
-𝞉 > \partial math
-𝟃 > \partial math
 𝛜 > \in math
-𝜖 > \in math
-𝝐 > \in math
-𝞊 > \in math
-𝟄 > \in math
 𝛝 > \mathbf{\vartheta} math
 𝛞 = \mathbf{\varkappa} math
 𝛟 > \mathbf{\phi} math
 𝛠 = \mathbf{\varrho} math
 𝛡 = \mathbf{\varpi} math
 𝛢 > A math
-𝛼 > A math
 𝛣 > B math
-𝛽 > B math
 𝛤 > \Gamma math
 𝛥 > \Delta math
 𝛦 > E math
-𝜀 > E math
 𝛧 > Z math
-𝜁 > Z math
 𝛨 > H math
-𝜂 > H math
 𝛩 > \Theta math
 𝛪 > I math
-𝜄 > I math
 𝛫 > K math
-𝜅 > K math
 𝛬 > \Lambda math
+𝛭 > M math
+𝛮 > N math
 𝛯 > \Xi math
+𝛰 > O math
 𝛱 > \Pi math
 𝛲 > P math
-𝜌 > P math
 𝛳 > \Theta math
 𝛴 > \Sigma math
 𝛵 > T math
-𝜏 > T math
 𝛶 > \Upsilon math
 𝛷 > \Phi math
 𝛸 > X math
-𝜒 > X math
 𝛹 > \Psi math
 𝛺 > \Omega math
 𝛻 > \nabla math
+𝛼 > A math
+𝛽 > B math
 𝛾 > \gamma math
 𝛿 > \delta math
+𝜀 > E math
+𝜁 > Z math
+𝜂 > H math
 𝜃 > \theta math
+𝜄 > I math
+𝜅 > K math
 𝜆 > \lambda math
 𝜇 = \mu math
 𝜈 > \nu math
-𝝼 > \nu math
-𝞶 > \nu math
 𝜉 > \xi math
+𝜊 > o math
 𝜋 > \pi math
+𝜌 > P math
 𝜍 > \varsigma math
 𝜎 > \sigma math
+𝜏 > T math
 𝜐 > \upsilon math
 𝜑 > \varphi math
+𝜒 > X math
 𝜓 > \psi math
 𝜔 > \omega math
+𝜕 > \partial math
+𝜖 > \in math
 𝜗 > \vartheta math
 𝜘 > \varkappa math
 𝜙 > \phi math
@@ -3812,7 +5245,10 @@ w̃ < @{\~ w}@
 𝜤 > \mathbit{I} math
 𝜥 > \mathbit{K} math
 𝜦 = \mathbit{\Lambda} math
+𝜧 > M math
+𝜨 > N math
 𝜩 = \mathbit{\Xi} math
+𝜪 > O math
 𝜫 = \mathbit{\Pi} math
 𝜬 > \mathbit{P} math
 𝜭 > \mathbit{O} math
@@ -3835,7 +5271,10 @@ w̃ < @{\~ w}@
 𝜾 = \mathbit{\imath} math
 𝜿 = \mathbit{\kappa} math
 𝝀 = \mathbit{\lambda} math
+𝝁 > \mu math
+𝝂 > v math
 𝝃 = \mathbit{\xi} math
+𝝄 > O math
 𝝅 = \mathbit{\pi} math
 𝝆 = \mathbit{\rho} math
 𝝇 = \mathbit{\varsigma} math
@@ -3846,6 +5285,8 @@ w̃ < @{\~ w}@
 𝝌 = \mathbit{\chi} math
 𝝍 = \mathbit{\psi} math
 𝝎 = \mathbit{\omega} math
+𝝏 > \partial math
+𝝐 > \in math
 𝝑 = \mathbit{\vartheta} math
 𝝒 = \mathbit{\varkappa} math
 𝝓 = \mathbit{\phi} math
@@ -3862,7 +5303,10 @@ w̃ < @{\~ w}@
 𝝞 > \mathsfbf{I} math
 𝝟 > \mathsfbf{K} math
 𝝠 = \mathsfbf{\Lambda} math
+𝝡 > M math
+𝝢 > N math
 𝝣 = \mathsfbf{\Xi} math
+𝝤 > O math
 𝝥 = \mathsfbf{\Pi} math
 𝝦 > \mathsfbf{P} math
 𝝧 > \mathsfbf{\Theta} math
@@ -3885,7 +5329,10 @@ w̃ < @{\~ w}@
 𝝸 = \mathsfbf{\imath} math
 𝝹 = \mathsfbf{\kappa} math
 𝝺 = \mathsfbf{\lambda} math
+𝝻 > \mu math
+𝝼 > \nu math
 𝝽 = \mathsfbf{\xi} math
+𝝾 > o math
 𝝿 = \mathsfbf{\pi} math
 𝞀 = \mathsfbf{\rho} math
 𝞁 = \mathsfbf{\varsigma} math
@@ -3896,6 +5343,8 @@ w̃ < @{\~ w}@
 𝞆 = \mathsfbf{\chi} math
 𝞇 = \mathsfbf{\psi} math
 𝞈 = \mathsfbf{\omega} math
+𝞉 > \partial math
+𝞊 > \in math
 𝞋 = \mathsfbf{\vartheta} math
 𝞌 = \mathsfbf{\varkappa} math
 𝞍 = \mathsfbf{\phi} math
@@ -3938,7 +5387,10 @@ w̃ < @{\~ w}@
 𝞲 = \mathsfbfsl{\imath} math
 𝞳 = \mathsfbfsl{\kappa} math
 𝞴 = \mathsfbfsl{\lambda} math
+𝞵 > \mu math
+𝞶 > \nu math
 𝞷 = \mathsfbfsl{\xi} math
+𝞸 > o math
 𝞹 = \mathsfbfsl{\pi} math
 𝞺 = \mathsfbfsl{\rho} math
 𝞻 = \mathsfbfsl{\varsigma} math
@@ -3949,6 +5401,8 @@ w̃ < @{\~ w}@
 𝟀 = \mathsfbfsl{\chi} math
 𝟁 = \mathsfbfsl{\psi} math
 𝟂 = \mathsfbfsl{\omega} math
+𝟃 > \partial math
+𝟄 > \in math
 𝟅 = \mathsfbfsl{\vartheta} math
 𝟆 = \mathsfbfsl{\varkappa} math
 𝟇 = \mathsfbfsl{\phi} math
@@ -4006,97 +5460,3 @@ w̃ < @{\~ w}@
 𝟽 = \mathtt{7} math
 𝟾 = \mathtt{8} math
 𝟿 = \mathtt{9} math
-̀ = \` text combiningdiacritic
-̀ = \grave math combiningdiacritic
-̀̄ = \textgravemacron text.tipa combiningdiacritic
-̀̇ = \textgravedot text.tipa combiningdiacritic
-́ = \' text combiningdiacritic
-́ = \acute math combiningdiacritic
-́̄ = \textacutemacron text.tipa combiningdiacritic
-́̌ = \textacutewedge text.tipa combiningdiacritic
-̂ > \^ text combiningdiacritic
-̂ = \hat math combiningdiacritic
-̂̇ = \textcircumdot text.tipa combiningdiacritic
-̃ = \~ text combiningdiacritic
-̃ = \tilde math combiningdiacritic
-̃̇ = \texttildedot text.tipa combiningdiacritic
-̄ = \= text combiningdiacritic
-̄ = \bar math combiningdiacritic
-̄̀ > \textgravemacron text.tipa combiningdiacritic
-̅ = \overline math combiningdiacritic
-̆ = \u text combiningdiacritic
-̆ = \breve math combiningdiacritic
-̆̄ = \textbrevemacron text.tipa combiningdiacritic
-̇ = \. text combiningdiacritic
-̇ = \dot math combiningdiacritic
-̇́ = \textdotacute text.tipa combiningdiacritic
-̇̆ > \textdotbreve text.tipa combiningdiacritic
-̈ = \" text combiningdiacritic
-̈ = \ddot math combiningdiacritic
-̊ = \r text combiningdiacritic
-̊ = \mathring math combiningdiacritic
-̊̄ = \textringmacron text.tipa combiningdiacritic
-̋ = \H text combiningdiacritic
-̌ = \v text combiningdiacritic
-̍ = \textvbaraccent text.tipa combiningdiacritic
-̎ = \textdoublevbaraccent text.tipa combiningdiacritic
-̏ = \textdoublegrave text combiningdiacritic
-̐ = \textdotbreve text.tipa combiningdiacritic
-̖ = \textsubgrave text combiningdiacritic
-̘ = \textadvancing text.tipa combiningdiacritic
-̙ = \textretracting text.tipa combiningdiacritic
-̚ = \textcorner text.tipa combiningdiacritic
-̜ = \textsublhalfring text.tipa combiningdiacritic
-̝ = \textraising text.tipa combiningdiacritic
-̞ = \textlowering text.tipa combiningdiacritic
-̟ = \textsubplus text.tipa combiningdiacritic
-̣ = \d text combiningdiacritic
-̤ = \textsubumlaut text.tipa combiningdiacritic
-̥ = \textsubring text.tipa combiningdiacritic
-̧ = \c text combiningdiacritic
-̨ = \k text combiningdiacritic
-̩ = \textsyllabic text.tipa combiningdiacritic
-̪ = \textsubbridge text.tipa combiningdiacritic
-̬ = \textsubwedge text.tipa combiningdiacritic
-̯ = \textsubarch text.tipa combiningdiacritic
-̰ = \textsubtilde text.tipa combiningdiacritic
-̱ = \textsubbar text.tipa combiningdiacritic
-̱ = \underbar math combiningdiacritic
-̴ = \textsuperimposetilde text.tipa combiningdiacritic
-̹ = \textsubrhalfring text.tipa combiningdiacritic
-̺ = \textinvsubbridge text.tipa combiningdiacritic
-̻ = \textsubsquare text.tipa combiningdiacritic
-̼ = \textseagull text.tipa combiningdiacritic
-̽ = \textovercross text.tipa combiningdiacritic
-╴ = \pmboxdrawuni{2574} text.pmboxdraw
-╵ = \pmboxdrawuni{2575} text.pmboxdraw
-╶ = \pmboxdrawuni{2576} text.pmboxdraw
-╷ = \pmboxdrawuni{2577} text.pmboxdraw
-╸ = \pmboxdrawuni{2578} text.pmboxdraw
-╹ = \pmboxdrawuni{2579} text.pmboxdraw
-╺ = \pmboxdrawuni{257A} text.pmboxdraw
-╻ = \pmboxdrawuni{257B} text.pmboxdraw
-▁ = \pmboxdrawuni{2581} text.pmboxdraw
-▂ = \pmboxdrawuni{2582} text.pmboxdraw
-▃ = \pmboxdrawuni{2583} text.pmboxdraw
-▅ = \pmboxdrawuni{2585} text.pmboxdraw
-▆ = \pmboxdrawuni{2586} text.pmboxdraw
-▇ = \pmboxdrawuni{2587} text.pmboxdraw
-▉ = \pmboxdrawuni{2589} text.pmboxdraw
-▊ = \pmboxdrawuni{258A} text.pmboxdraw
-▋ = \pmboxdrawuni{258B} text.pmboxdraw
-▍ = \pmboxdrawuni{258D} text.pmboxdraw
-▎ = \pmboxdrawuni{258E} text.pmboxdraw
-▏ = \pmboxdrawuni{258F} text.pmboxdraw
-▔ = \pmboxdrawuni{2594} text.pmboxdraw
-▕ = \pmboxdrawuni{2595} text.pmboxdraw
-▖ = \pmboxdrawuni{2596} text.pmboxdraw
-▗ = \pmboxdrawuni{2597} text.pmboxdraw
-▘ = \pmboxdrawuni{2598} text.pmboxdraw
-▙ = \pmboxdrawuni{2599} text.pmboxdraw
-▚ = \pmboxdrawuni{259A} text.pmboxdraw
-▛ = \pmboxdrawuni{259B} text.pmboxdraw
-▜ = \pmboxdrawuni{259C} text.pmboxdraw
-▝ = \pmboxdrawuni{259D} text.pmboxdraw
-▞ = \pmboxdrawuni{259E} text.pmboxdraw
-▟ = \pmboxdrawuni{259F} text.pmboxdraw

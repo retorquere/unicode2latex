@@ -1,0 +1,3 @@
+https://www.cs.cmu.edu/~shaoml/symbols-a4.pdf
+https://milde.users.sourceforge.net/LUCR/Math/unimathsymbols.html
+https://mirror.lyrahosting.com/CTAN/fonts/mnsymbol/MnSymbol.pdf
