@@ -453,9 +453,9 @@ w̃ < @{\~ w}@
 ̼ = \textseagull text.tipa combiningdiacritic
 ̽ = \textovercross text.tipa combiningdiacritic
 ͍ = \underleftrightarrow math.unicode-math
-ʹ > ' text
+ʹ > ' text
 ͵ > , text
-; > ; text
+; > ; text
 Ά > \'A text
 Έ > \'E text
 Ή = \'H text
@@ -555,6 +555,7 @@ w̃ < @{\~ w}@
 π < \muppi math.unicode-math
 π = \pi math
 ρ < \muprho math.unicode-math
+𝜌 > \rho math
 ρ = \rho math
 ς < \mupvarsigma math.unicode-math
 ς = \varsigma math
@@ -1952,8 +1953,8 @@ w̃ < @{\~ w}@
 ỵ = \d{y} text
 Ỹ = \~Y text
 ỹ = \~y text
-  = \hspace{0.6em} text space
-  > \quad math space
+  = \hspace{0.6em} text space
+  > \quad math space
   > \hspace{0.6em} text space
   = \quad math space
   = \; text space
@@ -2171,16 +2172,16 @@ w̃ < @{\~ w}@
 ™ = \texttrademark text.textcomp
 ℤ < \BbbZ math.unicode-math
 ℤ = \mathbb{Z} math
-Ω > \Omega math
+Ω > \Omega math
 ℧ = \mho math.unicode-math
 ℨ < \mfrakZ math.unicode-math
 ℨ = \mathfrak{Z} math
 ℩ = \textriota text
 ℩ = \turnediota math.unicode-math
-K > K text
-Å < \Angstrom math.unicode-math
-Å = \Angstroem math
-Å > \AA text
+K > K text
+Å < \Angstrom math.unicode-math
+Å = \Angstroem math
+Å > \AA text
 ℬ < \mscrB math.unicode-math
 ℬ = \mathscr{B} math.mathrsfs
 ℬ > B math stopgap
@@ -2807,8 +2808,8 @@ w̃ < @{\~ w}@
 ⌡ = \intbottom math.unicode-math
 ⌢ = \frown math.unicode-math
 ⌣ = \smile math.unicode-math
-〈 > \langle math
-〉 > \rangle math
+〈 > \langle math
+〉 > \rangle math
 ⌬ = \varhexagonlrbonds math.unicode-math
 ⌲ = \conictaper math.unicode-math
 ⌶ = \topbot math.unicode-math
@@ -4302,7 +4303,7 @@ w̃ < @{\~ w}@
 ⫙ = \forkv math.unicode-math
 ⫚ = \topfork math.unicode-math
 ⫛ = \mlcp math.unicode-math
-⫝̸ = \forks math.unicode-math
+⫝̸ = \forks math.unicode-math
 ⫝ = \forksnot math.unicode-math
 ⫝̸ > \forks math
 ⫞ = \shortlefttack math.unicode-math
@@ -5218,7 +5219,6 @@ w̃ < @{\~ w}@
 𝜉 > \xi math
 𝜊 > o math
 𝜋 > \pi math
-𝜌 > P math
 𝜍 > \varsigma math
 𝜎 > \sigma math
 𝜏 > T math

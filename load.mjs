@@ -22,6 +22,16 @@ function tojson(str) {
   return stringify(str).replace(/[\u007F-\uFFFF]/g, chr => `\\u${(`0000${chr.charCodeAt(0).toString(16)}`).substr(-4)}`)
 }
 
+function duplicate(stanza) {
+  if (`${stanza.tex}${stanza.tex}` === `${stanza.tex.normalize('NFC')}${stanza.tex.normalize('NFD')}` ) return [ stanza ]
+  console.log('duplicating', stanza.tex)
+  const nfc = Object.create(stanza)
+  nfc.tex = nfx.tex.normalize('NFC')
+  const nfd = Object.create(stanza)
+  nfd.tex = nfx.tex.normalize('NFD')
+  return [ nfc, nfd ]
+}
+
 class Mapping {
   constructor(stanza) {
     this.unicode = stanza.shift()
@@ -62,7 +72,8 @@ class Mapping {
 const TeXMap = csv.parse(fs.readFileSync('config.ssv', 'utf-8'), { delimiter: ' ', quoteChar: '@' })
   .data
   .filter(row => row.join('') !== '')
-  .map(stanza => new Mapping(stanza))
+  .map(stanza => duplicate(new Mapping(stanza)))
+  .flat(Infinity)
 
 class Diacritics {
   constructor() {
