@@ -2574,10 +2574,10 @@ K > K text
 ≢ = \not\equiv math
 ≣ = \Equiv math.unicode-math
 ≤ < \le
-≤ = \leq math.unicode-math
-≥ = \geq math.unicode-math
-≦ = \leqq math.unicode-math
-≧ = \geqq math.unicode-math
+≤ = \leq math
+≥ = \geq math
+≦ = \leqq math
+≧ = \geqq math
 ≨ = \lneqq math.unicode-math
 ≨︀ = \lvertneqq math
 ≩ = \gneqq math.unicode-math
@@ -4190,6 +4190,7 @@ K > K text
 ⩺ = \gtcir math.unicode-math
 ⩻ = \ltquest math.unicode-math
 ⩼ = \gtquest math.unicode-math
+⩽ > \leq math
 ⩽ = \leqslant math.amssymb
 ⩽ = \leqslant math.unicode-math
 ⩽̸ = \nleqslant math.amssymb
