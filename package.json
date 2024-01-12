@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npm start",
-    "start": "mkdir -p tables && ./load.mjs && tsc",
+    "start": "mkdir -p tables && tsc && ./load.js",
     "preversion": "npm start",
     "postversion": "git push --tags && git push"
   },
@@ -23,7 +23,6 @@
   ],
   "devDependencies": {
     "@types/node": "^20.10.8",
-    "json-stringify-pretty-compact": "^4.0.0",
     "papaparse": "^5.4.1",
     "typescript": "^5.3.3"
   }

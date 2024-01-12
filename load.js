@@ -1,8 +1,18 @@
 #!/usr/bin/env node
 
-import csv from 'papaparse'
-import fs from 'fs'
-import stringify from 'json-stringify-pretty-compact'
+const csv = require('papaparse')
+const fs = require('fs')
+
+const hex = (n) => '\\u' + ('0000' + n.toString(16)).slice(-4)
+const re = /([\uD800-\uDBFF][\uDC00-\uDFFF])|([^ -~\n\r])/g
+function asciify(char, pair, single) {
+  if (pair) return hex(pair.charCodeAt(0)) + hex(pair.charCodeAt(1))
+  if (single) return hex(single.charCodeAt(0))
+  return char
+}
+function ascii(s) {
+  return s.replace(re, asciify)
+}
 
 function permutations(v) {
   function p(prefix, s, acc) {
@@ -18,8 +28,8 @@ function permutations(v) {
   return p('', v)
 }
 
-function tojson(str) {
-  return stringify(str).replace(/[\u007F-\uFFFF]/g, chr => `\\u${(`0000${chr.charCodeAt(0).toString(16)}`).substr(-4)}`)
+function tojson(obj) {
+  return ascii(JSON.stringify(obj, null, 2))
 }
 
 function duplicate(stanza) {
