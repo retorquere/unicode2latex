@@ -1,0 +1,45 @@
+{
+  "On Recovery of Sparse Signals via ££p Minimization"
+  :
+  "On Recovery of Sparse Signals via \\pounds\\pounds p Minimization"
+  ,
+
+  "On Recovery of Sparse Signals via ℓ₁ Minimization"
+  :
+  "On Recovery of Sparse Signals via {$\\ell_1$} Minimization"
+  ,
+
+  "Matrices with Small Coherence Using 𝑝-Ary Block Codes"
+  :
+  "Matrices with Small Coherence Using {$p$}-Ary Block Codes"
+  ,
+
+  "Penalty Functions and Duality in Stochastic Programming via 𝜙-Divergence Functionals"
+  :
+  "Penalty Functions and Duality in Stochastic Programming via {$\\phi$}-Divergence Functionals"
+  ,
+
+  "Restricted Isometry Constants Where ℓᵖ Sparse Recovery Can Fail for 𝟢 < p ≤ 𝟣"
+  :
+  "Restricted Isometry Constants Where {$\\ell^p$} Sparse Recovery Can Fail for {$\\mathsf{0}$} {$<$} p {$\\leq$} {$\\mathsf{1}$}"
+  ,
+
+  "Optimally Sparse Representation in General (Nonorthogonal) Dictionaries via ℓ¹ Minimization"
+  :
+  "Optimally Sparse Representation in General (Nonorthogonal) Dictionaries via {$\\ell^1$} Minimization"
+  ,
+
+  "State-Space Solutions to Standard ℋ₂ and ℋ ͚ Control Problems"
+  :
+  "State-Space Solutions to Standard {$\\mathcal{H}_2$} and {$\\mathcal{H}_\\infty$} Control Problems"
+  ,
+
+  "Relative-Error 𝐶𝑈𝑅 Matrix Decompositions"
+  :
+  "Relative-Error {$CUR$} Matrix Decompositions"
+  ,
+
+  "The Gelfand Widths of ℓₚ-Balls for 𝟢 < p ≤ 𝟣"
+  :
+  "The Gelfand Widths of {$\\ell_p$}-Balls for {$\\mathsf{0}$} {$<$} p {$\\leq$} {$\\mathsf{1}$}"
+}

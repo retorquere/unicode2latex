@@ -57,7 +57,8 @@ const switchMode = {
   math: 'text',
   text: 'math',
 }
-const re = /([^\u0300-\u036F][\u0300-\u036F]+)|(i\uFE20a\uFE21)|([\uD800-\uDBFF][\uDC00-\uDFFF])|([\uD800-\uDFFF])|./g
+// const re = /([^\u0300-\u036F][\u0300-\u036F]+)|(i\uFE20a\uFE21)|([\uD800-\uDBFF][\uDC00-\uDFFF])|([\uD800-\uDFFF])|./g
+const re = /([^\u0300-\u036F][\u0300-\u036F]+)|(i\uFE20a\uFE21)|([\uD800-\uDBFF][\uDC00-\uDFFF])|(.)/g
 export type TranslateOptions = {
   bracemath?: boolean
   mode?: 'minimal' | 'bibtex' | 'biblatex'
@@ -65,7 +66,7 @@ export type TranslateOptions = {
   packages?: Set<string>
 }
 export function tolatex(text: string, table: CharMap, options: TranslateOptions = {}) {
-  options = { bracemath: false, mode: 'biblatex', preservecommandspacers: false, packages: new Set, ...options}
+  options = { bracemath: true, mode: 'biblatex', preservecommandspacers: false, packages: new Set, ...options}
   let mode = 'text'
   let braced = 0
 
@@ -180,6 +181,6 @@ export function tolatex(text: string, table: CharMap, options: TranslateOptions 
 
   // does this do anything?
   // latex = latex.normalize('NFC')
-  if (!options.preservecommandspacers) replace_command_spacers(latex)
+  if (!options.preservecommandspacers) latex = replace_command_spacers(latex)
   return latex
 }

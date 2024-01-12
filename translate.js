@@ -1,15 +1,21 @@
 #!/usr/bin/env node
 
 const u2l = require('./index')
+const samples = require('./samples.json')
 
-const sample = "Matrices with Small Coherence Using 𝑝-Ary Block Codes".normalize('NFC')
-const nfd = sample.normalize('NFD')
+const table = u2l.load('biblatex', { packages: ['textcomp', 'amsmath'] })
 
-console.log(sample === nfd)
-
-for (let word of process.argv.slice(2).concat(sample)) {
+// const hex = (n) => '\\u' + ('0000' + n.toString(16)).slice(-4)
+// const re = /([^\u0300-\u036F][\u0300-\u036F]+)|(i\uFE20a\uFE21)|([\uD800-\uDBFF][\uDC00-\uDFFF])|(.)/g
+for (const [unicode, expected] of Object.entries(samples)) {
+  // unicode.replace(re, (m, cd, tie, pair, single) => console.log(hex(m.charCodeAt(0)), hex(m.charCodeAt(1)), { m, cd, tie, pair, single }))
   const packages = new Set
-  console.log(u2l.tolatex(word, u2l.biblatex.base, { packages }))
-  console.log('packages:', [...packages])
+  const latex = u2l.tolatex(unicode, table, { packages })
+  console.log('got:', latex, [...packages])
+  if (latex !== expected) {
+    console.log('exp:', expected)
+    process.exit(1)
+  }
+  console.log('')
 }
 

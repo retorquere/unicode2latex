@@ -53,7 +53,7 @@ w̃ < @{\~ w}@
 ¢ = \textcent text.textcomp
 £ < \mathsterling math
 £ = \pounds
-£ = \textsterling text.textcomp
+£ < \textsterling text.textcomp
 ¤ = \textcurrency text.textcomp
 ¥ = \textyen text.textcomp
 ¦ = \textbrokenbar text.textcomp
@@ -2131,7 +2131,7 @@ w̃ < @{\~ w}@
 ℊ > g math stopgap
 ℋ < \mscrH math.unicode-math
 ℋ = \mathscr{H} math.mathrsfs
-ℋ > H math stopgap
+ℋ > \mathcal{H} math
 ℌ < \mfrakH math.unicode-math
 ℌ = \mathfrak{H} math
 ℍ < \BbbH math.unicode-math
@@ -5456,3 +5456,5 @@ K > K text
 𝟽 = \mathtt{7} math
 𝟾 = \mathtt{8} math
 𝟿 = \mathtt{9} math
+@ ͚@ = _\infty math
+
