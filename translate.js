@@ -9,10 +9,9 @@ const nfd = nfc.normalize('NFD')
 // const table = u2l.biblatex.package.amssymb
 const table = u2l.biblatex.base
 
-const re = /([\uD800-\uDBFF][\uDC00-\uDFFF])|(.)/g
-function texify(char, pair, single) {
-  console.log([char, pair, single], table[pair] || table[single])
-  const mapping = table[pair] || table[single] || {}
+const re = /([\uD800-\uDBFF][\uDC00-\uDFFF])|./g
+function texify(char, pair) {
+  const mapping = table[pair] || table[char] || {}
   return mapping.text || mapping.math || char
 }
 function latex(s) {
