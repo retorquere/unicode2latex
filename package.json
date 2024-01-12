@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npm start",
-    "start": "mkdir -p tables && tsc && ./load.js",
+    "start": "mkdir -p tables && tsc && ./load.js && ./translate.js",
     "preversion": "npm start",
     "postversion": "git push --tags && git push"
   },
