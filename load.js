@@ -33,13 +33,17 @@ function tojson(obj) {
 }
 
 function duplicate(stanza) {
-  if (`${stanza.tex}${stanza.tex}` === `${stanza.tex.normalize('NFC')}${stanza.tex.normalize('NFD')}` ) return [ stanza ]
+  stanza.unicode = stanza.unicode.normalize('NFD')
+  return [ stanza ]
+  /*
+  if (`${stanza.unicode}${stanza.unicode}` === `${stanza.unicode.normalize('NFC')}${stanza.unicode.normalize('NFD')}` ) return [ stanza ]
   console.log('duplicating', stanza.tex)
   const nfc = Object.create(stanza)
-  nfc.tex = nfx.tex.normalize('NFC')
+  nfc.unicode = nfc.unicode.normalize('NFC')
   const nfd = Object.create(stanza)
-  nfd.tex = nfx.tex.normalize('NFD')
+  nfd.unicode = nfd.unicode.normalize('NFD')
   return [ nfc, nfd ]
+  */
 }
 
 class Mapping {
@@ -58,13 +62,15 @@ class Mapping {
         this.mode = m[1]
         this.package = m[2] || ''
       }
-      else if (['stopgap', 'combiningdiacritic', 'space'].includes(op)) {
+      else if (['stopgap', 'combining', 'space'].includes(op)) {
         this.flag[op] = true
       }
       else {
         throw new Error(op)
       }
     }
+
+    if (this.flag.combining && this.unicode.normalize('NFD').length > 2) throw new Error('update translator')
 
     if ((this.mode == 'text' || this.mode == '') && this.tex.match(/\\[0-1A-Za-z]+$/)) this.flag.commandspacer = true
 
@@ -81,7 +87,7 @@ class Mapping {
 }
 const TeXMap = csv.parse(fs.readFileSync('config.ssv', 'utf-8'), { delimiter: ' ', quoteChar: '@' })
   .data
-  .filter(row => row.join('') !== '')
+  .filter(row => row.join('') !== '' && row[0] != '##')
   .map(stanza => duplicate(new Mapping(stanza)))
   .flat(Infinity)
 
@@ -94,7 +100,7 @@ class Diacritics {
     let m
     // the sort will handle text after math so that text gets precedence
     for (const c of TeXMap.sort((a, b) => a.mode.localeCompare(b.mode))) {
-      if (!c.flag.combiningdiacritic) continue
+      if (!c.flag.combining) continue
 
       if (m = c.tex.match(/^\\([a-z]+)$/)) commands.add(m[1])
       if (c.tex[0] === '\\') {
@@ -181,7 +187,7 @@ class U2T {
       +
       '('
       +
-      TeXMap.filter(c => c.u2t && c.flag.combiningdiacritic && c.tex.match(/^\\.$/)).map(c => c.tex[1].replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')
+      TeXMap.filter(c => c.u2t && c.flag.combining && c.tex.match(/^\\.$/)).map(c => c.tex[1].replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')
       +
       ')'
     )
@@ -198,9 +204,9 @@ class U2T {
       if (r = m.text.match(/^\\(L|O|AE|AA|DH|DJ|OE|SS|TH|NG)\{\}$/i)) return (m.text = `{\\${r[1]}}`)
       if (r = m.text.match(/^\\([a-z])\{([a-z0-9])\}$/i)) return (m.text = `{\\${r[1]} ${r[2]}}`)
 
-      if (!c.flag.combiningdiacritic && !m.text.match(/^[{].*[}]$/) && cd.test(m.text)) return (m.text = `{${m.text}}`)
+      if (!c.flag.combining && !m.text.match(/^[{].*[}]$/) && cd.test(m.text)) return (m.text = `{${m.text}}`)
 
-      if (m.text.match(/.*\\[0-1a-z]+$/i) && !c.flag.combiningdiacritic) m.commandspacer = true
+      if (m.text.match(/.*\\[0-1a-z]+$/i) && !c.flag.combining) m.commandspacer = true
     }
 
     const setmode = (c, m) => {

@@ -57,8 +57,7 @@ const switchMode = {
   math: 'text',
   text: 'math',
 }
-// const re = /([^\u0300-\u036F][\u0300-\u036F]+)|(i\uFE20a\uFE21)|([\uD800-\uDBFF][\uDC00-\uDFFF])|([\uD800-\uDFFF])|./g
-const re = /([^\u0300-\u036F][\u0300-\u036F]+)|(i\uFE20a\uFE21)|([\uD800-\uDBFF][\uDC00-\uDFFF])|(.)/g
+const re = /(i\uFE20a\uFE21)|([^\u0300-\u036F][\u0300-\u036F]+)|([\uD800-\uDBFF][\uDC00-\uDFFF])|(.)/g
 export type TranslateOptions = {
   bracemath?: boolean
   mode?: 'minimal' | 'bibtex' | 'biblatex'
@@ -75,40 +74,75 @@ export function tolatex(text: string, table: CharMap, options: TranslateOptions 
     text: (options.bracemath ? '$}' : '$'),
   }
 
-  let mapped // : TeXChar
-  let switched // : boolean
-  let m // : RegExpExecArray | RegExpMatchArray
-  let cd // : { command: string, mode: string }
+  let mapped: TeXChar
+  let switched: boolean
+  let m: RegExpExecArray | RegExpMatchArray
+  let cd: { command: string, mode: string }
 
   let latex = ''
-  text.replace(re, (match: string, cdpair: string, tie: string, pair: string, single: string) => {
+  text.normalize('NFD').replace(re, (match: string, tie: string, cdpair: string, pair: string, single: string) => {
+    // console.log({ match, cdpair, tie, pair, single })
     mapped = null
     if (tie && !table[tie]) {
       mapped = { text: 'ia' }
     }
     else {
-      // does that last one do anything?
-      mapped = table[tie] || table[cdpair] || table[pair] || table[single] || (cdpair && table[cdpair.normalize('NFC')])
+      mapped = table[tie] || table[pair] || table[single] || table[cdpair]
     }
 
-    if (!mapped && options.mode !== 'minimal' && cdpair && (cd = diacritics.tolatex[cdpair.substr(1)])) {
-      let char
-      if (char = (table[cdpair[0]] || { text: cdpair[0], math: cdpair[0] })[cd.mode]) {
-        const cmd = cd.command.match(/[a-z]/)
+    if (!mapped && options.mode !== 'minimal' && cdpair) {
+      let char = cdpair[0]
 
-        if (options.mode === 'bibtex' && cd.mode === 'text') {
-          // needs to be braced to count as a single char for name abbreviation
-          mapped = ({ [cd.mode]: `{\\${cd.command}${cmd ? ' ': ''}${char}}` } /*as TeXChar*/)
-        }
-        else if (cmd && char.length === 1) {
-          mapped = ({ [cd.mode]: `\\${cd.command} ${char}` } /*as TeXChar*/)
-        }
-        else if (cmd) {
-          mapped = ({ [cd.mode]: `\\${cd.command}{${char}}` } /*as TeXChar*/)
+      cdpair = cdpair.substr(1)
+      let cdmode = ''
+      const cds = []
+      let valid = true
+      while (cdpair.length) {
+        let c, cd
+        if (diacritics.tolatex[cdpair.substr(0,2)]) {
+          c = cdpair.substr(0,2)
         }
         else {
-          mapped = ({ [cd.mode]: `\\${cd.command}${char}` } /*as TeXChar*/)
+          c = cdpair[0]
         }
+        if (cd = diacritics.tolatex[c]) {
+          if (!cdmode) cdmode = cd.mode
+          if (cd.mode !== cdmode) {
+            valid = false
+          }
+          else {
+            cds.push(cd)
+          }
+        }
+        else {
+          valid = false
+        }
+        cdpair = cdpair.substr(c.length)
+      }
+
+      // no mapping in table, undefined results
+      if (valid) {
+        char = (table[char] || { text: char, math: char })[cdmode]
+
+        for (const cd of cds) {
+          const cmd = cd.command.match(/[a-z]/)
+
+          if (options.mode === 'bibtex' && cd.mode === 'text') {
+            // needs to be braced to count as a single char for name abbreviation
+            char = `{\\${cd.command}${cmd ? ' ': ''}${char}}`
+          }
+          else if (cmd && char.length === 1) {
+            char = `\\${cd.command} ${char}`
+          }
+          else if (cmd) {
+            char = `\\${cd.command}{${char}}`
+          }
+          else {
+            char = `\\${cd.command}${char}`
+          }
+        }
+
+        mapped = { [cdmode] : char }
       }
     }
 

@@ -2,7 +2,6 @@
 node_modules
 *.swp
 tables/*.json
-*.js
 *.d.ts
 *.bak
 *.py

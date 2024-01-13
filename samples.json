@@ -42,4 +42,9 @@
   "The Gelfand Widths of ℓₚ-Balls for 𝟢 < p ≤ 𝟣"
   :
   "The Gelfand Widths of {$\\ell_p$}-Balls for {$\\mathsf{0}$} {$<$} p {$\\leq$} {$\\mathsf{1}$}"
+  ,
+
+  "Vedic anuṣṭhú and anuṣṭh(u)yā́"
+  :
+  ["Vedic anu{\\d s}{\\d t}h{\\'u} and anu{\\d s}{\\d t}h(u)y{\\textacutemacron a}", "bibtex"]
 }

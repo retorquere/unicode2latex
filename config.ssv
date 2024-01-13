@@ -39,7 +39,6 @@ LaTeX < \LaTeX
 _ < \textunderscore text.textcomp
 _ = \_
 i︠a︡ = \t{ia} text
-w̃ < @{\~ w}@
 { < \textbraceleft text
 { < \lbrace math
 { = \{ text
@@ -95,234 +94,234 @@ w̃ < @{\~ w}@
 ¾ < \textthreequarters
 ¾ = \frac{3}{4} math
 ¿ = \textquestiondown text
-À = \`A text
-Á = \'A text
-Â = \^A text
-Ã = \~A text
-Ä = \"A text
-Å < @{\r A}@
-Å < \r{A}
-Å = \AA text
+## À = \`A text
+## Á = \'A text
+## Â = \^A text
+## Ã = \~A text
+## Ä = \"A text
+Å < @{\r A}@
+## Å < \r{A}
+Å = \AA text
 Æ = \AE text
-Ç = \c{C} text
-È = \`E text
-É = \'E text
-Ê = \^E text
-Ë = \"E text
-Ì = \`I text
-Í = \'I text
-Î = \^I text
-Ï = \"I text
+## Ç = \c{C} text
+## È = \`E text
+## É = \'E text
+## Ê = \^E text
+## Ë = \"E text
+## Ì = \`I text
+## Í = \'I text
+## Î = \^I text
+## Ï = \"I text
 Ð = \DH text
-Ñ = \~N text
-Ò = \`O text
-Ó = \'O text
-Ô = \^O text
-Õ = \~O text
-Ö = \"O text
+## Ñ = \~N text
+## Ò = \`O text
+## Ó = \'O text
+## Ô = \^O text
+## Õ = \~O text
+## Ö = \"O text
 × = \texttimes text
 × = \times math
 Ø = \O text
-Ù = \`U text
-Ú = \'U text
-Û = \^U text
-Ü = \"U text
-Ý = \'Y text
+## Ù = \`U text
+## Ú = \'U text
+## Û = \^U text
+## Ü = \"U text
+## Ý = \'Y text
 Þ = \TH text
 ß = \ss text
-à = \`a text
-á = \'a text
-â = \^a text
-ã = \~a text
-ä = \"a text
-å < @{\r a}@
-å < \r{a}
-å = \aa text
+## à = \`a text
+## á = \'a text
+## â = \^a text
+## ã = \~a text
+## ä = \"a text
+å < @{\r a}@
+## å < \r{a}
+å = \aa text
 æ = \ae text
-ç = \c{c} text
-è = \`e text
-é = \'e text
-ê = \^e text
-ë = \"e text
-ì < \`\i
-ì = \`i text
-í < \'\i
-í = \'i text
-î < \^\i
-î = \^i text
-ï < \"\i
-ï = \"i text
+## ç = \c{c} text
+## è = \`e text
+## é = \'e text
+## ê = \^e text
+## ë = \"e text
+ì < \`\i
+## ì = \`i text
+í < \'\i
+## í = \'i text
+î < \^\i
+## î = \^i text
+ï < \"\i
+## ï = \"i text
 ð = \dh text
 ð = \eth math.amssymb
 ð = \eth math.arevmath
 ð = \textdh text.textcomp
-ñ = \~n text
-ò = \`o text
-ó = \'o text
-ô = \^o text
-õ = \~o text
-ö = \"o text
+## ñ = \~n text
+## ò = \`o text
+## ó = \'o text
+## ô = \^o text
+## õ = \~o text
+## ö = \"o text
 ÷ = \div math
 ø = \o text
-ù = \`u text
-ú = \'u text
-û = \^u text
-ü = \"u text
-ý = \'y text
+## ù = \`u text
+## ú = \'u text
+## û = \^u text
+## ü = \"u text
+## ý = \'y text
 þ = \th text
-ÿ = \"y text
-Ā = \=A text
-ā = \=a text
-Ă = \u{A} text
-ă = \u{a} text
-Ą = \k{A} text
-ą = \k{a} text
-Ć = \'C text
-ć = \'c text
-Ĉ = \^C text
-ĉ = \^c text
-Ċ = \.C text
-ċ = \.c text
-Č = \v{C} text
-č = \v{c} text
-Ď = \v{D} text
-ď = \v{d} text
+## ÿ = \"y text
+## Ā = \=A text
+## ā = \=a text
+## Ă = \u{A} text
+## ă = \u{a} text
+## Ą = \k{A} text
+## ą = \k{a} text
+## Ć = \'C text
+## ć = \'c text
+## Ĉ = \^C text
+## ĉ = \^c text
+## Ċ = \.C text
+## ċ = \.c text
+## Č = \v{C} text
+## č = \v{c} text
+## Ď = \v{D} text
+## ď = \v{d} text
 Đ = \DJ text
 đ = \dj text
-Ē = \=E text
-ē = \=e text
-Ĕ = \u{E} text
-ĕ = \u{e} text
-Ė = \.E text
-ė = \.e text
-Ę = \k{E} text
-ę = \k{e} text
-Ě = \v{E} text
-ě = \v{e} text
-Ĝ = \^G text
-ĝ = \^g text
-Ğ = \u{G} text
-ğ = \u{g} text
-Ġ = \.G text
-ġ = \.g text
-Ģ = \c{G} text
-ģ = \c{g} text
-Ĥ = \^H text
-ĥ = \^h text
+## Ē = \=E text
+## ē = \=e text
+## Ĕ = \u{E} text
+## ĕ = \u{e} text
+## Ė = \.E text
+## ė = \.e text
+## Ę = \k{E} text
+## ę = \k{e} text
+## Ě = \v{E} text
+## ě = \v{e} text
+## Ĝ = \^G text
+## ĝ = \^g text
+## Ğ = \u{G} text
+## ğ = \u{g} text
+## Ġ = \.G text
+## ġ = \.g text
+## Ģ = \c{G} text
+## ģ = \c{g} text
+## Ĥ = \^H text
+## ĥ = \^h text
 ħ = \hbar math
 ħ = \textcrh text.tipa
-Ĩ = \~I text
-ĩ = \~i text
-Ī = \=I text
-ī = \=i text
-Ĭ = \u{I} text
-ĭ = @{\u \i}@ text
-Į = \k{I} text
-į = \k{i} text
-İ = \.I text
+## Ĩ = \~I text
+## ĩ = \~i text
+## Ī = \=I text
+## ī = \=i text
+## Ĭ = \u{I} text
+ĭ = @{\u \i}@ text
+## Į = \k{I} text
+## į = \k{i} text
+## İ = \.I text
 ı = \i text
 ı = \imath math
 Ĳ > IJ text
 ĳ > ij text
-Ĵ = \^J text
-ĵ = \^\j text
-Ķ = \c{K} text
-ķ = \c{k} text
+## Ĵ = \^J text
+ĵ = \^\j text
+## Ķ = \c{K} text
+## ķ = \c{k} text
 ĸ = ?? text.tipa
-Ĺ = \'L text
-ĺ = \'l text
-Ļ = \c{L} text
-ļ = \c{l} text
-Ľ = \v{L} text
-ľ = \v{l} text
+## Ĺ = \'L text
+## ĺ = \'l text
+## Ļ = \c{L} text
+## ļ = \c{l} text
+## Ľ = \v{L} text
+## ľ = \v{l} text
 Ł = \L text
 ł = \l text
-Ń = \'N text
-ń = \'n text
-Ņ = \c{N} text
-ņ = \c{n} text
-Ň = \v{N} text
-ň = \v{n} text
+## Ń = \'N text
+## ń = \'n text
+## Ņ = \c{N} text
+## ņ = \c{n} text
+## Ň = \v{N} text
+## ň = \v{n} text
 ŉ > 'n text
 Ŋ = \NG text
 ŋ = \ng text
-Ō = \=O text
-ō = \=o text
-Ŏ = \u{O} text
-ŏ = \u{o} text
-Ő = \H{O} text
-ő = \H{o} text
+## Ō = \=O text
+## ō = \=o text
+## Ŏ = \u{O} text
+## ŏ = \u{o} text
+## Ő = \H{O} text
+## ő = \H{o} text
 Œ = \OE text
 œ = \oe text
-Ŕ = \'R text
-ŕ = \'r text
-Ŗ = \c{R} text
-ŗ = \c{r} text
-Ř = \v{R} text
-ř = \v{r} text
-Ś = \'S text
-ś = \'s text
-Ŝ = \^S text
-ŝ = \^s text
-Ş = \c{S} text
-ş = \c{s} text
-Š = \v{S} text
-š = \v{s} text
-Ţ = \c{T} text
-ţ = \c{t} text
-Ť = \v{T} text
-ť = \v{t} text
-Ũ = \~U text
-ũ = \~u text
-Ū = \=U text
-ū = \=u text
-Ŭ = \u{U} text
-ŭ = \u{u} text
-Ů < @{\r U}@
-Ů = \r{U} text
-ů < @{\r u}@
-ů < \ocirc{u}
-ů = \r{u} text
-Ű = \H{U} text
-ű = \H{u} text
-Ų = \k{U} text
-ų = \k{u} text
-Ŵ = \^W text
-ŵ = \^w text
-Ŷ = \^Y text
-ŷ = \^y text
-Ÿ = \"Y text
-Ź = \'Z text
-ź = \'z text
-Ż = \.Z text
-ż = \.z text
-Ž = \v{Z} text
-ž = \v{z} text
+## Ŕ = \'R text
+## ŕ = \'r text
+## Ŗ = \c{R} text
+## ŗ = \c{r} text
+## Ř = \v{R} text
+## ř = \v{r} text
+## Ś = \'S text
+## ś = \'s text
+## Ŝ = \^S text
+## ŝ = \^s text
+## Ş = \c{S} text
+## ş = \c{s} text
+## Š = \v{S} text
+## š = \v{s} text
+## Ţ = \c{T} text
+## ţ = \c{t} text
+## Ť = \v{T} text
+## ť = \v{t} text
+## Ũ = \~U text
+## ũ = \~u text
+## Ū = \=U text
+## ū = \=u text
+## Ŭ = \u{U} text
+## ŭ = \u{u} text
+Ů < @{\r U}@
+## Ů = \r{U} text
+ů < @{\r u}@
+ů < \ocirc{u}
+## ů = \r{u} text
+## Ű = \H{U} text
+## ű = \H{u} text
+## Ų = \k{U} text
+## ų = \k{u} text
+## Ŵ = \^W text
+## ŵ = \^w text
+## Ŷ = \^Y text
+## ŷ = \^y text
+## Ÿ = \"Y text
+## Ź = \'Z text
+## ź = \'z text
+## Ż = \.Z text
+## ż = \.z text
+## Ž = \v{Z} text
+## ž = \v{z} text
 ſ > s text
 ƒ > f math
 ƕ = \texthvlig text.tipa
 ƞ = \textipa{\textnrleg} text.tipa
 ƪ = \textesh text
 ǂ = \textdoublepipe text
-Ǎ = \v{A} text
-ǎ = \v{a} text
-Ǐ = \v{I} text
-ǐ = \v{i} text
-Ǒ = \v{O} text
-ǒ = \v{o} text
-Ǔ = \v{U} text
-ǔ = \v{u} text
-Ǧ = \v{G} text
-ǧ = \v{g} text
-Ǩ = \v{K} text
-ǩ = \v{k} text
-Ǫ = \k{O} text
-ǫ = \k{o} text
-ǰ = \v{j} text
-Ǵ = \'G text
-ǵ = \'g text
-Ȩ = \c{E} text
-ȩ = \c{e} text
+## Ǎ = \v{A} text
+## ǎ = \v{a} text
+## Ǐ = \v{I} text
+## ǐ = \v{i} text
+## Ǒ = \v{O} text
+## ǒ = \v{o} text
+## Ǔ = \v{U} text
+## ǔ = \v{u} text
+## Ǧ = \v{G} text
+## ǧ = \v{g} text
+## Ǩ = \v{K} text
+## ǩ = \v{k} text
+## Ǫ = \k{O} text
+## ǫ = \k{o} text
+## ǰ = \v{j} text
+## Ǵ = \'G text
+## ǵ = \'g text
+## Ȩ = \c{E} text
+## ȩ = \c{e} text
 ȷ = \jmath math
 ɐ = \textipa{\textturna} text.tipa
 ɒ = textipa{\textopeno} text.tipa
@@ -457,14 +456,14 @@ w̃ < @{\~ w}@
 ʹ > ' text
 ͵ > , text
 ; > ; text
-Ά > \'A text
-Έ > \'E text
-Ή = \'H text
-Ί = {\'{}I} text
-Ό = {\'{}O} text
-Ύ = \mathrm{'Y} math
-Ώ = \mathrm{'\Omega} math
-ΐ = \acute{\ddot{\iota}} math
+## Ά > \'A text
+## Έ > \'E text
+## Ή = \'H text
+Ί = {\'{}I} text
+Ό = {\'{}O} text
+Ύ = \mathrm{'Y} math
+Ώ = \mathrm{'\Omega} math
+ΐ = \acute{\ddot{\iota}} math
 Α = \mupAlpha math.unicode-math
 Α > A math stopgap
 Β = \mupBeta math.unicode-math
@@ -515,13 +514,13 @@ w̃ < @{\~ w}@
 Ψ = \Psi math
 Ω < \mupOmega math.unicode-math
 Ω = \Omega math
-Ϊ = \mathrm{\ddot{I}} math
-Ϋ = \mathrm{\ddot{Y}} math
-ά = \acute{\alpha} math
-έ = \acute{\epsilon} math
-ή = \acute{\eta} math
-ί = \acute{\iota} math
-ΰ = \acute{\ddot{\upsilon}} math
+Ϊ = \mathrm{\ddot{I}} math
+Ϋ = \mathrm{\ddot{Y}} math
+ά = \acute{\alpha} math
+έ = \acute{\epsilon} math
+ή = \acute{\eta} math
+ί = \acute{\iota} math
+ΰ = \acute{\ddot{\upsilon}} math
 α < \mupalpha math.unicode-math
 α = \alpha math
 β < \mupbeta math.unicode-math
@@ -574,11 +573,11 @@ w̃ < @{\~ w}@
 ψ = \psi math
 ω < \mupomega math.unicode-math
 ω = \omega math
-ϊ = \ddot{\iota} math
-ϋ = \ddot{\upsilon} math
-ό > \'o text
-ύ = \acute{\upsilon} math
-ώ = \acute{\omega} math
+ϊ = \ddot{\iota} math
+ϋ = \ddot{\upsilon} math
+## ό > \'o text
+ύ = \acute{\upsilon} math
+ώ = \acute{\omega} math
 ϐ = \Pisymbol{ppi022}{87} text
 ϐ = \varbeta math.MinionPro
 ϐ = \varbeta math.unicode-math
@@ -614,19 +613,19 @@ w̃ < @{\~ w}@
 ϵ = \epsilon math
 ϶ = \backepsilon math
 ϶ = \upbackepsilon math.unicode-math
-Ё = \cyrchar\CYRYO text
+Ё = \cyrchar\CYRYO text
 Ђ = \cyrchar\CYRDJE text
-Ѓ = \cyrchar{\'\CYRG} text
+Ѓ = \cyrchar{\'\CYRG} text
 Є = \cyrchar\CYRIE text
 Ѕ = \cyrchar\CYRDZE text
 І = \cyrchar\CYRII text
-Ї = \cyrchar\CYRYI text
+Ї = \cyrchar\CYRYI text
 Ј = \cyrchar\CYRJE text
 Љ = \cyrchar\CYRLJE text
 Њ = \cyrchar\CYRNJE text
 Ћ = \cyrchar\CYRTSHE text
-Ќ = \cyrchar{\'\CYRK} text
-Ў = \cyrchar\CYRUSHRT text
+Ќ = \cyrchar{\'\CYRK} text
+Ў = \cyrchar\CYRUSHRT text
 Џ = \cyrchar\CYRDZHE text
 А = \cyrchar\CYRA text
 Б = \cyrchar\CYRB text
@@ -637,7 +636,7 @@ w̃ < @{\~ w}@
 Ж = \cyrchar\CYRZH text
 З = \cyrchar\CYRZ text
 И = \cyrchar\CYRI text
-Й = \cyrchar\CYRISHRT text
+Й = \cyrchar\CYRISHRT text
 К = \cyrchar\CYRK text
 Л = \cyrchar\CYRL text
 М = \cyrchar\CYRM text
@@ -672,7 +671,7 @@ w̃ < @{\~ w}@
 ж = \cyrchar\cyrzh text
 з = \cyrchar\cyrz text
 и = \cyrchar\cyri text
-й = \cyrchar\cyrishrt text
+й = \cyrchar\cyrishrt text
 к = \cyrchar\cyrk text
 л = \cyrchar\cyrl text
 м = \cyrchar\cyrm text
@@ -695,19 +694,19 @@ w̃ < @{\~ w}@
 э = \cyrchar\cyrerev text
 ю = \cyrchar\cyryu text
 я = \cyrchar\cyrya text
-ё = \cyrchar\cyryo text
+ё = \cyrchar\cyryo text
 ђ = \cyrchar\cyrdje text
-ѓ = \cyrchar{\'\cyrg} text
+ѓ = \cyrchar{\'\cyrg} text
 є = \cyrchar\cyrie text
 ѕ = \cyrchar\cyrdze text
 і = \cyrchar\cyrii text
-ї = \cyrchar\cyryi text
+ї = \cyrchar\cyryi text
 ј = \cyrchar\cyrje text
 љ = \cyrchar\cyrlje text
 њ = \cyrchar\cyrnje text
 ћ = \cyrchar\cyrtshe text
-ќ = \cyrchar{\'\cyrk} text
-ў = \cyrchar\cyrushrt text
+ќ = \cyrchar{\'\cyrk} text
+ў = \cyrchar\cyrushrt text
 џ = \cyrchar\cyrdzhe text
 Ѡ = \cyrchar\CYROMEGA text
 ѡ = \cyrchar\cyromega text
@@ -1834,126 +1833,126 @@ w̃ < @{\~ w}@
 ᶠ = ^{f} math
 ᶻ = \textsuperscript{z} text
 ᶻ = ^{z} math
-Ḃ = \.B text
-ḃ = \.b text
-Ḅ = \d{B} text
-ḅ = \d{b} text
-Ḇ = \b{B} text
-ḇ = \b{b} text
-Ḋ = \.D text
-ḋ = \.d text
-Ḍ = \d{D} text
-ḍ = \d{d} text
-Ḏ = \b{D} text
-ḏ = \b{d} text
-Ḑ = \c{D} text
-ḑ = \c{d} text
-Ḝ = \c{\u{E}} text
-ḝ = \c{\u{e}} text
-Ḟ = \.F text
-ḟ = \.f text
-Ḡ = \=G text
-ḡ = \=g text
-Ḣ = \.H text
-ḣ = \.h text
-Ḥ = \d{H} text
-ḥ = \d{h} text
-Ḧ = \"H text
-ḧ = \"h text
-Ḩ = \c{H} text
-ḩ = \c{h} text
-Ḱ = \'K text
-ḱ = \'k text
-Ḳ = \d{K} text
-ḳ = \d{k} text
-Ḵ = \b{K} text
-ḵ = \b{k} text
-Ḷ = \d{L} text
-ḷ = \d{l} text
-Ḻ = \b{L} text
-ḻ = \b{l} text
-Ḿ = \'M text
-ḿ = \'m text
-Ṁ = \.M text
-ṁ = \.m text
-Ṃ = \d{M} text
-ṃ = \d{m} text
-Ṅ = \.N text
-ṅ = \.n text
-Ṇ = \d{N} text
-ṇ = \d{n} text
-Ṉ = \b{N} text
-ṉ = \b{n} text
-Ṕ = \'P text
-ṕ = \'p text
-Ṗ = \.P text
-ṗ = \.p text
-Ṙ = \.R text
-ṙ = \.r text
-Ṛ = \d{R} text
-ṛ = \d{r} text
-Ṟ = \b{R} text
-ṟ = \b{r} text
-Ṡ = \.S text
-ṡ = \.s text
-Ṣ = \d{S} text
-ṣ = \d{s} text
-Ṫ = \.T text
-ṫ = \.t text
-Ṭ = \d{T} text
-ṭ = \d{t} text
-Ṯ = \b{T} text
-ṯ = \b{t} text
-Ṽ = \~V text
-ṽ = \~v text
-Ṿ = \d{V} text
-ṿ = \d{v} text
-Ẁ = \`W text
-ẁ = \`w text
-Ẃ = \'W text
-ẃ = \'w text
-Ẅ = \"W text
-ẅ = \"w text
-Ẇ = \.W text
-ẇ = \.w text
-Ẉ = \d{W} text
-ẉ = \d{w} text
-Ẋ = \.X text
-ẋ = \.x text
-Ẍ = \"X text
-ẍ = \"x text
-Ẏ = \.Y text
-ẏ = \.y text
-Ẑ = \^Z text
-ẑ = \^z text
-Ẓ = \d{Z} text
-ẓ = \d{z} text
-Ẕ = \b{Z} text
-ẕ = \b{z} text
-ẖ = \b{h} text
-ẗ = \"t text
-ẘ = \r{w} text
-ẙ = \r{y} text
-Ạ = \d{A} text
-ạ = \d{a} text
-Ẹ = \d{E} text
-ẹ = \d{e} text
-Ẽ = \~E text
-ẽ = \~e text
-Ị = \d{I} text
-ị = \d{i} text
-Ọ = \d{O} text
-ọ = \d{o} text
-Ụ = \d{U} text
-ụ = \d{u} text
-ữ0 = \arabicmaj math.unicode-math
-ữ1 = \arabichad math.unicode-math
-Ỳ = \`Y text
-ỳ = \`y text
-Ỵ = \d{Y} text
-ỵ = \d{y} text
-Ỹ = \~Y text
-ỹ = \~y text
+## Ḃ = \.B text
+## ḃ = \.b text
+## Ḅ = \d{B} text
+## ḅ = \d{b} text
+## Ḇ = \b{B} text
+## ḇ = \b{b} text
+## Ḋ = \.D text
+## ḋ = \.d text
+## Ḍ = \d{D} text
+## ḍ = \d{d} text
+## Ḏ = \b{D} text
+## ḏ = \b{d} text
+## Ḑ = \c{D} text
+## ḑ = \c{d} text
+Ḝ = \c{\u{E}} text
+ḝ = \c{\u{e}} text
+## Ḟ = \.F text
+## ḟ = \.f text
+## Ḡ = \=G text
+## ḡ = \=g text
+## Ḣ = \.H text
+## ḣ = \.h text
+## Ḥ = \d{H} text
+## ḥ = \d{h} text
+## Ḧ = \"H text
+## ḧ = \"h text
+## Ḩ = \c{H} text
+## ḩ = \c{h} text
+## Ḱ = \'K text
+## ḱ = \'k text
+## Ḳ = \d{K} text
+## ḳ = \d{k} text
+## Ḵ = \b{K} text
+## ḵ = \b{k} text
+## Ḷ = \d{L} text
+## ḷ = \d{l} text
+## Ḻ = \b{L} text
+## ḻ = \b{l} text
+## Ḿ = \'M text
+## ḿ = \'m text
+## Ṁ = \.M text
+## ṁ = \.m text
+## Ṃ = \d{M} text
+## ṃ = \d{m} text
+## Ṅ = \.N text
+## ṅ = \.n text
+## Ṇ = \d{N} text
+## ṇ = \d{n} text
+## Ṉ = \b{N} text
+## ṉ = \b{n} text
+## Ṕ = \'P text
+## ṕ = \'p text
+## Ṗ = \.P text
+## ṗ = \.p text
+## Ṙ = \.R text
+## ṙ = \.r text
+## Ṛ = \d{R} text
+## ṛ = \d{r} text
+## Ṟ = \b{R} text
+## ṟ = \b{r} text
+## Ṡ = \.S text
+## ṡ = \.s text
+## Ṣ = \d{S} text
+## ṣ = \d{s} text
+## Ṫ = \.T text
+## ṫ = \.t text
+## Ṭ = \d{T} text
+## ṭ = \d{t} text
+## Ṯ = \b{T} text
+## ṯ = \b{t} text
+## Ṽ = \~V text
+## ṽ = \~v text
+## Ṿ = \d{V} text
+## ṿ = \d{v} text
+## Ẁ = \`W text
+## ẁ = \`w text
+## Ẃ = \'W text
+## ẃ = \'w text
+## Ẅ = \"W text
+## ẅ = \"w text
+## Ẇ = \.W text
+## ẇ = \.w text
+## Ẉ = \d{W} text
+## ẉ = \d{w} text
+## Ẋ = \.X text
+## ẋ = \.x text
+## Ẍ = \"X text
+## ẍ = \"x text
+## Ẏ = \.Y text
+## ẏ = \.y text
+## Ẑ = \^Z text
+## ẑ = \^z text
+## Ẓ = \d{Z} text
+## ẓ = \d{z} text
+## Ẕ = \b{Z} text
+## ẕ = \b{z} text
+## ẖ = \b{h} text
+## ẗ = \"t text
+## ẘ = \r{w} text
+## ẙ = \r{y} text
+## Ạ = \d{A} text
+## ạ = \d{a} text
+## Ẹ = \d{E} text
+## ẹ = \d{e} text
+## Ẽ = \~E text
+## ẽ = \~e text
+## Ị = \d{I} text
+## ị = \d{i} text
+## Ọ = \d{O} text
+## ọ = \d{o} text
+## Ụ = \d{U} text
+## ụ = \d{u} text
+ữ0 = \arabicmaj math.unicode-math
+ữ1 = \arabichad math.unicode-math
+## Ỳ = \`Y text
+## ỳ = \`y text
+## Ỵ = \d{Y} text
+## ỵ = \d{y} text
+## Ỹ = \~Y text
+## ỹ = \~y text
   = \hspace{0.6em} text space
   > \quad math space
   > \hspace{0.6em} text space
@@ -2177,9 +2176,9 @@ w̃ < @{\~ w}@
 ℩ = \textriota text
 ℩ = \turnediota math.unicode-math
 K > K text
-Å < \Angstrom math.unicode-math
-Å = \Angstroem math
-Å > \AA text
+Å < \Angstrom math.unicode-math
+Å = \Angstroem math
+Å > \AA text
 ℬ < \mscrB math.unicode-math
 ℬ = \mathscr{B} math.mathrsfs
 ℬ > B math stopgap
@@ -2311,8 +2310,8 @@ K > K text
 ↗ = \nearrow math
 ↘ = \searrow math
 ↙ = \swarrow math
-↚ = \nleftarrow math.unicode-math
-↛ = \nrightarrow math.unicode-math
+↚ = \nleftarrow math.unicode-math
+↛ = \nrightarrow math.unicode-math
 ↜ < \leftwavearrow math.unicode-math
 ↜ = \arrowwaveleft math
 ↝ < \rightwavearrow math.unicode-math
@@ -2335,7 +2334,7 @@ K > K text
 ↫ = \looparrowleft math.unicode-math
 ↬ = \looparrowright math.unicode-math
 ↭ = \leftrightsquigarrow math.unicode-math
-↮ = \nleftrightarrow math.unicode-math
+↮ = \nleftrightarrow math.unicode-math
 ↯ < \downzigzagarrow math.unicode-math
 ↯ = \lightning math
 ↰ = \Lsh math.unicode-math
@@ -2373,9 +2372,9 @@ K > K text
 ⇊ = \downdownarrows math.unicode-math
 ⇋ = \leftrightharpoons math.unicode-math
 ⇌ = \rightleftharpoons math
-⇍ = \nLeftarrow math.unicode-math
-⇎ = \nLeftrightarrow math.unicode-math
-⇏ = \nRightarrow math.unicode-math
+⇍ = \nLeftarrow math.unicode-math
+⇎ = \nLeftrightarrow math.unicode-math
+⇏ = \nRightarrow math.unicode-math
 ⇐ = \Leftarrow math
 ⇑ = \Uparrow math
 ⇒ = \Rightarrow math
@@ -2426,17 +2425,17 @@ K > K text
 ∁ = \complement math.unicode-math
 ∂ = \partial math
 ∃ = \exists math
-∄ = \nexists math.unicode-math
+∄ = \nexists math.unicode-math
 ∅ = \varnothing math.unicode-math
 ∆ = \increment math.unicode-math
 ∇ > \nabla math.unicode-math
 ∈ = \in math
-∉ = \notin math
-∉ < \not\in math
+∉ = \notin math
+∉ < \not\in math
 ∊ = \smallin math.unicode-math
 ∋ = \ni math
-∌ < \nni math.unicode-math
-∌ = \not\ni math
+∌ < \nni math.unicode-math
+∌ = \not\ni math
 ∍ = \smallni math.unicode-math
 ∎ = \QED math.unicode-math
 ∏ = \prod math
@@ -2467,9 +2466,9 @@ K > K text
 ∡ = \measuredangle math.unicode-math
 ∢ = \sphericalangle math.unicode-math
 ∣ = \mid math
-∤ = \nmid math.unicode-math
+∤ = \nmid math.unicode-math
 ∥ = \parallel math
-∦ = \nparallel math.unicode-math
+∦ = \nparallel math.unicode-math
 ∧ = \wedge math
 ∨ = \vee math
 ∩ = \cap math
@@ -2511,24 +2510,24 @@ K > K text
 ∿ < \sinewave math.unicode-math
 ∿ = \AC math
 ≀ = \wr math
-≁ < \nsim math.unicode-math
-≁ = \not\sim math
+≁ < \nsim math.unicode-math
+≁ = \not\sim math
 ≂ < \eqsim math.unicode-math
 ≂ = \texteqsim math.xecjk
 ≂̸ = \NotEqualTilde math
 ≃ < \sime math.unicode-math
 ≃ = \simeq math
-≄ < \nsime math.unicode-math
-≄ < \nsimeq math.unicode-math
-≄ = \not\simeq math
+≄ < \nsime math.unicode-math
+≄ < \nsimeq math.unicode-math
+≄ = \not\simeq math
 ≅ = \cong math
 ≆ < \simneqq math.unicode-math
 ≆ = \approxnotequal math
-≇ < \ncong math.unicode-math
-≇ = \not\cong math
+≇ < \ncong math.unicode-math
+≇ = \not\cong math
 ≈ = \approx math
-≉ < \napprox math.unicode-math
-≉ = \not\approx math
+≉ < \napprox math.unicode-math
+≉ = \not\approx math
 ≊ = \approxeq math.unicode-math
 ≋ < \approxident math.unicode-math
 ≋ = \tildetrpl math
@@ -2563,11 +2562,11 @@ K > K text
 ≝ = \eqdef math.unicode-math
 ≞ = \measeq math.unicode-math
 ≟ = \questeq math.unicode-math
-≠ < \ne math
-≠ = \neq math
+≠ < \ne math
+≠ = \neq math
 ≡ = \equiv math
-≢ < \nequiv math.unicode-math
-≢ = \not\equiv math
+≢ < \nequiv math.unicode-math
+≢ = \not\equiv math
 ≣ = \Equiv math.unicode-math
 ≤ < \le
 ≤ = \leq math
@@ -2583,28 +2582,28 @@ K > K text
 ≫ = \gg math
 ≫̸ = \NotGreaterGreater math
 ≬ = \between math.unicode-math
-≭ = \nasymp math.unicode-math
-≭ = {\not\kern-0.3em\times} math
-≮ < \nless math.unicode-math
-≮ = \not< math
-≯ < \ngtr math.unicode-math
-≯ = \not> math
-≰ < \nleq math.unicode-math
-≰ = \not\leq math
-≱ < \ngeq math.unicode-math
-≱ = \not\geq math
+≭ = \nasymp math.unicode-math
+≭ = {\not\kern-0.3em\times} math
+≮ < \nless math.unicode-math
+≮ = \not< math
+≯ < \ngtr math.unicode-math
+≯ = \not> math
+≰ < \nleq math.unicode-math
+≰ = \not\leq math
+≱ < \ngeq math.unicode-math
+≱ = \not\geq math
 ≲ < \lesssim math.unicode-math
 ≲ = \lessequivlnt math
 ≳ < \gtrsim math.unicode-math
 ≳ = \greaterequivlnt math
-≴ = \nlesssim math.unicode-math
-≵ = \ngtrsim math.unicode-math
+≴ = \nlesssim math.unicode-math
+≵ = \ngtrsim math.unicode-math
 ≶ = \lessgtr math.unicode-math
 ≷ = \gtrless math.unicode-math
-≸ < \nlessgtr math.unicode-math
-≸ = \notlessgreater math
-≹ < \ngtrless math.unicode-math
-≹ = \notgreaterless math
+≸ < \nlessgtr math.unicode-math
+≸ = \notlessgreater math
+≹ < \ngtrless math.unicode-math
+≹ = \notgreaterless math
 ≺ = \prec math
 ≻ = \succ math
 ≼ = \preccurlyeq math.unicode-math
@@ -2615,22 +2614,22 @@ K > K text
 ≿ < \succsim math.unicode-math
 ≿ = \succapprox math
 ≿̸ = \NotSucceedsTilde math
-⊀ < \nprec math.unicode-math
-⊀ = \not\prec math
-⊁ < \nsucc math.unicode-math
-⊁ = \not\succ math
+⊀ < \nprec math.unicode-math
+⊀ = \not\prec math
+⊁ < \nsucc math.unicode-math
+⊁ = \not\succ math
 ⊂ = \subset math
 ⊃ = \supset math
-⊄ < \nsubset math.unicode-math
-⊄ = \not\subset math
-⊅ < \nsupset math.unicode-math
-⊅ = \not\supset math
+⊄ < \nsubset math.unicode-math
+⊄ = \not\subset math
+⊅ < \nsupset math.unicode-math
+⊅ = \not\supset math
 ⊆ = \subseteq math
 ⊇ = \supseteq math
-⊈ < \nsubseteq math.unicode-math
-⊈ = \not\subseteq math
-⊉ < \nsupseteq math.unicode-math
-⊉ = \not\supseteq math
+⊈ < \nsubseteq math.unicode-math
+⊈ = \not\subseteq math
+⊉ < \nsupseteq math.unicode-math
+⊉ = \not\supseteq math
 ⊊ = \subsetneq math.unicode-math
 ⊊︀ = \varsubsetneqq math
 ⊋ = \supsetneq math.unicode-math
@@ -2673,10 +2672,10 @@ K > K text
 ⊩ = \Vdash math.unicode-math
 ⊪ = \Vvdash math.unicode-math
 ⊫ = \VDash math.unicode-math
-⊬ = \nvdash math.unicode-math
-⊭ = \nvDash math.unicode-math
-⊮ = \nVdash math.unicode-math
-⊯ = \nVDash math.unicode-math
+⊬ = \nvdash math.unicode-math
+⊭ = \nvDash math.unicode-math
+⊮ = \nVdash math.unicode-math
+⊯ = \nVDash math.unicode-math
 ⊰ = \prurel math.unicode-math
 ⊱ = \scurel math.unicode-math
 ⊲ = \vartriangleleft math.unicode-math
@@ -2733,14 +2732,14 @@ K > K text
 ⋝ = \eqgtr math.unicode-math
 ⋞ = \curlyeqprec math.unicode-math
 ⋟ = \curlyeqsucc math.unicode-math
-⋠ < \npreccurlyeq math.unicode-math
-⋠ = \npreceq math.unicode-math
-⋡ < \nsucccurlyeq math.unicode-math
-⋡ = \nsucceq math.unicode-math
-⋢ < \nsqsubseteq math.unicode-math
-⋢ = \not\sqsubseteq math
-⋣ < \nsqsupseteq math.unicode-math
-⋣ = \not\sqsupseteq math
+⋠ < \npreccurlyeq math.unicode-math
+⋠ = \npreceq math.unicode-math
+⋡ < \nsucccurlyeq math.unicode-math
+⋡ = \nsucceq math.unicode-math
+⋢ < \nsqsubseteq math.unicode-math
+⋢ = \not\sqsubseteq math
+⋣ < \nsqsupseteq math.unicode-math
+⋣ = \not\sqsupseteq math
 ⋤ = \sqsubsetneq math.unicode-math
 ⋥ = \sqsupsetneq math.unicode-math
 ⋦ = \lnsim math.unicode-math
@@ -2748,12 +2747,12 @@ K > K text
 ⋨ < \precnsim math.unicode-math
 ⋨ = \precedesnotsimilar math.unicode-math
 ⋩ = \succnsim math.unicode-math
-⋪ < \nvartriangleleft math.unicode-math
-⋪ = \ntriangleleft math
-⋫ < \nvartriangleright math.unicode-math
-⋫ = \ntriangleright math
-⋬ = \ntrianglelefteq math.unicode-math
-⋭ = \ntrianglerighteq math.unicode-math
+⋪ < \nvartriangleleft math.unicode-math
+⋪ = \ntriangleleft math
+⋫ < \nvartriangleright math.unicode-math
+⋫ = \ntriangleright math
+⋬ = \ntrianglelefteq math.unicode-math
+⋭ = \ntrianglerighteq math.unicode-math
 ⋮ = \vdots math
 ⋯ < \unicodecdots math.unicode-math
 ⋯ = \cdots math
