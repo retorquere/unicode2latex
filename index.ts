@@ -91,7 +91,6 @@ export class Transform {
    * @param text - the text to transform
    */
   tolatex(text: string, options: TranslateOptions = {}): string {
-    console.log('translating', text, 'in', this.mode, 'mode')
     options = { bracemath: true, preservecommandspacers: false, packages: new Set, ...options}
     let mode = 'text'
     let braced = 0
