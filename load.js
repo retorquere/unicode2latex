@@ -70,8 +70,6 @@ class Mapping {
       }
     }
 
-    if (this.flag.combining && this.unicode.normalize('NFD').length > 2) throw new Error('update translator')
-
     if ((this.mode == 'text' || this.mode == '') && this.tex.match(/\\[0-1A-Za-z]+$/)) this.flag.commandspacer = true
 
     if (this.flag.stopgap && this.conversion === '=') throw new Error('sus conversion')
@@ -91,37 +89,47 @@ const TeXMap = csv.parse(fs.readFileSync('config.ssv', 'utf-8'), { delimiter: ' 
   .map(stanza => duplicate(new Mapping(stanza)))
   .flat(Infinity)
 
-class Diacritics {
+class Combining {
   constructor() {
     const commands = new Set
     this.tolatex = {}
     this.tounicode = {}
 
     let m
+    const regex = {
+      single: '',
+      multi: [],
+    }
     // the sort will handle text after math so that text gets precedence
     for (const c of TeXMap.sort((a, b) => a.mode.localeCompare(b.mode))) {
       if (!c.flag.combining) continue
 
+      if (c.flag.combining && (c.unicode !== c.unicode.normalize('NFD') || c.unicode.normalize('NFD').length > 2)) throw new Error('update translator')
+
+      if (c.unicode.length === 1) {
+        regex.single += c.unicode
+      }
+      else {
+        regex.multi.push(`(${permutations(c.unicode).join('|')})`)
+      }
       if (m = c.tex.match(/^\\([a-z]+)$/)) commands.add(m[1])
       if (c.tex[0] === '\\') {
         const cmd = c.tex.substr(1).replace('{}', '')
         this.tounicode[cmd] = c.unicode
-
-        // the permutation is because multi-diacritics like `textgravemacron` can be applied in any order in unicode
-        for (const cd of permutations(c.unicode)) {
-          this.tolatex[cd] = { mode: c.mode, command: cmd }
-        }
+        this.tolatex[c.unicode] = { mode: c.mode, command: cmd }
       }
     }
     this.commands = [...commands].sort()
+    if (regex.single) regex.multi.push(`[${regex.single}]`)
+    this.regex = regex.multi.join('|')
   }
   
   save(filename) {
-    fs.writeFileSync(filename, tojson({ commands: this.commands, tolatex: this.tolatex, tounicode: this.tounicode }))
+    fs.writeFileSync(filename, tojson({ commands: this.commands, tolatex: this.tolatex, tounicode: this.tounicode, regex: this.regex }))
   }
 }
 
-new Diacritics().save('tables/diacritics.json')
+new Combining().save('tables/combining.json')
 
 class U2T {
   constructor(mode) {

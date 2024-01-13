@@ -19,7 +19,7 @@
     "tables/bibtex.json",
     "tables/minimal.json",
     "tables/latex2unicode.json",
-    "tables/diacritics.json"
+    "tables/combining.json"
   ],
   "devDependencies": {
     "@types/node": "^20.10.8",

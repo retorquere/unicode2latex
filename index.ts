@@ -15,11 +15,13 @@ const maps = { biblatex, bibtex, minimal }
 
 export const latex2unicode: Record<string, string> = require('./tables/latex2unicode.json')
 
-export const diacritics: {
+export const combining: {
   commands: string[],
   tolatex: Record<string, {command: string, mode: 'text' | 'math'}>,
   tounicode: Record<string, string>
-} = require('./tables/diacritics.json')
+  regex: string
+} = require('./tables/combining.json')
+const combining_re = new RegExp(combining.regex)
 
 export type MapOptions = {
   packages?: string[]
@@ -92,58 +94,36 @@ export function tolatex(text: string, table: CharMap, options: TranslateOptions 
 
     if (!mapped && options.mode !== 'minimal' && cdpair) {
       let char = cdpair[0]
-
-      cdpair = cdpair.substr(1)
       let cdmode = ''
-      const cds = []
-      let valid = true
-      while (cdpair.length) {
-        let c, cd
-        if (diacritics.tolatex[cdpair.substr(0,2)]) {
-          c = cdpair.substr(0,2)
+      cdpair = cdpair.substr(1).replace(combining_re, cdc => {
+        if (cdc.length > 1) cdc = cdc.split('').sort().join('') // multi-combine are sorted stored
+        cd = combining.tolatex[cdc]
+        if (!cdmode) {
+          cdmode = cd.mode
+          char = (table[char] || { text: char, math: char })[cdmode]
+        }
+        if (cdmode !== cd.mode) {
+          return cdc
+        }
+
+        const cmd = cd.command.match(/[a-z]/)
+
+        if (options.mode === 'bibtex' && cd.mode === 'text') {
+          // needs to be braced to count as a single char for name abbreviation
+          char = `{\\${cd.command}${cmd ? ' ': ''}${char}}`
+        }
+        else if (cmd && char.length === 1) {
+          char = `\\${cd.command} ${char}`
+        }
+        else if (cmd) {
+          char = `\\${cd.command}{${char}}`
         }
         else {
-          c = cdpair[0]
+          char = `\\${cd.command}${char}`
         }
-        if (cd = diacritics.tolatex[c]) {
-          if (!cdmode) cdmode = cd.mode
-          if (cd.mode !== cdmode) {
-            valid = false
-          }
-          else {
-            cds.push(cd)
-          }
-        }
-        else {
-          valid = false
-        }
-        cdpair = cdpair.substr(c.length)
-      }
-
-      // no mapping in table, undefined results
-      if (valid) {
-        char = (table[char] || { text: char, math: char })[cdmode]
-
-        for (const cd of cds) {
-          const cmd = cd.command.match(/[a-z]/)
-
-          if (options.mode === 'bibtex' && cd.mode === 'text') {
-            // needs to be braced to count as a single char for name abbreviation
-            char = `{\\${cd.command}${cmd ? ' ': ''}${char}}`
-          }
-          else if (cmd && char.length === 1) {
-            char = `\\${cd.command} ${char}`
-          }
-          else if (cmd) {
-            char = `\\${cd.command}{${char}}`
-          }
-          else {
-            char = `\\${cd.command}${char}`
-          }
-        }
-
-        mapped = { [cdmode] : char }
-      }
+        return ''
+      })
+      if (!cdpair) mapped = { [cdmode] : char }
     }
 
     /* ??
