@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 export type TeXChar = { math?: string, text?: string, commandspacer?: boolean, alt?: string[] }
 export type CharMap = Record<string, TeXChar>
 export type TeXMap = {

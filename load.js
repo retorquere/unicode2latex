@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable @typescript-eslint/no-var-requires, no-cond-assign, no-console */
 
 const csv = require('papaparse')
 const fs = require('fs')
@@ -206,7 +207,7 @@ class U2T {
 
       if (commandspacer) return (m.text = `{${m.text}}`) // See #1538.
 
-      if (m.text.match(/^\\[`\'^~"=.][A-Za-z]$/) || m.text.match(/^\\[\^]\\[ij]$/) || m.text.match(/^\\[kr]\{[a-zA-Z]\}$/)) return (m.text = `{${m.text}}`)
+      if (m.text.match(/^\\[`'^~"=.][A-Za-z]$/) || m.text.match(/^\\[\^]\\[ij]$/) || m.text.match(/^\\[kr]\{[a-zA-Z]\}$/)) return (m.text = `{${m.text}}`)
 
       let r
       if (r = m.text.match(/^\\(L|O|AE|AA|DH|DJ|OE|SS|TH|NG)\{\}$/i)) return (m.text = `{\\${r[1]}}`)
