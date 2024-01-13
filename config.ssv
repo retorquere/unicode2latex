@@ -372,87 +372,87 @@ w̃ < @{\~ w}@
 ˧ = \tone{33} text.tipa
 ˨ = \tone{22} text.tipa
 ˩ = \tone{11} text.tipa
-̀ = \` text combiningdiacritic
-̀ = \grave math.unicode-math combiningdiacritic
-̀̄ = \textgravemacron text.tipa combiningdiacritic
-̀̇ = \textgravedot text.tipa combiningdiacritic
-́ = \' text combiningdiacritic
-́ = \acute math.unicode-math combiningdiacritic
-́̄ = \textacutemacron text.tipa combiningdiacritic
-́̌ = \textacutewedge text.tipa combiningdiacritic
-̂ < \widehat math.unicode-math combiningdiacritic
-̂ = \hat math.unicode-math combiningdiacritic
-̂ > \^ text combiningdiacritic
-̂̇ = \textcircumdot text.tipa combiningdiacritic
-̃ < \widetilde math.unicode-math combiningdiacritic
-̃ = \tilde math.unicode-math combiningdiacritic
-̃ = \~ text combiningdiacritic
-̃̇ = \texttildedot text.tipa combiningdiacritic
-̄ = \= text combiningdiacritic
-̄ = \bar math.unicode-math combiningdiacritic
-̄̀ > \textgravemacron text.tipa combiningdiacritic
-̅ < \overbar math.unicode-math combiningdiacritic
-̅ < \wideoverbar math.unicode-math combiningdiacritic
-̅ = \overline math combiningdiacritic
-̆ < \widebreve math.unicode-math combiningdiacritic
-̆ = \breve math.unicode-math combiningdiacritic
-̆ = \u text combiningdiacritic
-̆̄ = \textbrevemacron text.tipa combiningdiacritic
-̇ = \. text combiningdiacritic
-̇ = \dot math.unicode-math combiningdiacritic
-̇́ = \textdotacute text.tipa combiningdiacritic
-̇̆ > \textdotbreve text.tipa combiningdiacritic
-̈ = \" text combiningdiacritic
-̈ = \ddot math.unicode-math combiningdiacritic
+̀ = \` text combining
+̀ = \grave math.unicode-math combining
+̀̄ = \textgravemacron text.tipa combining
+̀̇ = \textgravedot text.tipa combining
+́ = \' text combining
+́ = \acute math.unicode-math combining
+́̄ = \textacutemacron text.tipa combining
+́̌ = \textacutewedge text.tipa combining
+̂ < \widehat math.unicode-math combining
+̂ = \hat math.unicode-math combining
+̂ > \^ text combining
+̂̇ = \textcircumdot text.tipa combining
+̃ < \widetilde math.unicode-math combining
+̃ = \tilde math.unicode-math combining
+̃ = \~ text combining
+̃̇ = \texttildedot text.tipa combining
+̄ = \= text combining
+̄ = \bar math.unicode-math combining
+̄̀ > \textgravemacron text.tipa combining
+̅ < \overbar math.unicode-math combining
+̅ < \wideoverbar math.unicode-math combining
+̅ = \overline math combining
+̆ < \widebreve math.unicode-math combining
+̆ = \breve math.unicode-math combining
+̆ = \u text combining
+̆̄ = \textbrevemacron text.tipa combining
+̇ = \. text combining
+̇ = \dot math.unicode-math combining
+̇́ = \textdotacute text.tipa combining
+̇̆ > \textdotbreve text.tipa combining
+̈ = \" text combining
+̈ = \ddot math.unicode-math combining
 ̉ = \ovhook math.unicode-math
-̊ < \ocirc math.unicode-math combiningdiacritic
-̊ = \mathring math combiningdiacritic
-̊ = \r text combiningdiacritic
-̊̄ = \textringmacron text.tipa combiningdiacritic
-̋ = \H text combiningdiacritic
-̌ < \widecheck math.unicode-math
-̌ = \check math.unicode-math
-̌ = \v text combiningdiacritic
-̍ = \textvbaraccent text.tipa combiningdiacritic
-̎ = \textdoublevbaraccent text.tipa combiningdiacritic
-̏ = \textdoublegrave text combiningdiacritic
-̐ = \candra math.unicode-math
-̐ = \textdotbreve text.tipa combiningdiacritic
+̊ < \ocirc math.unicode-math combining
+̊ = \mathring math combining
+̊ = \r text combining
+̊̄ = \textringmacron text.tipa combining
+̋ = \H text combining
+̌ < \widecheck math.unicode-math combining
+̌ = \check math.unicode-math combining
+̌ = \v text combining
+̍ = \textvbaraccent text.tipa combining
+̎ = \textdoublevbaraccent text.tipa combining
+̏ = \textdoublegrave text combining
+̐ = \candra math.unicode-math combining
+̐ = \textdotbreve text.tipa combining
 ̒ = \oturnedcomma math.unicode-math
 ̕ = \ocommatopright math.unicode-math
-̖ = \textsubgrave text combiningdiacritic
-̘ = \textadvancing text.tipa combiningdiacritic
-̙ = \textretracting text.tipa combiningdiacritic
-̚ = \droang math.unicode-math
-̚ = \textcorner text.tipa combiningdiacritic
-̜ = \textsublhalfring text.tipa combiningdiacritic
-̝ = \textraising text.tipa combiningdiacritic
-̞ = \textlowering text.tipa combiningdiacritic
-̟ = \textsubplus text.tipa combiningdiacritic
-̣ = \d text combiningdiacritic
-̤ = \textsubumlaut text.tipa combiningdiacritic
-̥ = \textsubring text.tipa combiningdiacritic
-̧ = \c text combiningdiacritic
-̨ = \k text combiningdiacritic
-̩ = \textsyllabic text.tipa combiningdiacritic
-̪ = \textsubbridge text.tipa combiningdiacritic
-̬ = \textsubwedge text.tipa combiningdiacritic
-̯ = \textsubarch text.tipa combiningdiacritic
-̰ < \utilde math
-̰ < \wideutilde math.unicode-math
-̰ = \textsubtilde text.tipa combiningdiacritic
-̱ = \textsubbar text.tipa combiningdiacritic
-̱ = \underbar math combiningdiacritic
+̖ = \textsubgrave text combining
+̘ = \textadvancing text.tipa combining
+̙ = \textretracting text.tipa combining
+̚ = \droang math.unicode-math combining
+̚ = \textcorner text.tipa combining
+̜ = \textsublhalfring text.tipa combining
+̝ = \textraising text.tipa combining
+̞ = \textlowering text.tipa combining
+̟ = \textsubplus text.tipa combining
+̣ = \d text combining
+̤ = \textsubumlaut text.tipa combining
+̥ = \textsubring text.tipa combining
+̧ = \c text combining
+̨ = \k text combining
+̩ = \textsyllabic text.tipa combining
+̪ = \textsubbridge text.tipa combining
+̬ = \textsubwedge text.tipa combining
+̯ = \textsubarch text.tipa combining
+̰ < \utilde math combining
+̰ < \wideutilde math.unicode-math combining
+̰ = \textsubtilde text.tipa combining
+̱ = \textsubbar text.tipa combining
+̱ = \underbar math combining
 ̲ < \mathunderbar math.unicode-math
 ̲ = \underline math
-̴ = \textsuperimposetilde text.tipa combiningdiacritic
+̴ = \textsuperimposetilde text.tipa combining
 ̸ < \notaccent math.unicode-math
 ̸ = \not math
-̹ = \textsubrhalfring text.tipa combiningdiacritic
-̺ = \textinvsubbridge text.tipa combiningdiacritic
-̻ = \textsubsquare text.tipa combiningdiacritic
-̼ = \textseagull text.tipa combiningdiacritic
-̽ = \textovercross text.tipa combiningdiacritic
+̹ = \textsubrhalfring text.tipa combining
+̺ = \textinvsubbridge text.tipa combining
+̻ = \textsubsquare text.tipa combining
+̼ = \textseagull text.tipa combining
+̽ = \textovercross text.tipa combining
 ͍ = \underleftrightarrow math.unicode-math
 ʹ > ' text
 ͵ > , text
