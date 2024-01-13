@@ -193,8 +193,6 @@ export function tolatex(text: string, table: CharMap, options: TranslateOptions 
   // might still be in math mode at the end
   if (mode === 'math') latex += switchTo.text
 
-  // does this do anything?
-  // latex = latex.normalize('NFC')
   if (!options.preservecommandspacers) latex = replace_command_spacers(latex)
-  return latex
+  return latex.normalize('NFC')
 }
