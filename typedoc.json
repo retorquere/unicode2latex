@@ -1,0 +1,20 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["./index.ts"],
+    "sort": ["source-order"],
+    "categorizeByGroup": false,
+    "searchCategoryBoosts": {
+        "Component": 2,
+        "Model": 1.2
+    },
+    "searchGroupBoosts": {
+        "Classes": 1.5
+    },
+    "navigationLinks": {
+        "Docs": "http://retorque.re/unicode2latex/",
+        "GitHub": "https://github.com/retorquere/unicode2latex"
+    },
+    "sidebarLinks": {
+        "API": "http://retorque.re/unicode2latex/"
+    }
+}
