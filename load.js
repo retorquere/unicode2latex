@@ -29,7 +29,7 @@ function permutations(v) {
 }
 
 function tojson(obj) {
-  return ascii(JSON.stringify(obj, null, 2))
+  return ascii(JSON.stringify(obj))
 }
 
 function duplicate(stanza) {
