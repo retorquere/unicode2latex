@@ -4,6 +4,7 @@
   "description": "Mapping to convert unicode characters from and to LaTeX commands",
   "main": "index.js",
   "scripts": {
+    "docs": "typedoc index.ts",
     "test": "npm start",
     "start": "mkdir -p tables && tsc && ./load.js && ./translate.js",
     "preversion": "npm start",
@@ -24,6 +25,7 @@
   "devDependencies": {
     "@types/node": "^20.10.8",
     "papaparse": "^5.4.1",
+    "typedoc": "^0.25.7",
     "typescript": "^5.3.3"
   }
 }

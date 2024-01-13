@@ -24,24 +24,34 @@ export const combining: {
 const combining_re = new RegExp(combining.regex)
 
 export type MapOptions = {
+  /** use mappings that require extra packages to be loaded in your document, giving better fidelity mapping. Currently supported are `MinionPro`, `MnSymbol`, `amssymb`, `arevmath`, `graphics`, `ipa`, `mathabx`, `mathrsfs`, `mathscinet`, `pmboxdraw`, `textcomp`, `tipa`, `unicode-math`, `wasysym` and `xecjk`. */
   packages?: string[]
+  /** string of characters that should always be translated to math-mode TeX */
   math?: string
+  /** string of characters that should always be translated to text-mode TeX */
   text?: string
+  /** string of characters that should always be translated LaTeX commands, even when the map `minimal` is used. */
   ascii?: string
+  /** custom mapping to add to the loaded mapping */
   charmap?: CharMap
 }
 
+/**
+ * loads a unicode -> TeX character map to pass into `tolatex`
+ *
+ * @param mode - the translation mode, being `bibtex`, `biblatex` or `minimal`. Use `minimal` if your TeX environment supports unicode. In `bibtex` mode, combining characters are braced to that character/word counts are reliable, at the cost of more verbose output.
+ */
 export function load(mode : 'bibtex' | 'biblatex' | 'minimal',  options?: MapOptions): CharMap {
-  let map = { ...maps[mode].base }
+  let map: CharMap = { ...maps[mode].base }
   const packages = maps[mode].package
   for (const pkg of (options.packages || []).map(p => packages[p]).filter(p => p)) {
     map = { ...map, ...pkg }
   }
-  for (const c of (options.text || '')) {
-    if (map[c].text) delete map[c].math
-  }
-  for (const c of (options.math || '')) {
-    if (map[c].math) delete map[c].text
+  for (const mode of ['text', 'math']) {
+    if (!options[mode]) continue
+    for (const c of options[mode]) {
+      if (map[c][mode]) map[c] = { [mode]: map[c][mode] }
+    }
   }
   for (const c of (options.ascii || '')) {
     if (bibtex.base[c]) map[c] = bibtex.base[c]
@@ -61,8 +71,9 @@ const switchMode = {
 }
 const re = /(i\uFE20a\uFE21)|([^\u0300-\u036F][\u0300-\u036F]+)|([\uD800-\uDBFF][\uDC00-\uDFFF])|(.)/g
 export type TranslateOptions = {
+  /** add braces around math sections. This is useful if you plan to do sentencecase => TitleCase conversion on the result, so that you know these sections are protected. */
   bracemath?: boolean
-  mode?: 'minimal' | 'bibtex' | 'biblatex'
+  mode?: string
   preservecommandspacers?: boolean
   packages?: Set<string>
 }
