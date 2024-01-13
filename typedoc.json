@@ -11,6 +11,7 @@
         "Classes": 1.5
     },
     "navigationLinks": {
+        "NPM": "https://www.npmjs.com/package/unicode2latex",
         "Docs": "http://retorque.re/unicode2latex/",
         "GitHub": "https://github.com/retorquere/unicode2latex"
     },
