@@ -29,6 +29,28 @@ function permutations(v) {
   return p('', v)
 }
 
+function compress(key, value) {
+  if (value && typeof value === 'object') {
+    const replacement = {}
+    for (k in value) {
+      switch (k) {
+        case 'math':
+        case 'text':
+          replacement[k[0]] = value[k]
+          break
+        case 'commandspacer':
+          replacement.c = 1
+          break
+        default:
+          replacement[k] = value[k]
+          break
+      }
+    }
+    return replacement
+  }
+  return value
+}
+
 function tojson(obj) {
   return ascii(JSON.stringify(obj))
 }
