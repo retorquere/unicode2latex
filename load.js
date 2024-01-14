@@ -74,7 +74,6 @@ class Mapping {
     if ((this.mode == 'text' || this.mode == '') && this.tex.match(/\\[0-1A-Za-z]+$/)) this.flag.commandspacer = true
 
     if (this.flag.stopgap && this.conversion === '=') throw new Error('sus conversion')
-
   }
 
   get u2t() {
