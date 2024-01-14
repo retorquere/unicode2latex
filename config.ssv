@@ -59,7 +59,7 @@ i︠a︡ = \t{ia} text
 ¦ = \textbrokenbar text.textcomp
 § < \mathsection math
 § = \S
-§ = \textsection text.textcomp
+§ < \textsection text.textcomp
 ¨ = \textasciidieresis text
 © = \copyright
 © = \textcopyright text.textcomp

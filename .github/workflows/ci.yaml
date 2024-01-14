@@ -19,7 +19,7 @@ jobs:
     - name: install node dependencies
       run: |
         npm ci --ignore-scripts
-    - run: npm start
+    - run: npm test
     - name: Publish
       run: |
         npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}

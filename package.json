@@ -11,8 +11,8 @@
   "scripts": {
     "docs": "typedoc --out docs --readme README.md index.ts",
     "lint": "eslint .",
-    "test": "npm start",
-    "start": "npm run lint && mkdir -p tables && tsc && ./load.js && ./translate.js && npm run docs",
+    "test": "npm start && jest",
+    "start": "npm run lint && mkdir -p tables && tsc && ./load.js && npm run docs",
     "preversion": "npm start",
     "postversion": "git push --tags && git push"
   },
@@ -33,6 +33,7 @@
     "@typescript-eslint/eslint-plugin": "^6.18.1",
     "@typescript-eslint/parser": "^6.18.1",
     "eslint": "^8.56.0",
+    "jest": "^29.7.0",
     "papaparse": "^5.4.1",
     "tslib": "^2.6.2",
     "typedoc": "^0.25.7",
