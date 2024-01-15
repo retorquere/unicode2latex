@@ -48,6 +48,7 @@ const switchMode = {
 }
 const re = /(i\uFE20a\uFE21)|([^\u0300-\u036F][\u0300-\u036F]+)|([\uD800-\uDBFF][\uDC00-\uDFFF])|(.)/g
 export type TranslateOptions = {
+  prefer?: 'math' | 'text' | ''
   /** add braces around math sections. This is useful if you plan to do sentencecase => TitleCase conversion on the result, so that you know these sections are protected. */
   bracemath?: boolean
   /** @ignore */
@@ -93,13 +94,16 @@ export class Transform {
    * @param text - the text to transform
    */
   tolatex(text: string, options: TranslateOptions = {}): string {
-    options = { bracemath: true, preservecommandspacers: false, packages: new Set, ...options}
+    const { prefer, bracemath, preservecommandspacers, packages } = {
+      prefer: '', bracemath: true, preservecommandspacers: false, packages: new Set,
+      ...options,
+    }
     let mode = 'text'
     let braced = 0
 
     const switchTo = {
-      math: (options.bracemath ? '{$' : '$'),
-      text: (options.bracemath ? '$}' : '$'),
+      math: (bracemath ? '{$' : '$'),
+      text: (bracemath ? '$}' : '$'),
     }
 
     let mapped: TeXChar
@@ -161,7 +165,7 @@ export class Transform {
       if (!mapped) mapped = { text: match }
 
       // in and out of math mode
-      if (!mapped[mode]) {
+      if (!mapped[mode] || (prefer && mode !== prefer && mapped[prefer])) {
         mode = switchMode[mode]
         latex += switchTo[mode]
         switched = true
@@ -198,7 +202,7 @@ export class Transform {
 
       if (mapped.alt) {
         for (const pkg of mapped.alt) {
-          options.packages.add(pkg)
+          packages.add(pkg)
         }
       }
       return match // pacify tsc
@@ -219,7 +223,7 @@ export class Transform {
     // might still be in math mode at the end
     if (mode === 'math') latex += switchTo.text
 
-    if (!options.preservecommandspacers) latex = replace_command_spacers(latex)
+    if (!preservecommandspacers) latex = replace_command_spacers(latex)
     return latex.normalize('NFC')
   }
 }

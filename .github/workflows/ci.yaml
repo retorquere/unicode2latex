@@ -16,6 +16,9 @@ jobs:
       with:
         node-version: 19.x
 
+    - name: Install Crystal
+        uses: crystal-lang/install-crystal@v1
+
     - name: install node dependencies
       run: |
         npm ci --ignore-scripts
