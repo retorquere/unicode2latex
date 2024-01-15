@@ -8,7 +8,7 @@ function tx(input, expected) {
   if (typeof expected === 'string') expected = { latex: expected }
   const _tx = new Transform(input.mode || 'biblatex', { packages: input.pkgs || [] })
   const packages = new Set
-  expect(_tx.tolatex(input.text, { packages })).toBe(expected.latex)
+  expect(_tx.tolatex(input.text, { prefer: input.prefer || '', packages })).toBe(expected.latex)
   expect([...packages].sort().join(',')).toBe(expected.pkgs || '')
 }
 
@@ -72,3 +72,6 @@ test("B\u00fcrgerliches Recht Band I Allgemeiner Teil", () => {
   tx("B\u00fcrgerliches Recht Band I Allgemeiner Teil", 'B\\"urgerliches Recht Band I Allgemeiner Teil')
 })
 
+test("math: 0 < p < 1", () => {
+  tx({ text: "0 < p < 1", prefer: 'math' }, "{$0 < p < 1$}")
+})

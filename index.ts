@@ -162,7 +162,7 @@ export class Transform {
       }
       */
       // fallback -- single char mapping
-      if (!mapped) mapped = { text: match }
+      if (!mapped) mapped = { text: match, math: prefer === 'math' && match.match(/^[ a-z0-9]$/i) && match }
 
       // in and out of math mode
       if (!mapped[mode] || (prefer && mode !== prefer && mapped[prefer])) {
