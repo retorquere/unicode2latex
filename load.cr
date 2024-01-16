@@ -216,7 +216,7 @@ class U2T
             when "bibtex"
               if commandspacer # See #1538.
                 m.text = "{#{m.text}}"
-              elsif m.text =~ /^\\[`'^~"=.][A-Za-z]$/ || m.text =~ /^\\[\^]\\[ij]$/ || m.text =~ /^\\[kr]\{[a-zA-Z]\}$/
+              elsif m.text =~ /^\\[`'^~"=.][A-Za-z]$/ || m.text =~ /^\\[\^]\\[ij]$/ || m.text =~ /^\\[kr]\{[a-zA-Z]?\}$/
                 m.text = "{#{m.text}}"
               elsif m.text =~ /^\\(L|O|AE|AA|DH|DJ|OE|SS|TH|NG)\{\}$/i
                 m.text = "{\\#{$1}}"

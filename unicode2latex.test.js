@@ -72,12 +72,14 @@ test("B\u00fcrgerliches Recht Band I Allgemeiner Teil", () => {
   tx("B\u00fcrgerliches Recht Band I Allgemeiner Teil", 'B\\"urgerliches Recht Band I Allgemeiner Teil')
 })
 
-/*
-test("math: 0 < p < 1", () => {
-  tx({ text: "0 < p < 1", prefer: 'math' }, "{$0 < p < 1$}")
-})
-*/
+// test("math: 0 < p < 1", () => {
+//   tx({ text: "0 < p < 1", prefer: 'math' }, "{$0 < p < 1$}")
+// })
 
 test("non-breaking space: ; accented characters: \u00f1 and \u00f1; tilde in URL: http://example.com/~user", () => {
   tx({ text: "non-breaking space: ; accented characters: \u00f1 and \u00f1; tilde in URL: http://example.com/~user", mode: "minimal" }, "non-breaking space: ; accented characters: ñ and ñ; tilde in URL: http://example.com/\\textasciitilde user")
+})
+
+test("Munaf\u0102\u02db", () => {
+  tx({ text: "Munaf\u0102\u02db", mode: 'bibtex' }, "Munaf{\\u A}{\\k{}}")
 })
