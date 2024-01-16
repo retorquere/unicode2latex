@@ -77,3 +77,7 @@ test("math: 0 < p < 1", () => {
   tx({ text: "0 < p < 1", prefer: 'math' }, "{$0 < p < 1$}")
 })
 */
+
+test("non-breaking space: ; accented characters: \u00f1 and \u00f1; tilde in URL: http://example.com/~user", () => {
+  tx({ text: "non-breaking space: ; accented characters: \u00f1 and \u00f1; tilde in URL: http://example.com/~user", mode: "minimal" }, "non-breaking space: ; accented characters: ñ and ñ; tilde in URL: http://example.com/\\textasciitilde user")
+})

@@ -211,7 +211,7 @@ class U2T
         m.stopgap = c.stopgap
 
         if cmode === "text"
-          commandspacer = cmode == "text" && c.tex.matches?(/\\[0-1A-Za-z]+$/)
+          commandspacer = c.tex.matches?(/\\[0-1a-z]+$/i) && !c.combining
           case mode
             when "bibtex"
               if commandspacer # See #1538.
@@ -222,12 +222,10 @@ class U2T
                 m.text = "{\\#{$1}}"
               elsif m.text =~ /^\\([a-z])\{([a-z0-9])\}$/i
                 m.text = "{\\#{$1} #{$2}}"
-              elsif m.text =~ /.*\\[0-1a-z]+$/i && !c.combining
-                m.commandspacer = true
               else
                 m.commandspacer = commandspacer
               end
-            when "biblatex"
+            when "biblatex", "minimal"
               m.commandspacer = commandspacer
           end
         end
