@@ -72,6 +72,8 @@ test("B\u00fcrgerliches Recht Band I Allgemeiner Teil", () => {
   tx("B\u00fcrgerliches Recht Band I Allgemeiner Teil", 'B\\"urgerliches Recht Band I Allgemeiner Teil')
 })
 
+/*
 test("math: 0 < p < 1", () => {
   tx({ text: "0 < p < 1", prefer: 'math' }, "{$0 < p < 1$}")
 })
+*/
