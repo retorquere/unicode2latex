@@ -91,3 +91,6 @@ test("Molecular Theory of Atomic Collisions: Calculated Cross Sections for ${\\m
   )
 })
 
+test("Pető", () => {
+  tx("Pető", "Pet\\H o")
+})

@@ -135,7 +135,7 @@ export class Transform {
             return cdc
           }
 
-          const cmd = cd.command.match(/[a-z]/)
+          const cmd = cd.command.match(/[a-z]/i)
 
           if (this.mode === 'bibtex' && cd.mode === 'text') {
             // needs to be braced to count as a single char for name abbreviation
