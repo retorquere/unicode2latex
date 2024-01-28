@@ -107,7 +107,7 @@ class Mapping
       end
     end
 
-    @unicode = @unicode.unicode_normalize(:nfd).chars.sort.join("") if @combining
+    @unicode = @unicode.unicode_normalize(:nfd) if @combining
 
     raise "sus conversion" if @stopgap && @conversion == '='
   end
