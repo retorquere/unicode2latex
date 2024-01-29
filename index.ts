@@ -17,6 +17,22 @@ const maps = { biblatex, bibtex, minimal }
 
 export const latex2unicode: Record<string, string> = require('./tables/latex2unicode.json')
 
+function permutations(str: string): string[] {
+  if (str.length === 0) return []
+  if (str.length === 1) return [str]
+
+  const result: string[] = []
+  for (let i = 0; i < str.length; i++) {
+    const firstChar = str[i]
+    const remainingChars = str.slice(0, i) + str.slice(i + 1)
+    const remainingPermutations = permutations(remainingChars)
+    for (let j = 0; j < remainingPermutations.length; j++) {
+      result.push(firstChar + remainingPermutations[j])
+    }
+  }
+  return result
+}
+
 export const combining: {
   commands: string[],
   tolatex: Record<string, {command: string, mode: 'text' | 'math'}>,
@@ -125,15 +141,15 @@ export class Transform {
         let char = cdpair[0]
         let cdmode = ''
         cdpair = cdpair.substr(1).replace(combining_re, cdc => {
-          if (cdc.length > 1) cdc = cdc.split('').sort().join('') // multi-combine are sorted stored
-          cd = combining.tolatex[cdc]
+          cd = combining.tolatex[permutations(cdc).find(p => combining.tolatex[p])] // multi-combine may have different order
+          if (!cd) return cdc
+
           if (!cdmode) {
             cdmode = cd.mode
             char = (this.map[char] || { text: char, math: char })[cdmode]
           }
-          if (cdmode !== cd.mode) {
-            return cdc
-          }
+
+          if (cdmode !== cd.mode) return cdc // mode switch
 
           const cmd = cd.command.match(/[a-z]/i)
 

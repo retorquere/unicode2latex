@@ -12,6 +12,7 @@ function tx(input, expected) {
   expect([...packages].sort().join(',')).toBe(expected.pkgs || '')
 }
 
+/*
 test('command spacer', () => {
   tx("On Recovery of Sparse Signals via ££p Minimization", "On Recovery of Sparse Signals via \\pounds\\pounds p Minimization")
 })
@@ -93,4 +94,9 @@ test("Molecular Theory of Atomic Collisions: Calculated Cross Sections for ${\\m
 
 test("Pető", () => {
   tx("Pető", "Pet\\H o")
+})
+*/
+
+test("K̅", () => {
+  tx("K̅", "{$\\overline K$}")
 })

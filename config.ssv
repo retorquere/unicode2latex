@@ -2175,7 +2175,6 @@ ữ1 = \arabichad math.unicode-math
 ℨ = \mathfrak{Z} math
 ℩ = \textriota text
 ℩ = \turnediota math.unicode-math
-K > K text
 Å < \Angstrom math.unicode-math
 Å = \Angstroem math
 Å > \AA text
