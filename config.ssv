@@ -69,7 +69,8 @@ i︠a︡ = \t{ia} text
 ¬ = \lnot math
 ­ = \-
 ® < \textcircled{R} text.amsmath
-® = \textregistered text.textcomp
+## textregistered comes from textcomp, but some symbols will already be loaded from it for non-ancient distros
+® = \textregistered text
 ¯ = \textasciimacron text
 ° = \textdegree text.textcomp
 ° = ^\circ math
