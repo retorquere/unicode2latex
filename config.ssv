@@ -54,10 +54,46 @@ i︠a︡ = \t{ia} text
 £ < \mathsterling math
 £ = \pounds
 £ < \textsterling text.textcomp
+฿ = \textbaht text.textcomp
+₡ = \textcolonmonetary text.textcomp
+₩ = \textwon text.textcomp
 ¤ = \textcurrency text.textcomp
+₱ = \textpeso text.textcomp
+₤ = \textlira text.textcomp
+Ħ = \textmalteseH text.textcomp
+₦ = \textnaira text.textcomp
+₧ = \textpeseta text.textcomp
 ¥ = \textyen text.textcomp
+₫ = \textdong text.textcomp
 € = \euro math.unicode-math
 € = \texteuro text
+א = \hebalef text.xecjk
+ע = \hebayin text.xecjk
+ב = \hebbet text.xecjk
+ד = \hebdalet text.xecjk
+ך = \hebfinalkaf text.xecjk
+ם = \hebfinalmem text.xecjk
+ן = \hebfinalnun text.xecjk
+ף = \hebfinalpe text.xecjk
+ץ = \hebfinaltsadi text.xecjk
+ג = \hebgimel text.xecjk
+ה = \hebhe text.xecjk
+ח = \hebhet text.xecjk
+כ = \hebkaf text.xecjk
+ל = \heblamed text.xecjk
+מ = \hebmem text.xecjk
+נ = \hebnun text.xecjk
+פ = \hebpe text.xecjk
+ק = \hebqof text.xecjk
+ר = \hebresh text.xecjk
+ס = \hebsamekh text.xecjk
+ש = \hebshin text.xecjk
+ת = \hebtav text.xecjk
+ט = \hebtet text.xecjk
+צ = \hebtsadi text.xecjk
+ו = \hebvav text.xecjk
+י = \hebyod text.xecjk
+ז = \hebzayin text.xecjk
 ¦ = \textbrokenbar text.textcomp
 § < \mathsection math
 § = \S
@@ -306,6 +342,11 @@ ů < \ocirc{u}
 ƞ = \textipa{\textnrleg} text.tipa
 ƪ = \textesh text
 ǂ = \textdoublepipe text
+ǐ = \v{\i} text
+ǰ = \v{\j} text
+ï = \"{\i} text
+î = \^{\i} text
+ĩ = \~{\i} text
 ## Ǎ = \v{A} text
 ## ǎ = \v{a} text
 ## Ǐ = \v{I} text
@@ -379,7 +420,7 @@ ů < \ocirc{u}
 ̀̄ = \textgravemacron text.tipa combining
 ̀̇ = \textgravedot text.tipa combining
 ́ = \' text combining
-́ = \´ text combining
+́ < \´ text combining
 ́ = \acute math.unicode-math combining
 ́̄ = \textacutemacron text.tipa combining
 ́̌ = \textacutewedge text.tipa combining
@@ -617,6 +658,14 @@ ů < \ocirc{u}
 ϵ = \epsilon math
 ϶ = \backepsilon math
 ϶ = \upbackepsilon math.unicode-math
+ѫ = \cyrchar\cyrbyus text
+ѳ = \cyrchar\cyrfita text
+ѵ = \cyrchar\cyrizh text
+Ӆ = \cyrchar\CYRLDSC text
+ӆ = \cyrchar\cyrldsc text
+Ӎ = \cyrchar\CYRMDSC text
+ӎ = \cyrchar\cyrmdsc text
+ѣ = \cyrchar\cyryat text
 Ё = \cyrchar\CYRYO text
 Ђ = \cyrchar\CYRDJE text
 Ѓ = \cyrchar{\'\CYRG} text
@@ -5458,3 +5507,4 @@ Å > \AA text
 𝟾 = \mathtt{8} math
 𝟿 = \mathtt{9} math
 @ ͚@ = _\infty math
+ț = \textcommabelow{t} text
