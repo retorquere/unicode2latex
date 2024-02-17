@@ -84,7 +84,7 @@ class Mapping
   property space : Bool = false
 
   def initialize(stanza : Array(String))
-    @unicode = stanza.shift()
+    @unicode = String.from_json("\"" + stanza.shift() + "\"")
     @conversion = {"<" => "t2u", ">" => "u2t", "=" => "="}[stanza.shift()]
     @tex = stanza.shift()
 
