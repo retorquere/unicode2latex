@@ -56,6 +56,8 @@ i︠a︡ = \t{ia} text
 £ < \textsterling text.textcomp
 ¤ = \textcurrency text.textcomp
 ¥ = \textyen text.textcomp
+€ = \euro math.unicode-math
+€ = \texteuro text
 ¦ = \textbrokenbar text.textcomp
 § < \mathsection math
 § = \S
@@ -377,6 +379,7 @@ ů < \ocirc{u}
 ̀̄ = \textgravemacron text.tipa combining
 ̀̇ = \textgravedot text.tipa combining
 ́ = \' text combining
+́ = \´ text combining
 ́ = \acute math.unicode-math combining
 ́̄ = \textacutemacron text.tipa combining
 ́̌ = \textacutewedge text.tipa combining
@@ -2090,8 +2093,6 @@ ữ1 = \arabichad math.unicode-math
 ₛ = _{s} math
 ₜ = \textsubscript{t} text
 ₜ = _{t} math
-€ = \euro math.unicode-math
-€ = \texteuro text
 ⃐ < \leftharpoonaccent math.unicode-math
 ⃐ < \overleftharpoon math.unicode-math
 ⃐ = \lvec math
