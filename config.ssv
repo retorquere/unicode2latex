@@ -52,19 +52,19 @@ i\uFE20a\uFE21 = \t{ia} text
 \u00A1 = \textexclamdown text
 \u00A2 = \textcent text.textcomp
 \u00A3 < \mathsterling math
-\u00A3 = \pounds
 \u00A3 < \textsterling text.textcomp
+\u00A3 = \pounds
+\u00A4 = \textcurrency text.textcomp
+\u00A5 = \textyen text.textcomp
+\u0126 = \textmalteseH text.textcomp
 \u0E3F = \textbaht text.textcomp
 \u20A1 = \textcolonmonetary text.textcomp
-\u20A9 = \textwon text.textcomp
-\u00A4 = \textcurrency text.textcomp
-\u20B1 = \textpeso text.textcomp
 \u20A4 = \textlira text.textcomp
-\u0126 = \textmalteseH text.textcomp
 \u20A6 = \textnaira text.textcomp
 \u20A7 = \textpeseta text.textcomp
-\u00A5 = \textyen text.textcomp
+\u20A9 = \textwon text.textcomp
 \u20AB = \textdong text.textcomp
+\u20B1 = \textpeso text.textcomp
 \u20AC = \euro math.unicode-math
 \u20AC = \texteuro text
 \u05D0 = \hebalef text.xecjk
