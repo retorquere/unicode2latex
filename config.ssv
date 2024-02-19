@@ -48,7 +48,8 @@ i\uFE20a\uFE21 = \t{ia} text
 } < \rbrace math
 } = \} text
 ~ = \textasciitilde text
-\u00A0 > ~ space
+\u00A0 = ~ space
+\u00A0 < \nobreakspace text space
 \u00A1 = \textexclamdown text
 \u00A2 = \textcent text.textcomp
 \u00A3 < \mathsterling math
@@ -65,6 +66,7 @@ i\uFE20a\uFE21 = \t{ia} text
 \u20A9 = \textwon text.textcomp
 \u20AB = \textdong text.textcomp
 \u20B1 = \textpeso text.textcomp
+\u0192 = \textflorin text
 \u20AC = \euro math.unicode-math
 \u20AC = \texteuro text
 \u05D0 = \hebalef text.xecjk
@@ -102,9 +104,11 @@ i\uFE20a\uFE21 = \t{ia} text
 \u00A9 = \copyright
 \u00A9 = \textcopyright text.textcomp
 \u00AA = \textordfeminine text.textcomp
-\u00AB = \guillemotleft text
+\u00AB = << text
+\u00AB < \guillemotleft text
 \u00AC < \neg math
 \u00AC = \lnot math
+\u00AC = \textlnot text
 \u00AD = \-
 \u00AE < \textcircled{R} text.amsmath
 ## textregistered comes from textcomp, but some symbols will already be loaded from it for non-ancient distros
@@ -113,8 +117,11 @@ i\uFE20a\uFE21 = \t{ia} text
 \u00B0 = \textdegree text.textcomp
 \u00B0 = ^\circ math
 \u00B1 = \pm math
+\u00B1 = \textpm text
 \u00B2 = ^{2} math
+\u00B2 < \texttwosuperior text
 \u00B3 = ^{3} math
+\u00B3 < \textthreesuperior text
 \u00B4 = \textasciiacute text
 \u00B5 = \textmu text
 \u00B6 < \mathparagraph math
@@ -124,8 +131,10 @@ i\uFE20a\uFE21 = \t{ia} text
 \u00B7 > \cdot math
 \u00B8 > \c text
 \u00B9 = ^{1} math
+\u00B9 < \textonesuperior text
 \u00BA = \textordmasculine text.textcomp
-\u00BB = \guillemotright text
+\u00BB = >> text
+\u00BB < \guillemotright text
 \u00BC < \textonequarter
 \u00BC = \frac{1}{4} math
 \u00BD < \textonehalf
@@ -201,6 +210,7 @@ i\u0308 < \"\i
 ## õ = \~o text
 ## ö = \"o text
 \u00F7 = \div math
+\u00F7 = \textdiv text
 \u00F8 = \o text
 ## ù = \`u text
 ## ú = \'u text
@@ -260,8 +270,8 @@ i\u0306 = @{\u \i}@ text
 ## İ = \.I text
 \u0131 = \i text
 \u0131 = \imath math
-\u0132 > IJ text
-\u0133 > ij text
+\u0132 = \IJ text
+\u0133 = \ij text
 ## Ĵ = \^J text
 j\u0302 = \^\j text
 ## Ķ = \c{K} text
@@ -403,7 +413,8 @@ i\u0303 = \~{\i} text
 \u02DA > \r{} text
 \u02DB > \k{} text
 \u02DC = \texttildelow text
-\u02DD > \H{} text
+\u02DD < \H{} text
+\u02DD = \textacutedbl text
 \u02E1 = \textsuperscript{l} text
 \u02E1 = ^{l} math
 \u02E2 = \textsuperscript{s} text
@@ -476,6 +487,7 @@ i\u0303 = \~{\i} text
 \u0323 = \d text combining
 \u0324 = \textsubumlaut text.tipa combining
 \u0325 = \textsubring text.tipa combining
+\u0326 = \textcommabelow text combining
 \u0327 = \c text combining
 \u0328 = \k text combining
 \u0329 = \textsyllabic text.tipa combining
@@ -514,6 +526,7 @@ i\u0303 = \~{\i} text
 \u0392 = \mupBeta math.unicode-math
 \u0392 > B math stopgap
 \u0393 < \varGamma
+\u0393 < \textGamma text
 \u0393 = \Gamma math
 \u0393 = \mupGamma math.unicode-math
 \u0394 = \Delta math
@@ -568,6 +581,7 @@ i\u0303 = \~{\i} text
 \u03C5\u0308\u0301 = \acute{\ddot{\upsilon}} math
 \u03B1 < \mupalpha math.unicode-math
 \u03B1 = \alpha math
+\u03B1 = \textalpha text.textalpha
 \u03B2 < \mupbeta math.unicode-math
 \u03B2 = \beta math
 \u03B3 < \mupgamma math.unicode-math
@@ -598,6 +612,7 @@ i\u0303 = \~{\i} text
 \u03BF = \mupomicron math.unicode-math
 \u03BF > o math stopgap
 \u03C0 < \muppi math.unicode-math
+\u03C0 < \textpi text.textcomp
 \u03C0 = \pi math
 \u03C1 < \muprho math.unicode-math
 \u1D70C > \rho math
@@ -2006,34 +2021,43 @@ u\u031B\u03031 = \arabichad math.unicode-math
 ## ỵ = \d{y} text
 ## Ỹ = \~Y text
 ## ỹ = \~y text
-\u2002 = \hspace{0.6em} text space
-\u2003 > \quad math space
-\u2002 > \hspace{0.6em} text space
+\u2002 < \hspace{0.6em} text space
+\u2002 = \enspace text space
+\u2003\u2003 = \qquad text
 \u2003 = \quad math space
 \u2004 = \; text space
-\u2005 = \hspace{0.25em} text space
+\u2005 = \> text space
+\u2005 < \hspace{0.25em} text space
+\u2005 < \medspace text space
+\u2005 < \thickspace text space
 \u2006 = \hspace{0.166em} text space
 \u2007 = \hphantom{0} text space
 \u2008 = \hphantom{,} text space
 \u2009 = \, text space
+\u2009 < \thinspace
 \u200A = \mkern1mu math space
 \u200B = \hspace{0pt} text space
-\u200C = {\aftergroup\ignorespaces} text
+\u200C < {\aftergroup\ignorespaces} text
+\u200C = \textcompwordmark text
 \u2010 = \mathhyphen math.unicode-math
 \u2010 > - text
 \u2011 > - text
 \u2012 > - text
-\u2013 = \textendash text
-\u2014 = \textemdash text
+\u2013 < \textendash text
+\u2014 < \textemdash text
+\u2014 = --- text
+\u2013 = -- text
 \u2015 = \horizbar math.unicode-math
-\u2015 = \rule{1em}{1pt} text
-\u2016 = \Vert math
+\u2015 = \texthorizontalbar text
+\u2015 < \rule{1em}{1pt} text
+\u2016 < \Vert math
+\u2016 = \textbardbl text
 \u2017 = \twolowline math.unicode-math
 \u2018 < \textquoteleft
 \u2018 > ` text
 \u2019 < \textquoteright
 \u2019 > ' text
-\u201A > , text
+\u201A = \quotesinglbase text
 \u201C < \textquotedblleft
 \u201C > `` text
 \u201D < \textquotedblright
@@ -2077,6 +2101,7 @@ u\u031B\u03031 = \arabichad math.unicode-math
 \u2040 = \tieconcat math.unicode-math
 \u2043 = \hyphenbullet math.unicode-math
 \u2044 = \fracslash math.unicode-math
+\u2044 = \textfractionsolidus text
 \u2047 = \Question math.unicode-math
 \u2048 > ?! text
 \u2049 > !? text
@@ -2200,7 +2225,7 @@ u\u031B\u03031 = \arabichad math.unicode-math
 \u2113 = \ell math
 \u2115 < \BbbN math.unicode-math
 \u2115 = \mathbb{N} math
-\u2116 = \cyrchar\textnumero text
+\u2116 = \textnumero text
 \u2117 = \textcircledP text
 \u2118 = \wp math
 \u2119 < \BbbP math.unicode-math
@@ -2221,7 +2246,9 @@ u\u031B\u03031 = \arabichad math.unicode-math
 \u2124 < \BbbZ math.unicode-math
 \u2124 = \mathbb{Z} math
 \u03A9 > \Omega math
+\u03A9 = \textohm text
 \u2127 = \mho math.unicode-math
+\u2127 = \textmho text
 \u2128 < \mfrakZ math.unicode-math
 \u2128 = \mathfrak{Z} math
 \u2129 = \textriota text
@@ -2349,11 +2376,14 @@ A\u030A > \AA text
 \u2189 < \textfrac{0}{3}
 \u2189 = \frac{0}{3} math
 \u2190 = \leftarrow math
+\u2190 = \textleftarrow text
 \u2191 = \uparrow math
+\u2191 = \textuparrow text.textcomp
 \u2192 < \to
 \u2192 = \rightarrow math
 \u2192 = \textrightarrow text.textcomp
 \u2193 = \downarrow math
+\u2193 = \textdownarrow text
 \u2194 = \leftrightarrow math
 \u2195 = \updownarrow math
 \u2196 = \nwarrow math
@@ -2489,6 +2519,7 @@ A\u030A > \AA text
 \u220D = \smallni math.unicode-math
 \u220E = \QED math.unicode-math
 \u220F = \prod math
+\u220F < \textproduct text.textcomp
 \u2210 = \coprod math
 \u2211 = \sum math
 \u2212 < \minus math.unicode-math
@@ -2504,6 +2535,7 @@ A\u030A > \AA text
 \u2219 < \vysmblkcircle math.unicode-math
 \u2219 = \bullet math
 \u221A < \surd math
+\u221A = \textsurd text
 \u221A = \sqrt math.unicode-math
 \u221B < \cuberoot math.unicode-math
 \u221B = \sqrt[3] math
@@ -2614,6 +2646,7 @@ A\u030A > \AA text
 \u225F = \questeq math.unicode-math
 =\u0338 < \ne math
 =\u0338 = \neq math
+=\u0338 < \textnotequal text
 \u2261 = \equiv math
 \u2261\u0338 < \nequiv math.unicode-math
 \u2261\u0338 = \not\equiv math
@@ -2854,7 +2887,9 @@ A\u030A > \AA text
 \u2322 = \frown math
 \u2323 = \smile math
 \u3008 > \langle math
-\u3009 > \rangle math
+\u3008 = \textlangle text
+\u3009 = \rangle math
+\u3009 = \textrangle text
 \u232C = \varhexagonlrbonds math.unicode-math
 \u2332 = \conictaper math.unicode-math
 \u2336 = \topbot math.unicode-math
@@ -2921,6 +2956,7 @@ A\u030A > \AA text
 \u23E6 = \accurrent math.unicode-math
 \u23E7 = \elinters math.unicode-math
 \u2422 = \blanksymbol math.unicode-math
+\u2422 = \textblank text
 \u2423 = \mathvisiblespace math.unicode-math
 \u2460 = \ding{172} text
 \u2461 = \ding{173} text
@@ -3421,6 +3457,7 @@ A\u030A > \AA text
 \u25E4 = \ulblacktriangle math.unicode-math
 \u25E5 = \urblacktriangle math.unicode-math
 \u25E6 = \smwhtcircle math.unicode-math
+\u25E6 = \textopenbullet text
 \u25E7 = \squareleftblack math.unicode-math
 \u25E8 = \squarerightblack math.unicode-math
 \u25E9 = \squareulblack math.unicode-math
@@ -3431,6 +3468,7 @@ A\u030A > \AA text
 \u25EE = \trianglerightblack math.unicode-math
 \u25EF < \lgwhtcircle math.unicode-math
 \u25EF = \bigcirc math
+\u25EF = \textbigcircle text
 \u25F0 = \squareulquad math.unicode-math
 \u25F1 = \squarellquad math.unicode-math
 \u25F2 = \squarelrquad math.unicode-math
@@ -3514,6 +3552,7 @@ A\u030A > \AA text
 \u2667 = \varclubsuit math.unicode-math
 \u2669 = \quarternote math.unicode-math
 \u266A = \eighthnote math.unicode-math
+\u266A = \textmusicalnote text
 \u266B = \twonotes math.unicode-math
 \u266C = \sixteenthnote math.unicode-math
 \u266D = \flat math
@@ -5507,3 +5546,11 @@ A\u030A > \AA text
 \u1D7FE = \mathtt{8} math
 \u1D7FF = \mathtt{9} math
 @ \u035A@ = _\infty math
+\u2052 = \textdiscount text
+\u203d = \textinterrobang text
+\u203b = \textreferencemark text
+\u0166 = \textTstroke text
+\u0167 = \texttstroke text
+\u02cb = \textasciigrave text
+ < @\@@@ text
+ < \/ text
