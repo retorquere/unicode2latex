@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-export type TeXChar = { math?: string, text?: string, commandspacer?: boolean, alt?: string[] }
+export type TeXChar = { math?: string, text?: string, macrospacer?: boolean, alt?: string[] }
 export type CharMap = Record<string, TeXChar>
 export type TeXMap = {
   base: CharMap
@@ -34,8 +34,8 @@ function permutations(str: string): string[] {
 }
 
 export const combining: {
-  commands: string[],
-  tolatex: Record<string, {command: string, mode: 'text' | 'math'}>,
+  macros: string[],
+  tolatex: Record<string, {macro: string, mode: 'text' | 'math'}>,
   tounicode: Record<string, string>
   regex: string
 } = require('./tables/combining.json')
@@ -48,13 +48,13 @@ export type MapOptions = {
   math?: string
   /** string of characters that should always be translated to text-mode TeX */
   text?: string
-  /** string of characters that should always be translated LaTeX commands, even when the map `minimal` is used. */
+  /** string of characters that should always be translated LaTeX macros, even when the map `minimal` is used. */
   ascii?: string
   /** custom mapping to add to the loaded mapping */
   charmap?: CharMap
 }
 
-export function replace_command_spacers(latex: string): string {
+export function replace_macro_spacers(latex: string): string {
   return latex.replace(/\0(\s)/g, '{}$1').replace(/\0([^;.,!?${}_^\\/])/g, ' $1').replace(/\0/g, '')
 }
 
@@ -67,7 +67,7 @@ export type TranslateOptions = {
   /** add braces around math sections. This is useful if you plan to do sentencecase => TitleCase conversion on the result, so that you know these sections are protected. */
   bracemath?: boolean
   /** @ignore */
-  preservecommandspacers?: boolean
+  preservemacrospacers?: boolean
   /** during conversion, package names will be added to this list that would have led to a more precise translation if they were passed to the consructor */
   packages?: Set<string>
 }
@@ -109,8 +109,8 @@ export class Transform {
    * @param text - the text to transform
    */
   tolatex(text: string, options: TranslateOptions = {}): string {
-    const { bracemath, preservecommandspacers, packages } = {
-      bracemath: true, preservecommandspacers: false, packages: new Set,
+    const { bracemath, preservemacrospacers, packages } = {
+      bracemath: true, preservemacrospacers: false, packages: new Set,
       ...options,
     }
     let mode = 'text'
@@ -124,7 +124,7 @@ export class Transform {
     let mapped: TeXChar
     let switched: boolean
     let m: RegExpExecArray | RegExpMatchArray
-    let cd: { command: string, mode: string }
+    let cd: { macro: string, mode: string }
 
     let latex = ''
     text.normalize('NFD').replace(re, (match: string, tie: string, cdpair: string, pair: string, single: string) => {
@@ -151,20 +151,20 @@ export class Transform {
 
           if (cdmode !== cd.mode) return cdc // mode switch
 
-          const cmd = cd.command.match(/[a-z]/i)
+          const cmd = cd.macro.match(/[a-z]/i)
 
           if (this.mode === 'bibtex' && cd.mode === 'text') {
             // needs to be braced to count as a single char for name abbreviation
-            char = `{\\${cd.command}${cmd ? ' ': ''}${char}}`
+            char = `{\\${cd.macro}${cmd ? ' ': ''}${char}}`
           }
           else if (cmd && char.length === 1) {
-            char = `\\${cd.command} ${char}`
+            char = `\\${cd.macro} ${char}`
           }
           else if (cmd) {
-            char = `\\${cd.command}{${char}}`
+            char = `\\${cd.macro}{${char}}`
           }
           else {
-            char = `\\${cd.command}${char}`
+            char = `\\${cd.macro}${char}`
           }
           return ''
         })
@@ -208,7 +208,7 @@ export class Transform {
       }
 
       latex += mapped[mode]
-      if (mapped.commandspacer) latex += '\0' // clean up below
+      if (mapped.macrospacer) latex += '\0' // clean up below
 
       // only try to merge sup/sub if we were already in math mode, because if we were previously in text mode, testing for _^ is tricky.
       if (!switched && mode === 'math' && (m = latex.match(/(([\^_])\{[^{}]+)\}\2{(.\})$/))) {
@@ -238,7 +238,7 @@ export class Transform {
     // might still be in math mode at the end
     if (mode === 'math') latex += switchTo.text
 
-    if (!preservecommandspacers) latex = replace_command_spacers(latex)
+    if (!preservemacrospacers) latex = replace_macro_spacers(latex)
     return latex.normalize('NFC')
   }
 }

@@ -20,7 +20,7 @@ class TeXChar
   property text = ""
   property alt = [] of String
   property stopgap = false
-  property commandspacer = false
+  property macrospacer = false
 
   def [](key : String)
     case key
@@ -58,7 +58,7 @@ class TeXChar
     json.object {
       json.field "text", @text if @text != ""
       json.field "math", @math if @math != ""
-      json.field "commandspacer", @commandspacer if @commandspacer
+      json.field "macrospacer", @macrospacer if @macrospacer
       unless @alt.empty?
         json.field "alt" {
           json.array {
@@ -131,8 +131,8 @@ class Combining
   @regex : String
 
   def initialize
-    @commands = Set(String).new
-    @tolatex = {} of String => NamedTuple(mode: String, command: String)
+    @macros = Set(String).new
+    @tolatex = {} of String => NamedTuple(mode: String, macro: String)
     @tounicode = {} of String => String
 
     single = ""
@@ -148,12 +148,12 @@ class Combining
         multi << "(#{permutations(c.unicode).join("|")})"
       end
 
-      @commands << $1 if c.tex.match(/^\\([a-z]+)$/)
+      @macros << $1 if c.tex.match(/^\\([a-z]+)$/)
 
       if (c.tex[0] == '\\')
-        cmd = c.tex[1..].sub("{}", "")
-        @tounicode[cmd] = c.unicode
-        @tolatex[c.unicode] = { mode: c.mode, command: cmd }
+        m = c.tex[1..].sub("{}", "")
+        @tounicode[m] = c.unicode
+        @tolatex[c.unicode] = { mode: c.mode, macro: m }
       end
     end
 
@@ -163,7 +163,7 @@ class Combining
   
   def save(filename : String)
     File.open(filename, "w") do |f|
-      f.puts ascii({ commands: @commands.to_a.sort, tolatex: @tolatex, tounicode: @tounicode, regex: @regex }.to_json)
+      f.puts ascii({ macros: @macros.to_a.sort, tolatex: @tolatex, tounicode: @tounicode, regex: @regex }.to_json)
     end
   end
 end
@@ -211,10 +211,10 @@ class U2T
         m.stopgap = c.stopgap
 
         if cmode === "text"
-          commandspacer = c.tex.matches?(/\\[0-1a-z]+$/i) && !c.combining
+          macrospacer = c.tex.matches?(/\\[0-1a-z]+$/i) && !c.combining
           case mode
             when "bibtex"
-              if commandspacer # See #1538.
+              if macrospacer # See #1538.
                 m.text = "{#{m.text}}"
               elsif m.text =~ /^\\[`'^~"=.][A-Za-z]$/ || m.text =~ /^\\[\^]\\[ij]$/ || m.text =~ /^\\[kr]\{[a-zA-Z]?\}$/
                 m.text = "{#{m.text}}"
@@ -223,10 +223,10 @@ class U2T
               elsif m.text =~ /^\\([a-z])\{([a-z0-9])\}$/i
                 m.text = "{\\#{$1} #{$2}}"
               else
-                m.commandspacer = commandspacer
+                m.macrospacer = macrospacer
               end
             when "biblatex", "minimal"
-              m.commandspacer = commandspacer
+              m.macrospacer = macrospacer
           end
         end
 

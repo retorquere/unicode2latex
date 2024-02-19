@@ -13,7 +13,7 @@ function tx(input, expected) {
 }
 
 /*
-test('command spacer', () => {
+test('macro spacer', () => {
   tx("On Recovery of Sparse Signals via ££p Minimization", "On Recovery of Sparse Signals via \\pounds\\pounds p Minimization")
 })
 

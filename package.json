@@ -6,7 +6,7 @@
     "LaTeX",
     "unicode"
   ],
-  "description": "Mapping to convert unicode characters from and to LaTeX commands",
+  "description": "Mapping to convert unicode characters from and to LaTeX macros",
   "main": "index.js",
   "scripts": {
     "test": "npm start && jest",
