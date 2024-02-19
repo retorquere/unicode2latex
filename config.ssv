@@ -57,7 +57,6 @@ i\uFE20a\uFE21 = \t{ia} text
 \u00A3 = \pounds
 \u00A4 = \textcurrency text.textcomp
 \u00A5 = \textyen text.textcomp
-\u0126 = \textmalteseH text.textcomp
 \u0E3F = \textbaht text.textcomp
 \u20A1 = \textcolonmonetary text.textcomp
 \u20A4 = \textlira text.textcomp
@@ -129,7 +128,7 @@ i\uFE20a\uFE21 = \t{ia} text
 \u00B6 = \textparagraph text.textcomp
 \u00B7 < \cdotp math
 \u00B7 > \cdot math
-\u00B8 > \c text
+\u00B8 > \c text combining
 \u00B9 = ^{1} math
 \u00B9 < \textonesuperior text
 \u00BA = \textordmasculine text.textcomp
@@ -257,7 +256,9 @@ i\u0308 < \"\i
 ## ģ = \c{g} text
 ## Ĥ = \^H text
 ## ĥ = \^h text
+\u0126 = \textmalteseH text.inputenx
 \u0127 = \hbar math
+\u0127 < \textmalteseh text.inputenx
 \u0127 = \textcrh text.tipa
 ## Ĩ = \~I text
 ## ĩ = \~i text
@@ -276,7 +277,8 @@ i\u0306 = @{\u \i}@ text
 j\u0302 = \^\j text
 ## Ķ = \c{K} text
 ## ķ = \c{k} text
-\u0138 = ?? text.tipa
+\u0138 > K text
+\u0138 = \textkra text.xecjk
 ## Ĺ = \'L text
 ## ĺ = \'l text
 ## Ļ = \c{L} text
@@ -377,6 +379,7 @@ i\u0303 = \~{\i} text
 ## Ȩ = \c{E} text
 ## ȩ = \c{e} text
 \u0237 = \jmath math
+\u0237 < \j text
 \u0250 = \textipa{\textturna} text.tipa
 \u0252 = textipa{\textopeno} text.tipa
 \u0254 = \textipa{O} text.tipa
@@ -389,6 +392,7 @@ i\u0303 = \~{\i} text
 \u0264 = \textrevscripta text.tipa
 \u026F = \textturnm text.ipa
 \u0278 = \textphi text.tipa
+\u0278 > \textphi text.inputenx
 \u029E = \textturnk text.tipa
 \u02B0 = \textsuperscript{h} text
 \u02B0 = ^{h} math
@@ -410,8 +414,8 @@ i\u0303 = \~{\i} text
 \u02C9 > - text
 \u02D8 = \textasciibreve text
 \u02D9 = \textperiodcentered text.textcomp
-\u02DA > \r{} text
-\u02DB > \k{} text
+\u02DA = \r{} text
+\u02DB = \k{} text
 \u02DC = \texttildelow text
 \u02DD < \H{} text
 \u02DD = \textacutedbl text
@@ -560,18 +564,21 @@ i\u0303 = \~{\i} text
 \u03A1 > P math stopgap
 \u03A3 < \mupSigma math.unicode-math
 \u03A3 = \Sigma math
+\u03A3 < \textSigma text.inputenx
 \u03A4 = \mupTau math.unicode-math
 \u03A4 > T math stopgap
 \u03A5 < \mupUpsilon math.unicode-math
 \u03A5 = \Upsilon math
 \u03A6 < \mupPhi math.unicode-math
 \u03A6 = \Phi math
+\u03A6 < \textPhi text.inputenx
 \u03A7 = \mupChi math.unicode-math
 \u03A7 > X math stopgap
 \u03A8 < \mupPsi math.unicode-math
 \u03A8 = \Psi math
 \u03A9 < \mupOmega math.unicode-math
 \u03A9 = \Omega math
+\u03A9 < \textOmega text.inputenx
 \u0399\u0308 = \mathrm{\ddot{I}} math
 \u03A5\u0308 = \mathrm{\ddot{Y}} math
 \u03B1\u0301 = \acute{\alpha} math
@@ -584,12 +591,15 @@ i\u0303 = \~{\i} text
 \u03B1 = \textalpha text.textalpha
 \u03B2 < \mupbeta math.unicode-math
 \u03B2 = \beta math
+\u03B2 < \textbeta text.textgreek
 \u03B3 < \mupgamma math.unicode-math
 \u03B3 = \gamma math
 \u03B4 < \mupdelta math.unicode-math
 \u03B4 = \delta math
+\u03B4 < \textdelta text.inputenx
 \u03B5 < \mupvarepsilon math.unicode-math
 \u03B5 = \epsilon math
+\u03B5 < \textepsilon text.inputenx
 \u03B6 < \mupzeta math.unicode-math
 \u03B6 = \zeta math
 \u03B7 < \mupeta math.unicode-math
@@ -621,8 +631,10 @@ i\u0303 = \~{\i} text
 \u03C2 = \varsigma math
 \u03C3 < \mupsigma math.unicode-math
 \u03C3 = \sigma math
+\u03C3 < \textsigma text.inputenx
 \u03C4 < \muptau math.unicode-math
 \u03C4 = \tau math
+\u03C4 < \texttau text.inputenx
 \u03C5 < \mupupsilon math.unicode-math
 \u03C5 = \upsilon math
 \u03C6 < \mupvarphi math.unicode-math
@@ -2053,15 +2065,16 @@ u\u031B\u03031 = \arabichad math.unicode-math
 \u2016 < \Vert math
 \u2016 = \textbardbl text
 \u2017 = \twolowline math.unicode-math
+\u2017 < \textdbllowline text.inputenx
 \u2018 < \textquoteleft
 \u2018 > ` text
 \u2019 < \textquoteright
 \u2019 > ' text
 \u201A = \quotesinglbase text
 \u201C < \textquotedblleft
-\u201C > `` text
+\u201C = `` text
 \u201D < \textquotedblright
-\u201D > '' text
+\u201D = '' text
 \u201E > ,, text
 \u201F = \quotedblbase text
 \u2020 < \dagger math
@@ -2127,6 +2140,7 @@ u\u031B\u03031 = \arabichad math.unicode-math
 \u207E = ^{)} math
 \u207F = \textsuperscript{n} text
 \u207F = ^{n} math
+\u207F < \textnsuperior text.xecjk
 \u2080 = _{0} math
 \u2081 = _{1} math
 \u2082 = _{2} math
@@ -2504,12 +2518,15 @@ A\u030A > \AA text
 \u2200 = \forall math
 \u2201 = \complement math.unicode-math
 \u2202 = \partial math
+\u2202 < \textpartial text.xecjk
 \u2203 = \exists math
 \u2203\u0338 = \nexists math.unicode-math
 \u2205 = \varnothing math.unicode-math
 \u2206 = \increment math.unicode-math
+\u2206 < \textincrement text.inputenx
 \u2207 > \nabla math.unicode-math
 \u2208 = \in math
+\u2208 < \textelement text.inputenx
 \u2208\u0338 = \notin math
 \u2208\u0338 < \not\in math
 \u220A = \smallin math.unicode-math
@@ -2522,6 +2539,7 @@ A\u030A > \AA text
 \u220F < \textproduct text.textcomp
 \u2210 = \coprod math
 \u2211 = \sum math
+\u2211 < \textsummation text.inputenx
 \u2212 < \minus math.unicode-math
 \u2212 > -
 \u2213 = \mp math
@@ -2543,6 +2561,7 @@ A\u030A > \AA text
 \u221C = \sqrt[4] math
 \u221D = \propto math
 \u221E = \infty math
+\u221E < \textinfinity text.inputenx
 \u221F = \rightangle math.unicode-math
 \u2220 = \angle math
 \u2221 = \measuredangle math.unicode-math
@@ -2552,15 +2571,19 @@ A\u030A > \AA text
 \u2225 = \parallel math
 \u2225\u0338 = \nparallel math.unicode-math
 \u2227 = \wedge math
+\u2227 < \textcap text.xecjk
 \u2228 = \vee math
 \u2229 = \cap math
+\u2229 < \textintersection text.inputenx
 \u222A = \cup math
 \u222B = \int math
+\u222B < \textintegral text.inputenx
 \u222C < \iint math.unicode-math
 \u222C = {\int\!\int} math
 \u222D < \iiint math.unicode-math
 \u222D = {\int\!\int\!\int} math
 \u222E = \oint math
+\u222E < \textcontourintegral text.inputenx
 \u222F < \oiint math.unicode-math
 \u222F = \surfintegral math
 \u2230 < \oiiint math.unicode-math
@@ -2608,6 +2631,7 @@ A\u030A > \AA text
 \u2245\u0338 < \ncong math.unicode-math
 \u2245\u0338 = \not\cong math
 \u2248 = \approx math
+\u2248 = \textapproxequal text.inputenx
 \u2248\u0338 < \napprox math.unicode-math
 \u2248\u0338 = \not\approx math
 \u224A = \approxeq math.unicode-math
@@ -2648,12 +2672,15 @@ A\u030A > \AA text
 =\u0338 = \neq math
 =\u0338 < \textnotequal text
 \u2261 = \equiv math
+\u2261 < \textequivalence text.inputenx
 \u2261\u0338 < \nequiv math.unicode-math
 \u2261\u0338 = \not\equiv math
 \u2263 = \Equiv math.unicode-math
 \u2264 < \le
 \u2264 = \leq math
+\u2264 < \textlessequal text.inputenx
 \u2265 = \geq math
+\u2265 < \textgreaterequal text.inputenx
 \u2266 = \leqq math
 \u2267 = \geqq math
 \u2268 = \lneqq math.unicode-math
@@ -2870,6 +2897,7 @@ A\u030A > \AA text
 \u230B = \rfloor math
 \u2310 < \invnot math.unicode-math
 \u2310 = \invneg math.unicode-math
+\u2310 < \textrevlogicalnot text.inputenx
 \u2311 < \sqlozenge math.unicode-math
 \u2311 = \wasylozenge math
 \u2312 = \profline math.unicode-math
@@ -3367,6 +3395,7 @@ A\u030A > \AA text
 \u259F = \pmboxdrawuni{259F} text.pmboxdraw
 \u25A0 = \ding{110} text
 \u25A0 = \mdlgblksquare math.unicode-math
+\u25A0 < \textblacksquare text.inputenx
 \u25A1 < \Box
 \u25A1 < \mdlgwhtsquare math.unicode-math
 \u25A1 = \square math
@@ -3423,6 +3452,7 @@ A\u030A > \AA text
 \u25C9 = \fisheye math.unicode-math
 \u25CA < \mdlgwhtlozenge math.unicode-math
 \u25CA = \lozenge math.unicode-math
+\u25CA < \textlozenge text.inputenx
 \u25CB < \mdlgwhtcircle math.unicode-math
 \u25CB = \bigcirc math
 \u25CC = \dottedcircle math.unicode-math
