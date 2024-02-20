@@ -35,7 +35,7 @@ LaTeX < \LaTeX
 \\ = \backslash math
 \\ = \textbackslash text
 ] < \rbrack math
-^ = \^ text
+^ = \^{} text
 _ < \textunderscore text.textcomp
 _ = \_
 i\uFE20a\uFE21 = \t{ia} text
@@ -439,9 +439,9 @@ i\u0303 = \~{\i} text
 \u0301 = \acute math.unicode-math combining
 \u0301\u0304 = \textacutemacron text.tipa combining
 \u0301\u030C = \textacutewedge text.tipa combining
-\u0302 < \widehat math.unicode-math combining
-\u0302 = \hat math.unicode-math combining
-\u0302 > \^ text combining
+\u2227 < \widehat math.unicode-math combining
+\u2227 < \hat math.unicode-math combining
+\u0302 = \^ text combining
 \u0302\u0307 = \textcircumdot text.tipa combining
 \u0303 < \widetilde math.unicode-math combining
 \u0303 = \tilde math.unicode-math combining

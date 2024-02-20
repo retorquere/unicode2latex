@@ -211,7 +211,7 @@ class U2T
         m.stopgap = c.stopgap
 
         if cmode === "text"
-          macrospacer = c.tex.matches?(/\\[0-1a-z]+$/i) && !c.combining
+          macrospacer = c.tex.matches?(/\\[0-1a-z]+$/i) || c.combining
           case mode
             when "bibtex"
               if macrospacer # See #1538.
