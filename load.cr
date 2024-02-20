@@ -125,6 +125,7 @@ end
 
 TeXMap = CSV.parse(File.read("config.ssv"), separator=' ', quote_char='@')
   .select{|row| row.join("") != "" && !row[0].match(/^(\/\/|##)/)}
+  .reverse # make sure earlier entries take precedence when math/text are both available
   .map{|row| Mapping.new(row)}
 
 class Combining
