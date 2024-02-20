@@ -2049,8 +2049,9 @@ u\u031B\u03031 = \arabichad math.unicode-math
 \u2009 < \thinspace
 \u200A = \mkern1mu math space
 \u200B = \hspace{0pt} text space
+\u200C > \null text
 \u200C < {\aftergroup\ignorespaces} text
-\u200C = \textcompwordmark text
+\u200C < \textcompwordmark text
 \u2010 = \mathhyphen math.unicode-math
 \u2010 > - text
 \u2011 > - text
