@@ -386,9 +386,10 @@ i\u0303 = \~{\i} text
 \u0256 < \textsubbridge{d} text.tipa
 \u0256 = \textrtaild text.tipa
 \u0259 = \textschwa text.tipa
-\u025B = \varepsilon math
+\u025B > \varepsilon math
 \u0261 > g text
-\u0263 = \gamma math
+\u0263 > \textipa{G} text.tipa
+\u0263 > \gamma math
 \u0264 = \textrevscripta text.tipa
 \u026F = \textturnm text.ipa
 \u0278 = \textphi text.tipa
@@ -598,8 +599,11 @@ i\u0303 = \~{\i} text
 \u03B4 = \delta math
 \u03B4 < \textdelta text.inputenx
 \u03B5 < \mupvarepsilon math.unicode-math
-\u03B5 = \epsilon math
+\u03B5 = \varepsilon math
 \u03B5 < \textepsilon text.inputenx
+\u03B5 < \textniepsilon text
+\u03B5 < \texteopen text
+\u03B5 < \m{e} text
 \u03B6 < \mupzeta math.unicode-math
 \u03B6 = \zeta math
 \u03B7 < \mupeta math.unicode-math
@@ -614,7 +618,7 @@ i\u0303 = \~{\i} text
 \u03BB < \muplambda math.unicode-math
 \u03BB = \lambda math
 \u03BC < \mupmu math.unicode-math
-\u03BC = \mu math
+\u03BC > \mu math
 \u03BD < \mupnu math.unicode-math
 \u03BD = \nu math
 \u03BE < \mupxi math.unicode-math
@@ -2774,7 +2778,7 @@ A\u030A > \AA text
 \u22A3 = \dashv math
 \u22A4 = \top math
 \u22A5 < \bot math
-\u22A5 = \perp math
+\u22A5 > \perp math
 \u22A6 = \assert math.unicode-math
 \u22A7 < \models math
 \u22A7 = \truestate math
@@ -2917,7 +2921,7 @@ A\u030A > \AA text
 \u2323 = \smile math
 \u3008 > \langle math
 \u3008 = \textlangle text
-\u3009 = \rangle math
+\u3009 > \rangle math
 \u3009 = \textrangle text
 \u232C = \varhexagonlrbonds math.unicode-math
 \u2332 = \conictaper math.unicode-math
@@ -3455,7 +3459,7 @@ A\u030A > \AA text
 \u25CA = \lozenge math.unicode-math
 \u25CA < \textlozenge text.inputenx
 \u25CB < \mdlgwhtcircle math.unicode-math
-\u25CB = \bigcirc math
+\u25CB > \bigcirc math
 \u25CC = \dottedcircle math.unicode-math
 \u25CD = \circlevertfill math.unicode-math
 \u25CE = \bullseye math.unicode-math
@@ -4270,7 +4274,7 @@ A\u030A > \AA text
 \u2A5C = \midbarwedge math.unicode-math
 \u2A5D = \midbarvee math.unicode-math
 \u2A5E < \doublebarwedge math.unicode-math
-\u2A5E = \perspcorrespond math
+\u2A5E < \perspcorrespond math
 \u2A5F = \wedgebar math.unicode-math
 \u2A60 = \wedgedoublebar math.unicode-math
 \u2A61 = \varveebar math.unicode-math

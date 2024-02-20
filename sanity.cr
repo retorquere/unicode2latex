@@ -93,6 +93,8 @@ config.each do |c|
   next if (c.dir != "=") || (c.mode =~ /[.]/)
   conflict = config.find{|co| co.line != c.line && co.dir == "=" && co.unicode == c.unicode && co.mode == c.mode }
   puts [c, conflict] if conflict
+  conflict = config.find{|co| co.line != c.line && co.dir == "=" && co.tex == c.tex && co.mode == c.mode }
+  puts [c, conflict] if conflict
 end
 
 cds = config.select{|c| c.combining && !c.mode.includes?(".")}
