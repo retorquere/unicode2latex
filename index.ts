@@ -128,7 +128,6 @@ export class Transform {
 
     let latex = ''
     text.normalize('NFD').replace(re, (match: string, tie: string, cdpair: string, pair: string, single: string) => {
-      // console.log({ match, cdpair, tie, pair, single })
       mapped = null
       if (tie && !this.map[tie]) {
         mapped = { text: 'ia' }
@@ -142,6 +141,7 @@ export class Transform {
         let cdmode = ''
         cdpair = cdpair.substr(1).replace(combining_re, cdc => {
           cd = combining.tolatex[permutations(cdc).find(p => combining.tolatex[p])] // multi-combine may have different order
+          // console.log({ match, cdpair, cdc, cd, tie, pair, single, mapped }) // eslint-disable-line no-console
           if (!cd) return cdc
 
           if (!cdmode) {

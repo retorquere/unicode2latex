@@ -107,7 +107,7 @@ class Mapping
       end
     end
 
-    @unicode = @unicode.unicode_normalize(:nfd) if @combining
+    @unicode = @unicode.unicode_normalize(:nfd)
 
     raise "sus conversion" if @stopgap && @conversion == '='
   end
@@ -152,8 +152,8 @@ class Combining
 
       if (c.tex[0] == '\\')
         m = c.tex[1..].sub("{}", "")
-        @tounicode[m] = c.unicode
-        @tolatex[c.unicode] = { mode: c.mode, macro: m }
+        @tounicode[m] = c.unicode if c.t2u?
+        @tolatex[c.unicode] = { mode: c.mode, macro: m } if c.u2t?
       end
     end
 
