@@ -2683,6 +2683,7 @@ A\u030A > \AA text
 \u2263 = \Equiv math.unicode-math
 \u2264 < \le
 \u2264 = \leq math
+\u2264 < \le math
 \u2264 < \textlessequal text.inputenx
 \u2265 = \geq math
 \u2265 < \textgreaterequal text.inputenx
