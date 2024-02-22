@@ -2681,7 +2681,6 @@ A\u030A > \AA text
 \u2261\u0338 < \nequiv math.unicode-math
 \u2261\u0338 = \not\equiv math
 \u2263 = \Equiv math.unicode-math
-\u2264 < \le
 \u2264 = \leq math
 \u2264 < \le math
 \u2264 < \textlessequal text.inputenx
