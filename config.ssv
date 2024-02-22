@@ -2686,6 +2686,7 @@ A\u030A > \AA text
 \u2264 < \le math
 \u2264 < \textlessequal text.inputenx
 \u2265 = \geq math
+\u2265 < \ge math
 \u2265 < \textgreaterequal text.inputenx
 \u2266 = \leqq math
 \u2267 = \geqq math
