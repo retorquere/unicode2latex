@@ -449,9 +449,9 @@ i\u0303 = \~{\i} text
 \u0303 = \~ text combining
 \u0303\u0307 = \texttildedot text.tipa combining
 \u0304 = \= text combining
-\u0304 = \bar math.unicode-math combining
 \u0304\u0300 > \textgravemacron text.tipa combining
 \u0305 < \overbar math.unicode-math combining
+\u0305 < \bar math.unicode-math combining
 \u0305 < \wideoverbar math.unicode-math combining
 \u0305 = \overline math combining
 \u0306 < \widebreve math.unicode-math combining
