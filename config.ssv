@@ -197,9 +197,9 @@ i\u0300 < \`\i
 ## ì = \`i text
 i\u0301 < \'\i
 ## í = \'i text
-i\u0302 < \^\i
+## i\u0302 < \^\i
 ## î = \^i text
-i\u0308 < \"\i
+## i\u0308 < \"\i
 ## ï = \"i text
 \u00F0 = \dh text
 \u00F0 = \eth math.amssymb
@@ -357,11 +357,11 @@ u\u030A < \ocirc{u}
 \u019E = \textipa{\textnrleg} text.tipa
 \u01AA = \textesh text
 \u01C2 = \textdoublepipe text
-i\u030C = \v{\i} text
-j\u030C = \v{\j} text
-i\u0308 = \"{\i} text
-i\u0302 = \^{\i} text
-i\u0303 = \~{\i} text
+i\u030C < \v{\i} text
+j\u030C < \v{\j} text
+i\u0308 < \"{\i} text
+i\u0302 < \^{\i} text
+i\u0303 < \~{\i} text
 ## Ǎ = \v{A} text
 ## ǎ = \v{a} text
 ## Ǐ = \v{I} text
@@ -443,10 +443,8 @@ i\u0303 = \~{\i} text
 \u0301 = \acute math.unicode-math combining
 \u0301\u0304 = \textacutemacron text.tipa combining
 \u0301\u030C = \textacutewedge text.tipa combining
-\u2227 < \widehat math.unicode-math combining
-\u2227 < \hat math.unicode-math combining
-\u0302 = \^ text combining
 \u0302\u0307 = \textcircumdot text.tipa combining
+\u0302 = \^ text combining
 \u0303 < \widetilde math.unicode-math combining
 \u0303 = \tilde math.unicode-math combining
 \u0303 = \~ text combining
@@ -2596,6 +2594,8 @@ A\u030A > \AA text
 \u2225\u0338 = \nparallel math.unicode-math
 \u2227 = \wedge math
 \u2227 < \textcap text.xecjk
+\u2227 < \widehat math.unicode-math combining
+\u2227 < \hat math.unicode-math combining
 \u2228 = \vee math
 \u2229 = \cap math
 \u2229 < \textintersection text.inputenx

@@ -12,7 +12,6 @@ function tx(input, expected) {
   expect([...packages].sort().join(',')).toBe(expected.pkgs || '')
 }
 
-/*
 test('macro spacer', () => {
   tx("On Recovery of Sparse Signals via ££p Minimization", "On Recovery of Sparse Signals via \\pounds\\pounds p Minimization")
 })
@@ -54,7 +53,7 @@ test("Entscheidung nach \u00a7 98 EheG und anh\u00e4ngiges Verfahren", () => {
 })
 
 test("Object-based attentional selection\u2013grouped arrays or spatially invariant representations?: comment on vecera and Farah (1994).", () => {
-  tx("Object-based attentional selection\u2013grouped arrays or spatially invariant representations?: comment on vecera and Farah (1994).", "Object-based attentional selection\\textendash grouped arrays or spatially invariant representations?: comment on vecera and Farah (1994).")
+  tx("Object-based attentional selection\u2013grouped arrays or spatially invariant representations?: comment on vecera and Farah (1994).", "Object-based attentional selection--grouped arrays or spatially invariant representations?: comment on vecera and Farah (1994).")
 })
 
 test("De l\u2019asynergie cerebelleuse", () => {
@@ -62,7 +61,7 @@ test("De l\u2019asynergie cerebelleuse", () => {
 })
 
 test("Representational similarity analysis \u2013 connecting the branches of systems neuroscience.", () => {
-  tx("Representational similarity analysis \u2013 connecting the branches of systems neuroscience.", "Representational similarity analysis \\textendash{} connecting the branches of systems neuroscience.")
+  tx("Representational similarity analysis \u2013 connecting the branches of systems neuroscience.", "Representational similarity analysis -- connecting the branches of systems neuroscience.")
 })
 
 test("Infants\u2019 brain responses to speech suggest analysis by synthesis", () => {
@@ -88,15 +87,18 @@ test("Munaf\u0102\u02db", () => {
 test("Molecular Theory of Atomic Collisions: Calculated Cross Sections for ${\\mathrm{H}}^{+\\}}+\\mathrm{F}(^{2}P)$", () => {
   tx(
     { text: "Molecular Theory of Atomic Collisions: Calculated Cross Sections for ${\\mathrm{H}}^{+\\}}+\\mathrm{F}(^{2}P)$", mode: 'bibtex' },
-    "Molecular Theory of Atomic Collisions: Calculated Cross Sections for \\$\\{{\\textbackslash}mathrm\\{H\\}\\}\\^\\{+{\\textbackslash}\\}\\vphantom\\{\\}+{\\textbackslash}mathrm\\{F\\}(\\^\\{2\\}P)\\$"
+    "Molecular Theory of Atomic Collisions: Calculated Cross Sections for \\$\\{{\\textbackslash}mathrm\\{H\\}\\}\\^{}\\{+{\\textbackslash}\\}\\vphantom\\{\\}+{\\textbackslash}mathrm\\{F\\}(\\^{}\\{2\\}P)\\$"
   )
 })
 
 test("Pető", () => {
   tx("Pető", "Pet\\H o")
 })
-*/
 
 test("K̅", () => {
   tx("K̅", "{$\\overline K$}")
+})
+
+test("Lema\u00eetre", () => {
+  tx("Lema\u00eetre", "Lema\\^itre")
 })
