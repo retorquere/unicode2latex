@@ -11,9 +11,9 @@ $ = \$
 & < \mathampersand math.unicode-math
 & = \&
 ( < \lparen math.unicode-math
-( < \left(
+ < \left
 ) < \rparen math.unicode-math
-) < \right)
+ < \right
 * < \textasteriskcentered text
 + < \mathplus math.unicode-math
 , < \mathcomma math.unicode-math
