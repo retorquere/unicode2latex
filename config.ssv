@@ -2064,9 +2064,9 @@ u\u031B\u03031 = \arabichad math.unicode-math
 \u2011 > - text
 \u2012 > - text
 \u2013 < \textendash text
+\u2013 = -- text
 \u2014 < \textemdash text
 \u2014 = --- text
-\u2013 = -- text
 \u2015 = \horizbar math.unicode-math
 \u2015 = \texthorizontalbar text
 \u2015 < \rule{1em}{1pt} text

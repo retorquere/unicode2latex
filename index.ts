@@ -81,7 +81,7 @@ export class Transform {
    *
    * @param mode - the translation mode, being `bibtex`, `biblatex` or `minimal`. Use `minimal` if your TeX environment supports unicode. In `bibtex` mode, combining characters are braced to that character/word counts are reliable, at the cost of more verbose output.
    */
-  constructor(mode : 'bibtex' | 'biblatex' | 'minimal',  options?: MapOptions) {
+  constructor(mode : 'bibtex' | 'biblatex' | 'minimal',  options: MapOptions = {}) {
     let map = { ...maps[mode].base }
     const packages = maps[mode].package
     for (const pkg of (options.packages || []).map(p => packages[p]).filter(p => p)) {
