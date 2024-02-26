@@ -37,7 +37,7 @@ test("La d\u00e9mocratie. Sa nature, sa valeur", () => {
 })
 
 test("Overall Normalization of the Astrophysical \u2192 Reactions", () => {
-  tx("Overall Normalization of the Astrophysical \u2192 Reactions", { latex: "Overall Normalization of the Astrophysical {$\\rightarrow$} Reactions", pkgs: "textcomp" })
+  tx("Overall Normalization of the Astrophysical \u2192 Reactions", { latex: "Overall Normalization of the Astrophysical $\\rightarrow$ Reactions", pkgs: "textcomp" })
 })
 
 test("\u00a7 1063 ABGB", () => {
@@ -73,7 +73,7 @@ test("B\u00fcrgerliches Recht Band I Allgemeiner Teil", () => {
 })
 
 // test("math: 0 < p < 1", () => {
-//   tx({ text: "0 < p < 1", prefer: 'math' }, "{$0 < p < 1$}")
+//   tx({ text: "0 < p < 1", prefer: 'math' }, "$0 < p < 1$")
 // })
 
 test("non-breaking space: ; accented characters: \u00f1 and \u00f1; tilde in URL: http://example.com/~user", () => {
@@ -96,9 +96,13 @@ test("Pető", () => {
 })
 
 test("K̅", () => {
-  tx("K̅", "{$\\overline K$}")
+  tx("K̅", "$\\overline K$")
 })
 
 test("Lema\u00eetre", () => {
   tx("Lema\u00eetre", "Lema\\^itre")
+})
+
+test("2 > 1", () => {
+  tx("2 > 1", "2 $>$ 1")
 })

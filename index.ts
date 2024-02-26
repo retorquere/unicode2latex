@@ -110,7 +110,7 @@ export class Transform {
    */
   tolatex(text: string, options: TranslateOptions = {}): string {
     const { bracemath, preservemacrospacers, packages } = {
-      bracemath: true, preservemacrospacers: false, packages: new Set,
+      bracemath: false, preservemacrospacers: false, packages: new Set,
       ...options,
     }
     let mode = 'text'
