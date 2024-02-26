@@ -88,9 +88,9 @@ export class Transform {
       map = { ...map, ...pkg }
     }
     for (const mode of ['text', 'math']) {
-      if (!options[mode]) continue
+      if (!(mode in options)) continue
       for (const c of options[mode]) {
-        if (map[c][mode]) map[c] = { [mode]: map[c][mode] }
+        if (mode in map[c]) map[c] = { [mode]: map[c][mode] }
       }
     }
     for (const c of (options.ascii || '')) {
