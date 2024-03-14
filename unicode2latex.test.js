@@ -106,3 +106,7 @@ test("Lema\u00eetre", () => {
 test("2 > 1", () => {
   tx("2 > 1", "2 $>$ 1")
 })
+
+test("CJK quotes unchanged", () => {
+  tx({ text: "\u201c\u6c11\u65cf\u56fd\u5bb6\u201d\u7684\u8ff7\u601d\u4e0e\u73b0\u4ee3\u4e2d\u56fd\u7684\u5f62\u6210", mode: "minimal" }, "\u201c\u6c11\u65cf\u56fd\u5bb6\u201d\u7684\u8ff7\u601d\u4e0e\u73b0\u4ee3\u4e2d\u56fd\u7684\u5f62\u6210")
+})
