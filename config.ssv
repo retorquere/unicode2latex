@@ -1,3 +1,5 @@
+\u00A1 < < text
+\u00BF < > text
 \u2029 > \par text
 ! < \mathexclam math.unicode-math
 \" < \textquotedbl
