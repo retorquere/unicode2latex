@@ -22,7 +22,7 @@ jobs:
     - name: install dependencies
       run: |
         npm ci --ignore-scripts
-        shard install
+        shards install
     - run: npm test
     - name: Publish
       run: |
