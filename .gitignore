@@ -2,6 +2,7 @@
 !*.*
 !*/
 !Makefile
+lib
 
 index.js
 config.json
