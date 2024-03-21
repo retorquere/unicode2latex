@@ -1,7 +1,8 @@
-build: load sanity
+tables: build
 	mkdir -p tables
-	./load
-	./sanity
+	#./load
+	#./sanity
+	./build
 
 %: %.cr
-	crystal build --release -o $@ $<
+	crystal build --no-debug --release -o $@ $<

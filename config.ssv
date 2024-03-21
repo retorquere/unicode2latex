@@ -33,7 +33,7 @@ $ = \$
 > > > math
 ? < \mathquestion math.unicode-math
 \u0040 < \mathatsign math.unicode-math
-LaTeX < \LaTeX
+LaTeX < \LaTeX text
 [ < \lbrack math
 \\ < \
 \\ = \backslash math
@@ -3595,7 +3595,7 @@ A\u030A > \AA text
 \u2650 = \sagittarius
 \u2651 = \capricornus
 \u2652 = \aquarius
-\u2653 = \pisces
+\u2653 = \pisces .wasysym
 \u2660 = \ding{171} text
 \u2660 = \spadesuit math
 \u2661 = \heartsuit math

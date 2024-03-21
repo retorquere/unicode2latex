@@ -96,6 +96,8 @@ class Mapping
         when /^(math|text)[.]([-a-z]+)$/i
           @mode = $1
           @package = $2
+        when /^[.]([-a-z]+)$/i
+          @package = $1
         when "stopgap"
           @stopgap = true
         when "combining"
@@ -103,7 +105,8 @@ class Mapping
         when "space"
           @space = true
         else
-          raise flag
+          puts "Unexpected flag #{flag}"
+          exit(1)
       end
     end
 
