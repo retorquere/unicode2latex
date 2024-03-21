@@ -1,7 +1,5 @@
 tables: build
 	mkdir -p tables
-	#./load
-	#./sanity
 	./build
 
 %: %.cr

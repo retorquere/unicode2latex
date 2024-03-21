@@ -343,18 +343,43 @@ end
 end
 
 class T2U
-  def initialize
-    @mapping = {} of String => String
-    # TODO: <> behaves differently in math/tex
-    TeXMap.q("SELECT * FROM texmap tex WHERE tex.conversion IN ('t2u', '=') ORDER BY line").each do |c|
-      @mapping[c.tex] = c.unicode
-    end
-    @mapping = @mapping.to_a.sort_by{|k| k.first}.to_h
-  end
-
   def save(filename : String)
+    mapping = Hash(String, Hash(String, String)).new do |mapping, cmd|
+      mapping[cmd] = {} of String => String
+    end
+
+    other = { "text" => "math", "math" => "text" }
+
+    TeXMap.q("SELECT * FROM texmap tex WHERE tex.conversion IN ('t2u', '=') ORDER BY line DESC").each do |c|
+      if c.mode == ""
+        mapping[c.tex] = { "math" => c.unicode, "text" => c.unicode }
+      else
+        mapping[c.tex][c.mode] = c.unicode unless mapping[c.tex].has_key?(c.mode)
+        mapping[c.tex][other[c.mode]] = c.tex unless mapping[c.tex].has_key?(other[c.mode]) || c.tex =~ /^[_^]/ || c.tex.includes?('\\')
+      end
+    end
+
+    t2u = JSON.build do |json|
+      json.object {
+        mapping.to_a.sort_by{|k, v| k}.to_h.each do |tex, char|
+          if char.has_key?("text") && char.has_key?("math") && char["math"] == char["text"]
+            json.field(tex, char["text"])
+          elsif char.keys.size == 1
+            json.field(tex, char.values.first)
+          else
+            json.field(tex) {
+              json.object {
+                json.field("text", char["text"])
+                json.field("math", char["math"])
+              }
+            }
+          end
+        end
+      }
+    end
+
     File.open(filename, "w") do |f|
-      f.puts ascii(@mapping.to_json)
+      f.puts ascii(t2u.to_s)
     end
   end
 end
