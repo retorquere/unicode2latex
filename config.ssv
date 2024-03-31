@@ -945,6 +945,8 @@ i\u0303 < \~{\i} text
 \uD835\uDC2F = \mbfv math.unicode-math
 \u1D43 = \textsuperscript{a} text
 \u1D43 = ^{a} math
+\u1D2C = \textsuperscript{A} text
+\u1D2C = ^{A} math
 \uD835\uDC30 = \mbfw math.unicode-math
 \uD835\uDC31 = \mbfx math.unicode-math
 \uD835\uDC32 = \mbfy math.unicode-math

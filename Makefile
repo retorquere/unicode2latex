@@ -1,4 +1,4 @@
-tables: build
+tables: build config.ssv
 	mkdir -p tables
 	./build
 
