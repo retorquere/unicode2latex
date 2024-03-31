@@ -33,7 +33,6 @@ $ = \$
 > > > math
 ? < \mathquestion math.unicode-math
 \u0040 < \mathatsign math.unicode-math
-LaTeX < \LaTeX text
 [ < \lbrack math
 \\ < \
 \\ = \backslash math
