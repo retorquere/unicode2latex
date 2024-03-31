@@ -38,7 +38,7 @@ $ = \$
 \\ = \backslash math
 \\ = \textbackslash text
 ] < \rbrack math
-^ = \^{} text
+^ = \textasciicircum text
 _ < \textunderscore text.textcomp
 _ = \_
 i\uFE20a\uFE21 = \t{ia} text
@@ -416,7 +416,7 @@ i\u0303 < \~{\i} text
 \u02BC > ' text
 \u02BD > ' text
 \u02BF = \lasp text.mathscinet
-\u02C6 = \textasciicircum text
+\u02C6 > \textasciicircum text
 \u02C7 = \textasciicaron text
 \u02C9 > - text
 \u02D8 = \textasciibreve text
