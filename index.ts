@@ -97,8 +97,11 @@ export class Transform {
       if (bibtex.base[c]) map[c] = bibtex.base[c]
     }
 
-    if (options.charmap) map = { ...map, ...options.charmap }
-
+    if (options.charmap) {
+      for (const [u, t] of Object.entries(options.charmap)) {
+        map[u.normalize('NFC')] = map[u.normalize('NFD')] = t
+      }
+    }
     this.mode = mode
     this.map = map
   }
