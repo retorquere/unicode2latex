@@ -360,6 +360,7 @@ u\u030A < \ocirc{u}
 \u019E = \textipa{\textnrleg} text.tipa
 \u01AA = \textesh text
 \u01C2 = \textdoublepipe text
+\u01C2 = \textdoublebarpipe text.tipa
 i\u030C < \v{\i} text
 j\u030C < \v{\j} text
 i\u0308 < \"{\i} text
