@@ -23,7 +23,7 @@ jobs:
       run: |
         npm ci --ignore-scripts
         shards install
-    - run: npm test
+    - run: npm run buildci
     - run: ls tables/*
     - name: Publish
       run: |

@@ -16,6 +16,9 @@
     "lint": "eslint .",
     "tsc": "tsc",
     "docs": "typedoc --gitRevision --out docs --readme README.md index.ts",
+    "builder": "crystal build --no-debug --release -o build build.cr",
+    "tables": "mkdir -p tables && ./build",
+    "buildci": "npm run builder && npm run tables && run-p --aggregate-output lint tsc docs",
     "preversion": "npm start",
     "postversion": "git push --tags && git push"
   },
