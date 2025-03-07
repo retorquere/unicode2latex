@@ -10,7 +10,8 @@
   "main": "index.js",
   "scripts": {
     "test": "npm start && jest",
-    "start": "npm run build && npm run docs && make",
+    "start": "npm run build",
+    "prebuild": "make",
     "build": "run-p --aggregate-output lint tsc docs",
     "lint": "eslint .",
     "tsc": "tsc",
