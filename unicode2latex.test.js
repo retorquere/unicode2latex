@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-/* eslint-disable @typescript-eslint/no-var-requires, no-console */
 
 const { Transform } = require('./index')
 

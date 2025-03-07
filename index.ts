@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-
 export type TeXChar = { math?: string, text?: string, macrospacer?: boolean, alt?: string[] }
 export type CharMap = Record<string, TeXChar>
 export type TeXMap = {
@@ -9,13 +7,17 @@ export type TeXMap = {
   stopgap: string
 }
 
-export const biblatex: TeXMap = require('./tables/biblatex.json')
-export const bibtex: TeXMap = require('./tables/bibtex.json')
-export const minimal: TeXMap = require('./tables/minimal.json')
+import * as biblatex from './tables/biblatex.json' // assert { type: 'json' }
+export { biblatex }
+import * as bibtex from './tables/bibtex.json' // assert { type: 'json' }
+export { bibtex }
+import * as minimal from './tables/minimal.json' // assert { type: 'json' }
+export { minimal }
 
 const maps = { biblatex, bibtex, minimal }
 
-export const latex2unicode: Record<string, string> = require('./tables/latex2unicode.json')
+import * as _latex2unicode from './tables/latex2unicode.json' // assert { type: 'json' }
+export const latex2unicode = _latex2unicode as Record<string, string | { math: string } | { text: string } | {math: string, text: string }>
 
 function permutations(str: string): string[] {
   if (str.length === 0) return []
@@ -33,12 +35,13 @@ function permutations(str: string): string[] {
   return result
 }
 
-export const combining: {
+import * as _combining from './tables/combining.json' // assert { type: 'json' }
+export const combining = _combining as {
   macros: string[],
   tolatex: Record<string, {macro: string, mode: 'text' | 'math'}>,
   tounicode: Record<string, string>
   regex: string
-} = require('./tables/combining.json')
+}
 const combining_re = new RegExp(combining.regex)
 
 export type MapOptions = {

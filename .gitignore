@@ -14,3 +14,4 @@ tables/*.json
 *.d.ts
 *.bak
 *.py
+tables
