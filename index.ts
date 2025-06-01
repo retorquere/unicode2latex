@@ -1,4 +1,4 @@
-export type TeXChar = { math?: string, text?: string, macrospacer?: boolean, alt?: string[] }
+export type TeXChar = { math?: string; text?: string; macrospacer?: boolean; alt?: string[] }
 export type CharMap = Record<string, TeXChar>
 export type TeXMap = {
   base: CharMap
@@ -17,7 +17,7 @@ export { minimal }
 const maps = { biblatex, bibtex, minimal }
 
 import * as _latex2unicode from './tables/latex2unicode.json' // assert { type: 'json' }
-export const latex2unicode = _latex2unicode as Record<string, string | { math: string } | { text: string } | {math: string, text: string }>
+export const latex2unicode = _latex2unicode as Record<string, string | { math: string; text: string }>
 
 function permutations(str: string): string[] {
   if (str.length === 0) return []
@@ -37,8 +37,8 @@ function permutations(str: string): string[] {
 
 import * as _combining from './tables/combining.json' // assert { type: 'json' }
 export const combining = _combining as {
-  macros: string[],
-  tolatex: Record<string, {macro: string, mode: 'text' | 'math'}>,
+  macros: string[]
+  tolatex: Record<string, { macro: string; mode: 'text' | 'math' }>
   tounicode: Record<string, string>
   regex: string
 }
@@ -84,7 +84,7 @@ export class Transform {
    *
    * @param mode - the translation mode, being `bibtex`, `biblatex` or `minimal`. Use `minimal` if your TeX environment supports unicode. In `bibtex` mode, combining characters are braced to that character/word counts are reliable, at the cost of more verbose output.
    */
-  constructor(mode : 'bibtex' | 'biblatex' | 'minimal',  options: MapOptions = {}) {
+  constructor(mode: 'bibtex' | 'biblatex' | 'minimal', options: MapOptions = {}) {
     let map = { ...maps[mode].base }
     const packages = maps[mode].package
     for (const pkg of (options.packages || []).map(p => packages[p]).filter(p => p)) {
@@ -116,7 +116,9 @@ export class Transform {
    */
   tolatex(text: string, options: TranslateOptions = {}): string {
     const { bracemath, preservemacrospacers, packages } = {
-      bracemath: false, preservemacrospacers: false, packages: new Set,
+      bracemath: false,
+      preservemacrospacers: false,
+      packages: new Set(),
       ...options,
     }
     let mode = 'text'
@@ -130,7 +132,7 @@ export class Transform {
     let mapped: TeXChar
     let switched: boolean
     let m: RegExpExecArray | RegExpMatchArray
-    let cd: { macro: string, mode: string }
+    let cd: { macro: string; mode: string }
 
     let latex = ''
     text.normalize('NFD').replace(re, (match: string, tie: string, cdpair: string, pair: string, single: string) => {
@@ -161,7 +163,7 @@ export class Transform {
 
           if (this.mode === 'bibtex' && cd.mode === 'text') {
             // needs to be braced to count as a single char for name abbreviation
-            char = `{\\${cd.macro}${cmd ? ' ': ''}${char}}`
+            char = `{\\${cd.macro}${cmd ? ' ' : ''}${char}}`
           }
           else if (cmd && char.length === 1) {
             char = `\\${cd.macro} ${char}`
@@ -174,7 +176,7 @@ export class Transform {
           }
           return ''
         })
-        if (!cdpair) mapped = { [cdmode] : char }
+        if (!cdpair) mapped = { [cdmode]: char }
       }
 
       /* ??
@@ -199,8 +201,12 @@ export class Transform {
       // http://tex.stackexchange.com/questions/230750/open-brace-in-bibtex-fields/230754#comment545453_230754
       // is widely deployed
       switch (mapped[mode]) {
-        case '\\{': braced += 1; break
-        case '\\}': braced -= 1; break
+        case '\\{':
+          braced += 1
+          break
+        case '\\}':
+          braced -= 1
+          break
       }
       if (braced < 0) {
         latex += '\\vphantom\\{'
