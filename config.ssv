@@ -2,7 +2,7 @@
 \u00BF < > text
 \u2029 > \par text
 ! < \mathexclam math.unicode-math
-\" < \textquotedbl
+"\""" < \textquotedbl
 # < \mathoctothorpe math.unicode-math
 # = \#
 $ < \mathdollar math
@@ -151,8 +151,8 @@ i\uFE20a\uFE21 = \t{ia} text
 ## Á = \'A text
 ## Â = \^A text
 ## Ã = \~A text
-## Ä = \"A text
-A\u030A < @{\r A}@
+## Ä = "\""A" text
+A\u030A < "{\r A}"
 ## Å < \r{A}
 A\u030A = \AA text
 \u00C6 = \AE text
@@ -160,25 +160,25 @@ A\u030A = \AA text
 ## È = \`E text
 ## É = \'E text
 ## Ê = \^E text
-## Ë = \"E text
+## Ë = "\""E" text
 ## Ì = \`I text
 ## Í = \'I text
 ## Î = \^I text
-## Ï = \"I text
+## Ï = "\""I" text
 \u00D0 = \DH text
 ## Ñ = \~N text
 ## Ò = \`O text
 ## Ó = \'O text
 ## Ô = \^O text
 ## Õ = \~O text
-## Ö = \"O text
+## Ö = "\""O" text
 \u00D7 = \texttimes text
 \u00D7 = \times math
 \u00D8 = \O text
 ## Ù = \`U text
 ## Ú = \'U text
 ## Û = \^U text
-## Ü = \"U text
+## Ü = "\""U" text
 ## Ý = \'Y text
 \u00DE = \TH text
 \u00DF = \ss text
@@ -186,8 +186,8 @@ A\u030A = \AA text
 ## á = \'a text
 ## â = \^a text
 ## ã = \~a text
-## ä = \"a text
-a\u030A < @{\r a}@
+## ä = "\""a" text
+a\u030A < "{\r a}"
 ## å < \r{a}
 a\u030A = \aa text
 \u00E6 = \ae text
@@ -195,15 +195,15 @@ a\u030A = \aa text
 ## è = \`e text
 ## é = \'e text
 ## ê = \^e text
-## ë = \"e text
+## ë = "\""e" text
 i\u0300 < \`\i
 ## ì = \`i text
 i\u0301 < \'\i
 ## í = \'i text
 ## i\u0302 < \^\i
 ## î = \^i text
-## i\u0308 < \"\i
-## ï = \"i text
+## i\u0308 < "\""\i"
+## ï = "\""i" text
 \u00F0 = \dh text
 \u00F0 = \eth math.amssymb
 \u00F0 = \eth math.arevmath
@@ -213,17 +213,17 @@ i\u0301 < \'\i
 ## ó = \'o text
 ## ô = \^o text
 ## õ = \~o text
-## ö = \"o text
+## ö = "\""o" text
 \u00F7 = \div math
 \u00F7 = \textdiv text
 \u00F8 = \o text
 ## ù = \`u text
 ## ú = \'u text
 ## û = \^u text
-## ü = \"u text
+## ü = "\""u" text
 ## ý = \'y text
 \u00FE = \th text
-## ÿ = \"y text
+## ÿ = "\""y" text
 ## Ā = \=A text
 ## ā = \=a text
 ## Ă = \u{A} text
@@ -271,7 +271,7 @@ i\u0301 < \'\i
 ## Ī = \=I text
 ## ī = \=i text
 ## Ĭ = \u{I} text
-i\u0306 = @{\u \i}@ text
+i\u0306 = "{\u \i}" text
 ## Į = \k{I} text
 ## į = \k{i} text
 ## İ = \.I text
@@ -334,9 +334,9 @@ j\u0302 = \^\j text
 ## ū = \=u text
 ## Ŭ = \u{U} text
 ## ŭ = \u{u} text
-U\u030A < @{\r U}@
+U\u030A < "{\r U}"
 ## Ů = \r{U} text
-u\u030A < @{\r u}@
+u\u030A < "{\r u}"
 u\u030A < \ocirc{u}
 ## ů = \r{u} text
 ## Ű = \H{U} text
@@ -347,7 +347,7 @@ u\u030A < \ocirc{u}
 ## ŵ = \^w text
 ## Ŷ = \^Y text
 ## ŷ = \^y text
-## Ÿ = \"Y text
+## Ÿ = "\""Y" text
 ## Ź = \'Z text
 ## ź = \'z text
 ## Ż = \.Z text
@@ -363,7 +363,7 @@ u\u030A < \ocirc{u}
 \u01C2 = \textdoublebarpipe text.tipa
 i\u030C < \v{\i} text
 j\u030C < \v{\j} text
-i\u0308 < \"{\i} text
+i\u0308 < "\""{\i}" text
 i\u0302 < \^{\i} text
 i\u0303 < \~{\i} text
 ## Ǎ = \v{A} text
@@ -467,7 +467,7 @@ i\u0303 < \~{\i} text
 \u0307 = \dot math.unicode-math combining
 \u0307\u0301 = \textdotacute text.tipa combining
 \u0307\u0306 > \textdotbreve text.tipa combining
-\u0308 = \" text combining
+\u0308 = "\""" text combining
 \u0308 = \ddot math.unicode-math combining
 \u0309 = \ovhook math.unicode-math
 \u030A < \ocirc math.unicode-math combining
@@ -1948,8 +1948,8 @@ e\u0327\u0306 = \c{\u{e}} text
 ## ḣ = \.h text
 ## Ḥ = \d{H} text
 ## ḥ = \d{h} text
-## Ḧ = \"H text
-## ḧ = \"h text
+## Ḧ = "\""H" text
+## ḧ = "\""h" text
 ## Ḩ = \c{H} text
 ## ḩ = \c{h} text
 ## Ḱ = \'K text
@@ -2002,16 +2002,16 @@ e\u0327\u0306 = \c{\u{e}} text
 ## ẁ = \`w text
 ## Ẃ = \'W text
 ## ẃ = \'w text
-## Ẅ = \"W text
-## ẅ = \"w text
+## Ẅ = "\""W" text
+## ẅ = "\""w" text
 ## Ẇ = \.W text
 ## ẇ = \.w text
 ## Ẉ = \d{W} text
 ## ẉ = \d{w} text
 ## Ẋ = \.X text
 ## ẋ = \.x text
-## Ẍ = \"X text
-## ẍ = \"x text
+## Ẍ = "\""X" text
+## ẍ = "\""x" text
 ## Ẏ = \.Y text
 ## ẏ = \.y text
 ## Ẑ = \^Z text
@@ -2021,7 +2021,7 @@ e\u0327\u0306 = \c{\u{e}} text
 ## Ẕ = \b{Z} text
 ## ẕ = \b{z} text
 ## ẖ = \b{h} text
-## ẗ = \"t text
+## ẗ = "\""t" text
 ## ẘ = \r{w} text
 ## ẙ = \r{y} text
 ## Ạ = \d{A} text
@@ -2934,7 +2934,7 @@ A\u030A > \AA text
 \u2312 = \profline math.unicode-math
 \u2313 = \profsurf math.unicode-math
 \u2315 = \recorder math
-\u2316 = {\mathchar"2208} math
+\u2316 = "{\mathchar""2208}" math
 \u2317 = \viewdata math.unicode-math
 \u2319 = \turnednot math.unicode-math
 \u231C = \ulcorner math.unicode-math
@@ -5606,12 +5606,12 @@ A\u030A > \AA text
 \uD835\uDFFD = \mathtt{7} math
 \uD835\uDFFE = \mathtt{8} math
 \uD835\uDFFF = \mathtt{9} math
-@ \u035A@ = _\infty math
+" \u035A" = _\infty math
 \u2052 = \textdiscount text
 \u203d = \textinterrobang text
 \u203b = \textreferencemark text
 \u0166 = \textTstroke text
 \u0167 = \texttstroke text
 \u02cb = \textasciigrave text
- < @\@@@ text
+ < \@ text
  < \/ text
