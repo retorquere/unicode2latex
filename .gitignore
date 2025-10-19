@@ -4,14 +4,10 @@
 !Makefile
 lib
 
-index.js
-config.json
 *.sqlite
 node_modules
 *.swp
-*.dwarf
-tables/*.json
-*.d.ts
 *.bak
 *.py
 tables
+dist
