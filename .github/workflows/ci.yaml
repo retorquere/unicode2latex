@@ -15,14 +15,10 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: 20.x
-
-    - name: Install Crystal
-      uses: crystal-lang/install-crystal@v1
-
     - name: install dependencies
       run: |
-        npm ci --ignore-scripts
-        shards install
+        rm package-lock.json
+        npm i
     - run: npm start
     - run: find dist -type f
     - name: Publish
