@@ -1,13 +1,11 @@
 {
   "compilerOptions": {
-    "resolveJsonModule": true,
     "esModuleInterop": true,
     "allowUnreachableCode": false,
     "declaration": true,
     "importHelpers": true,
     "target": "es2017",
     "disableSizeLimit": true,
-    "module": "commonjs",
     "noImplicitAny": false,
     "removeComments": true,
     "preserveConstEnums": false,
@@ -20,11 +18,13 @@
     ]
   },
   "include": [
-    "*.ts"
+    "*.ts",
+    "tables/*.ts"
   ],
   "exclude": [
     "node_modules",
     "**/*.spec.ts",
-    "typings"
+    "typings",
+    "docs"
   ]
 }

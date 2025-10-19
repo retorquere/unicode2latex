@@ -7,16 +7,16 @@ export type TeXMap = {
   stopgap: string
 }
 
-import * as biblatex from './tables/biblatex.json' // assert { type: 'json' }
+import biblatex from './tables/biblatex.js'
 export { biblatex }
-import * as bibtex from './tables/bibtex.json' // assert { type: 'json' }
+import bibtex from './tables/bibtex.js'
 export { bibtex }
-import * as minimal from './tables/minimal.json' // assert { type: 'json' }
+import minimal from './tables/minimal.js'
 export { minimal }
 
 const maps = { biblatex, bibtex, minimal }
 
-import * as _latex2unicode from './tables/latex2unicode.json' // assert { type: 'json' }
+import _latex2unicode from './tables/latex2unicode.js'
 export const latex2unicode = _latex2unicode as Record<string, string | { math: string; text: string }>
 
 function permutations(str: string): string[] {
@@ -35,7 +35,7 @@ function permutations(str: string): string[] {
   return result
 }
 
-import * as _combining from './tables/combining.json' // assert { type: 'json' }
+import _combining from './tables/combining.js'
 export const combining = _combining as {
   macros: string[]
   tolatex: Record<string, { macro: string; mode: 'text' | 'math' }>

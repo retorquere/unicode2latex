@@ -3,13 +3,8 @@
 require "csv"
 require "json"
 require "sqlite3"
-require "benchmark"
 
 puts "building tables"
-
-def section(s : String)
-  return "  #{s.ljust(20, ' ')} "
-end
 
 class Row < Hash(String, String)
   macro method_missing(call)
@@ -52,114 +47,110 @@ TeXMap.exec "CREATE TABLE texmap (
 
 errors = false
 
-puts section("loading config") + Benchmark.measure {
-  CSV.parse(File.read("config.ssv"), separator=' ', quote_char='@')
-    .each_with_index.map { |item, index| {index + 1, item} }
-    .select{|index, row| row.join("") != "" && !row[0].match(/^(\/\/|##)/)}
-    .each do |line, stanza|
-      unicode = String.from_json("\"" + stanza.shift() + "\"").unicode_normalize(:nfd)
-      conversion = {"<" => "t2u", ">" => "u2t", "=" => "="}[stanza.shift()]
-      tex = stanza.shift()
-  
-      mode : String = ""
-      package : String = ""
-      combining = 0
-      stopgap = 0
-  
-      while flag = stanza.shift?
-        case flag
-          when "math", "text"
-            mode = flag
-          when /^(math|text)[.]([-a-z]+)$/i
-            mode = $1
-            package = $2
-          when /^[.]([-a-z]+)$/i
-            package = $1
-          when "stopgap"
-            stopgap = 1
-          when "combining"
-            combining = 1
-          when "space"
-            #@space = true
-          else
-            raise flag
-            puts "Unexpected flag #{flag}"
-            errors = true
-        end
+CSV.parse(File.read("config.ssv"), separator=' ', quote_char='@')
+  .each_with_index.map { |item, index| {index + 1, item} }
+  .select{|index, row| row.join("") != "" && !row[0].match(/^(\/\/|##)/)}
+  .each do |line, stanza|
+    unicode = String.from_json("\"" + stanza.shift() + "\"").unicode_normalize(:nfd)
+    conversion = {"<" => "t2u", ">" => "u2t", "=" => "="}[stanza.shift()]
+    tex = stanza.shift()
+
+    mode : String = ""
+    package : String = ""
+    combining = 0
+    stopgap = 0
+
+    while flag = stanza.shift?
+      case flag
+        when "math", "text"
+          mode = flag
+        when /^(math|text)[.]([-a-z]+)$/i
+          mode = $1
+          package = $2
+        when /^[.]([-a-z]+)$/i
+          package = $1
+        when "stopgap"
+          stopgap = 1
+        when "combining"
+          combining = 1
+        when "space"
+          #@space = true
+        else
+          raise flag
+          puts "Unexpected flag #{flag}"
+          errors = true
       end
-  
-      if stopgap == 1 && conversion == "="
-        puts "suspect stopgap conversion for #{unicode} = #{tex}"
-        errors = true
-      end
-  
-      TeXMap.exec "INSERT INTO texmap (line, unicode, conversion, tex, mode, package, combining, stopgap) values (?, ?, ?, ?, ?, ?, ?, ?)", line, unicode, conversion, tex, mode, package, combining, stopgap
     end
-}.to_s
+
+    if stopgap == 1 && conversion == "="
+      puts "suspect stopgap conversion for #{unicode} = #{tex}"
+      errors = true
+    end
+
+    TeXMap.exec "INSERT INTO texmap (line, unicode, conversion, tex, mode, package, combining, stopgap) values (?, ?, ?, ?, ?, ?, ?, ?)", line, unicode, conversion, tex, mode, package, combining, stopgap
+  end
 
 # ---- sanity checks ---- #
 
-puts section("sanity checks") + Benchmark.measure {
-  TeXMap.q("SELECT * FROM texmap WHERE mode = 'text' ORDER BY line").each do |c|
-    if c.unicode.match(/^[A-Za-z0-9]$/)
-      puts "null mapping for #{c.unicode}"
-      errors = true
-    end
-  end
-
-  TeXMap.q("SELECT * FROM texmap WHERE conversion in ('=', 'u2t') AND stopgap <> 0 AND tex like '%\\\\%' ORDER BY line").each do |c|
-    puts "faulty stopgap #{c.tex}"
+TeXMap.q("SELECT * FROM texmap WHERE mode = 'text' ORDER BY line").each do |c|
+  if c.unicode.match(/^[A-Za-z0-9]$/)
+    puts "null mapping for #{c.unicode}"
     errors = true
   end
+end
 
-  TeXMap.q("
-    SELECT simple.*, multi.tex as multi
-    FROM texmap simple
-    JOIN texmap multi ON
-      CASE multi.mode WHEN '' THEN simple.mode ELSE multi.mode END = simple.mode
-      AND multi.conversion IN ('=', 't2u')
-      AND multi.tex LIKE '%\\\\_%\\\\' AND
-      multi.package = ''
-    WHERE
-      simple.conversion IN ('=', 't2u')
-      AND simple.tex NOT LIKE '%\\\\_%\\\\'
-      AND simple.package = ''
-  ").each do |c|
-    puts "swap #{c.tex} (#{c.mode}) with #{c.multi}"
-    errors = true
-  end
+TeXMap.q("SELECT * FROM texmap WHERE conversion in ('=', 'u2t') AND stopgap <> 0 AND tex like '%\\\\%' ORDER BY line").each do |c|
+  puts "faulty stopgap #{c.tex}"
+  errors = true
+end
 
-  TeXMap.q("
-    SELECT notcombining.*
-    FROM texmap notcombining
-    WHERE
-      notcombining.combining = 0
-      AND (notcombining.tex LIKE '\\\\[^a-zA-Z][a-zA-Z]' OR notcombining.tex LIKE '\\\\_{[a-zA-Z]}')
-      AND EXISTS (
-        SELECT 1
-        FROM texmap combining
-        WHERE combining.combining = 1 AND combining.package = '' AND notcombining.unicode LIKE '%' || combining.unicode
-      )
-  ").each do |c|
-    puts "remove #{c.tex} on line #{c.line}"
-    errors = true
-  end
+TeXMap.q("
+  SELECT simple.*, multi.tex as multi
+  FROM texmap simple
+  JOIN texmap multi ON
+    CASE multi.mode WHEN '' THEN simple.mode ELSE multi.mode END = simple.mode
+    AND multi.conversion IN ('=', 't2u')
+    AND multi.tex LIKE '%\\\\_%\\\\' AND
+    multi.package = ''
+  WHERE
+    simple.conversion IN ('=', 't2u')
+    AND simple.tex NOT LIKE '%\\\\_%\\\\'
+    AND simple.package = ''
+").each do |c|
+  puts "swap #{c.tex} (#{c.mode}) with #{c.multi}"
+  errors = true
+end
 
-  TeXMap.q("
-    SELECT me.*, other.line as conflict, CASE WHEN other.unicode = me.unicode THEN 'unicode' ELSE 'tex' END AS kind
-    FROM texmap me
-    JOIN texmap other ON
-      other.line <> me.line
-      AND other.conversion = '='
-      AND (other.unicode = me.unicode OR other.tex = me.tex)
-      AND me.mode = other.mode
-      AND me.package = other.package
-    WHERE me.conversion = '=' AND me.package <> ''
-  ").each do |c|
-    puts "#{c.kind} conflict between lines #{c.line} and #{c.conflict}"
-    errors = true
-  end
-}.to_s
+TeXMap.q("
+  SELECT notcombining.*
+  FROM texmap notcombining
+  WHERE
+    notcombining.combining = 0
+    AND (notcombining.tex LIKE '\\\\[^a-zA-Z][a-zA-Z]' OR notcombining.tex LIKE '\\\\_{[a-zA-Z]}')
+    AND EXISTS (
+      SELECT 1
+      FROM texmap combining
+      WHERE combining.combining = 1 AND combining.package = '' AND notcombining.unicode LIKE '%' || combining.unicode
+    )
+").each do |c|
+  puts "remove #{c.tex} on line #{c.line}"
+  errors = true
+end
+
+TeXMap.q("
+  SELECT me.*, other.line as conflict, CASE WHEN other.unicode = me.unicode THEN 'unicode' ELSE 'tex' END AS kind
+  FROM texmap me
+  JOIN texmap other ON
+    other.line <> me.line
+    AND other.conversion = '='
+    AND (other.unicode = me.unicode OR other.tex = me.tex)
+    AND me.mode = other.mode
+    AND me.package = other.package
+  WHERE me.conversion = '=' AND me.package <> ''
+").each do |c|
+  puts "#{c.kind} conflict between lines #{c.line} and #{c.conflict}"
+  errors = true
+end
 
 exit(1) if errors
 
@@ -210,14 +201,19 @@ class Combining
     @regex = multi.join("|")
   end
 
-  def save(filename : String)
-    File.open(filename, "w") do |f|
+  def save()
+    Dir.mkdir_p("tables")
+    File.open("tables/combining.ts", "w") do |f|
+      f.puts "export default " + ascii({ macros: @macros.to_a.sort, tolatex: @tolatex, tounicode: @tounicode, regex: @regex }.to_json)
+    end
+    Dir.mkdir_p("dist/tables")
+    File.open("dist/tables/combining.json", "w") do |f|
       f.puts ascii({ macros: @macros.to_a.sort, tolatex: @tolatex, tounicode: @tounicode, regex: @regex }.to_json)
     end
   end
 end
 
-Combining.new.save("tables/combining.json")
+Combining.new.save()
 
 class TeXChar
   property math = ""
@@ -330,16 +326,19 @@ class U2T
   end
 
   def save()
-    File.open("tables/#{@map}.json", "w") do |f|
+    Dir.mkdir_p("tables")
+    File.open("tables/#{@map}.ts", "w") do |f|
+      f.puts "export default " + ascii({ base: @package[""], package: @package.reject{|k, v| k == ""} }.to_json)
+    end
+    Dir.mkdir_p("dist/tables")
+    File.open("dist/tables/#{@map}.json", "w") do |f|
       f.puts ascii({ base: @package[""], package: @package.reject{|k, v| k == ""} }.to_json)
     end
   end
 end
 
 ["biblatex", "bibtex", "minimal"].each do |map|
-  puts section("#{map} map") + Benchmark.measure {
-    U2T.new(map).save()
-  }.to_s
+  U2T.new(map).save()
 end
 
 class T2U
@@ -378,11 +377,14 @@ class T2U
       }
     end
 
-    File.open(filename, "w") do |f|
+    Dir.mkdir_p("tables")
+    File.open("tables/latex2unicode.ts", "w") do |f|
+      f.puts "export default " + ascii(t2u.to_s)
+    end
+    Dir.mkdir_p("dist/tables")
+    File.open("dist/tables/latex2unicode.json", "w") do |f|
       f.puts ascii(t2u.to_s)
     end
   end
 end
-puts section("latex to unicode map") + Benchmark.measure {
-  T2U.new.save("tables/latex2unicode.json")
-}.to_s
+T2U.new.save("tables/latex2unicode.ts")

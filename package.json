@@ -1,24 +1,31 @@
 {
   "name": "unicode2latex",
   "version": "6.0.13",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
   "keywords": [
     "TeX",
     "LaTeX",
     "unicode"
   ],
   "description": "Mapping to convert unicode characters from and to LaTeX macros",
-  "main": "index.js",
   "scripts": {
     "test": "npm start && jest",
     "start": "npm run build",
-    "prebuild": "make",
+    "prebuild": "make build && ./build",
     "build": "run-p --aggregate-output lint tsc docs",
     "lint": "dprint fmt *.ts && dprint check *.ts",
-    "tsc": "tsc",
-    "docs": "typedoc --gitRevision --out docs --readme README.md index.ts",
-    "builder": "crystal build --no-debug --release -o build build.cr",
-    "tables": "mkdir -p tables && ./build",
-    "buildci": "npm run builder && npm run tables && run-p --aggregate-output lint tsc docs",
+    "tsc:esm": "rm -rf dist/esm && tsc -d -p tsconfig.esm.json",
+    "tsc:cjs": "rm -rf dist/cjs && tsc -d -p tsconfig.cjs.json",
+    "tsc": "npm run tsc:esm && npm run tsc:cjs",
+    "docs": "typedoc --tsconfig tsconfig.esm.json --gitRevision --out docs --readme README.md index.ts",
     "preversion": "npm start",
     "postversion": "git push --tags && git push"
   },
@@ -27,13 +34,7 @@
   "files": [
     "package.json",
     "package-lock.json",
-    "index.js",
-    "index.d.ts",
-    "tables/biblatex.json",
-    "tables/bibtex.json",
-    "tables/minimal.json",
-    "tables/latex2unicode.json",
-    "tables/combining.json"
+    "dist"
   ],
   "devDependencies": {
     "@types/node": "^22.15.29",
