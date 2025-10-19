@@ -23,8 +23,8 @@ jobs:
       run: |
         npm ci --ignore-scripts
         shards install
-    - run: npm run buildci
-    - run: ls tables/*
+    - run: npm start
+    - run: find dist -type f
     - name: Publish
       run: |
         npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
