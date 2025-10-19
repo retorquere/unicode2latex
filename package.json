@@ -19,8 +19,7 @@
   "scripts": {
     "test": "npm start && jest",
     "start": "npm run build",
-    "prebuild": "./build.js",
-    "build": "run-p --aggregate-output lint tsc docs",
+    "build": "./build.js && run-p --aggregate-output lint tsc docs",
     "lint": "dprint fmt *.ts *.js && dprint check *.ts",
     "tsc:esm": "rm -rf dist/esm && tsc -d -p tsconfig.esm.json",
     "tsc:cjs": "rm -rf dist/cjs && tsc -d -p tsconfig.cjs.json",
