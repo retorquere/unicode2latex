@@ -7,16 +7,6 @@ import path from 'path'
 
 console.log('building tables')
 
-// ---------------- DB helper ----------------
-class Row extends Map {
-  get(key) {
-    return super.get(key)
-  }
-  set(key, value) {
-    return super.set(key, value)
-  }
-}
-
 class Database {
   constructor(file) {
     this.db = new sqlite3(file)
@@ -28,11 +18,7 @@ class Database {
 
   q(sql, ...params) {
     const stmt = this.db.prepare(sql)
-    return stmt.all(...params).map(row => {
-      const r = new Row()
-      for (const k in row) r.set(k, row[k]?.toString())
-      return r
-    })
+    return stmt.all(...params)
   }
 }
 
@@ -105,14 +91,14 @@ records.forEach((row, index) => {
 
 // ---------------- Sanity checks ----------------
 for (const c of TeXMap.q("SELECT * FROM texmap WHERE mode = 'text' ORDER BY line")) {
-  if (/^[A-Za-z0-9]$/.test(c.get('unicode'))) {
-    console.warn('null mapping for', c.get('unicode'))
+  if (c.unicode.match(/^[a-z0-9]$/i)) {
+    console.warn('null mapping for', c.unicode)
     errors = true
   }
 }
 
 for (const c of TeXMap.q("SELECT * FROM texmap WHERE conversion IN ('=', 'u2t') AND stopgap <> 0 AND tex LIKE '%\\\\%' ORDER BY line")) {
-  console.warn('faulty stopgap', c.get('tex'))
+  console.warn('faulty stopgap', c.tex)
   errors = true
 }
 
@@ -146,17 +132,17 @@ class Combining {
     const multi = []
 
     for (const c of TeXMap.q('SELECT * FROM texmap WHERE combining = 1 ORDER BY mode, line')) {
-      if (c.get('unicode').length > 2) throw new Error('update tx')
-      if (c.get('unicode').length === 1) single += c.get('unicode')
-      else multi.push(`(${permutations(c.get('unicode')).join('|')})`)
+      if (c.unicode.length > 2) throw new Error('update tx')
+      if (c.unicode.length === 1) single += c.unicode
+      else multi.push(`(${permutations(c.unicode).join('|')})`)
 
-      const m = c.get('tex').match(/^\\([a-z]+)$/)
+      const m = c.tex.match(/^\\([a-z]+)$/)
       if (m) this.macros.add(m[1])
 
-      if (c.get('tex')[0] === '\\') {
-        const macro = c.get('tex').slice(1).replace('{}', '')
-        if (/t2u|=/.test(c.get('conversion'))) this.tounicode[macro] = c.get('unicode')
-        if (/u2t|=/.test(c.get('conversion'))) this.tolatex[c.get('unicode')] = { mode: c.get('mode'), macro }
+      if (c.tex[0] === '\\') {
+        const macro = c.tex.slice(1).replace('{}', '')
+        if (/t2u|=/.test(c.conversion)) this.tounicode[macro] = c.unicode
+        if (/u2t|=/.test(c.conversion)) this.tolatex[c.unicode] = { mode: c.mode, macro }
       }
     }
 
@@ -238,24 +224,24 @@ class U2T {
       ORDER BY tex.stopgap, tex.mode, tex.line
     `)
     ) {
-      if (map === 'minimal' && !minimal.test(c.get('unicode'))) continue
-      if (map === 'minimal' && c.get('package') !== '') throw new Error(c.get('tex'))
+      if (map === 'minimal' && !minimal.test(c.unicode)) continue
+      if (map === 'minimal' && c.package !== '') throw new Error(c.tex)
 
-      if (!this.package[c.get('package')]) this.package[c.get('package')] = {}
-      if (!this.package[c.get('package')][c.get('unicode')]) this.package[c.get('package')][c.get('unicode')] = new TeXChar()
+      if (!this.package[c.package]) this.package[c.package] = {}
+      if (!this.package[c.package][c.unicode]) this.package[c.package][c.unicode] = new TeXChar()
 
-      const m = this.package[c.get('package')][c.get('unicode')]
-      if (m.stopgap && c.get('stopgap') === '0' && c.get('package') === '') {
-        this.package[c.get('package')][c.get('unicode')] = new TeXChar()
+      const m = this.package[c.package][c.unicode]
+      if (m.stopgap && c.stopgap === '0' && c.package === '') {
+        this.package[c.package][c.unicode] = new TeXChar()
       }
-      m.stopgap = c.get('stopgap') === '1'
+      m.stopgap = c.stopgap === '1'
 
-      const modes = c.get('mode') === '' ? ['text', 'math'] : [c.get('mode')]
+      const modes = c.mode === '' ? ['text', 'math'] : [c.mode]
       let match
       for (const mode of modes) {
-        m[mode] = c.get('tex')
+        m[mode] = c.tex
         if (mode === 'text') {
-          const macrospacer = /\\[0-1a-z]+$/i.test(c.get('tex')) || c.get('combining') === '1'
+          const macrospacer = /\\[0-1a-z]+$/i.test(c.tex) || c.combining === '1'
           if (map === 'bibtex') {
             if (this.creator) {
               if (m.text.match(/^\\[`\'^~"=.][a-z]$/i) || m.text.match(/^\\[\^]\\[ij]$/) || m.text.match(/^\\[kr]\{[a-zA-Z]\}$/)) {
@@ -267,10 +253,10 @@ class U2T {
               else if (match = m.text.match(/^\\([a-zA-Z])\{([a-zA-Z0-9])\}$/)) {
                 m.text = `{\\${match[1]} ${match[2]}}`
               }
-              else if (!c.get('combining') && m.text.length > 2 && m.text.match(/[\\_^]/) && (!m.text.startsWith('{') || !m.text.endsWith('}'))) {
+              else if (!c.combining && m.text.length > 2 && m.text.match(/[\\_^]/) && (!m.text.startsWith('{') || !m.text.endsWith('}'))) {
                 m.text = `{${m.text}}`
               }
-              else if (m.text.match(/.*\\[0-1a-zA-Z]+$/) && !c.get('combining')) {
+              else if (m.text.match(/.*\\[0-1a-zA-Z]+$/) && !c.combining) {
                 m.macrospacer = true
               }
             }
@@ -285,8 +271,8 @@ class U2T {
             m.macrospacer = macrospacer
           }
         }
-        if (c.get('package') === '' && map.match(/^bib(la)?tex$/) && c.get('alt')?.length > 0) {
-          m.alt = Array.from(new Set(c.get('alt').split(','))).sort()
+        if (c.package === '' && map.match(/^bib(la)?tex$/) && c.alt?.length > 0) {
+          m.alt = Array.from(new Set(c.alt.split(','))).sort()
         }
       }
     }
@@ -318,12 +304,12 @@ class T2U {
     const other = { text: 'math', math: 'text' }
 
     for (const c of TeXMap.q("SELECT * FROM texmap tex WHERE tex.conversion IN ('t2u', '=') ORDER BY line DESC")) {
-      if (!mapping[c.get('tex')]) mapping[c.get('tex')] = {}
-      if (c.get('mode') === '') mapping[c.get('tex')] = { text: c.get('unicode'), math: c.get('unicode') }
+      if (!mapping[c.tex]) mapping[c.tex] = {}
+      if (c.mode === '') mapping[c.tex] = { text: c.unicode, math: c.unicode }
       else {
-        if (!mapping[c.get('tex')][c.get('mode')]) mapping[c.get('tex')][c.get('mode')] = c.get('unicode')
-        if (!mapping[c.get('tex')][other[c.get('mode')]] && !/^[_^]/.test(c.get('tex')) && !c.get('tex').includes('\\')) {
-          mapping[c.get('tex')][other[c.get('mode')]] = c.get('tex')
+        if (!mapping[c.tex][c.mode]) mapping[c.tex][c.mode] = c.unicode
+        if (!mapping[c.tex][other[c.mode]] && !/^[_^]/.test(c.tex) && !c.tex.includes('\\')) {
+          mapping[c.tex][other[c.mode]] = c.tex
         }
       }
     }
