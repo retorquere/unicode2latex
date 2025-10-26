@@ -219,7 +219,8 @@ class TeXChar {
 // ---------------- U2T ----------------
 class U2T {
   constructor(map) {
-    this.map = map
+    this.creator = map.includes('-creator')
+    this.map = map.replace('-creator', '')
     this.package = {}
     this.package[''] = {}
 
@@ -250,13 +251,35 @@ class U2T {
       m.stopgap = c.get('stopgap') === '1'
 
       const modes = c.get('mode') === '' ? ['text', 'math'] : [c.get('mode')]
+      let match
       for (const mode of modes) {
         m[mode] = c.get('tex')
         if (mode === 'text') {
           const macrospacer = /\\[0-1a-z]+$/i.test(c.get('tex')) || c.get('combining') === '1'
           if (map === 'bibtex') {
-            if (macrospacer) m.text = `{${m.text}}`
-            else m.macrospacer = macrospacer
+            if (this.creator) {
+              if (m.text.match(/^\\[`\'^~"=.][a-z]$/i) || m.text.match(/^\\[\^]\\[ij]$/) || m.text.match(/^\\[kr]\{[a-zA-Z]\}$/)) {
+                m.text = `{${m.text}}`
+              }
+              else if (match = m.text.match(/'^\\(L|O|AE|AA|DH|DJ|OE|SS|TH|NG)\{\}$/i)) {
+                m.text = `{\\{match[1]}}`
+              }
+              else if (match = m.text.match(/^\\([a-zA-Z])\{([a-zA-Z0-9])\}$/)) {
+                m.text = `{\\${match[1]} ${match[2]}}`
+              }
+              else if (!c.get('combining') && m.text.length > 2 && m.text.match(/[\\_^]/) && (!m.text.startsWith('{') || !m.text.endsWith('}'))) {
+                m.text = `{${m.text}}`
+              }
+              else if (m.text.match(/.*\\[0-1a-zA-Z]+$/) && !c.get('combining')) {
+                m.macrospacer = true
+              }
+            }
+            else if (macrospacer) {
+              m.text = `{${m.text}}`
+            }
+            else {
+              m.macrospacer = macrospacer
+            }
           }
           else {
             m.macrospacer = macrospacer
@@ -270,20 +293,21 @@ class U2T {
   }
 
   async save() {
+    const creator = this.creator ? '-creator' : ''
     await fs.mkdir('tables', { recursive: true })
     await fs.writeFile(
-      `tables/${this.map}.ts`,
+      `tables/${this.map}${creator}.ts`,
       'export default ' + ascii(JSON.stringify({ base: this.package[''], package: this.package })),
     )
     await fs.mkdir('dist/tables', { recursive: true })
     await fs.writeFile(
-      `dist/tables/${this.map}.json`,
+      `dist/tables/${this.map}${creator}.json`,
       ascii(JSON.stringify({ base: this.package[''], package: this.package })),
     )
   }
 }
 
-for (const map of ['biblatex', 'bibtex', 'minimal']) {
+for (const map of ['biblatex', 'bibtex', 'bibtex-creator', 'minimal']) {
   await new U2T(map).save()
 }
 

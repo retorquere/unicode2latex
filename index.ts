@@ -11,10 +11,22 @@ import biblatex from './tables/biblatex.js'
 export { biblatex }
 import bibtex from './tables/bibtex.js'
 export { bibtex }
+
+// https://github.com/retorquere/zotero-better-bibtex/issues/1189
+// Needed so that composite characters are counted as single characters
+// for in-text citation generation. This messes with the {} cleanup
+// so the resulting TeX will be more verbose; doing this only for
+// bibtex because biblatex doesn't appear to need it.
+//
+// Only testing ascii.text because that's the only place (so far)
+// that these have turned up.
+import creator from './tables/bibtex-creator.js'
+export { creator }
+
 import minimal from './tables/minimal.js'
 export { minimal }
 
-const maps = { biblatex, bibtex, minimal }
+const maps = { biblatex, bibtex, minimal, creator }
 
 import _latex2unicode from './tables/latex2unicode.js'
 export const latex2unicode = _latex2unicode as Record<string, string | { math: string; text: string }>
@@ -77,14 +89,14 @@ export type TranslateOptions = {
 
 export class Transform {
   private map: CharMap
-  private mode: 'bibtex' | 'biblatex' | 'minimal'
+  private mode: 'bibtex' | 'biblatex' | 'minimal' | 'creator'
 
   /**
    * loads a unicode -> TeX character map to use during conversion
    *
-   * @param mode - the translation mode, being `bibtex`, `biblatex` or `minimal`. Use `minimal` if your TeX environment supports unicode. In `bibtex` mode, combining characters are braced to that character/word counts are reliable, at the cost of more verbose output.
+   * @param mode - the translation mode, being `bibtex`, `creator`, `biblatex` or `minimal`. Use `minimal` if your TeX environment supports unicode. In `bibtex` mode, combining characters are braced to that character/word counts are reliable, at the cost of more verbose output. `creator` is a special mode for bibtex creator that helps composite characters to be counted as a single unit for in-text citations.
    */
-  constructor(mode: 'bibtex' | 'biblatex' | 'minimal', options: MapOptions = {}) {
+  constructor(mode: 'bibtex' | 'creator' | 'biblatex' | 'minimal', options: MapOptions = {}) {
     let map = { ...maps[mode].base }
     const packages = maps[mode].package
     for (const pkg of (options.packages || []).map(p => packages[p]).filter(p => p)) {
