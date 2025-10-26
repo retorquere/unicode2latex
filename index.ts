@@ -7,10 +7,11 @@ export type TeXMap = {
   stopgap: string
 }
 
-import biblatex from './tables/biblatex.js'
-export { biblatex }
-import bibtex from './tables/bibtex.js'
-export { bibtex }
+import { table as biblatex } from './tables/biblatex.js'
+export { table as biblatex } from './tables/biblatex.js'
+
+import { table as bibtex } from './tables/bibtex.js'
+export { table as bibtex } from './tables/bibtex.js'
 
 // https://github.com/retorquere/zotero-better-bibtex/issues/1189
 // Needed so that composite characters are counted as single characters
@@ -20,16 +21,16 @@ export { bibtex }
 //
 // Only testing ascii.text because that's the only place (so far)
 // that these have turned up.
-import creator from './tables/bibtex-creator.js'
-export { creator }
+import { table as creator } from './tables/bibtex-creator.js'
+export { table as creator } from './tables/bibtex-creator.js'
 
-import minimal from './tables/minimal.js'
-export { minimal }
+import { table as minimal } from './tables/minimal.js'
+export { table as minimal } from './tables/minimal.js'
 
 const maps = { biblatex, bibtex, minimal, creator }
 
-import _latex2unicode from './tables/latex2unicode.js'
-export const latex2unicode = _latex2unicode as Record<string, string | { math: string; text: string }>
+import { table as latex2unicode } from './tables/latex2unicode.js'
+export { table as latex2unicode } from './tables/latex2unicode.js'
 
 function permutations(str: string): string[] {
   if (str.length === 0) return []
@@ -47,13 +48,8 @@ function permutations(str: string): string[] {
   return result
 }
 
-import _combining from './tables/combining.js'
-export const combining = _combining as {
-  macros: string[]
-  tolatex: Record<string, { macro: string; mode: 'text' | 'math' }>
-  tounicode: Record<string, string>
-  regex: string
-}
+import { table as combining } from './tables/combining.js'
+export { table as combining } from './tables/combining.js'
 const combining_re = new RegExp(combining.regex)
 
 export type MapOptions = {
@@ -89,6 +85,7 @@ export type TranslateOptions = {
 
 export class Transform {
   private map: CharMap
+  private reuse: Record<string, CharMap> = {}
   private mode: 'bibtex' | 'biblatex' | 'minimal' | 'creator'
 
   /**
@@ -97,28 +94,34 @@ export class Transform {
    * @param mode - the translation mode, being `bibtex`, `creator`, `biblatex` or `minimal`. Use `minimal` if your TeX environment supports unicode. In `bibtex` mode, combining characters are braced to that character/word counts are reliable, at the cost of more verbose output. `creator` is a special mode for bibtex creator that helps composite characters to be counted as a single unit for in-text citations.
    */
   constructor(mode: 'bibtex' | 'creator' | 'biblatex' | 'minimal', options: MapOptions = {}) {
-    let map = { ...maps[mode].base }
     const packages = maps[mode].package
-    for (const pkg of (options.packages || []).map(p => packages[p]).filter(p => p)) {
-      map = { ...map, ...pkg }
-    }
-    for (const mode of ['text', 'math']) {
-      if (!(mode in options)) continue
-      for (const c of options[mode]) {
-        if (mode in map[c]) map[c] = { [mode]: map[c][mode] }
-      }
-    }
-    for (const c of (options.ascii || '')) {
-      if (bibtex.base[c]) map[c] = bibtex.base[c]
-    }
+    const load = (options.packages || []).filter(p => packages[p])
+    const key = JSON.stringify([mode, options])
 
-    if (options.charmap) {
-      for (const [u, t] of Object.entries(options.charmap)) {
-        map[u.normalize('NFC')] = map[u.normalize('NFD')] = t
+    if (!this.reuse[key]) {
+      let map = JSON.parse(JSON.stringify(maps[mode].base))
+      for (const pkg of load) {
+        map = { ...map, ...packages[pkg] }
       }
+      for (const mode of ['text', 'math']) {
+        if (!(mode in options)) continue
+        for (const c of options[mode]) {
+          if (mode in map[c]) map[c] = { [mode]: map[c][mode] }
+        }
+      }
+      for (const c of (options.ascii || '')) {
+        if (bibtex.base[c]) map[c] = bibtex.base[c]
+      }
+
+      if (options.charmap) {
+        for (const [u, t] of Object.entries(options.charmap)) {
+          map[u.normalize('NFC')] = map[u.normalize('NFD')] = t
+        }
+      }
+      this.reuse = { [key]: map }
     }
     this.mode = mode
-    this.map = map
+    this.map = this.reuse[key]
   }
 
   /**

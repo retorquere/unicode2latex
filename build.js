@@ -154,12 +154,18 @@ class Combining {
     await fs.mkdir('tables', { recursive: true })
     await fs.writeFile(
       'tables/combining.ts',
-      'export default ' + ascii(JSON.stringify({
-        macros: Array.from(this.macros).sort(),
-        tolatex: this.tolatex,
-        tounicode: this.tounicode,
-        regex: this.regex,
-      })),
+      `export const table = ${
+        ascii(JSON.stringify(
+          {
+            macros: Array.from(this.macros).sort(),
+            tolatex: this.tolatex,
+            tounicode: this.tounicode,
+            regex: this.regex,
+          },
+          null,
+          2,
+        ))
+      } as const`,
     )
 
     await fs.mkdir('dist/tables', { recursive: true })
@@ -283,7 +289,7 @@ class U2T {
     await fs.mkdir('tables', { recursive: true })
     await fs.writeFile(
       `tables/${this.map}${creator}.ts`,
-      'export default ' + ascii(JSON.stringify({ base: this.package[''], package: this.package })),
+      `export const table = ${ascii(JSON.stringify({ base: this.package[''], package: this.package }, null, 2))} as const`,
     )
     await fs.mkdir('dist/tables', { recursive: true })
     await fs.writeFile(
@@ -323,7 +329,7 @@ class T2U {
     }
 
     await fs.mkdir('tables', { recursive: true })
-    await fs.writeFile('tables/latex2unicode.ts', 'export default ' + ascii(JSON.stringify(t2u)))
+    await fs.writeFile('tables/latex2unicode.ts', `export const table = ${ascii(JSON.stringify(t2u, null, 2))} as const`)
     await fs.mkdir('dist/tables', { recursive: true })
     await fs.writeFile('dist/tables/latex2unicode.json', JSON.stringify(t2u))
   }
