@@ -211,8 +211,7 @@ class TeXChar {
 // ---------------- U2T ----------------
 class U2T {
   constructor(map) {
-    this.creator = map.includes('-creator')
-    this.map = map.replace('-creator', '')
+    this.map = map
     this.package = {}
     this.package[''] = {}
 
@@ -299,7 +298,7 @@ class U2T {
   }
 }
 
-for (const map of ['biblatex', 'bibtex', 'bibtex-creator', 'minimal']) {
+for (const map of ['biblatex', 'bibtex', 'minimal']) {
   await new U2T(map).save()
 }
 

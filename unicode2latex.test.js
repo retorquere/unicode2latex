@@ -80,7 +80,7 @@ test('non-breaking space: ; accented characters: \u00f1 and \u00f1; tilde in URL
 })
 
 test('Munaf\u0102\u02db', () => {
-  tx({ text: 'Munaf\u0102\u02db', mode: 'bibtex' }, 'Munaf{\\u A}\\k{}')
+  tx({ text: 'ogonek in Munaf\u0102\u02db', mode: 'bibtex-creator' }, 'ogonek in Munaf{\\u A}{\\k{}}')
 })
 
 test('Molecular Theory of Atomic Collisions: Calculated Cross Sections for ${\\mathrm{H}}^{+\\}}+\\mathrm{F}(^{2}P)$', () => {

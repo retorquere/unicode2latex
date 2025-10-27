@@ -13,21 +13,10 @@ export { table as biblatex } from './tables/biblatex.js'
 import { table as bibtex } from './tables/bibtex.js'
 export { table as bibtex } from './tables/bibtex.js'
 
-// https://github.com/retorquere/zotero-better-bibtex/issues/1189
-// Needed so that composite characters are counted as single characters
-// for in-text citation generation. This messes with the {} cleanup
-// so the resulting TeX will be more verbose; doing this only for
-// bibtex because biblatex doesn't appear to need it.
-//
-// Only testing ascii.text because that's the only place (so far)
-// that these have turned up.
-import { table as creator } from './tables/bibtex-creator.js'
-export { table as creator } from './tables/bibtex-creator.js'
-
 import { table as minimal } from './tables/minimal.js'
 export { table as minimal } from './tables/minimal.js'
 
-const maps = { biblatex, bibtex, minimal, creator }
+const maps = { biblatex, bibtex, minimal }
 
 import { table as latex2unicode } from './tables/latex2unicode.js'
 export { table as latex2unicode } from './tables/latex2unicode.js'
@@ -85,43 +74,75 @@ export type TranslateOptions = {
 
 export class Transform {
   private map: CharMap
-  private reuse: Record<string, CharMap> = {}
-  private mode: 'bibtex' | 'biblatex' | 'minimal' | 'creator'
+  private mode: 'bibtex' | 'biblatex' | 'minimal'
 
   /**
    * loads a unicode -> TeX character map to use during conversion
    *
    * @param mode - the translation mode, being `bibtex`, `creator`, `biblatex` or `minimal`. Use `minimal` if your TeX environment supports unicode. In `bibtex` mode, combining characters are braced to that character/word counts are reliable, at the cost of more verbose output. `creator` is a special mode for bibtex creator that helps composite characters to be counted as a single unit for in-text citations.
    */
-  constructor(mode: 'bibtex' | 'creator' | 'biblatex' | 'minimal', options: MapOptions = {}) {
-    const packages = maps[mode].package
+  constructor(mode: 'bibtex' | 'bibtex-creator' | 'biblatex' | 'minimal', options: MapOptions = {}) {
+    this.mode = mode === 'bibtex-creator' ? 'bibtex' : mode
+    const packages = maps[this.mode].package
     const load = (options.packages || []).filter(p => packages[p])
-    const key = JSON.stringify([mode, options])
 
-    if (!this.reuse[key]) {
-      let map = JSON.parse(JSON.stringify(maps[mode].base))
-      for (const pkg of load) {
-        map = { ...map, ...packages[pkg] }
-      }
-      for (const mode of ['text', 'math']) {
-        if (!(mode in options)) continue
-        for (const c of options[mode]) {
-          if (mode in map[c]) map[c] = { [mode]: map[c][mode] }
-        }
-      }
-      for (const c of (options.ascii || '')) {
-        if (bibtex.base[c]) map[c] = bibtex.base[c]
-      }
-
-      if (options.charmap) {
-        for (const [u, t] of Object.entries(options.charmap)) {
-          map[u.normalize('NFC')] = map[u.normalize('NFD')] = t
-        }
-      }
-      this.reuse = { [key]: map }
+    let map = JSON.parse(JSON.stringify(maps[this.mode].base))
+    for (const pkg of load) {
+      map = { ...map, ...packages[pkg] }
     }
-    this.mode = mode
-    this.map = this.reuse[key]
+    for (const preferred of ['text', 'math']) {
+      if (!(preferred in options)) continue
+      for (const c of options[preferred]) {
+        if (preferred in map[c]) map[c] = { [preferred]: map[c][preferred] }
+      }
+    }
+    for (const c of (options.ascii || '')) {
+      if (bibtex.base[c]) map[c] = bibtex.base[c]
+    }
+
+    if (options.charmap) {
+      for (const [u, t] of Object.entries(options.charmap)) {
+        map[u.normalize('NFC')] = map[u.normalize('NFD')] = t
+      }
+    }
+
+    // https://github.com/retorquere/zotero-better-bibtex/issues/1189
+    // Needed so that composite characters are counted as single characters
+    // for in-text citation generation. This messes with the {} cleanup
+    // so the resulting TeX will be more verbose; doing this only for
+    // bibtex because biblatex doesn't appear to need it.
+    //
+    // Only testing ascii.text because that's the only place (so far)
+    // that these have turned up.
+    if (mode === 'bibtex-creator') {
+      let m: RegExpMatchArray
+      for (const [c, tc] of (Object.entries(map) as [string, TeXChar][])) {
+        if (!tc.text) continue
+
+        delete tc.macrospacer
+
+        if (tc.text.match(/[^{]\{/)) {
+          tc.text = `{${tc.text}}`
+        }
+        else if (tc.text.match(/^\\[`\'^~"=.][a-z]$/i) || tc.text.match(/^\\[\^]\\[ij]$/) || tc.text.match(/^\\[kr]\{[a-zA-Z]\}$/)) {
+          tc.text = `{${tc.text}}`
+        }
+        else if (m = tc.text.match(/^\\(L|O|AE|AA|DH|DJ|OE|SS|TH|NG)\{\}$/i)) {
+          tc.text = `{\\${m[1]}}`
+        }
+        else if (m = tc.text.match(/^\\([a-z])\{([a-z0-9])\}$/i)) {
+          tc.text = `{\\${m[1]} ${m[2]}}`
+        }
+        else if (tc.text.length > 2 && tc.text.match(/[\\_^]/) && !tc.text.match(/(^\{)|(\}$)/)) {
+          tc.text = `{${tc.text}}`
+        }
+        else if (tc.text.match(/\\[0-1a-z]+$/i)) {
+          tc.macrospacer = true
+        }
+      }
+    }
+
+    this.map = map
   }
 
   /**
