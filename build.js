@@ -13,6 +13,7 @@ class Database {
   }
 
   exec(sql, ...params) {
+    params = params.map(p => typeof p === 'boolean' ? (p ? 1 : 0) : p)
     return this.db.prepare(sql).run(...params)
   }
 
@@ -61,8 +62,8 @@ records.forEach((row, index) => {
     else if (/^[.]([-a-z]+)$/i.test(flag)) {
       ;[, packageName] = flag.match(/^[.]([-a-z]+)$/i)
     }
-    else if (flag === 'stopgap') stopgap = 1
-    else if (flag === 'combining') combining = 1
+    else if (flag === 'stopgap') stopgap = true
+    else if (flag === 'combining') combining = true
     else if (flag === 'space') {}
     // ignored
     else {
@@ -71,7 +72,7 @@ records.forEach((row, index) => {
     }
   }
 
-  if (stopgap === 1 && conversion === '=') {
+  if (stopgap && conversion === '=') {
     console.warn(`suspect stopgap conversion for ${unicode} = ${tex}`)
     errors = true
   }
@@ -91,7 +92,7 @@ records.forEach((row, index) => {
 
 // ---------------- Sanity checks ----------------
 for (const c of TeXMap.q("SELECT * FROM texmap WHERE mode = 'text' ORDER BY line")) {
-  if (c.unicode.match(/^[a-z0-9]$/i)) {
+  if (/^[A-Za-z0-9]$/.test(c.unicode)) {
     console.warn('null mapping for', c.unicode)
     errors = true
   }
@@ -171,12 +172,16 @@ class Combining {
     await fs.mkdir('dist/tables', { recursive: true })
     await fs.writeFile(
       'dist/tables/combining.json',
-      ascii(JSON.stringify({
-        macros: Array.from(this.macros).sort(),
-        tolatex: this.tolatex,
-        tounicode: this.tounicode,
-        regex: this.regex,
-      })),
+      ascii(JSON.stringify(
+        {
+          macros: Array.from(this.macros).sort(),
+          tolatex: this.tolatex,
+          tounicode: this.tounicode,
+          regex: this.regex,
+        },
+        null,
+        2,
+      )),
     )
   }
 }
@@ -239,38 +244,16 @@ class U2T {
       if (m.stopgap && c.stopgap === '0' && c.package === '') {
         this.package[c.package][c.unicode] = new TeXChar()
       }
-      m.stopgap = c.stopgap === '1'
+      m.stopgap = !!c.stopgap
 
       const modes = c.mode === '' ? ['text', 'math'] : [c.mode]
-      let match
       for (const mode of modes) {
         m[mode] = c.tex
         if (mode === 'text') {
-          const macrospacer = /\\[0-1a-z]+$/i.test(c.tex) || c.combining === '1'
+          const macrospacer = /\\[0-1a-z]+$/i.test(c.tex) || c.combining
           if (map === 'bibtex') {
-            if (this.creator) {
-              if (m.text.match(/^\\[`\'^~"=.][a-z]$/i) || m.text.match(/^\\[\^]\\[ij]$/) || m.text.match(/^\\[kr]\{[a-zA-Z]\}$/)) {
-                m.text = `{${m.text}}`
-              }
-              else if (match = m.text.match(/'^\\(L|O|AE|AA|DH|DJ|OE|SS|TH|NG)\{\}$/i)) {
-                m.text = `{\\{match[1]}}`
-              }
-              else if (match = m.text.match(/^\\([a-zA-Z])\{([a-zA-Z0-9])\}$/)) {
-                m.text = `{\\${match[1]} ${match[2]}}`
-              }
-              else if (!c.combining && m.text.length > 2 && m.text.match(/[\\_^]/) && (!m.text.startsWith('{') || !m.text.endsWith('}'))) {
-                m.text = `{${m.text}}`
-              }
-              else if (m.text.match(/.*\\[0-1a-zA-Z]+$/) && !c.combining) {
-                m.macrospacer = true
-              }
-            }
-            else if (macrospacer) {
-              m.text = `{${m.text}}`
-            }
-            else {
-              m.macrospacer = macrospacer
-            }
+            if (macrospacer) m.text = `{${m.text}}`
+            else m.macrospacer = macrospacer
           }
           else {
             m.macrospacer = macrospacer
@@ -284,15 +267,14 @@ class U2T {
   }
 
   async save() {
-    const creator = this.creator ? '-creator' : ''
     await fs.mkdir('tables', { recursive: true })
     await fs.writeFile(
-      `tables/${this.map}${creator}.ts`,
+      `tables/${this.map}.ts`,
       `export const table = ${ascii(JSON.stringify({ base: this.package[''], package: this.package }, null, 2))} as const`,
     )
     await fs.mkdir('dist/tables', { recursive: true })
     await fs.writeFile(
-      `dist/tables/${this.map}${creator}.json`,
+      `dist/tables/${this.map}.json`,
       ascii(JSON.stringify({ base: this.package[''], package: this.package })),
     )
   }
