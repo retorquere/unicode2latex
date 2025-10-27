@@ -85,7 +85,10 @@ test('Munaf\u0102\u02db', () => {
 
 test('Molecular Theory of Atomic Collisions: Calculated Cross Sections for ${\\mathrm{H}}^{+\\}}+\\mathrm{F}(^{2}P)$', () => {
   tx(
-    { text: 'Molecular Theory of Atomic Collisions: Calculated Cross Sections for ${\\mathrm{H}}^{+\\}}+\\mathrm{F}(^{2}P)$', mode: 'bibtex' },
+    {
+      text: 'Molecular Theory of Atomic Collisions: Calculated Cross Sections for ${\\mathrm{H}}^{+\\}}+\\mathrm{F}(^{2}P)$',
+      mode: 'bibtex',
+    },
     'Molecular Theory of Atomic Collisions: Calculated Cross Sections for \\$\\{{\\textbackslash}mathrm\\{H\\}\\}{\\textasciicircum}\\{+{\\textbackslash}\\}\\vphantom\\{\\}+{\\textbackslash}mathrm\\{F\\}({\\textasciicircum}\\{2\\}P)\\$',
   )
 })
