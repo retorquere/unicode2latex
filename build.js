@@ -122,6 +122,23 @@ function ascii(str) {
   return str.replace(/[^ -~\r\n]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'))
 }
 
+async function save(json, ts, obj) {
+  const table = ascii(JSON.stringify(obj, null, 2))
+
+  await fs.mkdir(path.dirname(json), { recursive: true })
+  await fs.writeFile(json, table)
+
+  await fs.mkdir(path.dirname(ts), { recursive: true })
+  await fs.writeFile(
+    ts,
+    [
+      "import { deepFreeze } from '@pomgui/deep'",
+      `export const table = ${table} as const`,
+      'deepFreeze(table)',
+    ].join('\n'),
+  )
+}
+
 // ---------------- Combining ----------------
 class Combining {
   constructor() {
@@ -152,37 +169,12 @@ class Combining {
   }
 
   async save() {
-    await fs.mkdir('tables', { recursive: true })
-    await fs.writeFile(
-      'tables/combining.ts',
-      `export const table = ${
-        ascii(JSON.stringify(
-          {
-            macros: Array.from(this.macros).sort(),
-            tolatex: this.tolatex,
-            tounicode: this.tounicode,
-            regex: this.regex,
-          },
-          null,
-          2,
-        ))
-      } as const`,
-    )
-
-    await fs.mkdir('dist/tables', { recursive: true })
-    await fs.writeFile(
-      'dist/tables/combining.json',
-      ascii(JSON.stringify(
-        {
-          macros: Array.from(this.macros).sort(),
-          tolatex: this.tolatex,
-          tounicode: this.tounicode,
-          regex: this.regex,
-        },
-        null,
-        2,
-      )),
-    )
+    await save('dist/tables/combining.json', 'tables/combining.ts', {
+      macros: Array.from(this.macros).sort(),
+      tolatex: this.tolatex,
+      tounicode: this.tounicode,
+      regex: this.regex,
+    })
   }
 }
 
@@ -267,16 +259,7 @@ class U2T {
   }
 
   async save() {
-    await fs.mkdir('tables', { recursive: true })
-    await fs.writeFile(
-      `tables/${this.map}.ts`,
-      `export const table = ${ascii(JSON.stringify({ base: this.package[''], package: this.package }, null, 2))} as const`,
-    )
-    await fs.mkdir('dist/tables', { recursive: true })
-    await fs.writeFile(
-      `dist/tables/${this.map}.json`,
-      ascii(JSON.stringify({ base: this.package[''], package: this.package })),
-    )
+    await save(`dist/tables/${this.map}.json`, `tables/${this.map}.ts`, { base: this.package[''], package: this.package })
   }
 }
 
@@ -309,10 +292,7 @@ class T2U {
       else t2u[tex] = { text: char.text, math: char.math }
     }
 
-    await fs.mkdir('tables', { recursive: true })
-    await fs.writeFile('tables/latex2unicode.ts', `export const table = ${ascii(JSON.stringify(t2u, null, 2))} as const`)
-    await fs.mkdir('dist/tables', { recursive: true })
-    await fs.writeFile('dist/tables/latex2unicode.json', JSON.stringify(t2u))
+    await save('dist/tables/latex2unicode.json', 'tables/latex2unicode.ts', t2u)
   }
 }
 

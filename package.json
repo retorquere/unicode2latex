@@ -53,5 +53,8 @@
     "type": "git",
     "url": "git+https://github.com/retorquere/unicode2latex.git"
   },
-  "homepage": "https://github.com/retorquere/unicode2latex.git"
+  "homepage": "https://github.com/retorquere/unicode2latex.git",
+  "dependencies": {
+    "@pomgui/deep": "^3.0.3"
+  }
 }
