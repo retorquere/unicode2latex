@@ -79,8 +79,11 @@ test('non-breaking space: ; accented characters: \u00f1 and \u00f1; tilde in URL
   tx({ text: 'non-breaking space: ; accented characters: \u00f1 and \u00f1; tilde in URL: http://example.com/~user', mode: 'minimal' }, 'non-breaking space: ; accented characters: ñ and ñ; tilde in URL: http://example.com/\\textasciitilde user')
 })
 
-test('Munaf\u0102\u02db', () => {
-  tx({ text: 'ogonek in Munaf\u0102\u02db', mode: 'bibtex-creator' }, 'ogonek in Munaf{\\u A}{\\k{}}')
+test('ogonek in bibtex-creator Munaf\u0102\u02db', () => {
+  tx({ text: 'ogonek in bibtex-creator Munaf\u0102\u02db', mode: 'bibtex-creator' }, 'ogonek in bibtex-creator Munaf{\\u A}{\\k{}}')
+})
+test('ogonek in bibtex Munaf\u0102\u02db', () => {
+  tx({ text: 'ogonek in bibtex Munaf\u0102\u02db', mode: 'bibtex' }, 'ogonek in bibtex Munaf{\\u A}\\k{}')
 })
 
 test('Molecular Theory of Atomic Collisions: Calculated Cross Sections for ${\\mathrm{H}}^{+\\}}+\\mathrm{F}(^{2}P)$', () => {
