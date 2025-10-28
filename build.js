@@ -133,8 +133,8 @@ async function save(json, ts, obj) {
     ts,
     [
       "import { deepFreeze } from '@pomgui/deep'",
-      `export const table = ${table} as const`,
-      'deepFreeze(table)',
+      `const $table = ${table} as const`,
+      'export const table = deepFreeze($table) as typeof $table',
     ].join('\n'),
   )
 }
