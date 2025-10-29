@@ -19,7 +19,17 @@ class Database {
 
   q(sql, ...params) {
     const stmt = this.db.prepare(sql)
-    return stmt.all(...params)
+    return stmt.all(...params).map(row => {
+      for (const bool of ['stopgap', 'macrospacer']) {
+        if (row[bool]) {
+          row[bool] = true
+        }
+        else {
+          delete row[bool]
+        }
+      }
+      return row
+    })
   }
 }
 
@@ -49,7 +59,8 @@ records.forEach((row, index) => {
   const conversion = { '<': 't2u', '>': 'u2t', '=': '=' }[row.shift()]
   const tex = row.shift()
 
-  let mode = '', packageName = '', combining = 0, stopgap = 0
+  let mode = '', packageName = ''
+  let combining = false, stopgap = false
 
   while (row.length) {
     const flag = row.shift()
@@ -62,10 +73,15 @@ records.forEach((row, index) => {
     else if (/^[.]([-a-z]+)$/i.test(flag)) {
       ;[, packageName] = flag.match(/^[.]([-a-z]+)$/i)
     }
-    else if (flag === 'stopgap') stopgap = true
-    else if (flag === 'combining') combining = true
-    else if (flag === 'space') {}
-    // ignored
+    else if (flag === 'stopgap') {
+      stopgap = true
+    }
+    else if (flag === 'combining') {
+      combining = true
+    }
+    else if (flag === 'space') {
+      // ignored
+    }
     else {
       console.error('Unexpected flag', flag)
       errors = true
@@ -122,19 +138,28 @@ function ascii(str) {
   return str.replace(/[^ -~\r\n]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'))
 }
 
-async function save(json, ts, obj) {
+async function save(json, ts, type, obj) {
+  if (!obj) {
+    obj = type
+    type = undefined
+  }
   const table = ascii(JSON.stringify(obj, null, 2))
 
   await fs.mkdir(path.dirname(json), { recursive: true })
   await fs.writeFile(json, table)
 
   await fs.mkdir(path.dirname(ts), { recursive: true })
+  type = type
+    ? { import: `import type { ${type} } from '../index.js'`, $table: ` as ${type}`, table: ` as ${type}` }
+    : { import: '', $table: ' as const', table: ' as typeof $table' }
+
   await fs.writeFile(
     ts,
     [
       "import { deepFreeze } from '@pomgui/deep'",
-      `const $table = ${table} as const`,
-      'export const table = deepFreeze($table) as typeof $table',
+      type.import,
+      `const $table = ${table}${type.$table}`,
+      `export const table = deepFreeze($table)${type.table}`,
     ].join('\n'),
   )
 }
@@ -182,27 +207,13 @@ await new Combining().save()
 
 // ---------------- TeXChar ----------------
 class TeXChar {
-  math = ''
-  text = ''
-  alt = []
-  macrospacer = false
-  stopgap = false
-
-  get(key) {
-    if (key === 'math') return this.math
-    if (key === 'text') return this.text
-    throw new Error(key)
-  }
-
-  set(key, value) {
-    if (key === 'math') this.math = value
-    else if (key === 'text') this.text = value
-    else throw new Error(key)
-  }
-
-  empty() {
-    return this.math + this.text === ''
-  }
+  /*
+  math: string
+  text: string
+  macrospacer: boolean
+  stopgap: boolean
+  alt?: string[]
+  */
 }
 
 // ---------------- U2T ----------------
@@ -242,7 +253,7 @@ class U2T {
       for (const mode of modes) {
         m[mode] = c.tex
         if (mode === 'text') {
-          const macrospacer = /\\[0-1a-z]+$/i.test(c.tex) || c.combining
+          const macrospacer = !!(/\\[0-1a-z]+$/i.test(c.tex) || c.combining)
           if (map === 'bibtex') {
             if (macrospacer) m.text = `{${m.text}}`
             else m.macrospacer = macrospacer
@@ -255,11 +266,14 @@ class U2T {
           m.alt = Array.from(new Set(c.alt.split(','))).sort()
         }
       }
+
+      if (!m.stopgap) delete m.stopgap
+      if (!m.macrospacer) delete m.macrospacer
     }
   }
 
   async save() {
-    await save(`dist/tables/${this.map}.json`, `tables/${this.map}.ts`, { base: this.package[''], package: this.package })
+    await save(`dist/tables/${this.map}.json`, `tables/${this.map}.ts`, 'TeXMap', { base: this.package[''], package: this.package })
   }
 }
 

@@ -1,10 +1,14 @@
-export type TeXChar = { math?: string; text?: string; macrospacer?: boolean; alt?: string[] }
+export type TeXChar = {
+  math?: string
+  text?: string
+  macrospacer?: boolean
+  stopgap?: boolean
+  alt?: string[]
+}
 export type CharMap = Record<string, TeXChar>
 export type TeXMap = {
   base: CharMap
   package: Record<string, CharMap>
-  provides: Record<string, string>
-  stopgap: string
 }
 
 import { table as biblatex } from './tables/biblatex.js'
@@ -86,10 +90,11 @@ export class Transform {
     const packages = maps[this.mode].package
     const load = (options.packages || []).filter(p => packages[p])
 
-    let map = JSON.parse(JSON.stringify(maps[this.mode].base))
+    let map = maps[this.mode].base
     for (const pkg of load) {
       map = { ...map, ...packages[pkg] }
     }
+    map = JSON.parse(JSON.stringify(map))
     for (const preferred of ['text', 'math']) {
       if (!(preferred in options)) continue
       for (const c of options[preferred]) {
