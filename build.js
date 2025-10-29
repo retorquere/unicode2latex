@@ -66,7 +66,9 @@ records.forEach((row, index) => {
     const flag = row.shift()
     if (!flag) break
 
-    if (['math', 'text'].includes(flag)) mode = flag
+    if (['math', 'text'].includes(flag)) {
+      mode = flag
+    }
     else if (/^(math|text)[.]([-a-z]+)$/i.test(flag)) {
       ;[, mode, packageName] = flag.match(/^(math|text)[.]([-a-z]+)$/i)
     }
@@ -273,7 +275,9 @@ class U2T {
   }
 
   async save() {
-    await save(`dist/tables/${this.map}.json`, `tables/${this.map}.ts`, 'TeXMap', { base: this.package[''], package: this.package })
+    const base = this.package['']
+    delete this.package['']
+    await save(`dist/tables/${this.map}.json`, `tables/${this.map}.ts`, 'TeXMap', { base, package: this.package })
   }
 }
 
