@@ -246,13 +246,25 @@ class U2T {
       if (!this.package[c.package][c.unicode]) this.package[c.package][c.unicode] = new TeXChar()
 
       const m = this.package[c.package][c.unicode]
-      if (m.stopgap && c.stopgap === '0' && c.package === '') {
+      if (m.stopgap && !c.stopgap && c.package === '') {
         this.package[c.package][c.unicode] = new TeXChar()
       }
       m.stopgap = !!c.stopgap
 
       const modes = c.mode === '' ? ['text', 'math'] : [c.mode]
       for (const mode of modes) {
+        if (map === 'bibtex' && mode === 'text') {
+          // http://tex.stackexchange.com/questions/230750/open-brace-in-bibtex-fields/230754#comment545453_230754
+          switch (c.unicode) {
+            case '{':
+              c.tex = '\\textbraceleft'
+              break
+            case '}':
+              c.tex = '\\textbraceright'
+              break
+          }
+        }
+
         m[mode] = c.tex
         if (mode === 'text') {
           const macrospacer = !!(/\\[0-1a-z]+$/i.test(c.tex) || c.combining)

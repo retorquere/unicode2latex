@@ -126,9 +126,6 @@ export class Transform {
       for (const [c, tc] of (Object.entries(map) as [string, TeXChar][])) {
         if (!tc.text) continue
 
-        if (c === '{') tc.text = '\\textbraceleft'
-        if (c === '}') tc.text = '\\textbraceright'
-
         delete tc.macrospacer
 
         if (tc.text.match(/[^{]\{/)) {
