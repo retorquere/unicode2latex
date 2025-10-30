@@ -201,15 +201,15 @@ export class Transform {
 
           if (cdmode !== cd.mode) return cdc // mode switch
 
-          const cmd = cd.macro.match(/[a-z]/i)
+          const isCmd = cd.macro.match(/[a-z]/i)
 
           if (this.mode === 'bibtex' && this.creator && cd.mode === 'text') {
-            char = `{\\${cd.macro} ${char}}`
+            char = `{\\${cd.macro}${isCmd ? ' ' : ''}${char}}`
           }
-          else if (cmd && char.length === 1) {
+          else if (isCmd && char.length === 1) {
             char = `\\${cd.macro} ${char}`
           }
-          else if (cmd) {
+          else if (isCmd) {
             char = `\\${cd.macro}{${char}}`
           }
           else {

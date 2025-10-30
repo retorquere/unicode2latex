@@ -158,9 +158,18 @@ test('{Rafael', () => {
 })
 test('Pérez}', () => {
   const tx = new Transform('bibtex-creator')
-  expect(tx.tolatex('Pérez}')).toBe("P{\\' e}rez{\\textbraceright}")
+  expect(tx.tolatex('Pérez}')).toBe("P{\\'e}rez{\\textbraceright}")
 })
 test('Pérez}, {Rafael', () => {
   const tx = new Transform('bibtex-creator')
-  expect(tx.tolatex('Pérez}, {Rafael')).toBe("P{\\' e}rez{\\textbraceright}, {\\textbraceleft}Rafael")
+  expect(tx.tolatex('Pérez}, {Rafael')).toBe("P{\\'e}rez{\\textbraceright}, {\\textbraceleft}Rafael")
+})
+
+test('Francisco Perdig\u00f3n', () => {
+  const tx = new Transform('bibtex-creator')
+  expect(tx.tolatex('bibtex-creator Francisco Perdig\u00f3n')).toBe("bibtex-creator Francisco Perdig{\\'o}n")
+})
+test('Francisco Perdig\u00f3n', () => {
+  const tx = new Transform('bibtex')
+  expect(tx.tolatex('bibtex Francisco Perdig\u00f3n')).toBe("bibtex Francisco Perdig\\'on")
 })
