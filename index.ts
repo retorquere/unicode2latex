@@ -79,6 +79,7 @@ export type TranslateOptions = {
 export class Transform {
   private map: CharMap
   private mode: 'bibtex' | 'biblatex' | 'minimal'
+  private creator: boolean
 
   /**
    * loads a unicode -> TeX character map to use during conversion
@@ -86,6 +87,7 @@ export class Transform {
    * @param mode - the translation mode, being `bibtex`, `creator`, `biblatex` or `minimal`. Use `minimal` if your TeX environment supports unicode. In `bibtex` mode, combining characters are braced to that character/word counts are reliable, at the cost of more verbose output. `creator` is a special mode for bibtex creator that helps composite characters to be counted as a single unit for in-text citations.
    */
   constructor(mode: 'bibtex' | 'bibtex-creator' | 'biblatex' | 'minimal', options: MapOptions = {}) {
+    this.creator = mode === 'bibtex-creator'
     this.mode = mode === 'bibtex-creator' ? 'bibtex' : mode
     const packages = maps[this.mode].package
     const load = (options.packages || []).filter(p => packages[p])
@@ -123,6 +125,9 @@ export class Transform {
       let m: RegExpMatchArray
       for (const [c, tc] of (Object.entries(map) as [string, TeXChar][])) {
         if (!tc.text) continue
+
+        if (c === '{') tc.text = '\\textbraceleft'
+        if (c === '}') tc.text = '\\textbraceright'
 
         delete tc.macrospacer
 
@@ -163,7 +168,6 @@ export class Transform {
       ...options,
     }
     let mode = 'text'
-    let braced = 0
 
     const switchTo = {
       math: (bracemath ? '{$' : '$'),
@@ -202,9 +206,8 @@ export class Transform {
 
           const cmd = cd.macro.match(/[a-z]/i)
 
-          if (this.mode === 'bibtex' && cd.mode === 'text') {
-            // needs to be braced to count as a single char for name abbreviation
-            char = `{\\${cd.macro}${cmd ? ' ' : ''}${char}}`
+          if (this.mode === 'bibtex' && this.creator && cd.mode === 'text') {
+            char = `{\\${cd.macro} ${char}}`
           }
           else if (cmd && char.length === 1) {
             char = `\\${cd.macro} ${char}`
@@ -220,11 +223,6 @@ export class Transform {
         if (!cdpair) mapped = { [cdmode]: char }
       }
 
-      /* ??
-      if (!mapped && text[i + 1] && (mapped = this.mapping[text.substr(i, 2)])) {
-        i += 1
-      }
-      */
       // fallback -- single char mapping
       if (!mapped) mapped = { text: match }
 
@@ -236,22 +234,6 @@ export class Transform {
       }
       else {
         switched = false
-      }
-
-      // balance out braces with invisible braces until
-      // http://tex.stackexchange.com/questions/230750/open-brace-in-bibtex-fields/230754#comment545453_230754
-      // is widely deployed
-      switch (mapped[mode]) {
-        case '\\{':
-          braced += 1
-          break
-        case '\\}':
-          braced -= 1
-          break
-      }
-      if (braced < 0) {
-        latex += '\\vphantom\\{'
-        braced = 0
       }
 
       // if we just switched out of math mode, and there's a lone sup/sub at the end, unpack it.
@@ -275,18 +257,6 @@ export class Transform {
       }
       return match // pacify tsc
     })
-
-    // add any missing closing phantom braces
-    switch (braced) {
-      case 0:
-        break
-      case 1:
-        latex += '\\vphantom\\}'
-        break
-      default:
-        latex += `\\vphantom{${'\\}'.repeat(braced)}}`
-        break
-    }
 
     // might still be in math mode at the end
     if (mode === 'math') latex += switchTo.text

@@ -117,17 +117,13 @@ test('ogonek in bibtex-creator Munaf\u0102\u02db', () => {
 test('ogonek in bibtex Munaf\u0102\u02db', () => {
   const tx = new Transform('bibtex')
   expect(tx.tolatex('ogonek in bibtex Munaf\u0102\u02db'))
-    .toBe('ogonek in bibtex Munaf{\\u A}\\k{}')
+    .toBe('ogonek in bibtex Munaf\\u A\\k{}')
 })
 
 test('Molecular Theory of Atomic Collisions: Calculated Cross Sections for ${\\mathrm{H}}^{+\\}}+\\mathrm{F}(^{2}P)$', () => {
   const tx = new Transform('bibtex')
   expect(tx.tolatex('Molecular Theory of Atomic Collisions: Calculated Cross Sections for ${\\mathrm{H}}^{+\\}}+\\mathrm{F}(^{2}P)$'))
-    .toBe(
-      'Molecular Theory of Atomic Collisions: Calculated Cross Sections for '
-        + '\\$\\{{\\textbackslash}mathrm\\{H\\}\\}{\\textasciicircum}\\{+{\\textbackslash}\\}\\vphantom'
-        + '\\{\\}+{\\textbackslash}mathrm\\{F\\}({\\textasciicircum}\\{2\\}P)\\$',
-    )
+    .toBe('Molecular Theory of Atomic Collisions: Calculated Cross Sections for \\$\\{{\\textbackslash}mathrm\\{H\\}\\}{\\textasciicircum}\\{+{\\textbackslash}\\}\\}+{\\textbackslash}mathrm\\{F\\}({\\textasciicircum}\\{2\\}P)\\$')
 })
 
 test('Pető', () => {
@@ -154,4 +150,17 @@ test('CJK quotes unchanged', () => {
   const tx = new Transform('minimal')
   expect(tx.tolatex('\u201c\u6c11\u65cf\u56fd\u5bb6\u201d\u7684\u8ff7\u601d\u4e0e\u73b0\u4ee3\u4e2d\u56fd\u7684\u5f62\u6210'))
     .toBe('\u201c\u6c11\u65cf\u56fd\u5bb6\u201d\u7684\u8ff7\u601d\u4e0e\u73b0\u4ee3\u4e2d\u56fd\u7684\u5f62\u6210')
+})
+
+test('{Rafael', () => {
+  const tx = new Transform('bibtex-creator')
+  expect(tx.tolatex('{Rafael')).toBe('{\\textbraceleft}Rafael')
+})
+test('Pérez}', () => {
+  const tx = new Transform('bibtex-creator')
+  expect(tx.tolatex('Pérez}')).toBe("P{\\' e}rez{\\textbraceright}")
+})
+test('Pérez}, {Rafael', () => {
+  const tx = new Transform('bibtex-creator')
+  expect(tx.tolatex('Pérez}, {Rafael')).toBe("P{\\' e}rez{\\textbraceright}, {\\textbraceleft}Rafael")
 })
