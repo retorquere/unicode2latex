@@ -173,3 +173,8 @@ test('Francisco Perdig\u00f3n', () => {
   const tx = new Transform('bibtex')
   expect(tx.tolatex('bibtex Francisco Perdig\u00f3n')).toBe("bibtex Francisco Perdig\\'on")
 })
+
+test('Michał', () => {
+  const tx = new Transform('bibtex-creator')
+  expect(tx.tolatex('Michał')).toBe('Micha{\\l}')
+})

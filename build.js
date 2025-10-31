@@ -312,7 +312,7 @@ class U2T {
     for (const [c, tc] of Object.entries(table)) {
       if (!tc.text) continue
 
-      delete tc.macrospacer
+      // delete tc.macrospacer
 
       if (tc.text.match(/[^{]\{/)) {
         tc.text = `{${tc.text}}`
@@ -330,7 +330,7 @@ class U2T {
         tc.text = `{${tc.text}}`
       }
       else if (tc.text.match(/\\[0-1a-z]+$/i)) {
-        tc.macrospacer = true
+        tc.text = `{${tc.text}}`
       }
     }
   }
