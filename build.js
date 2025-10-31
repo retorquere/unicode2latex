@@ -12,7 +12,7 @@ import stringifyObject from 'stringify-object'
 function inspect(obj) {
   return stringifyObject(obj, {
     indent: '\t',
-    inlineCharacterLimit: 80,
+    inlineCharacterLimit: 30,
   })
 }
 
