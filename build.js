@@ -3,7 +3,17 @@
 import sqlite3 from 'better-sqlite3'
 import { parse as parseCSV } from 'csv-parse/sync'
 import fs from 'fs/promises'
+import { generate as generatePatch } from 'json-merge-patch'
+import stringify from 'json-stringify-pretty-compact'
 import path from 'path'
+import stringifyObject from 'stringify-object'
+
+function inspect(obj) {
+  return stringifyObject(obj, {
+    indent: '\t',
+    inlineCharacterLimit: 80,
+  })
+}
 
 console.log('building tables')
 
@@ -141,14 +151,14 @@ function ascii(str) {
 }
 
 async function save(json, ts, type, obj) {
+  console.log(' ', ts)
   if (!obj) {
     obj = type
     type = undefined
   }
-  const table = ascii(JSON.stringify(obj, null, 2))
 
   await fs.mkdir(path.dirname(json), { recursive: true })
-  await fs.writeFile(json, table)
+  await fs.writeFile(json, ascii(stringify(obj)))
 
   await fs.mkdir(path.dirname(ts), { recursive: true })
   type = type
@@ -160,7 +170,7 @@ async function save(json, ts, type, obj) {
     [
       "import { deepFreeze } from '@pomgui/deep'",
       type.import,
-      `const $table = ${table}${type.$table}`,
+      `const $table = ${inspect(obj)}${type.$table}`,
       `export const table = deepFreeze($table)${type.table}`,
     ].join('\n'),
   )
@@ -222,8 +232,12 @@ class TeXChar {
 class U2T {
   constructor(map) {
     this.map = map
-    this.package = {}
-    this.package[''] = {}
+    const creator = map.includes('-creator')
+    map = map.replace('-creator', '')
+
+    this.mapping = {
+      '': {},
+    }
 
     const minimal = /^[\u00A0\u180E\u2000-\u200B\u202F\u205F\u3000\uFEFF#<>\\#$%&^_{}~\]]$/
 
@@ -242,12 +256,12 @@ class U2T {
       if (map === 'minimal' && !minimal.test(c.unicode)) continue
       if (map === 'minimal' && c.package !== '') throw new Error(c.tex)
 
-      if (!this.package[c.package]) this.package[c.package] = {}
-      if (!this.package[c.package][c.unicode]) this.package[c.package][c.unicode] = new TeXChar()
+      if (!this.mapping[c.package]) this.mapping[c.package] = {}
+      if (!this.mapping[c.package][c.unicode]) this.mapping[c.package][c.unicode] = new TeXChar()
 
-      const m = this.package[c.package][c.unicode]
+      const m = this.mapping[c.package][c.unicode]
       if (m.stopgap && !c.stopgap && c.package === '') {
-        this.package[c.package][c.unicode] = new TeXChar()
+        this.mapping[c.package][c.unicode] = new TeXChar()
       }
       m.stopgap = !!c.stopgap
 
@@ -284,17 +298,78 @@ class U2T {
       if (!m.stopgap) delete m.stopgap
       if (!m.macrospacer) delete m.macrospacer
     }
+
+    const base = this.mapping['']
+    delete this.mapping['']
+    this.mapping = { base, package: this.mapping }
+
+    if (creator) {
+      this.patchcreator(this.mapping.base)
+      for (const p of Object.values(this.mapping.package)) {
+        this.patchcreator(p)
+      }
+    }
   }
 
-  async save() {
-    const base = this.package['']
-    delete this.package['']
-    await save(`dist/tables/${this.map}.json`, `tables/${this.map}.ts`, 'TeXMap', { base, package: this.package })
+  patchcreator(table) {
+    let m
+    for (const [c, tc] of Object.entries(table)) {
+      if (!tc.text) continue
+
+      delete tc.macrospacer
+
+      if (tc.text.match(/[^{]\{/)) {
+        tc.text = `{${tc.text}}`
+      }
+      else if (tc.text.match(/^\\[`\'^~"=.][a-z]$/i) || tc.text.match(/^\\[\^]\\[ij]$/) || tc.text.match(/^\\[kr]\{[a-zA-Z]\}$/)) {
+        tc.text = `{${tc.text}}`
+      }
+      else if (m = tc.text.match(/^\\(L|O|AE|AA|DH|DJ|OE|SS|TH|NG)\{\}$/i)) {
+        tc.text = `{\\${m[1]}}`
+      }
+      else if (m = tc.text.match(/^\\([a-z])\{([a-z0-9])\}$/i)) {
+        tc.text = `{\\${m[1]} ${m[2]}}`
+      }
+      else if (tc.text.length > 2 && tc.text.match(/[\\_^]/) && !tc.text.match(/(^\{)|(\}$)/)) {
+        tc.text = `{${tc.text}}`
+      }
+      else if (tc.text.match(/\\[0-1a-z]+$/i)) {
+        tc.macrospacer = true
+      }
+    }
+  }
+
+  async save(base) {
+    await save(`dist/tables/${this.map}.json`, `tables/${this.map}.ts`, 'TeXMap', this.mapping)
   }
 }
 
-for (const map of ['biblatex', 'bibtex', 'minimal']) {
+for (const map of ['minimal', 'biblatex', 'bibtex', 'bibtex-creator']) {
   await new U2T(map).save()
+}
+
+let base = {}
+for (const dependent of ['minimal', 'biblatex', 'bibtex', 'bibtex-creator']) {
+  const mapping = JSON.parse(await fs.readFile(path.join('dist', 'tables', `${dependent}.json`), 'utf-8'))
+  if (base.mapping) {
+    console.log('  diffing', dependent, 'from', base.name)
+    await fs.writeFile(
+      path.join('tables', `${dependent}.ts`),
+      [
+        "import type { TeXMap } from '../index.js'",
+        "import { deepFreeze } from '@pomgui/deep'",
+        `import mergePatch from 'tiny-merge-patch'`,
+        `import { table as ${base.name} } from './${base.name}.js'`,
+        `const patch = ${inspect(generatePatch(base.mapping, mapping))}`,
+        `export const table = deepFreeze(mergePatch(${base.name}, patch)) as TeXMap`,
+      ].join('\n'),
+    )
+  }
+
+  base = {
+    name: dependent,
+    mapping,
+  }
 }
 
 // ---------------- T2U ----------------
