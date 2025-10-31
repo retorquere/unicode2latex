@@ -123,7 +123,7 @@ test('ogonek in bibtex Munaf\u0102\u02db', () => {
 test('Molecular Theory of Atomic Collisions: Calculated Cross Sections for ${\\mathrm{H}}^{+\\}}+\\mathrm{F}(^{2}P)$', () => {
   const tx = new Transform('bibtex')
   expect(tx.tolatex('Molecular Theory of Atomic Collisions: Calculated Cross Sections for ${\\mathrm{H}}^{+\\}}+\\mathrm{F}(^{2}P)$'))
-    .toBe('Molecular Theory of Atomic Collisions: Calculated Cross Sections for \\${\\textbraceleft}{\\textbackslash}mathrm{\\textbraceleft}H{\\textbraceright}{\\textbraceright}{\\textasciicircum}{\\textbraceleft}+{\\textbackslash}{\\textbraceright}{\\textbraceright}+{\\textbackslash}mathrm{\\textbraceleft}F{\\textbraceright}({\\textasciicircum}{\\textbraceleft}2{\\textbraceright}P)\\$')
+    .toBe('Molecular Theory of Atomic Collisions: Calculated Cross Sections for \\$\\textbraceleft\\textbackslash mathrm\\textbraceleft H\\textbraceright\\textbraceright\\textasciicircum\\textbraceleft +\\textbackslash\\textbraceright\\textbraceright +\\textbackslash mathrm\\textbraceleft F\\textbraceright (\\textasciicircum\\textbraceleft 2\\textbraceright P)\\$')
 })
 
 test('Pető', () => {

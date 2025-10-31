@@ -3,6 +3,7 @@ export type TeXChar = {
   text?: string
   macrospacer?: boolean
   stopgap?: boolean
+  combining?: boolean
   alt?: string[]
 }
 export type CharMap = Record<string, TeXChar>
@@ -117,6 +118,10 @@ export class Transform {
       for (const [u, t] of Object.entries(options.charmap)) {
         map[u.normalize('NFC')] = map[u.normalize('NFD')] = t
       }
+    }
+
+    for (const v of Object.values(map)) {
+      if (v.combining || v.text?.match(/\\[0-1a-z]+$/i)) v.macrospacer = true
     }
 
     this.map = map

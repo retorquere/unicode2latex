@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import * as assert from 'assert'
 import sqlite3 from 'better-sqlite3'
 import { parse as parseCSV } from 'csv-parse/sync'
 import fs from 'fs/promises'
@@ -30,7 +31,7 @@ class Database {
   q(sql, ...params) {
     const stmt = this.db.prepare(sql)
     return stmt.all(...params).map(row => {
-      for (const bool of ['stopgap', 'macrospacer']) {
+      for (const bool of ['combining', 'stopgap', 'macrospacer']) {
         if (row[bool]) {
           row[bool] = true
         }
@@ -217,17 +218,6 @@ class Combining {
 
 await new Combining().save()
 
-// ---------------- TeXChar ----------------
-class TeXChar {
-  /*
-  math: string
-  text: string
-  macrospacer: boolean
-  stopgap: boolean
-  alt?: string[]
-  */
-}
-
 // ---------------- U2T ----------------
 class U2T {
   constructor(map) {
@@ -257,13 +247,16 @@ class U2T {
       if (map === 'minimal' && c.package !== '') throw new Error(c.tex)
 
       if (!this.mapping[c.package]) this.mapping[c.package] = {}
-      if (!this.mapping[c.package][c.unicode]) this.mapping[c.package][c.unicode] = new TeXChar()
+      if (!this.mapping[c.package][c.unicode]) this.mapping[c.package][c.unicode] = {} // TeXChar
 
       const m = this.mapping[c.package][c.unicode]
+
+      /*
       if (m.stopgap && !c.stopgap && c.package === '') {
-        this.mapping[c.package][c.unicode] = new TeXChar()
+        this.mapping[c.package][c.unicode] = {} // TeXChar
       }
       m.stopgap = !!c.stopgap
+      */
 
       const modes = c.mode === '' ? ['text', 'math'] : [c.mode]
       for (const mode of modes) {
@@ -281,22 +274,25 @@ class U2T {
 
         m[mode] = c.tex
         if (mode === 'text') {
-          const macrospacer = !!(/\\[0-1a-z]+$/i.test(c.tex) || c.combining)
+          if (c.combining) m.combining = true
+          /*
+          const macrospacer = !!c.tex.match(/\\[0-1a-z]+$/i)
           if (map === 'bibtex') {
-            if (macrospacer) m.text = `{${m.text}}`
+            if (macrospacer || c.combining) m.text = `{${m.text}}`
             else m.macrospacer = macrospacer
           }
           else {
             m.macrospacer = macrospacer
           }
+          */
         }
         if (c.package === '' && map.match(/^bib(la)?tex$/) && c.alt?.length > 0) {
           m.alt = Array.from(new Set(c.alt.split(','))).sort()
         }
       }
 
-      if (!m.stopgap) delete m.stopgap
-      if (!m.macrospacer) delete m.macrospacer
+      // if (!m.stopgap) delete m.stopgap
+      // if (!m.macrospacer) delete m.macrospacer
     }
 
     const base = this.mapping['']
