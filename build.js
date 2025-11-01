@@ -18,6 +18,7 @@ function inspect(obj) {
 
 console.log('building tables')
 for (const root of ['tables', 'dist/tables']) {
+  await fs.mkdir(root, { recursive: true })
   for (const file of await fs.readdir(root)) {
     await fs.unlink(path.join(root, file))
   }
