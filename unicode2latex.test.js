@@ -176,10 +176,15 @@ test('Francisco Perdig\u00f3n', () => {
 
 test('Michał', () => {
   const tx = new Transform('bibtex-creator')
-  expect(tx.tolatex('Michał')).toBe('Micha{\\l}')
+  expect(tx.tolatex('Michał MichałMichał')).toBe('Micha\\l{} Micha\\l Micha\\l')
 })
 
 test('Paı̈doussis', () => {
   const tx = new Transform('bibtex-creator')
   expect(tx.tolatex('Paı̈doussis')).toBe('Pa{\\"\\i}doussis')
+})
+
+test('Oxenløwe', () => {
+  const tx = new Transform('bibtex-creator')
+  expect(tx.tolatex('Oxenløwe')).toBe('Oxenl\\o we')
 })

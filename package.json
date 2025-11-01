@@ -19,8 +19,8 @@
   "scripts": {
     "test": "npm start && jest",
     "start": "npm run build",
-    "prebuild": "./build.js && find tables -type f",
-    "build": "run-p --aggregate-output lint tsc docs",
+    "prebuild": "make",
+    "build": "run-p --aggregate-output lint tsc",
     "lint": "dprint fmt *.ts *.js && dprint check *.ts",
     "tsc:esm": "rm -rf dist/esm && tsc -d -p tsconfig.esm.json",
     "tsc:cjs": "rm -rf dist/cjs && tsc -d -p tsconfig.cjs.json",

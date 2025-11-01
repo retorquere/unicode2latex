@@ -127,7 +127,6 @@ export class Transform {
     /^\\[`\'^~"=.][a-z]$/i,
     /^\\[\^]\\[ij]$/,
     /^\\[kr]\{[a-zA-Z]\}$/,
-    /\\[0-1a-z]+$/i,
   ]
   // https://github.com/retorquere/zotero-better-bibtex/issues/1189
   // Needed so that composite characters are counted as single characters
@@ -137,7 +136,7 @@ export class Transform {
   //
   // Only testing .text because that's the only place (so far)
   // that these have turned up.
-  private creatorize(mode: Mode, text: string, macrospacer: boolean): string {
+  private braceorspace(mode: Mode, text: string, macrospacer: boolean): string {
     if (mode === 'text' && this.creator) {
       if (this.creatorBraces.find(re => text.match(re))) return `{${text}}`
 
@@ -148,6 +147,8 @@ export class Transform {
       if (m = text.match(/^\\([a-z])\{([a-z0-9])\}$/i)) return `{\\${m[1]} ${m[2]}}`
 
       if (text.length > 2 && text.match(/[\\_^]/) && !text.match(/(^\{)|(\}$)/)) return `{${text}}`
+
+      if (text.match(/\\[0-1a-z]+$/i)) return text + '\0'
     }
 
     return text + (macrospacer ? '\0' : '')
@@ -245,7 +246,7 @@ export class Transform {
       }
 
       // macrospacer \0 clean up below
-      latex += this.creatorize(mode, mapped[mode], mapped.macrospacer)
+      latex += this.braceorspace(mode, mapped[mode], mapped.macrospacer)
 
       // only try to merge sup/sub if we were already in math mode, because if we were previously in text mode, testing for _^ is tricky.
       if (!switched && mode === 'math' && (m = latex.match(/(([\^_])\{[^{}]+)\}\2{(.\})$/))) {
