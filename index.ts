@@ -192,12 +192,10 @@ export class Transform {
       }
 
       if (!mapped && !this.minimal && cdpair) {
-        console.log(cdpair)
         let char = cdpair[0]
         let cdmode = ''
         cdpair = cdpair.substr(1).replace(combining_re, cdc => {
           cd = combining.tolatex[permutations(cdc).find(p => combining.tolatex[p])] // multi-combine may have different order
-          // console.log({ mode: this.mode, match, cdpair, cdc, cd, tie, pair, single, mapped }) // eslint-disable-line no-console
           if (!cd) return cdc
 
           if (!cdmode) {

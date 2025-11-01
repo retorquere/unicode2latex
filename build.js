@@ -360,10 +360,10 @@ for (const dependent of ['minimal', 'biblatex', 'bibtex']) {
       [
         "import type { TeXMap } from '../index.js'",
         "import { deepFreeze } from '@pomgui/deep'",
-        `import mergePatch from 'tiny-merge-patch'`,
+        `import { apply } from 'tiny-merge-patch'`,
         `import { table as ${base.name} } from './${base.name}.js'`,
         `const patch = ${inspect(generatePatch(base.mapping, mapping))}`,
-        `export const table = deepFreeze(mergePatch(${base.name}, patch)) as TeXMap`,
+        `export const table = deepFreeze(apply(${base.name}, patch)) as TeXMap`,
       ].join('\n'),
     )
   }
