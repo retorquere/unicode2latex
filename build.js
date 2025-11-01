@@ -17,6 +17,11 @@ function inspect(obj) {
 }
 
 console.log('building tables')
+for (const root of ['tables', 'dist/tables']) {
+  for (const file of await fs.readdir(root)) {
+    await fs.unlink(path.join(root, file))
+  }
+}
 
 class Database {
   constructor(file) {
@@ -340,12 +345,12 @@ class U2T {
   }
 }
 
-for (const map of ['minimal', 'biblatex', 'bibtex', 'bibtex-creator']) {
+for (const map of ['minimal', 'biblatex', 'bibtex']) {
   await new U2T(map).save()
 }
 
 let base = {}
-for (const dependent of ['minimal', 'biblatex', 'bibtex', 'bibtex-creator']) {
+for (const dependent of ['minimal', 'biblatex', 'bibtex']) {
   const mapping = JSON.parse(await fs.readFile(path.join('dist', 'tables', `${dependent}.json`), 'utf-8'))
   if (base.mapping) {
     console.log('  diffing', dependent, 'from', base.name)

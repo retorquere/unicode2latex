@@ -12,6 +12,8 @@ export type TeXMap = {
   package: Record<string, CharMap>
 }
 
+type Mode = 'text' | 'math'
+
 import { table as biblatex } from './tables/biblatex.js'
 export { table as biblatex } from './tables/biblatex.js'
 
@@ -21,18 +23,7 @@ export { table as bibtex } from './tables/bibtex.js'
 import { table as minimal } from './tables/minimal.js'
 export { table as minimal } from './tables/minimal.js'
 
-// https://github.com/retorquere/zotero-better-bibtex/issues/1189
-// Needed so that composite characters are counted as single characters
-// for in-text citation generation. This messes with the {} cleanup
-// so the resulting TeX will be more verbose; doing this only for
-// bibtex because biblatex doesn't appear to need it.
-//
-// Only testing ascii.text because that's the only place (so far)
-// that these have turned up.
-import { table as creator } from './tables/bibtex-creator.js'
-export { table as creator } from './tables/bibtex-creator.js'
-
-const maps = { minimal, biblatex, bibtex, creator }
+const maps = { minimal, biblatex, bibtex }
 
 import { table as latex2unicode } from './tables/latex2unicode.js'
 export { table as latex2unicode } from './tables/latex2unicode.js'
@@ -74,7 +65,7 @@ export function replace_macro_spacers(latex: string): string {
   return latex.replace(/\0(\s)/g, '{}$1').replace(/\0([^;.,!?${}_^\\/])/g, ' $1').replace(/\0/g, '')
 }
 
-const switchMode = {
+const switchMode: Record<Mode, Mode> = {
   math: 'text',
   text: 'math',
 }
@@ -90,21 +81,25 @@ export type TranslateOptions = {
 
 export class Transform {
   private map: CharMap
+  private creator: boolean
+  private minimal: boolean
 
   /**
    * loads a unicode -> TeX character map to use during conversion
    *
    * @param mode - the translation mode, being `bibtex`, `creator`, `biblatex` or `minimal`. Use `minimal` if your TeX environment supports unicode. In `bibtex` mode, combining characters are braced to that character/word counts are reliable, at the cost of more verbose output. `creator` is a special mode for bibtex creator that helps composite characters to be counted as a single unit for in-text citations.
    */
-  constructor(private mode: 'minimal' | 'biblatex' | 'bibtex' | 'bibtex-creator', options: MapOptions = {}) {
-    const base = maps[mode === 'bibtex-creator' ? 'creator' : mode]
+  constructor(mode: 'minimal' | 'biblatex' | 'bibtex' | 'bibtex-creator', options: MapOptions = {}) {
+    this.creator = mode === 'bibtex-creator'
+    this.minimal = mode === 'minimal'
+    const base = maps[this.creator ? 'bibtex' : mode]
 
-    let map = base.base
+    let map: CharMap = base.base
     for (const pkg of (options.packages || []).map(p => base.package[p]).filter(p => p)) {
       map = { ...map, ...pkg }
     }
-    map = JSON.parse(JSON.stringify(map))
-    for (const preferred of ['text', 'math']) {
+    map = JSON.parse(JSON.stringify(map)) as CharMap
+    for (const preferred of (['text', 'math'] as Mode[])) {
       if (!(preferred in options)) continue
       for (const c of options[preferred]) {
         if (preferred in map[c]) map[c] = { [preferred]: map[c][preferred] }
@@ -127,6 +122,37 @@ export class Transform {
     this.map = map
   }
 
+  private creatorBraces = [
+    /[^{]\{/,
+    /^\\[`\'^~"=.][a-z]$/i,
+    /^\\[\^]\\[ij]$/,
+    /^\\[kr]\{[a-zA-Z]\}$/,
+    /\\[0-1a-z]+$/i,
+  ]
+  // https://github.com/retorquere/zotero-better-bibtex/issues/1189
+  // Needed so that composite characters are counted as single characters
+  // for in-text citation generation. This messes with the {} cleanup
+  // so the resulting TeX will be more verbose; doing this only for
+  // bibtex because biblatex doesn't appear to need it.
+  //
+  // Only testing .text because that's the only place (so far)
+  // that these have turned up.
+  private creatorize(mode: Mode, text: string, macrospacer: boolean): string {
+    if (mode === 'text' && this.creator) {
+      if (this.creatorBraces.find(re => text.match(re))) return `{${text}}`
+
+      let m: RegExpMatchArray
+
+      if (m = text.match(/^\\(L|O|AE|AA|DH|DJ|OE|SS|TH|NG)\{\}$/i)) return `{\\${m[1]}}`
+
+      if (m = text.match(/^\\([a-z])\{([a-z0-9])\}$/i)) return `{\\${m[1]} ${m[2]}}`
+
+      if (text.length > 2 && text.match(/[\\_^]/) && !text.match(/(^\{)|(\}$)/)) return `{${text}}`
+    }
+
+    return text + (macrospacer ? '\0' : '')
+  }
+
   /**
    * Transform the given text to LaTeX
    *
@@ -139,17 +165,17 @@ export class Transform {
       packages: new Set(),
       ...options,
     }
-    let mode = 'text'
+    let mode: Mode = 'text'
 
     const switchTo = {
       math: (bracemath ? '{$' : '$'),
       text: (bracemath ? '$}' : '$'),
-    }
+    } as const
 
     let mapped: TeXChar
     let switched: boolean
     let m: RegExpExecArray | RegExpMatchArray
-    let cd: { macro: string; mode: string }
+    let cd: { macro: string; mode: Mode }
 
     let latex = ''
     text.normalize('NFD').replace(re, (match: string, tie: string, cdpair: string, pair: string, single: string) => {
@@ -161,7 +187,8 @@ export class Transform {
         mapped = this.map[tie] || this.map[pair] || this.map[single] || this.map[cdpair]
       }
 
-      if (!mapped && this.mode !== 'minimal' && cdpair) {
+      if (!mapped && !this.minimal && cdpair) {
+        console.log(cdpair)
         let char = cdpair[0]
         let cdmode = ''
         cdpair = cdpair.substr(1).replace(combining_re, cdc => {
@@ -178,10 +205,13 @@ export class Transform {
 
           const isCmd = cd.macro.match(/[a-z]/i)
 
-          if (this.mode === 'bibtex-creator' && cd.mode === 'text') {
+          /*
+          if (this.creator && cd.mode === 'text') {
             char = `{\\${cd.macro}${isCmd ? ' ' : ''}${char}}`
           }
-          else if (isCmd && char.length === 1) {
+          else
+          */
+          if (isCmd && char.length === 1) {
             char = `\\${cd.macro} ${char}`
           }
           else if (isCmd) {
@@ -214,8 +244,8 @@ export class Transform {
         latex = latex.slice(0, latex.length - m[0].length) + m[1] + m[2] + m[3]
       }
 
-      latex += mapped[mode]
-      if (mapped.macrospacer) latex += '\0' // clean up below
+      // macrospacer \0 clean up below
+      latex += this.creatorize(mode, mapped[mode], mapped.macrospacer)
 
       // only try to merge sup/sub if we were already in math mode, because if we were previously in text mode, testing for _^ is tricky.
       if (!switched && mode === 'math' && (m = latex.match(/(([\^_])\{[^{}]+)\}\2{(.\})$/))) {
@@ -231,6 +261,7 @@ export class Transform {
     })
 
     // might still be in math mode at the end
+    // @ts-expect-error TS2367
     if (mode === 'math') latex += switchTo.text
 
     if (!preservemacrospacers) latex = replace_macro_spacers(latex)
