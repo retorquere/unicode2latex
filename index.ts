@@ -62,7 +62,11 @@ export type MapOptions = {
 }
 
 export function replace_macro_spacers(latex: string): string {
-  return latex.replace(/\0(\s)/g, '{}$1').replace(/\0([^;.,!?${}_^\\/])/g, ' $1').replace(/\0/g, '')
+  return latex
+    .replace(/\0(\s)/g, '{}$1')
+    .replace(/\0\s+/g, '\\_')
+    .replace(/\0([^;.,!?${}_^\\/])/g, ' $1')
+    .replace(/\0/g, '')
 }
 
 const switchMode: Record<Mode, Mode> = {
