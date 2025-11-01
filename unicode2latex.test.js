@@ -176,7 +176,7 @@ test('Francisco Perdig\u00f3n', () => {
 
 test('Michał', () => {
   const tx = new Transform('bibtex-creator')
-  expect(tx.tolatex('Michał MichałMichał')).toBe('Micha\\l{} Micha\\l Micha\\l')
+  expect(tx.tolatex('Michał MichałMichał')).toBe('Micha{\\l} Micha{\\l}Micha{\\l}')
 })
 
 test('Paı̈doussis', () => {
@@ -186,5 +186,5 @@ test('Paı̈doussis', () => {
 
 test('Oxenløwe', () => {
   const tx = new Transform('bibtex-creator')
-  expect(tx.tolatex('Oxenløwe')).toBe('Oxenl\\o we')
+  expect(tx.tolatex('Oxenløwe')).toBe('Oxenl{\\o}we')
 })

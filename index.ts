@@ -131,6 +131,7 @@ export class Transform {
     /^\\[`\'^~"=.][a-z]$/i,
     /^\\[\^]\\[ij]$/,
     /^\\[kr]\{[a-zA-Z]\}$/,
+    /\\[0-1a-z]+$/i, // this prevents a spacer from producing \\l{}
   ]
   // https://github.com/retorquere/zotero-better-bibtex/issues/1189
   // Needed so that composite characters are counted as single characters
@@ -151,8 +152,6 @@ export class Transform {
       if (m = text.match(/^\\([a-z])\{([a-z0-9])\}$/i)) return `{\\${m[1]} ${m[2]}}`
 
       if (text.length > 2 && text.match(/[\\_^]/) && !text.match(/(^\{)|(\}$)/)) return `{${text}}`
-
-      if (text.match(/\\[0-1a-z]+$/i)) return text + '\0'
     }
 
     return text + (macrospacer ? '\0' : '')
