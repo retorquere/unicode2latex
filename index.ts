@@ -1,3 +1,5 @@
+import permutations from 'just-permutations'
+
 export type TeXChar = {
   math?: string
   text?: string
@@ -28,25 +30,8 @@ const maps = { minimal, biblatex, bibtex }
 import { table as latex2unicode } from './tables/latex2unicode.js'
 export { table as latex2unicode } from './tables/latex2unicode.js'
 
-function permutations(str: string): string[] {
-  if (str.length === 0) return []
-  if (str.length === 1) return [str]
-
-  const result: string[] = []
-  for (let i = 0; i < str.length; i++) {
-    const firstChar = str[i]
-    const remainingChars = str.slice(0, i) + str.slice(i + 1)
-    const remainingPermutations = permutations(remainingChars)
-    for (let j = 0; j < remainingPermutations.length; j++) {
-      result.push(firstChar + remainingPermutations[j])
-    }
-  }
-  return result
-}
-
 import { table as combining } from './tables/combining.js'
 export { table as combining } from './tables/combining.js'
-const combining_re = new RegExp(combining.regex)
 
 export type MapOptions = {
   /** use mappings that require extra packages to be loaded in your document, giving better fidelity mapping. Currently supported are `MinionPro`, `MnSymbol`, `amssymb`, `arevmath`, `graphics`, `ipa`, `mathabx`, `mathrsfs`, `mathscinet`, `pmboxdraw`, `textcomp`, `tipa`, `unicode-math`, `wasysym` and `xecjk`. */
@@ -73,7 +58,7 @@ const switchMode: Record<Mode, Mode> = {
   math: 'text',
   text: 'math',
 }
-const re = /(i\uFE20a\uFE21)|([^\u0300-\u036F][\u0300-\u036F]+)|([\uD800-\uDBFF][\uDC00-\uDFFF])|(.)/g
+
 export type TranslateOptions = {
   /** add braces around math sections. This is useful if you plan to do sentencecase => TitleCase conversion on the result, so that you know these sections are protected. */
   bracemath?: boolean
@@ -157,6 +142,7 @@ export class Transform {
     return text + (macrospacer ? '\0' : '')
   }
 
+  private char = /(?<tie>i\uFE20a\uFE21)|(?<combined>(?<base>[^\p{M}]?)(?<cccs>\p{M}+))|(?<single>.)/gu
   /**
    * Transform the given text to LaTeX
    *
@@ -182,53 +168,45 @@ export class Transform {
     let cd: { macro: string; mode: Mode }
 
     let latex = ''
-    text.normalize('NFD').replace(re, (match: string, tie: string, cdpair: string, pair: string, single: string) => {
-      mapped = null
-      if (tie && !this.map[tie]) {
-        mapped = { text: 'ia' }
-      }
-      else {
-        mapped = this.map[tie] || this.map[pair] || this.map[single] || this.map[cdpair]
-      }
+    let tc: TeXChar
+    text.normalize('NFD').replace(this.char, (match, tie, combined, base, cccs_s, single) => {
+      mapped = (() => {
+        // 03b9 0306 0301
+        if (this.minimal) return this.map[single]
 
-      if (!mapped && !this.minimal && cdpair) {
-        let char = cdpair[0]
-        let cdmode = ''
-        cdpair = cdpair.substr(1).replace(combining_re, cdc => {
-          cd = combining.tolatex[permutations(cdc).find(p => combining.tolatex[p])] // multi-combine may have different order
-          if (!cd) return cdc
+        if (tie && !this.map[tie]) return { text: 'ia' }
+        if (tc = this.map[tie] || this.map[combined] || this.map[single]) return tc
 
-          if (!cdmode) {
-            cdmode = cd.mode
-            char = (this.map[char] || { text: char, math: char })[cdmode]
+        if (!combined) return null
+
+        let cccs = [...cccs_s]
+        let resolved: TeXChar
+        const ps = permutations(cccs)
+        ;[resolved, cccs] = Array(cccs.length)
+          .fill(null)
+          .flatMap((_, l) => ps.map(p => [this.map[base + p.slice(0, l + 1).join('')], p.slice(l + 1)] as [TeXChar, string[]]))
+          .find(([car, cdr]) => car) || [this.map[base] || { text: base, math: base }, cccs]
+
+        let char: string
+        for (const ccc of cccs) {
+          const tl = combining.tolatex[ccc] || { mode: '', macro: '' }
+          if (!(char = resolved[tl.mode])) return null
+
+          const isMacro = tl.macro.match(/[a-z]/i)
+
+          if (isMacro && [...char].length === 1) {
+            resolved = { [tl.mode]: `\\${tl.macro} ${char}` }
           }
-
-          if (cdmode !== cd.mode) return cdc // mode switch
-
-          const isCmd = cd.macro.match(/[a-z]/i)
-
-          /*
-          if (this.creator && cd.mode === 'text') {
-            char = `{\\${cd.macro}${isCmd ? ' ' : ''}${char}}`
-          }
-          else
-          */
-          if (isCmd && char.length === 1) {
-            char = `\\${cd.macro} ${char}`
-          }
-          else if (isCmd) {
-            char = `\\${cd.macro}{${char}}`
+          else if (isMacro) {
+            resolved = { [tl.mode]: `\\${tl.macro}{${char}}` }
           }
           else {
-            char = `\\${cd.macro}${char}`
+            resolved = { [tl.mode]: `\\${tl.macro}${char}` }
           }
-          return ''
-        })
-        if (!cdpair) mapped = { [cdmode]: char }
-      }
+        }
 
-      // fallback -- single char mapping
-      if (!mapped) mapped = { text: match }
+        return resolved
+      })() || { text: match }
 
       // in and out of math mode
       if (!mapped[mode]) {

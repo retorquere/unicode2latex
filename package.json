@@ -38,7 +38,6 @@
   ],
   "devDependencies": {
     "@types/node": "^24.8.1",
-    "better-sqlite3": "^12.4.1",
     "csv-parse": "^6.1.0",
     "dprint": "^0.50.2",
     "globals": "^16.4.0",
@@ -60,6 +59,7 @@
   "homepage": "https://github.com/retorquere/unicode2latex.git",
   "dependencies": {
     "@pomgui/deep": "^3.0.3",
+    "just-permutations": "^2.2.1",
     "tiny-merge-patch": "^0.1.2"
   }
 }

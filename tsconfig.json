@@ -4,14 +4,14 @@
     "allowUnreachableCode": false,
     "declaration": true,
     "importHelpers": true,
-    "target": "es2017",
+    "target": "es2018",
     "disableSizeLimit": true,
     "noImplicitAny": false,
     "removeComments": true,
     "preserveConstEnums": false,
     "sourceMap": false,
     "downlevelIteration": true,
-    "lib": [ "es2017", "dom" ],
+    "lib": [ "es2018", "dom" ],
     "typeRoots": [
       "./typings",
       "./node_modules/@types"

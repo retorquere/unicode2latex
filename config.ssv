@@ -5615,3 +5615,9 @@ A\u030A > \AA text
 \u02cb = \textasciigrave text
  < \@ text
  < \/ text
+\u1f10 < \acute{\epsilon} math
+\u1f10 < \textgreek{ἐ} text.textgreek
+\u1fd0 < \hat{\iota} math
+\u1fd0 < \textgreek{ῐ} text.textgreek
+\u1fb0 < \breve{\alpha} math
+\u1fb0 < \textgreek{ᾰ} text.textgreek

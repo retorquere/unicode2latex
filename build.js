@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
 import * as assert from 'assert'
-import sqlite3 from 'better-sqlite3'
 import { parse as parseCSV } from 'csv-parse/sync'
 import fs from 'fs/promises'
 import { generate as generatePatch } from 'json-merge-patch'
 import stringify from 'json-stringify-pretty-compact'
+import { DatabaseSync } from 'node:sqlite'
 import path from 'path'
 import stringifyObject from 'stringify-object'
 
@@ -26,7 +26,7 @@ for (const root of ['tables', 'dist/tables']) {
 
 class Database {
   constructor(file) {
-    this.db = new sqlite3(file)
+    this.db = new DatabaseSync(file)
   }
 
   exec(sql, ...params) {
@@ -51,7 +51,8 @@ class Database {
 }
 
 // ---------------- Setup DB ----------------
-const TeXMap = new Database('./unicode.sqlite')
+// const TeXMap = new Database('./unicode.sqlite')
+const TeXMap = new Database(':memory:')
 TeXMap.exec('DROP TABLE IF EXISTS texmap')
 TeXMap.exec(`CREATE TABLE texmap (
   line INT NOT NULL,
