@@ -215,11 +215,13 @@ export class Transform {
         let CCCs = [...cccs]
         const basetc = this.map[base] || { text: base, math: base }
         const permutations = allPermutations(CCCs)
-        ;[mapped, CCCs] = Array(CCCs.length + 1)
-          .fill(null)
-          .map((_, i, a) => a.length - 1 - i)
-          .flatMap(l => permutations.map(p => [this.apply(basetc, p.slice(0, l).join('')), p.slice(l)] as [TeXChar, string[]]))
-          .find(([car, cdr]) => car)
+        ;[mapped, CCCs] = Array.from({ length: CCCs.length + 1 }, (_, i) => CCCs.length - i)
+          .reduce((acc, l) => {
+            if (acc) return acc
+            for (const p of permutations) {
+              if (tc = this.apply(basetc, p.slice(0, l).join(''))) return [tc, p.slice(l)]
+            }
+          }, null) as [TeXChar, string[]]
           || [basetc, CCCs]
 
         for (const ccc of CCCs) {
