@@ -148,7 +148,7 @@ export class Transform {
     return text + (macrospacer ? '\0' : '')
   }
 
-  private char = /(?<tie>i\uFE20a\uFE21)|(?<combined>(?<base>[^\p{M}]?)(?<cccs>\p{M}+))|(?<single>.)/gu
+  private char = /(?<match>(?<tie>i\uFE20a\uFE21)|(?<combined>(?<base>[^\p{M}]?)(?<cccs>\p{M}+))|(?<single>.))/gu
   private apply(tc: TeXChar, ccc: string): TeXChar {
     let resolved: TeXChar
     if (tc.text && (resolved = this.map[`${tc.text}${ccc}`])) return resolved
@@ -199,31 +199,38 @@ export class Transform {
 
     let latex = ''
     let tc: TeXChar
-    text.normalize('NFD').replace(this.char, (match, tie, combined, base, cccs_s, single) => {
-      mapped = (() => {
-        if (this.minimal) return this.map[single]
+    for (const { groups } of text.normalize('NFD').matchAll(this.char)) {
+      const { match, tie, combined, base, cccs, single } = groups
 
-        if (tie && !this.map[tie]) return { text: 'ia' }
-        if (tc = this.map[tie] || this.map[combined] || this.map[single]) return tc
-
-        if (!combined) return null
-        let cccs = [...cccs_s]
-        let resolved: TeXChar
+      if (this.minimal) {
+        mapped = this.map[single]
+      }
+      else if (tie && !this.map[tie]) {
+        mapped = { text: 'ia' }
+      }
+      else if (tc = this.map[tie] || this.map[combined] || this.map[single]) {
+        mapped = tc
+      }
+      else if (combined) {
+        let CCCs = [...cccs]
         const basetc = this.map[base] || { text: base, math: base }
-        const permutations = allPermutations(cccs)
-        ;[resolved, cccs] = Array(cccs.length + 1)
+        const permutations = allPermutations(CCCs)
+        ;[mapped, CCCs] = Array(CCCs.length + 1)
           .fill(null)
           .map((_, i, a) => a.length - 1 - i)
           .flatMap(l => permutations.map(p => [this.apply(basetc, p.slice(0, l).join('')), p.slice(l)] as [TeXChar, string[]]))
           .find(([car, cdr]) => car)
-          || [basetc, cccs]
+          || [basetc, CCCs]
 
-        for (const ccc of cccs) {
-          if (!(resolved = this.apply(resolved, ccc))) return null
+        for (const ccc of CCCs) {
+          if (!(mapped = this.apply(mapped, ccc))) break
         }
+      }
+      else {
+        mapped = null
+      }
 
-        return resolved
-      })() || { text: match }
+      if (!mapped) mapped = { text: match }
 
       // in and out of math mode
       if (!mapped[mode]) {
@@ -254,11 +261,9 @@ export class Transform {
           packages.add(pkg)
         }
       }
-      return match // pacify tsc
-    })
+    }
 
     // might still be in math mode at the end
-    // @ts-expect-error TS2367
     if (mode === 'math') latex += switchTo.text
 
     if (!preservemacrospacers) latex = replace_macro_spacers(latex)
