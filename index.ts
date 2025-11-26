@@ -1,4 +1,4 @@
-import permutations from 'just-permutations'
+import allPermutations from 'just-permutations'
 
 export type TeXChar = {
   math?: string
@@ -33,9 +33,11 @@ export { table as latex2unicode } from './tables/latex2unicode.js'
 import { table as combining } from './tables/combining.js'
 export { table as combining } from './tables/combining.js'
 
+/*
 function codes(s) {
   return [...(s || '')].map(c => !c.match(/[\u0020-\u007e]/) ? '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0').toUpperCase() : c).join('')
 }
+*/
 
 export type MapOptions = {
   /** use mappings that require extra packages to be loaded in your document, giving better fidelity mapping. Currently supported are `MinionPro`, `MnSymbol`, `amssymb`, `arevmath`, `graphics`, `ipa`, `mathabx`, `mathrsfs`, `mathscinet`, `pmboxdraw`, `textcomp`, `tipa`, `unicode-math`, `wasysym` and `xecjk`. */
@@ -208,11 +210,11 @@ export class Transform {
         let cccs = [...cccs_s]
         let resolved: TeXChar
         const basetc = this.map[base] || { text: base, math: base }
-        const ps = permutations(cccs)
+        const permutations = allPermutations(cccs)
         ;[resolved, cccs] = Array(cccs.length + 1)
           .fill(null)
           .map((_, i, a) => a.length - 1 - i)
-          .flatMap(l => ps.map(p => [this.apply(basetc, p.slice(0, l).join('')), p.slice(l)] as [TeXChar, string[]]))
+          .flatMap(l => permutations.map(p => [this.apply(basetc, p.slice(0, l).join('')), p.slice(l)] as [TeXChar, string[]]))
           .find(([car, cdr]) => car)
           || [basetc, cccs]
 
