@@ -33,6 +33,10 @@ export { table as latex2unicode } from './tables/latex2unicode.js'
 import { table as combining } from './tables/combining.js'
 export { table as combining } from './tables/combining.js'
 
+function codes(s) {
+  return [...(s || '')].map(c => !c.match(/[\u0020-\u007e]/) ? '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0').toUpperCase() : c).join('')
+}
+
 export type MapOptions = {
   /** use mappings that require extra packages to be loaded in your document, giving better fidelity mapping. Currently supported are `MinionPro`, `MnSymbol`, `amssymb`, `arevmath`, `graphics`, `ipa`, `mathabx`, `mathrsfs`, `mathscinet`, `pmboxdraw`, `textcomp`, `tipa`, `unicode-math`, `wasysym` and `xecjk`. */
   packages?: string[]
@@ -143,6 +147,30 @@ export class Transform {
   }
 
   private char = /(?<tie>i\uFE20a\uFE21)|(?<combined>(?<base>[^\p{M}]?)(?<cccs>\p{M}+))|(?<single>.)/gu
+  private apply(tc: TeXChar, ccc: string): TeXChar {
+    let resolved: TeXChar
+    if (tc.text && (resolved = this.map[`${tc.text}${ccc}`])) return resolved
+    if (tc.math && (resolved = this.map[`${tc.math}${ccc}`])) return resolved
+
+    const tl = combining.tolatex[ccc]
+    if (!tl) return null
+
+    const char = tc[tl.mode]
+    if (!char) return null
+
+    const isMacro = tl.macro.match(/[a-z]/i)
+
+    if (isMacro && [...char].length === 1) {
+      return { [tl.mode]: `\\${tl.macro} ${char}` }
+    }
+    else if (isMacro) {
+      return { [tl.mode]: `\\${tl.macro}{${char}}` }
+    }
+    else {
+      return { [tl.mode]: `\\${tl.macro}${char}` }
+    }
+  }
+
   /**
    * Transform the given text to LaTeX
    *
@@ -171,38 +199,25 @@ export class Transform {
     let tc: TeXChar
     text.normalize('NFD').replace(this.char, (match, tie, combined, base, cccs_s, single) => {
       mapped = (() => {
-        // 03b9 0306 0301
         if (this.minimal) return this.map[single]
 
         if (tie && !this.map[tie]) return { text: 'ia' }
         if (tc = this.map[tie] || this.map[combined] || this.map[single]) return tc
 
         if (!combined) return null
-
         let cccs = [...cccs_s]
         let resolved: TeXChar
+        const basetc = this.map[base] || { text: base, math: base }
         const ps = permutations(cccs)
-        ;[resolved, cccs] = Array(cccs.length)
+        ;[resolved, cccs] = Array(cccs.length + 1)
           .fill(null)
-          .flatMap((_, l) => ps.map(p => [this.map[base + p.slice(0, l + 1).join('')], p.slice(l + 1)] as [TeXChar, string[]]))
-          .find(([car, cdr]) => car) || [this.map[base] || { text: base, math: base }, cccs]
+          .map((_, i, a) => a.length - 1 - i)
+          .flatMap(l => ps.map(p => [this.apply(basetc, p.slice(0, l).join('')), p.slice(l)] as [TeXChar, string[]]))
+          .find(([car, cdr]) => car)
+          || [basetc, cccs]
 
-        let char: string
         for (const ccc of cccs) {
-          const tl = combining.tolatex[ccc] || { mode: '', macro: '' }
-          if (!(char = resolved[tl.mode])) return null
-
-          const isMacro = tl.macro.match(/[a-z]/i)
-
-          if (isMacro && [...char].length === 1) {
-            resolved = { [tl.mode]: `\\${tl.macro} ${char}` }
-          }
-          else if (isMacro) {
-            resolved = { [tl.mode]: `\\${tl.macro}{${char}}` }
-          }
-          else {
-            resolved = { [tl.mode]: `\\${tl.macro}${char}` }
-          }
+          if (!(resolved = this.apply(resolved, ccc))) return null
         }
 
         return resolved
