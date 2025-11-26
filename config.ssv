@@ -589,6 +589,8 @@ i\u0303 < \~{\i} text
 \u03A5\u0308 = \mathrm{\ddot{Y}} math
 \u03B1\u0301 = \acute{\alpha} math
 \u03B5\u0301 = \acute{\epsilon} math
+\u03b5\u0313 = \acute{\epsilon} math
+\u03b5\u0313 = \textgreek{ἐ} text.textgreek
 \u03B7\u0301 = \acute{\eta} math
 \u03B9\u0301 = \acute{\iota} math
 \u03C5\u0308\u0301 = \acute{\ddot{\upsilon}} math
@@ -5615,9 +5617,7 @@ A\u030A > \AA text
 \u02cb = \textasciigrave text
  < \@ text
  < \/ text
-\u1f10 < \acute{\epsilon} math
-\u1f10 < \textgreek{ἐ} text.textgreek
-\u1fd0 < \hat{\iota} math
-\u1fd0 < \textgreek{ῐ} text.textgreek
-\u1fb0 < \breve{\alpha} math
-\u1fb0 < \textgreek{ᾰ} text.textgreek
+\u03B9\u0306 = \hat{\iota} math
+\u03B9\u0306 = \textgreek{ῐ} text.textgreek
+\u03B1\u0306 = \breve{\alpha} math
+\u03B1\u0306 = \textgreek{ᾰ} text.textgreek
