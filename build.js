@@ -406,4 +406,4 @@ class T2U {
 
 await new T2U().save()
 
-console.log('All tables built successfully!')
+console.log('All tables built.')
