@@ -5617,7 +5617,7 @@ A\u030A > \AA text
 \u02cb = \textasciigrave text
  < \@ text
  < \/ text
-\u03B9\u0306 = \hat{\iota} math
-\u03B9\u0306 = \textgreek{ῐ} text.textgreek
+\u03B9\u0306\u0301 = \hat{\iota} math
+\u03B9\u0306\u0301 = \textgreek{ῐ} text.textgreek
 \u03B1\u0306 = \breve{\alpha} math
 \u03B1\u0306 = \textgreek{ᾰ} text.textgreek
