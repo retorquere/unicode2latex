@@ -37,10 +37,10 @@
     "dist"
   ],
   "devDependencies": {
-    "@types/node": "^24.8.1",
+    "@types/node": "^24.10.1",
     "csv-parse": "^6.1.0",
     "dprint": "^0.50.2",
-    "globals": "^16.4.0",
+    "globals": "^16.5.0",
     "jest": "^30.2.0",
     "json-merge-patch": "^1.0.2",
     "json-squash": "^0.0.3",
