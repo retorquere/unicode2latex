@@ -162,11 +162,12 @@ export class Transform {
     if (!char) return null
 
     const isMacro = tl.macro.match(/[a-z]/i)
+    const isSingleChar = [...char].length === 1
 
-    if (isMacro && [...char].length === 1) {
+    if (isMacro && isSingleChar) {
       return { [tl.mode]: `\\${tl.macro} ${char}` }
     }
-    else if (isMacro) {
+    else if (isMacro || (!this.creator && !isSingleChar)) {
       return { [tl.mode]: `\\${tl.macro}{${char}}` }
     }
     else {

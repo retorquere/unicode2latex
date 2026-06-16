@@ -182,3 +182,13 @@ test('episteme', () => {
   assert.equal(tx.tolatex(input, { packages }), output)
   assert.equal([...packages].sort().join(','), 'textalpha,textgreek')
 })
+
+test('Lavı́n', () => {
+  const tx = new Transform('biblatex')
+  assert.equal(tx.tolatex('Lavı́n'), "Lav\\'{\\i}n")
+})
+
+test('Lavı́n creator', () => {
+  const tx = new Transform('bibtex-creator')
+  assert.equal(tx.tolatex('Lavı́n'), "Lav{\\'\\i}n")
+})
