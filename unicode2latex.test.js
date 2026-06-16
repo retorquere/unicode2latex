@@ -1,192 +1,177 @@
 #!/usr/bin/env node
 
-const { Transform } = require('./dist/cjs/index')
+import assert from 'node:assert/strict'
+import test from 'node:test'
+
+import { Transform } from './dist/esm/index.js'
 
 test('macro spacer', () => {
   const tx = new Transform('biblatex')
-  expect(tx.tolatex('On Recovery of Sparse Signals via ££p Minimization'))
-    .toBe('On Recovery of Sparse Signals via \\pounds\\pounds p Minimization')
+  assert.equal(tx.tolatex('On Recovery of Sparse Signals via ££p Minimization'), 'On Recovery of Sparse Signals via \\pounds\\pounds p Minimization')
 })
 
-test('Protokolle zu Drogenversuchen. Hauptz\u00fcge der ersten Haschisch-Impression', () => {
+test('Protokolle zu Drogenversuchen. Hauptzüge der ersten Haschisch-Impression', () => {
   const tx = new Transform('biblatex')
-  expect(tx.tolatex('Protokolle zu Drogenversuchen. Hauptz\u00fcge der ersten Haschisch-Impression'))
-    .toBe('Protokolle zu Drogenversuchen. Hauptz\\"uge der ersten Haschisch-Impression')
+  assert.equal(tx.tolatex('Protokolle zu Drogenversuchen. Hauptzüge der ersten Haschisch-Impression'), 'Protokolle zu Drogenversuchen. Hauptz\\"uge der ersten Haschisch-Impression')
 })
 
-test('Planung o\u0308ffentlicher Elektrizit\u00e4tsverteilungs-Systeme', () => {
+test('Planung öffentlicher Elektrizitätsverteilungs-Systeme', () => {
   const tx = new Transform('biblatex')
-  expect(tx.tolatex('Planung o\u0308ffentlicher Elektrizit\u00e4tsverteilungs-Systeme'))
-    .toBe('Planung \\"offentlicher Elektrizit\\"atsverteilungs-Systeme')
+  assert.equal(tx.tolatex('Planung öffentlicher Elektrizitätsverteilungs-Systeme'), 'Planung \\"offentlicher Elektrizit\\"atsverteilungs-Systeme')
 })
 
-test('Giga Bari\u0107eva. Roman iz zagreba\u010dkog poslijeratnog \u017eivota', () => {
+test('Giga Barićeva. Roman iz zagrebačkog poslijeratnog života', () => {
   const tx = new Transform('biblatex')
-  expect(tx.tolatex('Giga Bari\u0107eva. Roman iz zagreba\u010dkog poslijeratnog \u017eivota'))
-    .toBe("Giga Bari\\'ceva. Roman iz zagreba\\v ckog poslijeratnog \\v zivota")
+  assert.equal(tx.tolatex('Giga Barićeva. Roman iz zagrebačkog poslijeratnog života'), "Giga Bari\\'ceva. Roman iz zagreba\\v ckog poslijeratnog \\v zivota")
 })
 
-test('En ny sociologi for et nyt samfund. Introduktion til Akt\u00f8r-Netv\u00e6rk-Teori', () => {
+test('En ny sociologi for et nyt samfund. Introduktion til Aktør-Netværk-Teori', () => {
   const tx = new Transform('biblatex')
-  expect(tx.tolatex('En ny sociologi for et nyt samfund. Introduktion til Akt\u00f8r-Netv\u00e6rk-Teori'))
-    .toBe('En ny sociologi for et nyt samfund. Introduktion til Akt\\o r-Netv\\ae rk-Teori')
+  assert.equal(tx.tolatex('En ny sociologi for et nyt samfund. Introduktion til Aktør-Netværk-Teori'), 'En ny sociologi for et nyt samfund. Introduktion til Akt\\o r-Netv\\ae rk-Teori')
 })
 
-test('La d\u00e9mocratie. Sa nature, sa valeur', () => {
+test('La démocratie. Sa nature, sa valeur', () => {
   const tx = new Transform('biblatex')
-  expect(tx.tolatex('La d\u00e9mocratie. Sa nature, sa valeur'))
-    .toBe("La d\\'emocratie. Sa nature, sa valeur")
+  assert.equal(tx.tolatex('La démocratie. Sa nature, sa valeur'), "La d\\'emocratie. Sa nature, sa valeur")
 })
 
-test('Overall Normalization of the Astrophysical \u2192 Reactions', () => {
+test('Overall Normalization of the Astrophysical → Reactions', () => {
   const tx = new Transform('biblatex')
   const packages = new Set()
-  expect(tx.tolatex('Overall Normalization of the Astrophysical \u2192 Reactions', { packages }))
-    .toBe('Overall Normalization of the Astrophysical $\\rightarrow$ Reactions')
-  expect([...packages].sort().join(',')).toBe('textcomp')
+  assert.equal(tx.tolatex('Overall Normalization of the Astrophysical → Reactions', { packages }), 'Overall Normalization of the Astrophysical $\\rightarrow$ Reactions')
+  assert.equal([...packages].sort().join(','), 'textcomp')
 })
 
-test('\u00a7 1063 ABGB', () => {
+test('§ 1063 ABGB', () => {
   const tx = new Transform('biblatex')
-  expect(tx.tolatex('\u00a7 1063 ABGB'))
-    .toBe('\\S{} 1063 ABGB')
+  assert.equal(tx.tolatex('§ 1063 ABGB'), '\\S{} 1063 ABGB')
 })
 
-test('Die Sicherungs\u00fcbereignung', () => {
+test('Die Sicherungsübereignung', () => {
   const tx = new Transform('biblatex')
-  expect(tx.tolatex('Die Sicherungs\u00fcbereignung'))
-    .toBe('Die Sicherungs\\"ubereignung')
+  assert.equal(tx.tolatex('Die Sicherungsübereignung'), 'Die Sicherungs\\"ubereignung')
 })
 
-test('Entscheidung nach \u00a7 98 EheG und anh\u00e4ngiges Verfahren', () => {
+test('Entscheidung nach § 98 EheG und anhängiges Verfahren', () => {
   const tx = new Transform('biblatex')
-  expect(tx.tolatex('Entscheidung nach \u00a7 98 EheG und anh\u00e4ngiges Verfahren'))
-    .toBe('Entscheidung nach \\S{} 98 EheG und anh\\"angiges Verfahren')
+  assert.equal(tx.tolatex('Entscheidung nach § 98 EheG und anhängiges Verfahren'), 'Entscheidung nach \\S{} 98 EheG und anh\\"angiges Verfahren')
 })
 
-test('Object-based attentional selection\u2013grouped arrays or spatially invariant representations?: comment on vecera and Farah (1994).', () => {
+test('Object-based attentional selection–grouped arrays or spatially invariant representations?: comment on vecera and Farah (1994).', () => {
   const tx = new Transform('biblatex')
-  expect(tx.tolatex(
-    'Object-based attentional selection\u2013grouped arrays or spatially invariant representations?: '
-      + 'comment on vecera and Farah (1994).',
-  ))
-    .toBe(
-      'Object-based attentional selection--grouped arrays or spatially invariant representations?: '
+  assert.equal(
+    tx.tolatex(
+      'Object-based attentional selection–grouped arrays or spatially invariant representations?: '
         + 'comment on vecera and Farah (1994).',
-    )
+    ),
+    'Object-based attentional selection--grouped arrays or spatially invariant representations?: '
+      + 'comment on vecera and Farah (1994).',
+  )
 })
 
-test('De l\u2019asynergie cerebelleuse', () => {
+test('De l’asynergie cerebelleuse', () => {
   const tx = new Transform('biblatex')
-  expect(tx.tolatex('De l\u2019asynergie cerebelleuse')).toBe("De l'asynergie cerebelleuse")
+  assert.equal(tx.tolatex('De l’asynergie cerebelleuse'), "De l'asynergie cerebelleuse")
 })
 
-test('Representational similarity analysis \u2013 connecting the branches of systems neuroscience.', () => {
+test('Representational similarity analysis – connecting the branches of systems neuroscience.', () => {
   const tx = new Transform('biblatex')
-  expect(tx.tolatex('Representational similarity analysis \u2013 connecting the branches of systems neuroscience.'))
-    .toBe('Representational similarity analysis -- connecting the branches of systems neuroscience.')
+  assert.equal(tx.tolatex('Representational similarity analysis – connecting the branches of systems neuroscience.'), 'Representational similarity analysis -- connecting the branches of systems neuroscience.')
 })
 
-test('Infants\u2019 brain responses to speech suggest analysis by synthesis', () => {
+test('Infants’ brain responses to speech suggest analysis by synthesis', () => {
   const tx = new Transform('biblatex')
-  expect(tx.tolatex('Infants\u2019 brain responses to speech suggest analysis by synthesis'))
-    .toBe("Infants' brain responses to speech suggest analysis by synthesis")
+  assert.equal(tx.tolatex('Infants’ brain responses to speech suggest analysis by synthesis'), "Infants' brain responses to speech suggest analysis by synthesis")
 })
 
-test('B\u00fcrgerliches Recht Band I Allgemeiner Teil', () => {
+test('Bürgerliches Recht Band I Allgemeiner Teil', () => {
   const tx = new Transform('biblatex')
-  expect(tx.tolatex('B\u00fcrgerliches Recht Band I Allgemeiner Teil'))
-    .toBe('B\\"urgerliches Recht Band I Allgemeiner Teil')
+  assert.equal(tx.tolatex('Bürgerliches Recht Band I Allgemeiner Teil'), 'B\\"urgerliches Recht Band I Allgemeiner Teil')
 })
 
 // test("math: 0 < p < 1", () => {
 //   tx({ text: "0 < p < 1", prefer: 'math' }, "$0 < p < 1$")
 // })
 
-test('non-breaking space: ; accented characters: \u00f1 and \u00f1; tilde in URL: http://example.com/~user', () => {
+test('non-breaking space: ; accented characters: ñ and ñ; tilde in URL: http://example.com/~user', () => {
   const tx = new Transform('minimal')
-  expect(tx.tolatex('non-breaking space: ; accented characters: \u00f1 and \u00f1; tilde in URL: http://example.com/~user'))
-    .toBe('non-breaking space: ; accented characters: ñ and ñ; tilde in URL: http://example.com/\\textasciitilde user')
+  assert.equal(tx.tolatex('non-breaking space: ; accented characters: ñ and ñ; tilde in URL: http://example.com/~user'), 'non-breaking space: ; accented characters: ñ and ñ; tilde in URL: http://example.com/\\textasciitilde user')
 })
 
 test('ogonek in bibtex-creator Munaf\u0102\u02db', () => {
   const tx = new Transform('bibtex-creator')
-  expect(tx.tolatex('ogonek in bibtex-creator Munaf\u0102\u02db'))
-    .toBe('ogonek in bibtex-creator Munaf{\\u A}{\\k{}}')
+  assert.equal(tx.tolatex('ogonek in bibtex-creator Munaf\u0102\u02db'), 'ogonek in bibtex-creator Munaf{\\u A}{\\k{}}')
 })
 test('ogonek in bibtex Munaf\u0102\u02db', () => {
   const tx = new Transform('bibtex')
-  expect(tx.tolatex('ogonek in bibtex Munaf\u0102\u02db'))
-    .toBe('ogonek in bibtex Munaf\\u A\\k{}')
+  assert.equal(tx.tolatex('ogonek in bibtex Munaf\u0102\u02db'), 'ogonek in bibtex Munaf\\u A\\k{}')
 })
 
 test('Molecular Theory of Atomic Collisions: Calculated Cross Sections for ${\\mathrm{H}}^{+\\}}+\\mathrm{F}(^{2}P)$', () => {
   const tx = new Transform('bibtex')
-  expect(tx.tolatex('Molecular Theory of Atomic Collisions: Calculated Cross Sections for ${\\mathrm{H}}^{+\\}}+\\mathrm{F}(^{2}P)$'))
-    .toBe('Molecular Theory of Atomic Collisions: Calculated Cross Sections for \\$\\textbraceleft\\textbackslash mathrm\\textbraceleft H\\textbraceright\\textbraceright\\textasciicircum\\textbraceleft +\\textbackslash\\textbraceright\\textbraceright +\\textbackslash mathrm\\textbraceleft F\\textbraceright (\\textasciicircum\\textbraceleft 2\\textbraceright P)\\$')
+  assert.equal(tx.tolatex('Molecular Theory of Atomic Collisions: Calculated Cross Sections for ${\\mathrm{H}}^{+\\}}+\\mathrm{F}(^{2}P)$'), 'Molecular Theory of Atomic Collisions: Calculated Cross Sections for \\$\\textbraceleft\\textbackslash mathrm\\textbraceleft H\\textbraceright\\textbraceright\\textasciicircum\\textbraceleft +\\textbackslash\\textbraceright\\textbraceright +\\textbackslash mathrm\\textbraceleft F\\textbraceright (\\textasciicircum\\textbraceleft 2\\textbraceright P)\\$')
 })
 
 test('Pető', () => {
   const tx = new Transform('biblatex')
-  expect(tx.tolatex('Pető')).toBe('Pet\\H o')
+  assert.equal(tx.tolatex('Pető'), 'Pet\\H o')
 })
 
 test('K̅', () => {
   const tx = new Transform('biblatex')
-  expect(tx.tolatex('K̅')).toBe('$\\overline K$')
+  assert.equal(tx.tolatex('K̅'), '$\\overline K$')
 })
 
-test('Lema\u00eetre', () => {
+test('Lemaître', () => {
   const tx = new Transform('biblatex')
-  expect(tx.tolatex('Lema\u00eetre')).toBe('Lema\\^itre')
+  assert.equal(tx.tolatex('Lemaître'), 'Lema\\^itre')
 })
 
 test('2 > 1', () => {
   const tx = new Transform('biblatex')
-  expect(tx.tolatex('2 > 1')).toBe('2 $>$ 1')
+  assert.equal(tx.tolatex('2 > 1'), '2 $>$ 1')
 })
 
 test('CJK quotes unchanged', () => {
   const tx = new Transform('minimal')
-  expect(tx.tolatex('\u201c\u6c11\u65cf\u56fd\u5bb6\u201d\u7684\u8ff7\u601d\u4e0e\u73b0\u4ee3\u4e2d\u56fd\u7684\u5f62\u6210'))
-    .toBe('\u201c\u6c11\u65cf\u56fd\u5bb6\u201d\u7684\u8ff7\u601d\u4e0e\u73b0\u4ee3\u4e2d\u56fd\u7684\u5f62\u6210')
+  assert.equal(tx.tolatex('“民族国家”的迷思与现代中国的形成'), '“民族国家”的迷思与现代中国的形成')
 })
 
 test('{Rafael', () => {
   const tx = new Transform('bibtex-creator')
-  expect(tx.tolatex('{Rafael')).toBe('{\\textbraceleft}Rafael')
+  assert.equal(tx.tolatex('{Rafael'), '{\\textbraceleft}Rafael')
 })
 test('Pérez}', () => {
   const tx = new Transform('bibtex-creator')
-  expect(tx.tolatex('Pérez}')).toBe("P{\\'e}rez{\\textbraceright}")
+  assert.equal(tx.tolatex('Pérez}'), "P{\\'e}rez{\\textbraceright}")
 })
 test('Pérez}, {Rafael', () => {
   const tx = new Transform('bibtex-creator')
-  expect(tx.tolatex('Pérez}, {Rafael')).toBe("P{\\'e}rez{\\textbraceright}, {\\textbraceleft}Rafael")
+  assert.equal(tx.tolatex('Pérez}, {Rafael'), "P{\\'e}rez{\\textbraceright}, {\\textbraceleft}Rafael")
 })
 
-test('Francisco Perdig\u00f3n', () => {
+test('Francisco Perdigón', () => {
   const tx = new Transform('bibtex-creator')
-  expect(tx.tolatex('bibtex-creator Francisco Perdig\u00f3n')).toBe("bibtex-creator Francisco Perdig{\\'o}n")
+  assert.equal(tx.tolatex('bibtex-creator Francisco Perdigón'), "bibtex-creator Francisco Perdig{\\'o}n")
 })
-test('Francisco Perdig\u00f3n', () => {
+test('Francisco Perdigón', () => {
   const tx = new Transform('bibtex')
-  expect(tx.tolatex('bibtex Francisco Perdig\u00f3n')).toBe("bibtex Francisco Perdig\\'on")
+  assert.equal(tx.tolatex('bibtex Francisco Perdigón'), "bibtex Francisco Perdig\\'on")
 })
 
 test('Michał', () => {
   const tx = new Transform('bibtex-creator')
-  expect(tx.tolatex('Michał MichałMichał')).toBe('Micha{\\l} Micha{\\l}Micha{\\l}')
+  assert.equal(tx.tolatex('Michał MichałMichał'), 'Micha{\\l} Micha{\\l}Micha{\\l}')
 })
 
 test('Paı̈doussis', () => {
   const tx = new Transform('bibtex-creator')
-  expect(tx.tolatex('Paı̈doussis')).toBe('Pa{\\"\\i}doussis')
+  assert.equal(tx.tolatex('Paı̈doussis'), 'Pa{\\"\\i}doussis')
 })
 
 test('Oxenløwe', () => {
   const tx = new Transform('bibtex-creator')
-  expect(tx.tolatex('Oxenløwe')).toBe('Oxenl{\\o}we')
+  assert.equal(tx.tolatex('Oxenløwe'), 'Oxenl{\\o}we')
 })
 
 test('episteme', () => {
@@ -194,6 +179,6 @@ test('episteme', () => {
   const output = "In philosophy, episteme (Ancient Greek: $\\acute{\\epsilon}\\pi\\iota\\sigma\\tau\\acute{\\eta}\\mu\\eta$, romanized: epist\\=em\\=e, lit.\\,'science, knowledge'; French: \\'epist\\'em\\`e) is a term that refers to a principle system of understanding (i.e., knowledge), such as scientific knowledge or practical knowledge. The term comes from the Ancient Greek verb $\\acute{\\epsilon}\\pi\\hat{\\iota}\\sigma\\tau\\breve{\\alpha}\\mu\\alpha\\iota$, ep\\'istamai, meaning 'to know, to understand, to be acquainted with'. The term epistemology (the branch of philosophy concerning knowledge) is derived from episteme. Plato contrasts episteme with doxa: common belief or opinion. The term episteme is also distinguished from techne: a craft or applied practice.  Socrates noted that nous and episteme is requisite for prudence (phronesis)."
   const tx = new Transform('bibtex')
   const packages = new Set()
-  expect(tx.tolatex(input, { packages })).toBe(output)
-  expect([...packages].sort().join(',')).toBe('textalpha,textgreek')
+  assert.equal(tx.tolatex(input, { packages }), output)
+  assert.equal([...packages].sort().join(','), 'textalpha,textgreek')
 })

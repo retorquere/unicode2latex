@@ -96,7 +96,8 @@ export class Transform {
     map = JSON.parse(JSON.stringify(map)) as CharMap
     for (const preferred of (['text', 'math'] as Mode[])) {
       if (!(preferred in options)) continue
-      for (const c of options[preferred]) {
+      const forced = options[preferred] ?? ''
+      for (const c of forced) {
         if (preferred in map[c]) map[c] = { [preferred]: map[c][preferred] }
       }
     }
@@ -136,7 +137,7 @@ export class Transform {
     if (mode === 'text' && this.creator) {
       if (this.creatorBraces.find(re => text.match(re))) return `{${text}}`
 
-      let m: RegExpMatchArray
+      let m: RegExpMatchArray | null
 
       if (m = text.match(/^\\(L|O|AE|AA|DH|DJ|OE|SS|TH|NG)\{\}$/i)) return `{\\${m[1]}}`
 
@@ -149,7 +150,7 @@ export class Transform {
   }
 
   private char = /(?<match>(?<tie>i\uFE20a\uFE21)|(?<combined>(?<base>[^\p{M}]?)(?<cccs>\p{M}+))|(?<single>.))/gu
-  private apply(tc: TeXChar, ccc: string): TeXChar {
+  private apply(tc: TeXChar, ccc: string): TeXChar | null {
     let resolved: TeXChar
     if (tc.text && (resolved = this.map[`${tc.text}${ccc}`])) return resolved
     if (tc.math && (resolved = this.map[`${tc.math}${ccc}`])) return resolved
@@ -192,35 +193,40 @@ export class Transform {
       text: (bracemath ? '$}' : '$'),
     } as const
 
-    let mapped: TeXChar
+    let mapped: TeXChar | null
     let switched: boolean
-    let m: RegExpExecArray | RegExpMatchArray
-    let cd: { macro: string; mode: Mode }
+    let m: RegExpExecArray | RegExpMatchArray | null
 
     let latex = ''
-    let tc: TeXChar
-    for (const { groups } of text.normalize('NFD').matchAll(this.char)) {
+    let tc: TeXChar | null
+    for (const matchResult of text.normalize('NFD').matchAll(this.char)) {
+      const groups = matchResult.groups
+      if (!groups) continue
+
       const { match, tie, combined, base, cccs, single } = groups
+      if (!match) continue
+      const singleChar = single ?? ''
 
       if (this.minimal) {
-        mapped = this.map[single]
+        mapped = this.map[singleChar]
       }
       else if (tie && !this.map[tie]) {
         mapped = { text: 'ia' }
       }
-      else if (tc = this.map[tie] || this.map[combined] || this.map[single]) {
+      else if (tc = this.map[tie] || this.map[combined] || this.map[singleChar]) {
         mapped = tc
       }
-      else if (combined) {
+      else if (combined && base !== undefined && cccs !== undefined) {
         let CCCs = [...cccs]
         const basetc = this.map[base] || { text: base, math: base }
         const permutations = allPermutations(CCCs)
         ;[mapped, CCCs] = Array.from({ length: CCCs.length + 1 }, (_, i) => CCCs.length - i)
-          .reduce((acc, l) => {
+          .reduce<[TeXChar, string[]] | null>((acc, l) => {
             if (acc) return acc
             for (const p of permutations) {
               if (tc = this.apply(basetc, p.slice(0, l).join(''))) return [tc, p.slice(l)]
             }
+            return null
           }, null) as [TeXChar, string[]]
           || [basetc, CCCs]
 
@@ -251,7 +257,9 @@ export class Transform {
       }
 
       // macrospacer \0 clean up below
-      latex += this.braceorspace(mode, mapped[mode], mapped.macrospacer)
+      const mappedText = mapped[mode]
+      if (!mappedText) continue
+      latex += this.braceorspace(mode, mappedText, !!mapped.macrospacer)
 
       // only try to merge sup/sub if we were already in math mode, because if we were previously in text mode, testing for _^ is tricky.
       if (!switched && mode === 'math' && (m = latex.match(/(([\^_])\{[^{}]+)\}\2{(.\})$/))) {
