@@ -183,12 +183,21 @@ test('episteme', () => {
   assert.equal([...packages].sort().join(','), 'textalpha,textgreek')
 })
 
-test('Lavı́n', () => {
+test('Lavı́n biblatex', () => {
   const tx = new Transform('biblatex')
-  assert.equal(tx.tolatex('Lavı́n'), "Lav\\'{\\i}n")
+  assert.equal(tx.tolatex('Lavı́n'), "Lav{\\'\\i}n")
 })
 
+test('Lavı́n bibtex', () => {
+  const tx = new Transform('bibtex')
+  assert.equal(tx.tolatex('Lavı́n'), "Lav{\\'\\i}n")
+})
 test('Lavı́n creator', () => {
   const tx = new Transform('bibtex-creator')
   assert.equal(tx.tolatex('Lavı́n'), "Lav{\\'\\i}n")
+})
+
+test('Nguyễn, Xuân Thắng', () => {
+  const tx = new Transform('bibtex-creator')
+  assert.equal(tx.tolatex('Nguyễn, Xuân Thắng'), "Nguy{\\~{\\^e}}n, Xu{\\^a}n Th{\\'{\\u a}}ng")
 })

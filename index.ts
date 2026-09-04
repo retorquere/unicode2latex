@@ -120,7 +120,7 @@ export class Transform {
 
   private creatorBraces = [
     /[^{]\{/,
-    /^\\[`\'^~"=.][a-z]$/i,
+    /^\\[`\'~"=.][a-z]$/i,
     /^\\[\^]\\[ij]$/,
     /^\\[kr]\{[a-zA-Z]\}$/,
     /\\[0-1a-z]+$/i, // this prevents a spacer from producing \\l{}
@@ -134,6 +134,9 @@ export class Transform {
   // Only testing .text because that's the only place (so far)
   // that these have turned up.
   private braceorspace(mode: Mode, text: string, macrospacer: boolean): string {
+    // Preserve the argument group and add the outer group, for example \~{\^e} becomes {\~{\^e}}.
+    if (mode === 'text' && text.match(/^\\[`\'^~"=.](?:\{.*\}|\\[a-z]+)$/i)) return `{${text}}`
+
     if (mode === 'text' && this.creator) {
       if (this.creatorBraces.find(re => text.match(re))) return `{${text}}`
 
@@ -162,12 +165,13 @@ export class Transform {
     if (!char) return null
 
     const isMacro = tl.macro.match(/[a-z]/i)
-    const isSingleChar = [...char].length === 1
+    // A bare TeX control word represents one character despite its string length.
+    const isSingleChar = [...char].length === 1 || /^\\[a-z]+$/i.test(char)
 
     if (isMacro && isSingleChar) {
       return { [tl.mode]: `\\${tl.macro} ${char}` }
     }
-    else if (isMacro || (!this.creator && !isSingleChar)) {
+    else if (isMacro || !isSingleChar) {
       return { [tl.mode]: `\\${tl.macro}{${char}}` }
     }
     else {
