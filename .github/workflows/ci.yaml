@@ -12,17 +12,21 @@ jobs:
       contents: read
       id-token: write
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
 
     - name: install node
       uses: actions/setup-node@v6
       with:
         node-version: 24.x
+        registry-url: 'https://registry.npmjs.org' # Tells setup-node to write the .npmrc auth config
+
     - name: install dependencies
       run: |
-        rm package-lock.json
+        rm -f package-lock.json
         npm i
     - run: npm start
     - run: find dist -type f
     - name: Publish
       run: npm publish --provenance --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # Secret required by npm publish
