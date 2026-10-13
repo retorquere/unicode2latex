@@ -500,6 +500,7 @@ i\u0303 < \~{\i} text
 \u0326 = \textcommabelow text combining
 \u0327 = \c text combining
 \u0328 = \k text combining
+\u0328 < \polhk text combining
 \u0329 = \textsyllabic text.tipa combining
 \u032A = \textsubbridge text.tipa combining
 \u032C = \textsubwedge text.tipa combining
@@ -2455,6 +2456,7 @@ A\u030A > \AA text
 \u21A8 = \updownarrowbar math.unicode-math
 \u21A9 = \hookleftarrow math
 \u21AA = \hookrightarrow math
+\u21AA < \lhook
 \u21AB = \looparrowleft math.unicode-math
 \u21AC = \looparrowright math.unicode-math
 \u21AD = \leftrightsquigarrow math.unicode-math
