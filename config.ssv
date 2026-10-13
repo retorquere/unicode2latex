@@ -510,6 +510,7 @@ i\u0303 < \~{\i} text
 \u0330 = \textsubtilde text.tipa combining
 \u0331 = \textsubbar text.tipa combining
 \u0331 = \underbar math combining
+\u0331 < \b text combining
 \u0332 < \mathunderbar math.unicode-math
 \u0332 = \underline math
 \u0334 = \textsuperimposetilde text.tipa combining
