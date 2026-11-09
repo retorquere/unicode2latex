@@ -11,3 +11,8 @@ node_modules
 *.py
 tables
 dist
+
+
+# Added by cargo
+
+/target

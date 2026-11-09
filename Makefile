@@ -4,8 +4,8 @@ TARGETS = tables/biblatex.ts tables/bibtex.ts tables/combining.ts tables/latex2u
 
 all: $(TARGETS)
 
-tables/%.ts: ./build.js config.ssv
-	./build.js
+tables/%.ts: Cargo.toml src/bin/rebuild.rs config.ssv
+	cargo run
 
 clean:
 	rm -f $(TARGETS)
