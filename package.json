@@ -8,6 +8,10 @@
     ".": {
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
+    },
+    "./wasm": {
+      "types": "./dist/wasm/index.d.ts",
+      "import": "./dist/wasm/index.js"
     }
   },
   "keywords": [
@@ -17,10 +21,12 @@
   ],
   "description": "Mapping to convert unicode characters from and to LaTeX macros",
   "scripts": {
-    "test": "npm start && node --test unicode2latex.test.js",
+    "test": "npm start && node --test unicode2latex.test.js && npm run test:wasm",
+    "test:wasm": "cargo test --lib && UNICODE2LATEX_BACKEND=wasm node --test unicode2latex.test.js && node --test wasm.test.js",
     "start": "npm run build",
     "prebuild": "make",
-    "build": "run-p --aggregate-output lint tsc",
+    "build": "run-p --aggregate-output lint tsc && npm run build:wasm",
+    "build:wasm": "node wasm/build.mjs",
     "lint": "dprint fmt *.ts *.js && dprint check *.ts",
     "tsc:esm": "rm -rf dist/esm && tsc -d -p tsconfig.esm.json",
     "tsc:cjs": "rm -rf dist/cjs && tsc -d -p tsconfig.cjs.json && node -e \"require('fs').writeFileSync('dist/cjs/package.json', JSON.stringify({ type: 'commonjs' }, null, 2) + '\\n')\"",

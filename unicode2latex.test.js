@@ -3,7 +3,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 
-import { Transform } from './dist/esm/index.js'
+const { Transform } = await import(process.env.UNICODE2LATEX_BACKEND === 'wasm' ? 'unicode2latex/wasm' : './dist/esm/index.js')
 
 test('macro spacer', () => {
   const tx = new Transform('biblatex')
